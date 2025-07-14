@@ -1,3 +1,4 @@
+using Interfaces;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -20,19 +21,24 @@ public class Player : MonoBehaviour
     private bool _isRunning = false;
 
     [Header("Оборудование")]
-    [SerializeField] private Light _flashlight;
+    [SerializeField] private Light _flashlightLight;
     private bool _flashlightEnabled = true;
 
     [Header("Камера")]
     [SerializeField] private Camera _playerCamera;
+    [SerializeField] private Vector3 _standingCamPos = new(0, 1.7f, 0);
+    [SerializeField] private Vector3 _crouchingCamPos = new(0, 0.9f, 0);
+    [SerializeField] private float _cameraMoveSpeed = 5f;
+
+    [Header("Управление камерой")]
     [SerializeField] private float _verticalRotation = 0f;
     [SerializeField] private float _maxVerticalAngle = 70f;
     [SerializeField] private float _fov = 50;
     [SerializeField] private float _sprintFov = 60;
     [SerializeField] private float _mouseSensitivity = 2f;
-    [SerializeField] private Vector3 _standingCamPos = new(0, 1.7f, 0);
-    [SerializeField] private Vector3 _crouchingCamPos = new(0, 0.9f, 0);
-    [SerializeField] private float _cameraMoveSpeed = 5f;
+
+    [Header("Взаимодействия")]
+    [SerializeField] private float _interactionDistance = 3f;
 
     private Vector2 _moveInput;
     private Vector2 _lookInput;
@@ -61,6 +67,9 @@ public class Player : MonoBehaviour
         GameInput.Instance.InputActions.Player.Jump.performed += Jump_performed;
 
         GameInput.Instance.InputActions.Player.Flashlight.performed += FlashlightToggle_performed;
+
+        GameInput.Instance.InputActions.Player.Interact.started += Interact_started;
+        GameInput.Instance.InputActions.Player.Interact.canceled += Interact_canceled;
     }
 
     private void OnDisable()
@@ -73,6 +82,24 @@ public class Player : MonoBehaviour
         GameInput.Instance.InputActions.Player.Jump.performed -= Jump_performed;
 
         GameInput.Instance.InputActions.Player.Flashlight.performed -= FlashlightToggle_performed;
+
+        GameInput.Instance.InputActions.Player.Interact.started -= Interact_started;
+        GameInput.Instance.InputActions.Player.Interact.canceled -= Interact_canceled;
+    }
+
+    public void InteractTest()
+    {
+        Debug.Log("Взаимодействие");
+    }
+
+    public void ShortHoldInteractTest()
+    {
+        Debug.Log("Взаимодействие с коротким зажатием");
+    }
+
+    public void HoldInteractTest()
+    {
+        Debug.Log("Взаимодействие с длинным зажатием");
     }
 
     private void Update()
@@ -94,7 +121,7 @@ public class Player : MonoBehaviour
     private void FlashlightToggle_performed(InputAction.CallbackContext obj)
     {
         _flashlightEnabled = !_flashlightEnabled;
-        _flashlight.gameObject.SetActive(_flashlightEnabled);
+        _flashlightLight.gameObject.SetActive(_flashlightEnabled);
     }
 
     private void Sprint_canceled(InputAction.CallbackContext obj)
@@ -125,7 +152,7 @@ public class Player : MonoBehaviour
         _sprintAdjustFov = StartCoroutine(Utils.AdjustFOV(_sprintFov, 0.4f, _playerCamera));
     }
 
-    protected void Crouch_performed(InputAction.CallbackContext obj)
+    private void Crouch_performed(InputAction.CallbackContext obj)
     {
         if (_isCrouched)
         {
@@ -144,6 +171,32 @@ public class Player : MonoBehaviour
             if (_isRunning)
                 Sprint_canceled(new InputAction.CallbackContext());
         }
+    }
+
+    private void Interact_started(InputAction.CallbackContext obj)
+    {
+        var intecrable = FindInteractObject();
+        if (intecrable == null) return;
+
+        intecrable.OnInteract();
+    }
+
+    private void Interact_canceled(InputAction.CallbackContext obj)
+    {
+        var intecrable = FindInteractObject();
+        if (intecrable == null) return;
+
+        intecrable.OnInteractEnd();
+    }
+
+    private IInteractable FindInteractObject()
+    {
+        Ray ray = _playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+        if (Physics.Raycast(ray, out RaycastHit hit, _interactionDistance, ~0))
+            if (hit.collider.TryGetComponent<IInteractable>(out var interactable))
+                return interactable;
+
+        return null;
     }
 
     private void Jump_performed(InputAction.CallbackContext ctx)
