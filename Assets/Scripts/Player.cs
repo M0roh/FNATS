@@ -109,6 +109,7 @@ public class Player : MonoBehaviour
 
         Look();
         Move();
+        RollingCheck();
 
         Vector3 targetPos = _isCrouched ? _crouchingCamPos : _standingCamPos;
         _playerCamera.transform.localPosition = Vector3.Lerp(
@@ -116,6 +117,19 @@ public class Player : MonoBehaviour
             targetPos,
             Time.deltaTime * _cameraMoveSpeed
         );
+    }
+
+    private void RollingCheck()
+    {
+        if (_cc.isGrounded && Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 1.5f))
+        {
+            float slopeAngle = Vector3.Angle(hit.normal, Vector3.up);
+            if (slopeAngle > _cc.slopeLimit)
+            {
+                Vector3 pushBack = Vector3.ProjectOnPlane(hit.normal, Vector3.up).normalized;
+                _cc.Move(_walkSpeed * Time.deltaTime * pushBack);
+            }
+        }
     }
 
     private void FlashlightToggle_performed(InputAction.CallbackContext obj)
@@ -201,11 +215,21 @@ public class Player : MonoBehaviour
 
     private void Jump_performed(InputAction.CallbackContext ctx)
     {
-        if (_cc.isGrounded)
+        if (_cc.isGrounded && IsSlopeValid())
         {
             _velocity.y = Mathf.Sqrt(jumpHeight * -2f * _gravity);
             _isJumping = true;
         }
+    }
+
+    private bool IsSlopeValid()
+    {
+        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 1.5f))
+        {
+            float slopeAngle = Vector3.Angle(hit.normal, Vector3.up);
+            return slopeAngle <= _cc.slopeLimit;
+        }
+        return false;
     }
 
     private void Move()

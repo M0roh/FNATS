@@ -5,9 +5,9 @@ namespace Triggers
 {
     public class ColliderTrigger : MonoBehaviour
     {
-        [SerializeField] private UnityEvent _onEnter;
-        [SerializeField] private UnityEvent _onStay;
-        [SerializeField] private UnityEvent _onExit;
+        [SerializeField] protected UnityEvent _onEnter;
+        [SerializeField] protected UnityEvent _onStay;
+        [SerializeField] protected UnityEvent _onExit;
 
         private void OnTriggerEnter(Collider other)
         {

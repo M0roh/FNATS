@@ -17,7 +17,6 @@
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <BaseDirectory>.</BaseDirectory>
-    <Nullable>enable</Nullable>
   </PropertyGroup>
   <PropertyGroup>
     <NoWarn>0169;USG0001</NoWarn>
@@ -74,21 +73,78 @@
     <Analyzer Include="D:\UnityProjects\FNATS\Library\PackageCache\com.unity.entities@e581b903be8e\Unity.Entities\SourceGenerators\Unity.Entities.Analyzer.CodeFixes.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Visual Design Cafe\Nature Renderer Demo\Scripts\CloneTerrain.cs" />
+    <Compile Include="Assets\Visual Design Cafe\Nature Renderer Demo\Scripts\RuntimeEditing.cs" />
+    <Compile Include="Assets\Visual Design Cafe\Nature Renderer Demo\Scripts\OpenWebsiteButton.cs" />
+    <Compile Include="Assets\Visual Design Cafe\Nature Renderer Demo\Scripts\CompileShaders.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\GameInput.cs" />
+    <Compile Include="Assets\Visual Design Cafe\Nature Renderer\Runtime\NatureRenderer.SRP.cs" />
+    <Compile Include="Assets\Scripts\Triggers\MessageTrigger.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IInteractable.cs" />
     <Compile Include="Assets\Scripts\Triggers\ColliderTrigger.cs" />
     <Compile Include="Assets\InputSystem_Actions.cs" />
+    <Compile Include="Assets\Scripts\UI\Main menu.cs" />
+    <Compile Include="Assets\Samples\Animation Rigging\1.3.0\Animation Rigging Constraint Samples\Scripts\mParent.cs" />
     <Compile Include="Assets\Libraries\QuickOutline\Scripts\Outline.cs" />
+    <Compile Include="Assets\Visual Design Cafe\Nature Renderer Demo\Scripts\RenderPipelineLighting.cs" />
+    <Compile Include="Assets\Samples\Animation Rigging\1.3.0\Animation Rigging Constraint Samples\Info\Scripts\Readme.cs" />
     <Compile Include="Assets\Scripts\Triggers\InteractTrigger.cs" />
     <Compile Include="Assets\Scripts\Utils.cs" />
+    <Compile Include="Assets\Visual Design Cafe\Nature Renderer Demo\Scripts\UseReferenceCamera.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
+    <None Include="Assets\Visual Design Cafe\Nature Renderer\Plugins\VisualDesignCafe.Rendering.Nature.dll" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile-2-Pass.shader" />
+    <None Include="Assets\Visual Design Cafe\Package Manager\VisualDesignCafe.Editor.Web.dll" />
+    <None Include="Assets\Visual Design Cafe\Nature Renderer Demo\Realistic\Shaders\Lit Simple Built-in.txt" />
+    <None Include="Assets\Visual Design Cafe\Nature Renderer Demo\Realistic\Third-Party Notices.txt" />
+    <None Include="Assets\Visual Design Cafe\Nature Renderer\Resources\Nature Renderer Batcher.compute" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
+    <None Include="Assets\Visual Design Cafe\Package Manager\VisualDesignCafe.Packages.dll" />
+    <None Include="Assets\Visual Design Cafe\Nature Renderer\Plugins\VisualDesignCafe.Rendering.Nature.Editor.dll" />
+    <None Include="Assets\Visual Design Cafe\Nature Renderer Demo\Realistic\Shaders\Lit Simple HD.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
+    <None Include="Assets\Visual Design Cafe\Nature Renderer\Plugins\VisualDesignCafe.Rendering.Instancing.Editor.dll" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
     <None Include="Assets\Libraries\QuickOutline\Resources\Shaders\OutlineMask.shader" />
+    <None Include="Assets\Visual Design Cafe\Package Manager\VisualDesignCafe.Editor.Community.dll" />
+    <None Include="Assets\Visual Design Cafe\Nature Renderer\Resources\Nature Renderer VR.compute" />
+    <None Include="Assets\Visual Design Cafe\Nature Renderer\Plugins\VisualDesignCafe.Memory.dll" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
+    <None Include="Assets\Visual Design Cafe\Nature Renderer Demo\Realistic\Shaders\Lit Alpha Built-in.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\SDFFunctions.hlsl" />
+    <None Include="Assets\Visual Design Cafe\Nature Renderer\Resources\Nature Renderer Instancing.compute" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
+    <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
     <None Include="Assets\Libraries\Day-Night Skyboxes\Textures\Readme for Assigning.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
+    <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
+    <None Include="Assets\Visual Design Cafe\Nature Renderer Demo\Realistic\Shaders\Lit Double-Sided Built-in.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
+    <None Include="Assets\Visual Design Cafe\Nature Renderer Demo\Realistic\Shaders\Lit Alpha Universal.txt" />
     <None Include="Assets\Libraries\QuickOutline\Readme.txt" />
+    <None Include="Assets\Visual Design Cafe\Package Manager\VisualDesignCafe.Editor.PackageManager.dll" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
+    <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
+    <None Include="Assets\Visual Design Cafe\Nature Renderer Demo\Realistic\Shaders\Lit Double-Sided Universal.txt" />
+    <None Include="Assets\Visual Design Cafe\Nature Renderer Demo\Realistic\Shaders\Lit Double-Sided HD.txt" />
     <None Include="Assets\Libraries\Day-Night Skyboxes\readme.txt" />
+    <None Include="Assets\Visual Design Cafe\Nature Renderer\Plugins\VisualDesignCafe.Rendering.Instancing.dll" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
+    <None Include="Assets\Visual Design Cafe\Nature Renderer Demo\Realistic\Shaders\Lit Simple Universal.txt" />
+    <None Include="Assets\Visual Design Cafe\Package Manager\VisualDesignCafe.Editor.Events.dll" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
+    <None Include="Assets\Visual Design Cafe\Nature Renderer Demo\Realistic\Shaders\Lit Alpha HD.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
     <None Include="Assets\Libraries\QuickOutline\Resources\Shaders\OutlineFill.shader" />
+    <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -601,6 +657,46 @@
     </Reference>
     <Reference Include="System.Runtime.CompilerServices.Unsafe">
       <HintPath>Library\PackageCache\com.unity.collections@d49facba0036\Unity.Collections.Tests\System.Runtime.CompilerServices.Unsafe\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="VisualDesignCafe.Editor.PackageManager">
+      <HintPath>Assets\Visual Design Cafe\Package Manager\VisualDesignCafe.Editor.PackageManager.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="VisualDesignCafe.Packages">
+      <HintPath>Assets\Visual Design Cafe\Package Manager\VisualDesignCafe.Packages.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="VisualDesignCafe.Editor.Community">
+      <HintPath>Assets\Visual Design Cafe\Package Manager\VisualDesignCafe.Editor.Community.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="VisualDesignCafe.Editor.Events">
+      <HintPath>Assets\Visual Design Cafe\Package Manager\VisualDesignCafe.Editor.Events.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="VisualDesignCafe.Editor.Web">
+      <HintPath>Assets\Visual Design Cafe\Package Manager\VisualDesignCafe.Editor.Web.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="VisualDesignCafe.Rendering.Nature">
+      <HintPath>Assets\Visual Design Cafe\Nature Renderer\Plugins\VisualDesignCafe.Rendering.Nature.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="VisualDesignCafe.Memory">
+      <HintPath>Assets\Visual Design Cafe\Nature Renderer\Plugins\VisualDesignCafe.Memory.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="VisualDesignCafe.Rendering.Instancing">
+      <HintPath>Assets\Visual Design Cafe\Nature Renderer\Plugins\VisualDesignCafe.Rendering.Instancing.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="VisualDesignCafe.Rendering.Instancing.Editor">
+      <HintPath>Assets\Visual Design Cafe\Nature Renderer\Plugins\VisualDesignCafe.Rendering.Instancing.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="VisualDesignCafe.Rendering.Nature.Editor">
+      <HintPath>Assets\Visual Design Cafe\Nature Renderer\Plugins\VisualDesignCafe.Rendering.Nature.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="netstandard">
@@ -1159,6 +1255,10 @@
       <HintPath>Library\ScriptAssemblies\Unity.Addressables.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Unity.Animation.Rigging.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.Animation.Rigging.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Runtime.Shared">
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.Shared.dll</HintPath>
       <Private>False</Private>
@@ -1229,6 +1329,10 @@
     </Reference>
     <Reference Include="Unity.Rider.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Animation.Rigging">
+      <HintPath>Library\ScriptAssemblies\Unity.Animation.Rigging.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.AI.Navigation.Editor.ConversionSystem">
