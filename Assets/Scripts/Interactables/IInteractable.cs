@@ -1,4 +1,4 @@
-﻿namespace Interfaces
+﻿namespace VoidspireStudio.FNATS.Interactables
 {
     public interface IInteractable
     {

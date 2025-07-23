@@ -1,8 +1,7 @@
-﻿using Triggers;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Localization;
 
-namespace Assets.Scripts.Triggers
+namespace VoidspireStudio.FNATS.Triggers
 {
     public class MessageTrigger : ColliderTrigger
     {

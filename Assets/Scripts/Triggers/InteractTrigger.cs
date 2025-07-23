@@ -1,8 +1,8 @@
-﻿using Interfaces;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
+using VoidspireStudio.FNATS.Interactables;
 
-namespace Triggers
+namespace VoidspireStudio.FNATS.Triggers
 {
     public class InteractTrigger : MonoBehaviour, IInteractable
     {

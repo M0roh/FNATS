@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Triggers
+namespace VoidspireStudio.FNATS.Triggers
 {
     public class ColliderTrigger : MonoBehaviour
     {
