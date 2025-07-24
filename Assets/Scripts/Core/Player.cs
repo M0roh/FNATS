@@ -50,6 +50,9 @@ namespace VoidspireStudio.FNATS.Core
 
         private Coroutine _sprintAdjustFov;
 
+        public bool IsCrouch => _isCrouched;
+        public bool IsRunning => _isRunning;
+
         private void Awake()
         {
             if (Instance != null)
@@ -137,16 +140,12 @@ namespace VoidspireStudio.FNATS.Core
             if (newObject != _lastHighlightedObject.obj)
             {
                 if (_lastHighlightedObject.obj != null)
-                {
                     if (_lastHighlightedObject.obj.TryGetComponent<Outline>(out var lastOutline))
                         lastOutline.enabled = false;
-                }
 
                 if (newObject != null)
-                {
                     if (newObject.TryGetComponent<Outline>(out var newOutline))
                         newOutline.enabled = true;
-                }
 
                 _lastHighlightedObject = (newObject, interactable);
             }

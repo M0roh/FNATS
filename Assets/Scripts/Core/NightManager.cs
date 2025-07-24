@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using VoidspireStudio.FNATS.PowerSystem;
 
 namespace VoidspireStudio.FNATS.Core
 {
@@ -31,6 +32,7 @@ namespace VoidspireStudio.FNATS.Core
             _timer = 0;
 
             StartCoroutine(NightTimer());
+            PowerManager.Instance.StartDrain();
         }
 
         public IEnumerator NightTimer()

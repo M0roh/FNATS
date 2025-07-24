@@ -26,7 +26,7 @@ namespace VoidspireStudio.FNATS.PowerSystem
             Instance = this;
         }
 
-        private void Start()
+        public void StartDrain()
         {
             _power = _maxPower;
 

@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace VoidspireStudio.FNATS.Input
+namespace VoidspireStudio.FNATS.Utils
 {
     public class Util
     {

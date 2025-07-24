@@ -74,8 +74,9 @@
     <Analyzer Include="D:\Unity Projects\FNATS\Library\PackageCache\com.unity.entities@e581b903be8e\Unity.Entities\SourceGenerators\Unity.Entities.Analyzer.CodeFixes.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Editor\SecurityCameraCreator.cs" />
-    <Compile Include="Assets\Scripts\Editor\TerrainPathNavmeshGenerator .cs" />
+    <Compile Include="Assets\Scripts\Animatronics\Routes\AnimatronicRoute.cs" />
+    <Compile Include="Assets\Scripts\Animatronics\Routes\RouteSteps.cs" />
+    <Compile Include="Assets\Scripts\Utils\Extentions.cs" />
     <Compile Include="Assets\Visual Design Cafe\Nature Renderer Demo\Scripts\CloneTerrain.cs" />
     <Compile Include="Assets\Scripts\UI\MainMenu.cs" />
     <Compile Include="Assets\Scripts\Cameras\SecurityCamerasManager.cs" />
@@ -85,6 +86,7 @@
     <Compile Include="Assets\Scripts\Input\GameInput.cs" />
     <Compile Include="Assets\Scripts\Core\NightManager.cs" />
     <Compile Include="Assets\Visual Design Cafe\Nature Renderer Demo\Scripts\CompileShaders.cs" />
+    <Compile Include="Assets\Scripts\Animatronics\BaseAnimatronicAI.cs" />
     <Compile Include="Assets\Scripts\Interactables\IInteractable.cs" />
     <Compile Include="Assets\Visual Design Cafe\Nature Renderer\Runtime\NatureRenderer.SRP.cs" />
     <Compile Include="Assets\Scripts\Core\SaveManager.cs" />
