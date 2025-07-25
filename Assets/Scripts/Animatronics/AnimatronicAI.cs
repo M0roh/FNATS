@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Rendering;
 using VoidspireStudio.FNATS.Animatronics.Routes;
 using VoidspireStudio.FNATS.Core;
 using VoidspireStudio.FNATS.Utils;
@@ -14,38 +12,41 @@ namespace VoidspireStudio.FNATS.Animatronics
     {
         Off,
         Route,
+        Sabotage,
         Waiting,
         Forwarding,
-        Sabotage,
-        Attack
+        Attack,
+        OfficeAttack
     }
 
     [RequireComponent(typeof(NavMeshAgent), typeof(Animator))]
-    public abstract class BaseAnimatronicAI : MonoBehaviour
+    public abstract class AnimatronicAI : MonoBehaviour
     {
-        [Header("Path")]
-        [SerializeField] private List<AnimatronicRoute> _availableRoutes;
+        [Header("Движение")]
+        [SerializeReference] private List<AnimatronicRoute> _availableRoutes;
         [SerializeField] private float _timeBetweenSteps = 0f;
+        [SerializeField] private AnimatronicState _currentState = AnimatronicState.Waiting;
         private AnimatronicRoute _currentRoute;
         private RouteStep _currentStep;
         private GoToStep _lastGoToStep;
-        private float _waitTimer = 0f;
+        private Vector3 _fallbackReturnPosition;
+        protected float _waitTimer = 0f;
 
         [Header("Обзор")]
         [SerializeField] private Transform _head;
         [SerializeField] private float _viewDistance = 10f;
         [SerializeField] private float _fieldOfView = 90f;
+        [SerializeField] private float _rotationSpeed = 5f;
 
-        private AnimatronicState _currentState;
         private Vector3 _lastSeenPosition;
 
         private NavMeshAgent _agent;
         private Animator _animator;
 
-        private const string IDLE = "IDLE";
-        private const string WALKING = "WALK";
-        private const string ATTACK = "ATTACK";
-        private const string RUN = "RUNNING";
+        protected const string IDLE = "IDLE";
+        protected const string WALKING = "WALK";
+        protected const string ATTACK = "ATTACK";
+        protected const string RUN = "RUNNING";
 
         private void Awake()
         {
@@ -55,12 +56,29 @@ namespace VoidspireStudio.FNATS.Animatronics
             _agent.updateRotation = false;
         }
 
+        private void Start()
+        {
+            _fallbackReturnPosition = transform.position;
+        }
+
         private void Update()
+        {
+            Vector3 velocity = _agent.velocity;
+            velocity.y = 0;
+
+            if (velocity.sqrMagnitude > 0.01f)
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(velocity);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * _rotationSpeed);
+            }
+        }
+
+        private void FixedUpdate()
         {
             if (_currentState == AnimatronicState.Off)
                 return;
 
-            if (TryFindPlayer())
+            if (_currentState != AnimatronicState.Sabotage && TryFindPlayer())
                 _currentState = AnimatronicState.Forwarding;
 
             switch (_currentState)
@@ -73,6 +91,7 @@ namespace VoidspireStudio.FNATS.Animatronics
                     break;
                 
                 case AnimatronicState.Sabotage:
+                    PerformSabotage((SabotageStep)_currentStep);
                     break;
                 
                 case AnimatronicState.Waiting:
@@ -82,32 +101,55 @@ namespace VoidspireStudio.FNATS.Animatronics
                 case AnimatronicState.Forwarding:
                     PlayerForward();
                     break;
+
+                case AnimatronicState.Attack:
+                    Attack();
+                    break;
+
+                case AnimatronicState.OfficeAttack:
+                    OfficeAtack();
+                    break;
             }
         }
 
-        public void Wait()
+        protected abstract void OfficeAtack();
+
+        private void Attack()
         {
-            _animator.SetTrigger(IDLE);
-            _waitTimer -= Time.deltaTime;
+            Player.Instance.Freeze();
+            Player.Instance.ForceLookAt(_head.transform.position);
+
+            //_animator.SetTrigger(ATTACK);
+
+            Debug.Log("Game over");
+        }
+
+        protected abstract void PerformSabotage(SabotageStep step);
+
+        private void Wait()
+        {
+            //_animator.SetTrigger(IDLE);
+            _waitTimer -= Time.fixedDeltaTime;
 
             if (_waitTimer <= 0f)
             {
                 _waitTimer = 0f;
                 _currentState = AnimatronicState.Route;
 
-                if (!_currentStep.HasNextSteps)
+                if (_currentStep == null || !_currentStep.HasNextSteps)
                 {
                     var routes = _availableRoutes;
                     if (routes.Count > 1)
-                        routes = routes.Where(route => route.RouteID != _currentRoute.RouteID).ToList();
+                        routes = routes.Where(route => route.RouteID != _currentRoute.RouteID).ToList(); 
 
                     var newRoute = routes[Random.Range(0, _availableRoutes.Count)];
-                    _currentRoute = newRoute;
 
-                    if (_currentStep is SabotageStep sabotageStep)
+                    if (_currentStep is not AttackStep && _lastGoToStep != null && _currentRoute != newRoute)
                         _currentStep = newRoute.GetNearestStep(_lastGoToStep.Target.position);
                     else
                         _currentStep = newRoute.GetStartStep;
+
+                    _currentRoute = newRoute;
                 }
                 else
                 {
@@ -122,7 +164,7 @@ namespace VoidspireStudio.FNATS.Animatronics
             }
         }
 
-        public void Route()
+        private void Route()
         {
             if (_agent.HasReachedDestination())
             {
@@ -131,17 +173,17 @@ namespace VoidspireStudio.FNATS.Animatronics
             }
         }
 
-        public void ProcessStep()
+        private void ProcessStep()
         {
             switch (_currentStep)
             {
                 case GoToStep goToStep:
-                    _animator.SetTrigger(WALKING);
+                    //_animator.SetTrigger(WALKING);
                     _agent.SetDestination(goToStep.Target.position);
                     break;
 
                 case WaitStep waitStep:
-                    _animator.SetTrigger(IDLE);
+                    //_animator.SetTrigger(IDLE);
                     _waitTimer += waitStep.WaitTime;
                     _currentState = AnimatronicState.Waiting;
                     break;
@@ -155,9 +197,9 @@ namespace VoidspireStudio.FNATS.Animatronics
             }
         }
 
-        public void PlayerForward()
+        private void PlayerForward()
         {
-            _animator.SetTrigger(RUN);
+            //_animator.SetTrigger(RUN);
 
             _agent.SetAreaCost(3, 1);
             _agent.SetAreaCost(0, 1);
@@ -169,36 +211,42 @@ namespace VoidspireStudio.FNATS.Animatronics
             }
             else
             {
-                if (Vector3.Distance(transform.position, _lastSeenPosition) < 0.5f)
+                if ((transform.position - _lastSeenPosition).sqrMagnitude < 0.25f)
                 {
-                    _agent.SetDestination(_lastGoToStep.Target.position);
+                    if (_lastGoToStep != null)
+                        _agent.SetDestination(_lastGoToStep.Target.position);
+                    else
+                        _agent.SetDestination(_fallbackReturnPosition);
+
                     _currentState = AnimatronicState.Route;
                     _agent.SetAreaCost(3, 5);
                     _agent.SetAreaCost(0, 1);
                 }
             }
 
-            if ((Player.Instance.transform.position - transform.position).magnitude < 0.5f)
+            if ((Player.Instance.transform.position - transform.position).sqrMagnitude < 0.25f)
                 _currentState = AnimatronicState.Attack;
         }
+
 
         public bool TryFindPlayer(bool _obstacleCheck = true)
         {
             Vector3 directionToPlayer = Player.Instance.transform.position - transform.position;
             float distanceToPlayer = directionToPlayer.magnitude;
 
-            if (distanceToPlayer < _viewDistance)
+            float relativeViewDistance = _viewDistance;
+
+            if (Player.Instance.IsCrouch)
+                relativeViewDistance /= 2f;
+
+            if (Player.Instance.IsRunning)
+                relativeViewDistance *= 1.5f;
+
+            if (distanceToPlayer < relativeViewDistance)
             {
                 float angle = Vector3.Angle(_head.forward, directionToPlayer);
                 if (angle < _fieldOfView / 2f)
                 {
-                    float relativeViewDistance = _viewDistance;
-
-                    if (Player.Instance.IsCrouch)
-                        relativeViewDistance /= 2f;
-
-                    if (Player.Instance.IsRunning)
-                        relativeViewDistance *= 1.5f;
 
                     if (!_obstacleCheck || !Physics.Raycast(transform.position, directionToPlayer.normalized, out RaycastHit _, relativeViewDistance))
                         return true;

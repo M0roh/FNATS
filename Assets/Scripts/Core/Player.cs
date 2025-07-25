@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using VoidspireStudio.FNATS.Input;
 using VoidspireStudio.FNATS.Interactables;
+using VoidspireStudio.FNATS.Utils;
 
 namespace VoidspireStudio.FNATS.Core
 {
@@ -22,6 +23,7 @@ namespace VoidspireStudio.FNATS.Core
 
         private bool _isCrouched = false;
         private bool _isRunning = false;
+        private bool _isFrozen = false;
 
         [Header("Оборудование")]
         [SerializeField] private Light _flashlightLight;
@@ -52,6 +54,7 @@ namespace VoidspireStudio.FNATS.Core
 
         public bool IsCrouch => _isCrouched;
         public bool IsRunning => _isRunning;
+        public bool IsFrozen => _isFrozen;
 
         private void Awake()
         {
@@ -98,21 +101,6 @@ namespace VoidspireStudio.FNATS.Core
 
             GameInput.Instance.InputActions.Player.Interact.started -= Interact_started;
             GameInput.Instance.InputActions.Player.Interact.canceled -= Interact_canceled;
-        }
-
-        public void InteractTest()
-        {
-            Debug.Log("Взаимодействие");
-        }
-
-        public void ShortHoldInteractTest()
-        {
-            Debug.Log("Взаимодействие с коротким зажатием");
-        }
-
-        public void HoldInteractTest()
-        {
-            Debug.Log("Взаимодействие с длинным зажатием");
         }
 
         private void Update()
@@ -296,6 +284,40 @@ namespace VoidspireStudio.FNATS.Core
             _verticalRotation = Mathf.Clamp(_verticalRotation, -_maxVerticalAngle, _maxVerticalAngle);
 
             _playerCamera.transform.localRotation = Quaternion.Euler(_verticalRotation, 0f, 0f);
+        }
+
+        public void ForceLookAt(Vector3 targetPosition, bool disableVerticalRotation = false)
+        {
+            Vector3 direction = (targetPosition - transform.position);
+            if (!disableVerticalRotation)
+                direction.y = 0f;
+
+            Quaternion lookRotation = Quaternion.LookRotation(direction);
+            transform.rotation = lookRotation;
+
+            Vector3 dirToTarget = (targetPosition - _playerCamera.transform.position).normalized;
+            float verticalAngle = Mathf.Asin(dirToTarget.y) * Mathf.Rad2Deg;
+
+            _verticalRotation = Mathf.Clamp(-verticalAngle, -_maxVerticalAngle, _maxVerticalAngle);
+            _playerCamera.transform.localRotation = Quaternion.Euler(_verticalRotation, 0f, 0f);
+        }
+
+        public void Freeze()
+        {
+            if (!_isFrozen)
+            {
+                _isFrozen = true;
+                GameInput.Instance.InputActions.Player.Disable();
+            }
+        }
+
+        public void UnFreeze()
+        {
+            if (_isFrozen)
+            {
+                _isFrozen = false;
+                GameInput.Instance.InputActions.Player.Enable();
+            }
         }
     }
 }

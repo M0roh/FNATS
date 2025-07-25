@@ -46,5 +46,4 @@ namespace VoidspireStudio.FNATS.Animatronics.Routes
 
     [System.Serializable]
     public class AttackStep : RouteStep { }
-
 }

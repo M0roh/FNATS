@@ -10,7 +10,7 @@ namespace VoidspireStudio.FNATS.Animatronics.Routes
     {
         [SerializeField] private string _routeID = Guid.NewGuid().ToString();
         [SerializeField] private string _startNodeId;
-        [SerializeField] private List<RouteStep> _steps;
+        [SerializeReference] private List<RouteStep> _steps;
 
         private Dictionary<string, RouteStep> _cachedMap;
 
@@ -19,6 +19,9 @@ namespace VoidspireStudio.FNATS.Animatronics.Routes
         public void Init()
         {
             _cachedMap = _steps.ToDictionary(s => s.Id);
+
+            if (string.IsNullOrWhiteSpace(_startNodeId))
+                _startNodeId = _steps.First().Id;
         }
 
         public RouteStep GetStepById(string id)
