@@ -1,4 +1,5 @@
-﻿using UnityEngine.AI;
+﻿using UnityEngine;
+using UnityEngine.AI;
 
 namespace VoidspireStudio.FNATS.Utils
 {
@@ -11,6 +12,11 @@ namespace VoidspireStudio.FNATS.Utils
             return !agent.pathPending &&
                    agent.remainingDistance <= agent.stoppingDistance &&
                    (!agent.hasPath || agent.velocity.sqrMagnitude == 0f);
+        }
+        
+        public static float Fraction(this float value)
+        {
+            return value - Mathf.Floor(value);
         }
     }
 }

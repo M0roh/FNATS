@@ -7,11 +7,11 @@ namespace VoidspireStudio.FNATS.Core
         public static GameManager Instance { get; private set; }
 
         [Header("Map state")]
-        public bool IsLightOn { get; set; }
-        public bool NeedFuse { get; set; }
-        public bool DoorState { get; set; }
+        public bool IsLightOn { get; set; } = true;
+        public bool NeedFuse { get; set; } = false;
+        public bool DoorState { get; set; } = true;
 
-        public int CurrentNight { get; set; }
+        public int CurrentNight { get; set; } = 1;
 
         private void Awake()
         {

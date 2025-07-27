@@ -17,6 +17,7 @@ MonoBehaviour:
   _steps:
   - rid: 5232270747977908298
   - rid: 5232270747977908300
+  - rid: 5232270755475226700
   references:
     version: 2
     RefIds:
@@ -26,10 +27,18 @@ MonoBehaviour:
         _id: A
         _nextStepsIds:
         - B
+        - C
         _waitTime: 5
     - rid: 5232270747977908300
       type: {class: GoToStep, ns: VoidspireStudio.FNATS.Animatronics.Routes, asm: Assembly-CSharp}
       data:
         _id: B
         _nextStepsIds: []
+        _target: {fileID: 0}
+    - rid: 5232270755475226700
+      type: {class: GoToStep, ns: VoidspireStudio.FNATS.Animatronics.Routes, asm: Assembly-CSharp}
+      data:
+        _id: C
+        _nextStepsIds:
+        - A
         _target: {fileID: 0}

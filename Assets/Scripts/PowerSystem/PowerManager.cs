@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using VoidspireStudio.FNATS.Core;
 
@@ -10,10 +11,13 @@ namespace VoidspireStudio.FNATS.PowerSystem
 
         [Header("Power Settings")]
         [SerializeField] private float _maxPower = 100f;
-        [SerializeField] private float _passiveDrain = 0.05f;
-        [SerializeField] private float _lightDrain = 0.1f;
+        [SerializeField] private float _passiveDrain = 0.03f;
+        [SerializeField] private float _lightDrain = 0.05f;
 
         private float _power;
+        private Coroutine _drainCoroutine;
+
+        public event Action<float> OnPowerChanged;
 
         private void Awake()
         {
@@ -30,21 +34,35 @@ namespace VoidspireStudio.FNATS.PowerSystem
         {
             _power = _maxPower;
 
-            StartCoroutine(PowerDrain());
+            _drainCoroutine = StartCoroutine(PowerDrain());
+        }
+
+        public void StopDrain()
+        {
+            _power = 0f;;
+    
+            if (_drainCoroutine != null)
+                StopCoroutine(_drainCoroutine);
         }
 
         private IEnumerator PowerDrain()
         {
-            _power -= _passiveDrain;
-
-            if (GameManager.Instance.IsLightOn)
-                _power -= _lightDrain;
-
-            yield return new WaitForSeconds(1f);
-
-            if (_power < 0)
+            while (true)
             {
-                Debug.Log("Lose. Power off.");
+                _power -= _passiveDrain;
+
+                if (GameManager.Instance.IsLightOn)
+                    _power -= _lightDrain;
+
+                OnPowerChanged?.Invoke(_power);
+
+                yield return new WaitForSeconds(1f);
+
+                if (_power < 0)
+                {
+                    Debug.Log("Lose. Power off.");
+                    StopDrain();
+                }
             }
         }
     }

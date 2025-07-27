@@ -25,6 +25,7 @@ namespace VoidspireStudio.FNATS.Animatronics
         [Header("Движение")]
         [SerializeReference] private List<AnimatronicRoute> _availableRoutes;
         [SerializeField] private float _timeBetweenSteps = 0f;
+        [SerializeField] private float _attackDistance = 1.5f;
         [SerializeField] private AnimatronicState _currentState = AnimatronicState.Waiting;
         private AnimatronicRoute _currentRoute;
         private RouteStep _currentStep;
@@ -34,7 +35,8 @@ namespace VoidspireStudio.FNATS.Animatronics
 
         [Header("Обзор")]
         [SerializeField] private Transform _head;
-        [SerializeField] private float _viewDistance = 10f;
+        [SerializeField] private float _viewDistance = 25f;
+        [SerializeField] private float _viewDistanceAround = 5f;
         [SerializeField] private float _fieldOfView = 90f;
         [SerializeField] private float _rotationSpeed = 5f;
 
@@ -78,7 +80,9 @@ namespace VoidspireStudio.FNATS.Animatronics
             if (_currentState == AnimatronicState.Off)
                 return;
 
-            if (_currentState != AnimatronicState.Sabotage && TryFindPlayer())
+            if ((_currentState == AnimatronicState.Route ||
+                _currentState == AnimatronicState.Waiting) &&
+                TryFindPlayer())
                 _currentState = AnimatronicState.Forwarding;
 
             switch (_currentState)
@@ -118,6 +122,7 @@ namespace VoidspireStudio.FNATS.Animatronics
         {
             Player.Instance.Freeze();
             Player.Instance.ForceLookAt(_head.transform.position);
+            _agent.isStopped = true;
 
             //_animator.SetTrigger(ATTACK);
 
@@ -201,35 +206,33 @@ namespace VoidspireStudio.FNATS.Animatronics
         {
             //_animator.SetTrigger(RUN);
 
-            _agent.SetAreaCost(3, 1);
-            _agent.SetAreaCost(0, 1);
-
             if (TryFindPlayer())
             {
+                _agent.SetAreaCost(0, _agent.GetAreaCost(3));
                 _lastSeenPosition = Player.Instance.transform.position;
                 _agent.SetDestination(_lastSeenPosition);
-            }
-            else
-            {
-                if ((transform.position - _lastSeenPosition).sqrMagnitude < 0.25f)
-                {
-                    if (_lastGoToStep != null)
-                        _agent.SetDestination(_lastGoToStep.Target.position);
-                    else
-                        _agent.SetDestination(_fallbackReturnPosition);
 
-                    _currentState = AnimatronicState.Route;
-                    _agent.SetAreaCost(3, 5);
-                    _agent.SetAreaCost(0, 1);
+                if ((transform.position - _lastSeenPosition).magnitude <= _attackDistance)
+                {
+                    _currentState = AnimatronicState.Attack;
+                    _agent.SetAreaCost(3, NavMesh.GetAreaCost(3));
+                    return;
                 }
             }
+            else if (_agent.HasReachedDestination())
+            {
+                if (_lastGoToStep != null)
+                    _agent.SetDestination(_lastGoToStep.Target.position);
+                else
+                    _agent.SetDestination(_fallbackReturnPosition);
 
-            if ((Player.Instance.transform.position - transform.position).sqrMagnitude < 0.25f)
-                _currentState = AnimatronicState.Attack;
+                _waitTimer += _timeBetweenSteps;
+                _currentState = AnimatronicState.Waiting;
+                _agent.SetAreaCost(0, NavMesh.GetAreaCost(0));
+            }
         }
 
-
-        public bool TryFindPlayer(bool _obstacleCheck = true)
+        public bool TryFindPlayer()
         {
             Vector3 directionToPlayer = Player.Instance.transform.position - transform.position;
             float distanceToPlayer = directionToPlayer.magnitude;
@@ -245,10 +248,9 @@ namespace VoidspireStudio.FNATS.Animatronics
             if (distanceToPlayer < relativeViewDistance)
             {
                 float angle = Vector3.Angle(_head.forward, directionToPlayer);
-                if (angle < _fieldOfView / 2f)
+                if (angle < _fieldOfView / 2f || distanceToPlayer < _viewDistanceAround)
                 {
-
-                    if (!_obstacleCheck || !Physics.Raycast(transform.position, directionToPlayer.normalized, out RaycastHit _, relativeViewDistance))
+                    if (Physics.Raycast(_head.position, directionToPlayer.normalized, out RaycastHit hit, relativeViewDistance) && hit.collider.CompareTag("Player"))
                         return true;
                 }
             }
