@@ -12,17 +12,19 @@ namespace VoidspireStudio.FNATS.Cameras
 
         private Camera _camera;
 
-        private float _verticalRotation;
-        private float _horizontalRotation;
+        private float _verticalRotation = 0;
+        private float _horizontalRotation = 0;
+        private Quaternion _baseRotation;
 
         public RenderTexture Texture => _camera.targetTexture;
 
         private void Awake()
         {
             _camera = GetComponent<Camera>();
-
             _camera.targetTexture = new RenderTexture(Screen.width, Screen.height, 24);
+            _baseRotation = _camera.transform.localRotation;
         }
+
 
         public void Look(Vector3 lookInput)
         {
@@ -30,12 +32,17 @@ namespace VoidspireStudio.FNATS.Cameras
             float mouseY = lookInput.y * GameSettings.MouseSensitivity * Time.deltaTime;
 
             _verticalRotation -= mouseY;
-            _horizontalRotation -= mouseX;
+            _horizontalRotation += mouseX;
 
             _verticalRotation = Mathf.Clamp(_verticalRotation, -_maxVerticalAngle, _maxVerticalAngle);
             _horizontalRotation = Mathf.Clamp(_horizontalRotation, -_maxHorizontalAngle, _maxHorizontalAngle);
 
-            _camera.transform.localRotation = Quaternion.Euler(_verticalRotation, _horizontalRotation, 0f);
+            // Создаем поворот относительно базового
+            Quaternion verticalQuat = Quaternion.Euler(_verticalRotation, 0f, 0f);
+            Quaternion horizontalQuat = Quaternion.Euler(0f, _horizontalRotation, 0f);
+
+            _camera.transform.localRotation = _baseRotation * horizontalQuat * verticalQuat;
         }
+
     }
 }

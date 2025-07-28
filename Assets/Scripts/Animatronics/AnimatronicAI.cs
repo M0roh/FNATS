@@ -68,7 +68,7 @@ namespace VoidspireStudio.FNATS.Animatronics
             Vector3 velocity = _agent.velocity;
             velocity.y = 0;
 
-            if (velocity.sqrMagnitude > 0.01f)
+            if (velocity.sqrMagnitude > 0.01f && _currentState != AnimatronicState.Attack)
             {
                 Quaternion targetRotation = Quaternion.LookRotation(velocity);
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * _rotationSpeed);
@@ -120,6 +120,8 @@ namespace VoidspireStudio.FNATS.Animatronics
 
         private void Attack()
         {
+            transform.rotation = Quaternion.LookRotation(Player.Instance.transform.position);
+
             Player.Instance.Freeze();
             Player.Instance.ForceLookAt(_head.transform.position);
             _agent.isStopped = true;
@@ -184,7 +186,10 @@ namespace VoidspireStudio.FNATS.Animatronics
             {
                 case GoToStep goToStep:
                     //_animator.SetTrigger(WALKING);
-                    _agent.SetDestination(goToStep.Target.position);
+                    if (goToStep.Target != null)
+                        _agent.SetDestination(goToStep.Target.position);
+                    else
+                        Debug.LogError("GoToStep Target not indefined");
                     break;
 
                 case WaitStep waitStep:
@@ -211,18 +216,14 @@ namespace VoidspireStudio.FNATS.Animatronics
                 _agent.SetAreaCost(0, _agent.GetAreaCost(3));
                 _lastSeenPosition = Player.Instance.transform.position;
                 _agent.SetDestination(_lastSeenPosition);
-
-                if ((transform.position - _lastSeenPosition).magnitude <= _attackDistance)
-                {
-                    _currentState = AnimatronicState.Attack;
-                    _agent.SetAreaCost(3, NavMesh.GetAreaCost(3));
-                    return;
-                }
             }
             else if (_agent.HasReachedDestination())
             {
                 if (_lastGoToStep != null)
-                    _agent.SetDestination(_lastGoToStep.Target.position);
+                    if (_lastGoToStep.Target != null)
+                        _agent.SetDestination(_lastGoToStep.Target.position);
+                    else
+                        Debug.LogError("LastGoToStep Target not indefined");
                 else
                     _agent.SetDestination(_fallbackReturnPosition);
 
@@ -230,11 +231,19 @@ namespace VoidspireStudio.FNATS.Animatronics
                 _currentState = AnimatronicState.Waiting;
                 _agent.SetAreaCost(0, NavMesh.GetAreaCost(0));
             }
+
+
+            if ((transform.position - Player.Instance.transform.position).magnitude <= _attackDistance)
+            {
+                _currentState = AnimatronicState.Attack;
+                _agent.SetAreaCost(3, NavMesh.GetAreaCost(3));
+                return;
+            }
         }
 
         public bool TryFindPlayer()
         {
-            Vector3 directionToPlayer = Player.Instance.transform.position - transform.position;
+            Vector3 directionToPlayer = Player.Instance.HeadPosition - _head.transform.position;
             float distanceToPlayer = directionToPlayer.magnitude;
 
             float relativeViewDistance = _viewDistance;
@@ -245,7 +254,7 @@ namespace VoidspireStudio.FNATS.Animatronics
             if (Player.Instance.IsRunning)
                 relativeViewDistance *= 1.5f;
 
-            if (distanceToPlayer < relativeViewDistance)
+            if (distanceToPlayer <= relativeViewDistance)
             {
                 float angle = Vector3.Angle(_head.forward, directionToPlayer);
                 if (angle < _fieldOfView / 2f || distanceToPlayer < _viewDistanceAround)

@@ -56,6 +56,8 @@ namespace VoidspireStudio.FNATS.Core
         public bool IsRunning => _isRunning;
         public bool IsFrozen => _isFrozen;
 
+        public Vector3 HeadPosition => _playerCamera.transform.position;
+
         private void Awake()
         {
             if (Instance != null)

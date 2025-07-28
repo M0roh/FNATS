@@ -37,6 +37,8 @@ namespace VoidspireStudio.FNATS.Cameras {
 
         public void OnEnable()
         {
+            GameInput.Instance.InputActions.Camera.Look.performed += MoveCamera;
+
             GameInput.Instance.InputActions.Camera.CloseCamera.performed += CloseCameras;
 
             GameInput.Instance.InputActions.Camera.CameraPrev.performed += NextCamera;
@@ -48,6 +50,8 @@ namespace VoidspireStudio.FNATS.Cameras {
 
         public void OnDisable()
         {
+            GameInput.Instance.InputActions.Camera.Look.performed -= MoveCamera;
+
             GameInput.Instance.InputActions.Camera.CloseCamera.performed -= CloseCameras;
 
             GameInput.Instance.InputActions.Camera.CameraPrev.performed -= NextCamera;
@@ -56,6 +60,8 @@ namespace VoidspireStudio.FNATS.Cameras {
             GameInput.Instance.InputActions.Camera.Camera1.performed -= cameraDelegates[0];
             GameInput.Instance.InputActions.Camera.Camera2.performed -= cameraDelegates[1];
         }
+
+        public void MoveCamera(InputAction.CallbackContext ctx) => _securityCameras[_currentCameraIndex].Look(ctx.ReadValue<Vector2>());
 
         public void OpenCameras()
         {

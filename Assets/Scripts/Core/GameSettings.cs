@@ -2,6 +2,6 @@
 {
     public static class GameSettings
     {
-        public static float MouseSensitivity { get; set; } = 2f;
+        public static float MouseSensitivity { get; set; } = 4f;
     }
 }
