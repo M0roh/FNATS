@@ -1,4 +1,5 @@
 using QuickOutline;
+using TMPro.EditorUtilities;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using VoidspireStudio.FNATS.Input;
@@ -192,12 +193,15 @@ namespace VoidspireStudio.FNATS.Core
         {
             if (_isCrouched)
             {
-                _cc.height = 2f;
-                _cc.center = new Vector3(0, 1f, 0);
-                _isCrouched = false;
-                _speed = _walkSpeed;
+                if (CanStandUp())
+                {
+                    _cc.height = 2.5f;
+                    _cc.center = new Vector3(0, 1f, 0);
+                    _isCrouched = false;
+                    _speed = _walkSpeed;
+                }
             }
-            else
+            else if (_cc.isGrounded)
             {
                 _cc.height = 1f;
                 _cc.center = new Vector3(0, 0.5f, 0);
@@ -207,6 +211,26 @@ namespace VoidspireStudio.FNATS.Core
                 if (_isRunning)
                     Sprint_canceled(new InputAction.CallbackContext());
             }
+        }
+
+        private bool CanStandUp()
+        {
+            float standingHeight = 2.5f;
+            float crouchingHeight = 1f;
+            float heightDifference = standingHeight - crouchingHeight;
+            float radius = _cc.radius - 0.05f;
+
+            Vector3 basePosition = transform.position + Vector3.up * radius;
+
+            return !Physics.CapsuleCast(
+                point1: basePosition,
+                point2: basePosition + Vector3.up * (crouchingHeight - 2 * radius),
+                radius: radius,
+                direction: Vector3.up,
+                maxDistance: heightDifference,
+                layerMask: ~0, // все слои
+                queryTriggerInteraction: QueryTriggerInteraction.Ignore
+            );
         }
 
         private void Interact_started(InputAction.CallbackContext obj)
@@ -243,7 +267,7 @@ namespace VoidspireStudio.FNATS.Core
 
         private void Jump_performed(InputAction.CallbackContext ctx)
         {
-            if (_cc.isGrounded && IsSlopeValid())
+            if (!_isCrouched && _cc.isGrounded && IsSlopeValid())
                 _velocity.y = Mathf.Sqrt(jumpHeight * -2f * _gravity);
         }
 
