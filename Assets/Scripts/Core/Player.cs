@@ -46,6 +46,7 @@ namespace VoidspireStudio.FNATS.Core
         [SerializeField] private float _interactionDistance = 3f;
 
         private (GameObject obj, IInteractable interact) _lastHighlightedObject;
+        private IInteractable _currentInteractTarget;
 
         private Vector2 _moveInput;
         private Vector2 _lookInput;
@@ -122,6 +123,15 @@ namespace VoidspireStudio.FNATS.Core
                 targetPos,
                 Time.deltaTime * _cameraMoveSpeed
             );
+
+            if (_currentInteractTarget != null)
+            {
+                if (_lastHighlightedObject.interact != _currentInteractTarget)
+                {
+                    _currentInteractTarget.OnInteractEnd();
+                    _currentInteractTarget = null;
+                }
+            }
         }
 
         private void HighlightLookObject()
@@ -236,13 +246,15 @@ namespace VoidspireStudio.FNATS.Core
         private void Interact_started(InputAction.CallbackContext obj)
         {
             if (_lastHighlightedObject.interact == null) return;
-            _lastHighlightedObject.interact.OnInteract();
+            _currentInteractTarget = _lastHighlightedObject.interact;
+            _currentInteractTarget.OnInteract();
         }
 
         private void Interact_canceled(InputAction.CallbackContext obj)
         {
-            if (_lastHighlightedObject.interact == null) return;
-            _lastHighlightedObject.interact.OnInteractEnd();
+            if (_currentInteractTarget == null) return;
+            _currentInteractTarget.OnInteractEnd();
+            _currentInteractTarget = null;
         }
 
         private (GameObject, IInteractable) FindInteractObject()

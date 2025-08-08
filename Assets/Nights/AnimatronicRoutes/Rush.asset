@@ -1,0 +1,126 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f5a122a410589044b49b0a370236623, type: 3}
+  m_Name: Rush
+  m_EditorClassIdentifier: Assembly-CSharp::VoidspireStudio.FNATS.Animatronics.Routes.AnimatronicRoute
+  _routeID: b5d69eef-eec4-4835-a56a-76125bb8a86f
+  _startNodeId: Start
+  _steps:
+  - rid: 5232270747977908298
+  - rid: 415304402592071755
+  - rid: 415304402592071756
+  - rid: 415304402592071757
+  - rid: 415304402592071758
+  - rid: 415304402592071759
+  - rid: 415304402592071760
+  - rid: 415304402592071761
+  - rid: 415304402592071762
+  - rid: 415304402592071763
+  - rid: 415304402592071764
+  - rid: 415304402592071765
+  - rid: 415304402592071766
+  references:
+    version: 2
+    RefIds:
+    - rid: 415304402592071755
+      type: {class: GoToStep, ns: VoidspireStudio.FNATS.Animatronics.Routes, asm: Assembly-CSharp}
+      data:
+        _id: A
+        _nextStepsIds:
+        - B
+        - C
+        _target: {fileID: 0}
+    - rid: 415304402592071756
+      type: {class: GoToStep, ns: VoidspireStudio.FNATS.Animatronics.Routes, asm: Assembly-CSharp}
+      data:
+        _id: B
+        _nextStepsIds:
+        - D
+        - E
+        _target: {fileID: 0}
+    - rid: 415304402592071757
+      type: {class: GoToStep, ns: VoidspireStudio.FNATS.Animatronics.Routes, asm: Assembly-CSharp}
+      data:
+        _id: C
+        _nextStepsIds:
+        - G
+        _target: {fileID: 0}
+    - rid: 415304402592071758
+      type: {class: GoToStep, ns: VoidspireStudio.FNATS.Animatronics.Routes, asm: Assembly-CSharp}
+      data:
+        _id: D
+        _nextStepsIds:
+        - F
+        _target: {fileID: 0}
+    - rid: 415304402592071759
+      type: {class: GoToStep, ns: VoidspireStudio.FNATS.Animatronics.Routes, asm: Assembly-CSharp}
+      data:
+        _id: E
+        _nextStepsIds:
+        - Player Bottom
+        _target: {fileID: 0}
+    - rid: 415304402592071760
+      type: {class: GoToStep, ns: VoidspireStudio.FNATS.Animatronics.Routes, asm: Assembly-CSharp}
+      data:
+        _id: F
+        _nextStepsIds:
+        - E
+        _target: {fileID: 0}
+    - rid: 415304402592071761
+      type: {class: GoToStep, ns: VoidspireStudio.FNATS.Animatronics.Routes, asm: Assembly-CSharp}
+      data:
+        _id: Player Bottom
+        _nextStepsIds:
+        - Player Office
+        _target: {fileID: 0}
+    - rid: 415304402592071762
+      type: {class: GoToStep, ns: VoidspireStudio.FNATS.Animatronics.Routes, asm: Assembly-CSharp}
+      data:
+        _id: Player Office
+        _nextStepsIds:
+        - Player Office Attack
+        - Walk Near Office
+        - Player Office Attack
+        _target: {fileID: 0}
+    - rid: 415304402592071763
+      type: {class: GoToStep, ns: VoidspireStudio.FNATS.Animatronics.Routes, asm: Assembly-CSharp}
+      data:
+        _id: G
+        _nextStepsIds:
+        - H
+        _target: {fileID: 0}
+    - rid: 415304402592071764
+      type: {class: GoToStep, ns: VoidspireStudio.FNATS.Animatronics.Routes, asm: Assembly-CSharp}
+      data:
+        _id: H
+        _nextStepsIds:
+        - Player Bottom
+        _target: {fileID: 0}
+    - rid: 415304402592071765
+      type: {class: AttackStep, ns: VoidspireStudio.FNATS.Animatronics.Routes, asm: Assembly-CSharp}
+      data:
+        _id: Player Office Attack
+        _nextStepsIds: []
+    - rid: 415304402592071766
+      type: {class: GoToStep, ns: VoidspireStudio.FNATS.Animatronics.Routes, asm: Assembly-CSharp}
+      data:
+        _id: Walk Near Office
+        _nextStepsIds:
+        - Player Office
+        _target: {fileID: 0}
+    - rid: 5232270747977908298
+      type: {class: WaitStep, ns: VoidspireStudio.FNATS.Animatronics.Routes, asm: Assembly-CSharp}
+      data:
+        _id: Start
+        _nextStepsIds:
+        - A
+        _waitTime: 5

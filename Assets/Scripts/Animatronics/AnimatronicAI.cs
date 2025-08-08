@@ -23,10 +23,15 @@ namespace VoidspireStudio.FNATS.Animatronics
     public abstract class AnimatronicAI : MonoBehaviour
     {
         [Header("Движение")]
+        [SerializeField] private float _walkSpeed = 2f;
+        [SerializeField] private float _runSpeed = 4f;
+
+        [Header("Маршрут")]
         [SerializeReference] private List<AnimatronicRoute> _availableRoutes;
         [SerializeField] private float _timeBetweenSteps = 0f;
         [SerializeField] private float _attackDistance = 1.5f;
-        [SerializeField] private AnimatronicState _currentState = AnimatronicState.Waiting;
+        private AnimatronicState _currentState = AnimatronicState.Waiting;
+        private AnimatronicState _stateBeforeCurrent = AnimatronicState.Off;
         private AnimatronicRoute _currentRoute;
         private RouteStep _currentStep;
         private GoToStep _lastGoToStep;
@@ -45,10 +50,20 @@ namespace VoidspireStudio.FNATS.Animatronics
         private NavMeshAgent _agent;
         private Animator _animator;
 
-        protected const string IDLE = "IDLE";
-        protected const string WALKING = "WALK";
-        protected const string ATTACK = "ATTACK";
-        protected const string RUN = "RUNNING";
+        public AnimatronicState СurrentState
+        {
+            get => _currentState;
+            set
+            {
+                _stateBeforeCurrent = _currentState;
+                _currentState = value;
+            }
+        }
+
+        protected const string IDLE = "Idle";
+        protected const string WALKING = "Walk";
+        protected const string ATTACK = "Attack";
+        protected const string RUN = "Run";
 
         private void Awake()
         {
@@ -56,6 +71,7 @@ namespace VoidspireStudio.FNATS.Animatronics
             _animator = GetComponent<Animator>();
 
             _agent.updateRotation = false;
+            _agent.speed = _walkSpeed;
         }
 
         private void Start()
@@ -68,7 +84,7 @@ namespace VoidspireStudio.FNATS.Animatronics
             Vector3 velocity = _agent.velocity;
             velocity.y = 0;
 
-            if (velocity.sqrMagnitude > 0.01f && _currentState != AnimatronicState.Attack)
+            if (velocity.sqrMagnitude > 0.01f && СurrentState != AnimatronicState.Attack)
             {
                 Quaternion targetRotation = Quaternion.LookRotation(velocity);
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * _rotationSpeed);
@@ -77,15 +93,15 @@ namespace VoidspireStudio.FNATS.Animatronics
 
         private void FixedUpdate()
         {
-            if (_currentState == AnimatronicState.Off)
+            if (СurrentState == AnimatronicState.Off)
                 return;
 
-            if ((_currentState == AnimatronicState.Route ||
-                _currentState == AnimatronicState.Waiting) &&
+            if ((СurrentState == AnimatronicState.Route ||
+                СurrentState == AnimatronicState.Waiting) &&
                 TryFindPlayer())
-                _currentState = AnimatronicState.Forwarding;
+                СurrentState = AnimatronicState.Forwarding;
 
-            switch (_currentState)
+            switch (СurrentState)
             {
                 case AnimatronicState.Off:
                     return;
@@ -120,13 +136,19 @@ namespace VoidspireStudio.FNATS.Animatronics
 
         private void Attack()
         {
+            _currentState = AnimatronicState.Off;
+
             transform.rotation = Quaternion.LookRotation(Player.Instance.transform.position);
 
             Player.Instance.Freeze();
             Player.Instance.ForceLookAt(_head.transform.position);
             _agent.isStopped = true;
+            _agent.ResetPath();
 
-            //_animator.SetTrigger(ATTACK);
+            _animator.ResetTrigger(RUN);
+            _animator.ResetTrigger(IDLE);
+
+            _animator.SetTrigger(ATTACK);
 
             Debug.Log("Game over");
         }
@@ -135,14 +157,28 @@ namespace VoidspireStudio.FNATS.Animatronics
 
         private void Wait()
         {
-            //_animator.SetTrigger(IDLE);
+            _animator.SetTrigger(IDLE);
             _waitTimer -= Time.fixedDeltaTime;
 
             if (_waitTimer <= 0f)
             {
                 _waitTimer = 0f;
-                _currentState = AnimatronicState.Route;
 
+                if (_stateBeforeCurrent == AnimatronicState.Forwarding)
+                {
+                    if (_lastGoToStep != null)
+                        if (_lastGoToStep.Target != null)
+                            _agent.SetDestination(_lastGoToStep.Target.position);
+                        else
+                            Debug.LogError("LastGoToStep Target not indefined");
+                    else
+                        _agent.SetDestination(_fallbackReturnPosition);
+
+                    _currentState = AnimatronicState.Route;
+                    _animator.SetTrigger(WALKING);
+                    return;
+                }
+                
                 if (_currentStep == null || !_currentStep.HasNextSteps)
                 {
                     var routes = _availableRoutes;
@@ -175,9 +211,12 @@ namespace VoidspireStudio.FNATS.Animatronics
         {
             if (_agent.HasReachedDestination())
             {
+                _animator.SetTrigger(IDLE);
                 _waitTimer += _timeBetweenSteps;
-                _currentState = AnimatronicState.Waiting;
+                СurrentState = AnimatronicState.Waiting;
             }
+            else
+                _animator.SetTrigger(WALKING);
         }
 
         private void ProcessStep()
@@ -185,21 +224,26 @@ namespace VoidspireStudio.FNATS.Animatronics
             switch (_currentStep)
             {
                 case GoToStep goToStep:
-                    //_animator.SetTrigger(WALKING);
+                    _animator.SetTrigger(WALKING);
+                    _agent.speed = _walkSpeed;
+
                     if (goToStep.Target != null)
                         _agent.SetDestination(goToStep.Target.position);
                     else
                         Debug.LogError("GoToStep Target not indefined");
+
+                    СurrentState = AnimatronicState.Route;
                     break;
 
                 case WaitStep waitStep:
-                    //_animator.SetTrigger(IDLE);
+                    _animator.SetTrigger(IDLE);
                     _waitTimer += waitStep.WaitTime;
-                    _currentState = AnimatronicState.Waiting;
+
+                    СurrentState = AnimatronicState.Waiting;
                     break;
 
                 case SabotageStep:
-                    _currentState = AnimatronicState.Sabotage;
+                    СurrentState = AnimatronicState.Sabotage;
                     break;
 
                 case AttackStep:
@@ -209,7 +253,8 @@ namespace VoidspireStudio.FNATS.Animatronics
 
         private void PlayerForward()
         {
-            //_animator.SetTrigger(RUN);
+            _animator.SetTrigger(RUN);
+            _agent.speed = _runSpeed;
 
             if (TryFindPlayer())
             {
@@ -218,27 +263,31 @@ namespace VoidspireStudio.FNATS.Animatronics
                 _agent.SetDestination(_lastSeenPosition);
             }
             else if (_agent.HasReachedDestination())
-            {
-                if (_lastGoToStep != null)
-                    if (_lastGoToStep.Target != null)
-                        _agent.SetDestination(_lastGoToStep.Target.position);
-                    else
-                        Debug.LogError("LastGoToStep Target not indefined");
-                else
-                    _agent.SetDestination(_fallbackReturnPosition);
+                ResetState();
 
-                _waitTimer += _timeBetweenSteps;
-                _currentState = AnimatronicState.Waiting;
-                _agent.SetAreaCost(0, NavMesh.GetAreaCost(0));
-            }
-
+            if (_agent.pathStatus == NavMeshPathStatus.PathPartial || _agent.pathStatus == NavMeshPathStatus.PathInvalid)
+                ResetState();
 
             if ((transform.position - Player.Instance.transform.position).magnitude <= _attackDistance)
             {
-                _currentState = AnimatronicState.Attack;
-                _agent.SetAreaCost(3, NavMesh.GetAreaCost(3));
-                return;
+                Vector3 directionToPlayer = Player.Instance.HeadPosition - _head.transform.position;
+                if (Physics.Raycast(_head.position, directionToPlayer.normalized, out RaycastHit hit) && hit.collider.CompareTag("Player"))
+                {
+                    СurrentState = AnimatronicState.Attack;
+                    _agent.speed = _walkSpeed;
+                    _agent.SetAreaCost(0, NavMesh.GetAreaCost(0));
+
+                    return;
+                }
             }
+        }
+
+        public void ResetState()
+        {
+            _waitTimer += _timeBetweenSteps;
+            СurrentState = AnimatronicState.Waiting;
+            _agent.speed = _walkSpeed;
+            _agent.SetAreaCost(0, NavMesh.GetAreaCost(0));
         }
 
         public bool TryFindPlayer()
@@ -260,7 +309,11 @@ namespace VoidspireStudio.FNATS.Animatronics
                 if (angle < _fieldOfView / 2f || distanceToPlayer < _viewDistanceAround)
                 {
                     if (Physics.Raycast(_head.position, directionToPlayer.normalized, out RaycastHit hit, relativeViewDistance) && hit.collider.CompareTag("Player"))
-                        return true;
+                    {
+                        NavMeshPath path = new();
+                        if (_agent.CalculatePath(Player.Instance.transform.position, path) && path.status == NavMeshPathStatus.PathComplete)
+                            return true;
+                    }
                 }
             }
 

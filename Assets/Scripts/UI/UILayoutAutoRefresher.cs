@@ -11,6 +11,8 @@ namespace VoidspireStudio.FNATS.UI
         private void OnEnable()
         {
             LocalizationSettings.SelectedLocaleChanged += OnLocaleChanged;
+
+            StartCoroutine(RefreshLayoutsNextFrame());
         }
 
         private void OnDisable()
@@ -25,7 +27,8 @@ namespace VoidspireStudio.FNATS.UI
 
         private IEnumerator RefreshLayoutsNextFrame()
         {
-            yield return null;
+            yield return new WaitForEndOfFrame();
+            yield return new WaitForEndOfFrame();
 
             var layoutGroups = GetComponentsInChildren<LayoutGroup>(true);
             foreach (var layout in layoutGroups)

@@ -1,46 +1,77 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 namespace VoidspireStudio.FNATS.Nights
 {
-    public static class NightTime
+    public class NightTime : MonoBehaviour
     {
-        public static float CurrentTime { get; private set; } = 23f;
-        public static float TimeScale { get; private set; } = 1f / 60f;
+        public static GameTime CurrentTime { get; private set; }
+        public static float TimeScale { get; private set; } = 60f;
 
-        private static int _previousHalfStep = -1;
+        public static event Action<GameTime> OnTick;
 
-        public static event Action<float> OnHalfHourChanged;
-
-        public static void Tick(float tickTime = 1f / 3600f)
+        private void OnEnable()
         {
-            CurrentTime += tickTime * TimeScale;
-
-            if (CurrentTime >= 24f)
-                CurrentTime -= 24f;
-
-            int currentHalfStep = Mathf.FloorToInt(CurrentTime * 2f);
-
-            if (currentHalfStep != _previousHalfStep)
-            {
-                _previousHalfStep = currentHalfStep;
-                OnHalfHourChanged?.Invoke(CurrentTime);
-            }
-        }
-
-        public static string GetFormattedTime()
-        {
-            int hour = Mathf.FloorToInt(CurrentTime) % 24;
-            int minute = Mathf.FloorToInt((CurrentTime - hour) * 60f);
-            return $"{hour:00}:{minute:00}";
+            Reset();
+            StartCoroutine(NightTimer());
         }
 
         public static void Reset(float startHour = 23f, float secondsPerGameHour = 60f)
         {
-            CurrentTime = startHour;
+            CurrentTime = new(startHour);
             TimeScale = 1f / secondsPerGameHour;
-            _previousHalfStep = -1;
+        }
+
+        public IEnumerator NightTimer()
+        {
+            do
+            {
+                CurrentTime.AddTime(0.01f);
+
+                OnTick?.Invoke(CurrentTime);
+
+                yield return new WaitForSeconds(0.01f / TimeScale);
+            } while (true);
         }
     }
 
+
+    public class GameTime
+    {
+        private float _time = 0f;
+
+        public float Time => MathF.Round(_time, 2);
+
+        public GameTime(float startTime = 0f)
+        {
+            _time = NormalizeHour(startTime);
+        }
+
+        public void AddTime(float time)
+        {
+            _time = NormalizeHour(_time + time);
+        }
+
+        public void RemoveTime(float time)
+        {
+            _time = NormalizeHour(_time - time);
+        }
+
+        public string GetFormattedTime()
+        {
+            int hour = Mathf.FloorToInt(_time);
+            int minute = Mathf.FloorToInt((_time - hour) * 60f);
+            return $"{hour:00}:{minute:00}";
+        }
+
+        private float NormalizeHour(float time)
+        {
+            time %= 24f;
+            if (time < 0f)
+                time += 24f;
+
+            return time;
+        }
+    }
 }

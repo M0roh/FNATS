@@ -10,9 +10,8 @@ namespace VoidspireStudio.FNATS.Nights
     {
         public static NightManager Instance { get; private set; }
 
-        [SerializeField] private Dictionary<int, NightConfig> _nightConfigs;
+        [SerializeReference] private Dictionary<int, NightConfig> _nightConfigs = new();
         private NightConfig _currentConfig;
-        private readonly float _nightTimeEnd = 6.00f;
 
         private void Awake()
         {
@@ -26,15 +25,23 @@ namespace VoidspireStudio.FNATS.Nights
             DontDestroyOnLoad(gameObject);
         }
 
-        private void Start()
+        private void OnEnable()
         {
-            NightTime.Reset();
+            NightTime.OnTick += StartNight;
+            NightTime.OnTick += NightComplete;
         }
 
-        public void StartNight(int night)
+        private void OnDisable()
         {
-            if (_nightConfigs.TryGetValue(night, out _currentConfig)) {
-                StartCoroutine(NightTimer());
+            NightTime.OnTick -= StartNight;
+            NightTime.OnTick -= NightComplete;
+        }
+
+        public void StartNight(GameTime time)
+        {
+            if (time.Time != 0) return;
+
+            if (_nightConfigs.TryGetValue(GameManager.Instance.CurrentNight, out _currentConfig)) {
                 PowerManager.Instance.StartDrain();
             }
             else {
@@ -42,22 +49,10 @@ namespace VoidspireStudio.FNATS.Nights
             }
         }
 
-        public IEnumerator NightTimer()
+        public void NightComplete(GameTime time)
         {
-            do
-            {
-                NightTime.Tick();
-
-                yield return new WaitForSeconds(1f);
-            } while (NightTime.CurrentTime < _nightTimeEnd);
+            if (time.Time != 6.0) return;
             
-            yield return null;
-            
-            NightComplete();
-        }
-
-        public void NightComplete() 
-        {
             ++GameManager.Instance.CurrentNight;
             Debug.Log("Ночь окончена!");
         }
