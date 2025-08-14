@@ -1,4 +1,5 @@
-using System.Collections;
+using Sirenix.OdinInspector;
+using Sirenix.Serialization;
 using System.Collections.Generic;
 using UnityEngine;
 using VoidspireStudio.FNATS.Core;
@@ -6,11 +7,11 @@ using VoidspireStudio.FNATS.PowerSystem;
 
 namespace VoidspireStudio.FNATS.Nights
 {
-    public class NightManager : MonoBehaviour
+    public class NightManager : SerializedMonoBehaviour
     {
         public static NightManager Instance { get; private set; }
 
-        [SerializeReference] private Dictionary<int, NightConfig> _nightConfigs = new();
+        [OdinSerialize] private Dictionary<int, NightConfig> _nightConfigs = new();
         private NightConfig _currentConfig;
 
         private void Awake()

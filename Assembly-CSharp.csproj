@@ -83,7 +83,6 @@
     <Compile Include="Assets\Scripts\UI\UILayoutAutoRefresher.cs" />
     <Compile Include="Assets\Scripts\Nights\NightConfig.cs" />
     <Compile Include="Assets\Scripts\Input\GameInput.cs" />
-    <Compile Include="Assets\Scripts\Interactables\OfficeDoor.cs" />
     <Compile Include="Assets\Visual Design Cafe\Nature Renderer Demo\Scripts\CompileShaders.cs" />
     <Compile Include="Assets\Scripts\Interactables\IInteractable.cs" />
     <Compile Include="Assets\Scripts\Utils\Extensions.cs" />
@@ -96,6 +95,7 @@
     <Compile Include="Assets\Scripts\Core\Player.cs" />
     <Compile Include="Assets\Scripts\Triggers\ColliderTrigger.cs" />
     <Compile Include="Assets\InputSystem_Actions.cs" />
+    <Compile Include="Assets\Scripts\Core\OfficeManager.cs" />
     <Compile Include="Assets\Samples\Animation Rigging\1.3.0\Animation Rigging Constraint Samples\Scripts\mParent.cs" />
     <Compile Include="Assets\Scripts\Animatronics\Routes\RouteSteps.cs" />
     <Compile Include="Assets\Libraries\QuickOutline\Scripts\Outline.cs" />
@@ -103,6 +103,7 @@
     <Compile Include="Assets\Scripts\Nights\NightTime.cs" />
     <Compile Include="Assets\Samples\Animation Rigging\1.3.0\Animation Rigging Constraint Samples\Info\Scripts\Readme.cs" />
     <Compile Include="Assets\Scripts\Animatronics\TTTSahur.cs" />
+    <Compile Include="Assets\Scripts\Interactables\Door.cs" />
     <Compile Include="Assets\Scripts\Core\GameSettings.cs" />
     <Compile Include="Assets\Scripts\Nights\NightManager.cs" />
     <Compile Include="Assets\Scripts\Cameras\Monitor.cs" />

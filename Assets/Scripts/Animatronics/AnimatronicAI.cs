@@ -25,6 +25,8 @@ namespace VoidspireStudio.FNATS.Animatronics
         [Header("Движение")]
         [SerializeField] private float _walkSpeed = 2f;
         [SerializeField] private float _runSpeed = 4f;
+        [SerializeField] private float _forwardTimeMax = 3f;
+        private float _forwardTimer = 0f;
 
         [Header("Маршрут")]
         [SerializeReference] private List<AnimatronicRoute> _availableRoutes;
@@ -259,6 +261,13 @@ namespace VoidspireStudio.FNATS.Animatronics
             if (TryFindPlayer())
             {
                 _agent.SetAreaCost(0, _agent.GetAreaCost(3));
+                _lastSeenPosition = Player.Instance.transform.position;
+                _agent.SetDestination(_lastSeenPosition);
+                _forwardTimer = _forwardTimeMax;
+            }
+            else if (_forwardTimer > 0)
+            {
+                _forwardTimer -= Time.fixedDeltaTime;
                 _lastSeenPosition = Player.Instance.transform.position;
                 _agent.SetDestination(_lastSeenPosition);
             }

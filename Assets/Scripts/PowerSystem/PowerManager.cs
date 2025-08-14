@@ -39,7 +39,7 @@ namespace VoidspireStudio.FNATS.PowerSystem
 
         public void StopDrain()
         {
-            _power = 0f;;
+            _power = 0f;
     
             if (_drainCoroutine != null)
                 StopCoroutine(_drainCoroutine);
