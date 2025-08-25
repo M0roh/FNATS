@@ -7,7 +7,7 @@ namespace VoidspireStudio.FNATS.Nights
     public class NightTime : MonoBehaviour
     {
         public static GameTime CurrentTime { get; private set; }
-        public static float TimeScale { get; private set; } = 60f;
+        public static float TimeScale { get; private set; } = 1f;
 
         public static event Action<GameTime> OnTick;
 
@@ -17,21 +17,21 @@ namespace VoidspireStudio.FNATS.Nights
             StartCoroutine(NightTimer());
         }
 
-        public static void Reset(float startHour = 23f, float secondsPerGameHour = 60f)
+        public static void Reset(int startHour = 23)
         {
             CurrentTime = new(startHour);
-            TimeScale = 1f / secondsPerGameHour;
+            TimeScale = 1f;
         }
 
         public IEnumerator NightTimer()
         {
             do
             {
-                CurrentTime.AddTime(0.01f);
+                CurrentTime.AddMinute();
 
                 OnTick?.Invoke(CurrentTime);
 
-                yield return new WaitForSeconds(0.01f / TimeScale);
+                yield return new WaitForSeconds(1f);
             } while (true);
         }
     }
@@ -39,39 +39,38 @@ namespace VoidspireStudio.FNATS.Nights
 
     public class GameTime
     {
-        private float _time = 0f;
+        private int _totalMinutes;
 
-        public float Time => MathF.Round(_time, 2);
+        public int Hour => _totalMinutes / 60;
+        public int Minute => _totalMinutes % 60;
 
-        public GameTime(float startTime = 0f)
+        public int TotalMinutes => _totalMinutes;
+
+        public GameTime(int hour = 0, int minute = 0)
         {
-            _time = NormalizeHour(startTime);
+            _totalMinutes = Normalize(hour * 60 + minute);
         }
 
-        public void AddTime(float time)
+        public void AddMinute()
         {
-            _time = NormalizeHour(_time + time);
+            _totalMinutes = Normalize(_totalMinutes + 1);
         }
 
-        public void RemoveTime(float time)
+        private static int Normalize(int minutes)
         {
-            _time = NormalizeHour(_time - time);
+            minutes %= 24 * 60;
+            if (minutes < 0) minutes += 24 * 60;
+            return minutes;
         }
 
         public string GetFormattedTime()
         {
-            int hour = Mathf.FloorToInt(_time);
-            int minute = Mathf.FloorToInt((_time - hour) * 60f);
-            return $"{hour:00}:{minute:00}";
+            return $"{Hour:00}:{Minute:00}";
         }
 
-        private float NormalizeHour(float time)
+        public bool IsTime(int hour, int minute)
         {
-            time %= 24f;
-            if (time < 0f)
-                time += 24f;
-
-            return time;
+            return Hour == hour && Minute == minute;
         }
     }
 }

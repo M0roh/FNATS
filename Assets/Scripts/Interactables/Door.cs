@@ -1,3 +1,4 @@
+using Sirenix.OdinInspector;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
@@ -5,73 +6,52 @@ using UnityEngine.AI;
 
 namespace VoidspireStudio.FNATS.Interactables
 {
+    [RequireComponent(typeof(NavMeshObstacle))]
     public class Door : MonoBehaviour, IInteractable
     {
-        [SerializeField] private Quaternion _openRotation = new();
-        [SerializeField] private Quaternion _closeRotation = new();
+        [SerializeField] private Quaternion _closeAngle = new();
+        [SerializeField] private Quaternion _openAngle = new();
         [SerializeField] private float _rotationSpeed = 5f;
-        // [SerializeField] private bool _isNeedHoldToClose = false;
+
+        private NavMeshObstacle _obstacle;
+        private Coroutine _rotateCoroutine;
 
         private bool _isOpen = true;
-        private Coroutine rotateCoroutine;
-
-        private NavMeshObstacle _navMeshObstacle;
-
+        
         public bool IsOpen => _isOpen;
 
         private void Awake()
         {
-            _navMeshObstacle = GetComponent<NavMeshObstacle>();
-        }
-
-
-        private void OnEnable()
-        {
-            transform.localRotation = _openRotation;
-            _navMeshObstacle.enabled = false;
-            _isOpen = true;
+            _obstacle = GetComponent<NavMeshObstacle>();
         }
 
         public void OnInteract()
         {
-            Debug.Log("Close");
-            StartRotate(_closeRotation);
-            _navMeshObstacle.enabled = true;
+            if (_rotateCoroutine != null) StopCoroutine(_rotateCoroutine);
+            _rotateCoroutine = StartCoroutine(Rotate(_closeAngle));
 
             _isOpen = false;
+            _obstacle.enabled = true;
         }
 
         public void OnInteractEnd()
         {
-            Debug.Log("Close");
-            StartRotate(_openRotation);
-            _navMeshObstacle.enabled = false;
+            if (_rotateCoroutine != null) StopCoroutine(_rotateCoroutine);
+            _rotateCoroutine = StartCoroutine(Rotate(_openAngle));
 
             _isOpen = true;
+            _obstacle.enabled = false;
         }
 
-        private void StartRotate(Quaternion targetRot)
+        public IEnumerator Rotate(Quaternion targetAngle) 
         {
-            if (rotateCoroutine != null)
-                StopCoroutine(rotateCoroutine);
-
-            rotateCoroutine = StartCoroutine(RotateDoor(targetRot));
-        }
-
-        private IEnumerator RotateDoor(Quaternion targetRot)
-        {
-            while (Quaternion.Angle(transform.localRotation, targetRot) > 0.01f)
+            while (Quaternion.Angle(transform.localRotation, targetAngle) > 0.01f)
             {
-                transform.localRotation = Quaternion.Slerp(
-                    transform.localRotation,
-                    targetRot,
-                    _rotationSpeed * Time.deltaTime
-                );
-                Debug.Log(transform.localRotation);
+                transform.localRotation = Quaternion.RotateTowards(transform.localRotation, targetAngle, _rotationSpeed * Time.deltaTime);
+
                 yield return null;
             }
-            transform.localRotation = targetRot;
+            transform.localRotation = targetAngle;
         }
-
     }
 }

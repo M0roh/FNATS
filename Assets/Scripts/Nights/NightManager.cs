@@ -40,7 +40,7 @@ namespace VoidspireStudio.FNATS.Nights
 
         public void StartNight(GameTime time)
         {
-            if (time.Time != 0) return;
+            if (!time.IsTime(0, 0)) return;
 
             if (_nightConfigs.TryGetValue(GameManager.Instance.CurrentNight, out _currentConfig)) {
                 PowerManager.Instance.StartDrain();
@@ -52,8 +52,8 @@ namespace VoidspireStudio.FNATS.Nights
 
         public void NightComplete(GameTime time)
         {
-            if (time.Time != 6.0) return;
-            
+            if (!time.IsTime(6, 0)) return;
+
             ++GameManager.Instance.CurrentNight;
             Debug.Log("Ночь окончена!");
         }
