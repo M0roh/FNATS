@@ -9,7 +9,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <ProjectGuid>{D76E4640-3835-D24C-0BE8-4B2AD78F11B4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -73,6 +74,8 @@
     <Analyzer Include="E:\UnityProjects\FNATS\Library\PackageCache\com.unity.entities@e581b903be8e\Unity.Entities\SourceGenerators\Unity.Entities.Analyzer.CodeFixes.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\PowerSystem\IElectricDevice.cs" />
+    <Compile Include="Assets\Scripts\PowerSystem\IPowerNode.cs" />
     <Compile Include="Assets\Visual Design Cafe\Nature Renderer Demo\Scripts\CloneTerrain.cs" />
     <Compile Include="Assets\Scripts\UI\MainMenu.cs" />
     <Compile Include="Assets\Scripts\Cameras\SecurityCamerasManager.cs" />
@@ -89,7 +92,7 @@
     <Compile Include="Assets\Scripts\UI\NightTimeUI.cs" />
     <Compile Include="Assets\Visual Design Cafe\Nature Renderer\Runtime\NatureRenderer.SRP.cs" />
     <Compile Include="Assets\Scripts\Core\SaveManager.cs" />
-    <Compile Include="Assets\Scripts\PowerSystem\PowerManager.cs" />
+    <Compile Include="Assets\Scripts\PowerSystem\PowerSystem.cs" />
     <Compile Include="Assets\Scripts\Triggers\MessageTrigger.cs" />
     <Compile Include="Assets\Scripts\Cameras\SecurityCamera.cs" />
     <Compile Include="Assets\Scripts\Core\Player.cs" />

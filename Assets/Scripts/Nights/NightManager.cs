@@ -43,7 +43,7 @@ namespace VoidspireStudio.FNATS.Nights
             if (!time.IsTime(0, 0)) return;
 
             if (_nightConfigs.TryGetValue(GameManager.Instance.CurrentNight, out _currentConfig)) {
-                PowerManager.Instance.StartDrain();
+                PowerSystem.PowerSystem.Instance.StartConsumption();
             }
             else {
                 Debug.LogError("Unknow night!");

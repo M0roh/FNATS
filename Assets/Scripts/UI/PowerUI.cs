@@ -17,12 +17,12 @@ namespace VoidspireStudio.FNATS.UI
 
         private void OnEnable()
         {
-            PowerManager.Instance.OnPowerChanged += PowerManager_OnPowerChanged;
+            PowerSystem.PowerSystem.Instance.OnPowerChanged += PowerManager_OnPowerChanged;
         }
 
         private void OnDisable()
         {
-            PowerManager.Instance.OnPowerChanged -= PowerManager_OnPowerChanged;
+            PowerSystem.PowerSystem.Instance.OnPowerChanged -= PowerManager_OnPowerChanged;
         }
 
         private void PowerManager_OnPowerChanged(float power)

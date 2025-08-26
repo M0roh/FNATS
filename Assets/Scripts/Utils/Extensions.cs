@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
+using VoidspireStudio.FNATS.PowerSystem;
 
 namespace VoidspireStudio.FNATS.Utils
 {
@@ -18,5 +19,10 @@ namespace VoidspireStudio.FNATS.Utils
         {
             return value - Mathf.Floor(value);
         }
+
+        public static void RegisterDevice(this IElectricDevice device) => PowerSystem.PowerSystem.Instance.RegisterDevice(device);
+        public static void UnregisterDevice(this IElectricDevice device) => PowerSystem.PowerSystem.Instance.UnregisterDevice(device);
+
+        public static bool IsRegisterted(this IElectricDevice device) => PowerSystem.PowerSystem.Instance.IsDeviceRegistred(device);
     }
 }
