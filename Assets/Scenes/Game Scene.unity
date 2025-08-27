@@ -21367,7 +21367,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::VoidspireStudio.FNATS.PowerSystem.PowerManager
   _maxPower: 100
   _passiveDrain: 0.05
-  _lightDrain: 0.1
 --- !u!114 &392278940
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using VoidspireStudio.FNATS.Nights;
-using static UnityEngine.EventSystems.EventTrigger;
+using VoidspireStudio.FNATS.Utils;
 
 namespace VoidspireStudio.FNATS.PowerSystem
 {
@@ -59,14 +58,14 @@ namespace VoidspireStudio.FNATS.PowerSystem
         public void RegisterPowerNode(IPowerNode powerNode)
         {
             _powerNodes.Add(powerNode);
-            powerNode.OnBroken += Pause;
-            powerNode.OnRepair += CheckBreak;
+            powerNode.OnBroken += OnBreak;
+            powerNode.OnRepair += OnRepaired;
         }
 
         public void UnregisterPowerNode(IPowerNode powerNode)
         {
-            powerNode.OnBroken -= Pause;
-            powerNode.OnRepair -= CheckBreak;
+            powerNode.OnBroken -= OnBreak;
+            powerNode.OnRepair -= OnRepaired;
             _powerNodes.Remove(powerNode);
         }
 
@@ -98,7 +97,10 @@ namespace VoidspireStudio.FNATS.PowerSystem
             _power -= _passiveDrain;
 
             foreach (var device in _electricDevices)
-                _power -= device.GetCurrentConsumption;
+                if (device == null)
+                    device.UnregisterDevice();
+                else
+                    _power -= device.GetCurrentConsumption;
 
             OnPowerChanged?.Invoke(_power);
 
@@ -109,12 +111,32 @@ namespace VoidspireStudio.FNATS.PowerSystem
             }
         }
 
-        private void CheckBreak()
+        private void OnRepaired()
         {
             if (_powerNodes.All(powerNode => powerNode.IsActive))
-                IsPaused = false;
-            else
-                IsPaused = true;
+            {
+                Resume();
+                UpdateDevicesState(true);
+            }
         }
+
+        private void OnBreak()
+        {
+            if (IsRunning && !IsPaused)
+            Pause();
+            UpdateDevicesState(false);
+        }
+
+        private void UpdateDevicesState(bool active)
+        {
+            _electricDevices.RemoveAll(d => d == null);
+
+            foreach (var device in _electricDevices)
+            {
+                if (active) device.TurnOn();
+                else device.TurnOff();
+            }
+        }
+
     }
 }
