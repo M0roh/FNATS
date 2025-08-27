@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Localization;
 using VoidspireStudio.FNATS.Core;
 
 namespace VoidspireStudio.FNATS.Cameras
@@ -7,6 +8,7 @@ namespace VoidspireStudio.FNATS.Cameras
     public class SecurityCamera : MonoBehaviour
     {
         [Header("Settings")]
+        [SerializeField] private LocalizedString _cameraName;
         [SerializeField] private float _maxVerticalAngle;
         [SerializeField] private float _maxHorizontalAngle;
 
@@ -17,6 +19,7 @@ namespace VoidspireStudio.FNATS.Cameras
         private Quaternion _baseRotation;
 
         public RenderTexture Texture => _camera.targetTexture;
+        public string Name => _cameraName.GetLocalizedString();
 
         private void Awake()
         {
@@ -37,12 +40,13 @@ namespace VoidspireStudio.FNATS.Cameras
             _verticalRotation = Mathf.Clamp(_verticalRotation, -_maxVerticalAngle, _maxVerticalAngle);
             _horizontalRotation = Mathf.Clamp(_horizontalRotation, -_maxHorizontalAngle, _maxHorizontalAngle);
 
-            // Создаем поворот относительно базового
             Quaternion verticalQuat = Quaternion.Euler(_verticalRotation, 0f, 0f);
             Quaternion horizontalQuat = Quaternion.Euler(0f, _horizontalRotation, 0f);
 
             _camera.transform.localRotation = _baseRotation * horizontalQuat * verticalQuat;
         }
 
+        public void Activate() => _camera.enabled = true;
+        public void Deactivate() => _camera.enabled = false;
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -12,10 +13,12 @@ namespace VoidspireStudio.FNATS.Cameras {
 
         [SerializeField] private List<SecurityCamera> _securityCameras;
         [SerializeField] private RawImage _cameraView;
+        [SerializeField] private TMP_Text _cameraName;
 
         private int _currentCameraIndex = 0;
 
         private Action<InputAction.CallbackContext>[] cameraDelegates;
+        private InputAction[] _cameraInputs;
 
         public SecurityCamera CurrentCamera => _securityCameras[_currentCameraIndex];
 
@@ -29,10 +32,27 @@ namespace VoidspireStudio.FNATS.Cameras {
 
             Instance = this;
 
-            cameraDelegates = new Action<InputAction.CallbackContext>[3];
+            _cameraInputs = new InputAction[]
+            {
+                GameInput.Instance.InputActions.Camera.Camera1,
+                GameInput.Instance.InputActions.Camera.Camera2,
+                GameInput.Instance.InputActions.Camera.Camera3,
+                GameInput.Instance.InputActions.Camera.Camera4,
+                GameInput.Instance.InputActions.Camera.Camera5,
+                GameInput.Instance.InputActions.Camera.Camera6,
+                GameInput.Instance.InputActions.Camera.Camera7,
+                GameInput.Instance.InputActions.Camera.Camera8,
+                GameInput.Instance.InputActions.Camera.Camera9,
+                GameInput.Instance.InputActions.Camera.Camera10
+            };
 
-            cameraDelegates[0] = (ctz) => ChangeCamera(0);
-            cameraDelegates[1] = (ctz) => ChangeCamera(1);
+            cameraDelegates = new Action<InputAction.CallbackContext>[_securityCameras.Count];
+
+            for (int i = 0; i < _securityCameras.Count; i++)
+            {
+                int index = i;
+                cameraDelegates[index] = (_) => ChangeCamera(index);
+            }
         }
 
         public void OnEnable()
@@ -41,11 +61,14 @@ namespace VoidspireStudio.FNATS.Cameras {
 
             GameInput.Instance.InputActions.Camera.CloseCamera.performed += CloseCameras;
 
-            GameInput.Instance.InputActions.Camera.CameraPrev.performed += NextCamera;
-            GameInput.Instance.InputActions.Camera.CameraNext.performed += PrevCamera;
+            GameInput.Instance.InputActions.Camera.CameraPrev.performed += PrevCamera;
+            GameInput.Instance.InputActions.Camera.CameraNext.performed += NextCamera;
 
-            GameInput.Instance.InputActions.Camera.Camera1.performed += cameraDelegates[0];
-            GameInput.Instance.InputActions.Camera.Camera2.performed += cameraDelegates[1];
+            for (int i = 0; i < _cameraInputs.Length; i++)
+            {
+                _cameraInputs[i].performed += cameraDelegates[i];
+                _securityCameras[i].Deactivate();
+            }
         }
 
         public void OnDisable()
@@ -54,11 +77,11 @@ namespace VoidspireStudio.FNATS.Cameras {
 
             GameInput.Instance.InputActions.Camera.CloseCamera.performed -= CloseCameras;
 
-            GameInput.Instance.InputActions.Camera.CameraPrev.performed -= NextCamera;
-            GameInput.Instance.InputActions.Camera.CameraNext.performed -= PrevCamera;
+            GameInput.Instance.InputActions.Camera.CameraPrev.performed -= PrevCamera;
+            GameInput.Instance.InputActions.Camera.CameraNext.performed -= NextCamera;
 
-            GameInput.Instance.InputActions.Camera.Camera1.performed -= cameraDelegates[0];
-            GameInput.Instance.InputActions.Camera.Camera2.performed -= cameraDelegates[1];
+            for (int i = 0; i < _cameraInputs.Length; i++)
+                _cameraInputs[i].performed -= cameraDelegates[i];
         }
 
         public void MoveCamera(InputAction.CallbackContext ctx) => _securityCameras[_currentCameraIndex].Look(ctx.ReadValue<Vector2>());
@@ -80,35 +103,36 @@ namespace VoidspireStudio.FNATS.Cameras {
 
         public void NextCamera(InputAction.CallbackContext ctx)
         {
-            _currentCameraIndex++;
+            int nextIndex = _currentCameraIndex + 1;
+            if (nextIndex >= _securityCameras.Count)
+                nextIndex = 0;
 
-            if (_currentCameraIndex >= _securityCameras.Count)
-                _currentCameraIndex = 0;
-
-            ReloadCamera();
+            ChangeCamera(nextIndex);
         }
 
         public void PrevCamera(InputAction.CallbackContext ctx)
         {
-            _currentCameraIndex--;
+            int prevIndex = _currentCameraIndex - 1;
+            if (prevIndex < 0)
+                prevIndex = _securityCameras.Count - 1;
 
-            if (_currentCameraIndex < 0)
-                _currentCameraIndex = _securityCameras.Count - 1;
-
-            ReloadCamera();
+            ChangeCamera(prevIndex);
         }
 
         public void ChangeCamera(int camIndex)
         {
             if (camIndex < 0 || camIndex >= _securityCameras.Count) return;
 
+            CurrentCamera.Deactivate();
             _currentCameraIndex = camIndex;
             ReloadCamera();
         }
 
         public void ReloadCamera()
         {
-            _cameraView.texture = _securityCameras[_currentCameraIndex].Texture;
+            CurrentCamera.Activate();
+            _cameraView.texture = CurrentCamera.Texture;
+            _cameraName.text = CurrentCamera.Name;
             Monitor.Instance.MonitorReload();
         }
     } 

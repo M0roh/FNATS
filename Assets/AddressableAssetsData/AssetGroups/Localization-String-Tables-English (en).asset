@@ -21,6 +21,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-en
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 75f28ac602f4565478ad0c212abb7b83
+    m_Address: Cameras_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: af35feaa5859091478ee05d0f71f1ddc
     m_Address: System Messages_en
     m_ReadOnly: 1

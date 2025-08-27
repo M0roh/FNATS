@@ -38,6 +38,7 @@ namespace VoidspireStudio.FNATS.PowerSystem
         private void OnEnable()
         {
             NightTime.OnTick += PowerDrain;
+            OnPowerChanged?.Invoke(_power);
         }
 
         private void OnDisable()

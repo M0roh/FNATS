@@ -999,12 +999,84 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": true
+                    ""initialStateCheck"": false
                 },
                 {
                     ""name"": ""Camera2"",
                     ""type"": ""Button"",
                     ""id"": ""a6df5317-0fda-4003-a16c-9ff11c6c3509"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Camera3"",
+                    ""type"": ""Button"",
+                    ""id"": ""6de103b0-9644-4611-ad7a-81b060138448"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Camera4"",
+                    ""type"": ""Button"",
+                    ""id"": ""fd21c6ff-2cc9-45d4-b866-d9f0beaf491c"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Camera5"",
+                    ""type"": ""Button"",
+                    ""id"": ""6b903d8b-ca8a-4120-b80c-bb5a0d672c77"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Camera6"",
+                    ""type"": ""Button"",
+                    ""id"": ""eefe406e-0bc0-48d4-b483-2e699a259b8d"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Camera7"",
+                    ""type"": ""Button"",
+                    ""id"": ""35289f3e-23b2-43ad-a288-5bcc9587416d"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Camera8"",
+                    ""type"": ""Button"",
+                    ""id"": ""ab112fe0-c3e2-462b-9f94-109214e8431e"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Camera9"",
+                    ""type"": ""Button"",
+                    ""id"": ""e35a25ef-ca8a-4fe7-8ee1-3aaa80f78bfc"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Camera10"",
+                    ""type"": ""Button"",
+                    ""id"": ""99661754-93db-432e-97dd-037ab97027b9"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -1117,6 +1189,94 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""Camera2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dc059f25-7d6c-497e-a4be-6c4dafd4b9ec"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Camera3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0a59bca1-0aee-4fa0-ad2c-d42df6d28391"",
+                    ""path"": ""<Keyboard>/4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Camera4"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b38f921e-2e15-45e8-99cf-b95bd10e747f"",
+                    ""path"": ""<Keyboard>/5"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Camera5"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e5f9cbd4-14da-48dd-b372-86ad65b93eee"",
+                    ""path"": ""<Keyboard>/6"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Camera6"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""be646861-cf35-42e5-ba54-c86faca2c721"",
+                    ""path"": ""<Keyboard>/7"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Camera7"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""76c612e1-df62-4afa-b117-db293eabfe83"",
+                    ""path"": ""<Keyboard>/8"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Camera8"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ea55e1ac-f2b9-4c8d-bcbb-af83ad4b938d"",
+                    ""path"": ""<Keyboard>/9"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Camera9"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""93d1cd28-5fb0-40fe-9b61-4d04c83b4c65"",
+                    ""path"": ""<Keyboard>/0"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Camera10"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1302,6 +1462,14 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_Camera_CameraNext = m_Camera.FindAction("CameraNext", throwIfNotFound: true);
         m_Camera_Camera1 = m_Camera.FindAction("Camera1", throwIfNotFound: true);
         m_Camera_Camera2 = m_Camera.FindAction("Camera2", throwIfNotFound: true);
+        m_Camera_Camera3 = m_Camera.FindAction("Camera3", throwIfNotFound: true);
+        m_Camera_Camera4 = m_Camera.FindAction("Camera4", throwIfNotFound: true);
+        m_Camera_Camera5 = m_Camera.FindAction("Camera5", throwIfNotFound: true);
+        m_Camera_Camera6 = m_Camera.FindAction("Camera6", throwIfNotFound: true);
+        m_Camera_Camera7 = m_Camera.FindAction("Camera7", throwIfNotFound: true);
+        m_Camera_Camera8 = m_Camera.FindAction("Camera8", throwIfNotFound: true);
+        m_Camera_Camera9 = m_Camera.FindAction("Camera9", throwIfNotFound: true);
+        m_Camera_Camera10 = m_Camera.FindAction("Camera10", throwIfNotFound: true);
         m_Camera_Look = m_Camera.FindAction("Look", throwIfNotFound: true);
     }
 
@@ -1747,6 +1915,14 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Camera_CameraNext;
     private readonly InputAction m_Camera_Camera1;
     private readonly InputAction m_Camera_Camera2;
+    private readonly InputAction m_Camera_Camera3;
+    private readonly InputAction m_Camera_Camera4;
+    private readonly InputAction m_Camera_Camera5;
+    private readonly InputAction m_Camera_Camera6;
+    private readonly InputAction m_Camera_Camera7;
+    private readonly InputAction m_Camera_Camera8;
+    private readonly InputAction m_Camera_Camera9;
+    private readonly InputAction m_Camera_Camera10;
     private readonly InputAction m_Camera_Look;
     /// <summary>
     /// Provides access to input actions defined in input action map "Camera".
@@ -1779,6 +1955,38 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Camera/Camera2".
         /// </summary>
         public InputAction @Camera2 => m_Wrapper.m_Camera_Camera2;
+        /// <summary>
+        /// Provides access to the underlying input action "Camera/Camera3".
+        /// </summary>
+        public InputAction @Camera3 => m_Wrapper.m_Camera_Camera3;
+        /// <summary>
+        /// Provides access to the underlying input action "Camera/Camera4".
+        /// </summary>
+        public InputAction @Camera4 => m_Wrapper.m_Camera_Camera4;
+        /// <summary>
+        /// Provides access to the underlying input action "Camera/Camera5".
+        /// </summary>
+        public InputAction @Camera5 => m_Wrapper.m_Camera_Camera5;
+        /// <summary>
+        /// Provides access to the underlying input action "Camera/Camera6".
+        /// </summary>
+        public InputAction @Camera6 => m_Wrapper.m_Camera_Camera6;
+        /// <summary>
+        /// Provides access to the underlying input action "Camera/Camera7".
+        /// </summary>
+        public InputAction @Camera7 => m_Wrapper.m_Camera_Camera7;
+        /// <summary>
+        /// Provides access to the underlying input action "Camera/Camera8".
+        /// </summary>
+        public InputAction @Camera8 => m_Wrapper.m_Camera_Camera8;
+        /// <summary>
+        /// Provides access to the underlying input action "Camera/Camera9".
+        /// </summary>
+        public InputAction @Camera9 => m_Wrapper.m_Camera_Camera9;
+        /// <summary>
+        /// Provides access to the underlying input action "Camera/Camera10".
+        /// </summary>
+        public InputAction @Camera10 => m_Wrapper.m_Camera_Camera10;
         /// <summary>
         /// Provides access to the underlying input action "Camera/Look".
         /// </summary>
@@ -1824,6 +2032,30 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Camera2.started += instance.OnCamera2;
             @Camera2.performed += instance.OnCamera2;
             @Camera2.canceled += instance.OnCamera2;
+            @Camera3.started += instance.OnCamera3;
+            @Camera3.performed += instance.OnCamera3;
+            @Camera3.canceled += instance.OnCamera3;
+            @Camera4.started += instance.OnCamera4;
+            @Camera4.performed += instance.OnCamera4;
+            @Camera4.canceled += instance.OnCamera4;
+            @Camera5.started += instance.OnCamera5;
+            @Camera5.performed += instance.OnCamera5;
+            @Camera5.canceled += instance.OnCamera5;
+            @Camera6.started += instance.OnCamera6;
+            @Camera6.performed += instance.OnCamera6;
+            @Camera6.canceled += instance.OnCamera6;
+            @Camera7.started += instance.OnCamera7;
+            @Camera7.performed += instance.OnCamera7;
+            @Camera7.canceled += instance.OnCamera7;
+            @Camera8.started += instance.OnCamera8;
+            @Camera8.performed += instance.OnCamera8;
+            @Camera8.canceled += instance.OnCamera8;
+            @Camera9.started += instance.OnCamera9;
+            @Camera9.performed += instance.OnCamera9;
+            @Camera9.canceled += instance.OnCamera9;
+            @Camera10.started += instance.OnCamera10;
+            @Camera10.performed += instance.OnCamera10;
+            @Camera10.canceled += instance.OnCamera10;
             @Look.started += instance.OnLook;
             @Look.performed += instance.OnLook;
             @Look.canceled += instance.OnLook;
@@ -1853,6 +2085,30 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Camera2.started -= instance.OnCamera2;
             @Camera2.performed -= instance.OnCamera2;
             @Camera2.canceled -= instance.OnCamera2;
+            @Camera3.started -= instance.OnCamera3;
+            @Camera3.performed -= instance.OnCamera3;
+            @Camera3.canceled -= instance.OnCamera3;
+            @Camera4.started -= instance.OnCamera4;
+            @Camera4.performed -= instance.OnCamera4;
+            @Camera4.canceled -= instance.OnCamera4;
+            @Camera5.started -= instance.OnCamera5;
+            @Camera5.performed -= instance.OnCamera5;
+            @Camera5.canceled -= instance.OnCamera5;
+            @Camera6.started -= instance.OnCamera6;
+            @Camera6.performed -= instance.OnCamera6;
+            @Camera6.canceled -= instance.OnCamera6;
+            @Camera7.started -= instance.OnCamera7;
+            @Camera7.performed -= instance.OnCamera7;
+            @Camera7.canceled -= instance.OnCamera7;
+            @Camera8.started -= instance.OnCamera8;
+            @Camera8.performed -= instance.OnCamera8;
+            @Camera8.canceled -= instance.OnCamera8;
+            @Camera9.started -= instance.OnCamera9;
+            @Camera9.performed -= instance.OnCamera9;
+            @Camera9.canceled -= instance.OnCamera9;
+            @Camera10.started -= instance.OnCamera10;
+            @Camera10.performed -= instance.OnCamera10;
+            @Camera10.canceled -= instance.OnCamera10;
             @Look.started -= instance.OnLook;
             @Look.performed -= instance.OnLook;
             @Look.canceled -= instance.OnLook;
@@ -2131,6 +2387,62 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnCamera2(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Camera3" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnCamera3(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Camera4" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnCamera4(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Camera5" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnCamera5(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Camera6" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnCamera6(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Camera7" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnCamera7(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Camera8" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnCamera8(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Camera9" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnCamera9(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Camera10" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnCamera10(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "Look" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
