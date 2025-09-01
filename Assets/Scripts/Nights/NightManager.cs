@@ -2,8 +2,6 @@ using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using System.Collections.Generic;
 using UnityEngine;
-using VoidspireStudio.FNATS.Core;
-using VoidspireStudio.FNATS.PowerSystem;
 
 namespace VoidspireStudio.FNATS.Nights
 {
@@ -13,6 +11,8 @@ namespace VoidspireStudio.FNATS.Nights
 
         [OdinSerialize] private Dictionary<int, NightConfig> _nightConfigs = new();
         private NightConfig _currentConfig;
+
+        public int CurrentNight { get; set; } = 1;
 
         private void Awake()
         {
@@ -42,7 +42,7 @@ namespace VoidspireStudio.FNATS.Nights
         {
             if (!time.IsTime(0, 0)) return;
 
-            if (_nightConfigs.TryGetValue(GameManager.Instance.CurrentNight, out _currentConfig)) {
+            if (_nightConfigs.TryGetValue(CurrentNight, out _currentConfig)) {
                 PowerSystem.PowerSystem.Instance.StartConsumption();
             }
             else {
@@ -54,7 +54,7 @@ namespace VoidspireStudio.FNATS.Nights
         {
             if (!time.IsTime(6, 0)) return;
 
-            ++GameManager.Instance.CurrentNight;
+            ++CurrentNight;
             Debug.Log("Ночь окончена!");
         }
     }

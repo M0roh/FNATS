@@ -1,8 +1,9 @@
 ﻿namespace VoidspireStudio.FNATS.PowerSystem { 
     public interface IElectricDevice
     {
+        public bool IsActive { get; }
         public float GetCurrentConsumption { get; }
-        public float TurnOn();
-        public float TurnOff();
+        public void TurnOn();
+        public void TurnOff();
     }
 }

@@ -9,7 +9,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <ProjectGuid>{D76E4640-3835-D24C-0BE8-4B2AD78F11B4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -73,6 +74,7 @@
     <Analyzer Include="D:\Unity Projects\FNATS\Library\PackageCache\com.unity.entities@e581b903be8e\Unity.Entities\SourceGenerators\Unity.Entities.Analyzer.CodeFixes.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Interactables\PC.cs" />
     <Compile Include="Assets\Visual Design Cafe\Nature Renderer Demo\Scripts\CloneTerrain.cs" />
     <Compile Include="Assets\Scripts\UI\MainMenu.cs" />
     <Compile Include="Assets\Scripts\Cameras\SecurityCamerasManager.cs" />
@@ -111,7 +113,6 @@
     <Compile Include="Assets\Scripts\Core\GameSettings.cs" />
     <Compile Include="Assets\Scripts\Nights\NightManager.cs" />
     <Compile Include="Assets\Scripts\Cameras\Monitor.cs" />
-    <Compile Include="Assets\Scripts\Core\GameManager.cs" />
     <Compile Include="Assets\Scripts\UI\PowerUI.cs" />
     <Compile Include="Assets\Scripts\Triggers\InteractTrigger.cs" />
     <Compile Include="Assets\Scripts\Animatronics\AnimatronicAI.cs" />
