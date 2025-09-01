@@ -1,5 +1,4 @@
 using QuickOutline;
-using TMPro.EditorUtilities;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using VoidspireStudio.FNATS.Input;
@@ -8,6 +7,7 @@ using VoidspireStudio.FNATS.Utils;
 
 namespace VoidspireStudio.FNATS.Core
 {
+    [RequireComponent(typeof(CharacterController))]
     public class Player : MonoBehaviour
     {
         public static Player Instance { get; private set; }
@@ -26,7 +26,7 @@ namespace VoidspireStudio.FNATS.Core
         private bool _isRunning = false;
         private bool _isFrozen = false;
 
-        private bool _isPickupedFuse = false;
+        private bool _isPickedFuse = false;
 
         [Header("Оборудование")]
         [SerializeField] private Light _flashlightLight;
@@ -46,6 +46,7 @@ namespace VoidspireStudio.FNATS.Core
 
         [Header("Взаимодействия")]
         [SerializeField] private float _interactionDistance = 3f;
+        [SerializeField] private GameObject _fuseInHandObject;
 
         private (GameObject obj, IInteractable interact) _lastHighlightedObject;
         private IInteractable _currentInteractTarget;
@@ -59,7 +60,15 @@ namespace VoidspireStudio.FNATS.Core
         public bool IsCrouch => _isCrouched;
         public bool IsRunning => _isRunning;
         public bool IsFrozen => _isFrozen;
-        public bool IsPickupedFuse => _isPickupedFuse;
+        public bool IsPickedFuse 
+        {
+            get => _isPickedFuse;
+            set
+            {
+                _isPickedFuse = value;
+                _fuseInHandObject.SetActive(value);
+            }
+        }
 
         public Vector3 HeadPosition => _playerCamera.transform.position;
 
@@ -70,7 +79,7 @@ namespace VoidspireStudio.FNATS.Core
                 Destroy(gameObject);
                 return;
             }
-
+            
             Instance = this;
 
             _speed = _walkSpeed;

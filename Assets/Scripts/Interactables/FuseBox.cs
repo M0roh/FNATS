@@ -9,6 +9,10 @@ namespace Assets.Scripts.Interactables
 {
     public class FuseBox : MonoBehaviour, IInteractable, IPowerNode
     {
+        [Header("Предохранители")]
+        [SerializeField] private GameObject _fuseObject1;
+        [SerializeField] private GameObject _fuseObject2;
+
         public bool IsActive { get; private set; }
 
         public event Action OnBroken;
@@ -36,11 +40,20 @@ namespace Assets.Scripts.Interactables
 
         public void OnInteract()
         {
-            // TODO: Предохранитель визуально ставить на место
-            if (Player.Instance.IsPickupedFuse)
+            if (Player.Instance.IsPickedFuse)
             {
+                Player.Instance.IsPickedFuse = false;
                 IsActive = true;
                 OnRepair?.Invoke();
+
+                if (_fuseObject1.activeSelf)
+                {
+                    _fuseObject2.SetActive(true);
+                }
+                else
+                {
+                    _fuseObject1.SetActive(true);
+                }
             }
         }
 
@@ -59,6 +72,15 @@ namespace Assets.Scripts.Interactables
             {
                 IsActive = false;
                 OnBroken?.Invoke();
+
+                if (UnityEngine.Random.Range(1, 3) == 1)
+                {
+                    _fuseObject1.SetActive(false);
+                }
+                else 
+                { 
+                    _fuseObject2.SetActive(false);
+                }
             }
         }
     }
