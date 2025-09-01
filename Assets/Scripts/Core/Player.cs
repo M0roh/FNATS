@@ -26,6 +26,8 @@ namespace VoidspireStudio.FNATS.Core
         private bool _isRunning = false;
         private bool _isFrozen = false;
 
+        private bool _isPickupedFuse = false;
+
         [Header("Оборудование")]
         [SerializeField] private Light _flashlightLight;
         private bool _flashlightEnabled = true;
@@ -57,6 +59,7 @@ namespace VoidspireStudio.FNATS.Core
         public bool IsCrouch => _isCrouched;
         public bool IsRunning => _isRunning;
         public bool IsFrozen => _isFrozen;
+        public bool IsPickupedFuse => _isPickupedFuse;
 
         public Vector3 HeadPosition => _playerCamera.transform.position;
 

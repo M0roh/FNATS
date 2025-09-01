@@ -9,7 +9,8 @@ namespace VoidspireStudio.FNATS.Nights
         public static GameTime CurrentTime { get; private set; }
         public static float TimeScale { get; private set; } = 1f;
 
-        public static event Action<GameTime> OnTick;
+        public static event OnTickHandler OnTick;
+        public delegate void OnTickHandler(GameTime time);
 
         private void OnEnable()
         {

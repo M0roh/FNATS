@@ -22,7 +22,17 @@ namespace VoidspireStudio.FNATS.PowerSystem
         public bool IsRunning { get; private set; }
         public bool IsPaused { get; private set; }
 
-        public event Action<float> OnPowerChanged;
+        /// <summary>
+        /// Вызывается после изменения электричества
+        /// </summary>
+        public event PowerChangedHandler OnPowerChanged;
+        public delegate void PowerChangedHandler(float currentPower);
+
+        /// <summary>
+        /// Вызывается до измения электричества после расчёта сколько потратиться энергии за этот тик
+        /// </summary>
+        public event PowerDrainCalculatedHandler OnPowerDrainCalculated;
+        public delegate void PowerDrainCalculatedHandler(float currentPower, float drainAmount);
 
         private void Awake()
         {
@@ -95,14 +105,11 @@ namespace VoidspireStudio.FNATS.PowerSystem
         {
             if (!IsRunning || IsPaused) return;
 
-            _power -= _passiveDrain;
+            float drain = _passiveDrain;
+            drain += _electricDevices.Where(device => device != null).Sum(device => device.GetCurrentConsumption);
+            OnPowerDrainCalculated(_power, drain);
 
-            foreach (var device in _electricDevices)
-                if (device == null)
-                    device.UnregisterDevice();
-                else
-                    _power -= device.GetCurrentConsumption;
-
+            _power -= drain;
             OnPowerChanged?.Invoke(_power);
 
             if (_power < 0)

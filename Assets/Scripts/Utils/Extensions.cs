@@ -23,6 +23,9 @@ namespace VoidspireStudio.FNATS.Utils
         public static void RegisterDevice(this IElectricDevice device) => PowerSystem.PowerSystem.Instance.RegisterDevice(device);
         public static void UnregisterDevice(this IElectricDevice device) => PowerSystem.PowerSystem.Instance.UnregisterDevice(device);
 
+        public static void RegisterNode(this IPowerNode node) => PowerSystem.PowerSystem.Instance.RegisterPowerNode(node);
+        public static void UnregisterNode(this IPowerNode node) => PowerSystem.PowerSystem.Instance.UnregisterPowerNode(node);
+
         public static bool IsRegisterted(this IElectricDevice device) => PowerSystem.PowerSystem.Instance.IsDeviceRegistred(device);
     }
 }
