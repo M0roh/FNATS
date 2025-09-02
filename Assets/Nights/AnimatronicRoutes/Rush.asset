@@ -38,7 +38,7 @@ MonoBehaviour:
         _nextStepsIds:
         - B
         - C
-        _target: {fileID: 0}
+        _waypoint: d95d9ae28d57497e9c38c04167855d5a
     - rid: 415304402592071756
       type: {class: GoToStep, ns: VoidspireStudio.FNATS.Animatronics.Routes, asm: Assembly-CSharp}
       data:
@@ -46,42 +46,42 @@ MonoBehaviour:
         _nextStepsIds:
         - D
         - E
-        _target: {fileID: 0}
+        _waypoint: 0f743a573bbf44b4b6db2fb4dbbc09f8
     - rid: 415304402592071757
       type: {class: GoToStep, ns: VoidspireStudio.FNATS.Animatronics.Routes, asm: Assembly-CSharp}
       data:
         _id: C
         _nextStepsIds:
         - G
-        _target: {fileID: 0}
+        _waypoint: 899f253d7fa24abc9f42de328e75e511
     - rid: 415304402592071758
       type: {class: GoToStep, ns: VoidspireStudio.FNATS.Animatronics.Routes, asm: Assembly-CSharp}
       data:
         _id: D
         _nextStepsIds:
         - F
-        _target: {fileID: 0}
+        _waypoint: 381d350ef8ff42719ba947cd8f109ff6
     - rid: 415304402592071759
       type: {class: GoToStep, ns: VoidspireStudio.FNATS.Animatronics.Routes, asm: Assembly-CSharp}
       data:
         _id: E
         _nextStepsIds:
         - Player Bottom
-        _target: {fileID: 0}
+        _waypoint: f4aa6f0c1b064113bde51622380b5d48
     - rid: 415304402592071760
       type: {class: GoToStep, ns: VoidspireStudio.FNATS.Animatronics.Routes, asm: Assembly-CSharp}
       data:
         _id: F
         _nextStepsIds:
         - E
-        _target: {fileID: 0}
+        _waypoint: 93b30a3f92c14bdda3d0c15c87539f2d
     - rid: 415304402592071761
       type: {class: GoToStep, ns: VoidspireStudio.FNATS.Animatronics.Routes, asm: Assembly-CSharp}
       data:
         _id: Player Bottom
         _nextStepsIds:
         - Player Office
-        _target: {fileID: 0}
+        _waypoint: 418d8086293c4d52bc2d30ac65c7a9f2
     - rid: 415304402592071762
       type: {class: GoToStep, ns: VoidspireStudio.FNATS.Animatronics.Routes, asm: Assembly-CSharp}
       data:
@@ -90,21 +90,21 @@ MonoBehaviour:
         - Player Office Attack
         - Walk Near Office
         - Player Office Attack
-        _target: {fileID: 0}
+        _waypoint: d70550a93602403f91fd8d32a8b4cf36
     - rid: 415304402592071763
       type: {class: GoToStep, ns: VoidspireStudio.FNATS.Animatronics.Routes, asm: Assembly-CSharp}
       data:
         _id: G
         _nextStepsIds:
         - H
-        _target: {fileID: 0}
+        _waypoint: 2358fb32300647f1b3aacdea7cf56eb1
     - rid: 415304402592071764
       type: {class: GoToStep, ns: VoidspireStudio.FNATS.Animatronics.Routes, asm: Assembly-CSharp}
       data:
         _id: H
         _nextStepsIds:
         - Player Bottom
-        _target: {fileID: 0}
+        _waypoint: d6ae61d759ec452ca465b4400f3c1457
     - rid: 415304402592071765
       type: {class: AttackStep, ns: VoidspireStudio.FNATS.Animatronics.Routes, asm: Assembly-CSharp}
       data:
@@ -116,7 +116,7 @@ MonoBehaviour:
         _id: Walk Near Office
         _nextStepsIds:
         - Player Office
-        _target: {fileID: 0}
+        _waypoint: 0d42daefecdd41feb822c5657c4ae743
     - rid: 5232270747977908298
       type: {class: WaitStep, ns: VoidspireStudio.FNATS.Animatronics.Routes, asm: Assembly-CSharp}
       data:

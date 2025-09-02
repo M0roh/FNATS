@@ -1,3 +1,6 @@
+using Sirenix.OdinInspector;
+using Sirenix.Serialization;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,9 +26,17 @@ namespace VoidspireStudio.FNATS.Animatronics.Routes
     [System.Serializable]
     public class GoToStep : RouteStep
     {
-        [SerializeField] private Transform _target;
+        [SerializeField] private string _waypoint = string.Empty;
+        
+        public Transform Target => WaypointRegistry.Get(_waypoint).transform;
+    }
 
-        public Transform Target => _target;
+    [System.Serializable]
+    public class RotateStep : RouteStep
+    {
+        [SerializeField] private string _waypoint = string.Empty;
+        
+        public Quaternion Target => WaypointRegistry.Get(_waypoint).transform.localRotation;
     }
 
     [System.Serializable]

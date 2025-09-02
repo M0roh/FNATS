@@ -19808,6 +19808,7 @@ GameObject:
   - component: {fileID: 447303818}
   - component: {fileID: 447303820}
   - component: {fileID: 447303819}
+  - component: {fileID: 447303821}
   m_Layer: 0
   m_Name: Rush Step 1 (5)
   m_TagString: Untagged
@@ -19886,6 +19887,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 447303817}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &447303821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 447303817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c15f58cde8afbc4478a57280279ef157, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VoidspireStudio.FNATS.Animatronics.Routes.Waypoint
+  _id: f4aa6f0c1b064113bde51622380b5d48
 --- !u!1 &447583891
 GameObject:
   m_ObjectHideFlags: 0
@@ -27292,6 +27306,7 @@ GameObject:
   - component: {fileID: 608909579}
   - component: {fileID: 608909581}
   - component: {fileID: 608909580}
+  - component: {fileID: 608909582}
   m_Layer: 0
   m_Name: Rush Step 1 (2)
   m_TagString: Untagged
@@ -27370,6 +27385,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 608909578}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &608909582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 608909578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c15f58cde8afbc4478a57280279ef157, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VoidspireStudio.FNATS.Animatronics.Routes.Waypoint
+  _id: 899f253d7fa24abc9f42de328e75e511
 --- !u!1 &609736370
 GameObject:
   m_ObjectHideFlags: 0
@@ -27655,6 +27683,7 @@ GameObject:
   - component: {fileID: 611934440}
   - component: {fileID: 611934442}
   - component: {fileID: 611934441}
+  - component: {fileID: 611934443}
   m_Layer: 0
   m_Name: Rush Step 1 (3)
   m_TagString: Untagged
@@ -27733,6 +27762,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 611934439}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &611934443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 611934439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c15f58cde8afbc4478a57280279ef157, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VoidspireStudio.FNATS.Animatronics.Routes.Waypoint
+  _id: 2358fb32300647f1b3aacdea7cf56eb1
 --- !u!1 &612828304
 GameObject:
   m_ObjectHideFlags: 0
@@ -29571,6 +29613,7 @@ GameObject:
   - component: {fileID: 654911510}
   - component: {fileID: 654911513}
   - component: {fileID: 654911512}
+  - component: {fileID: 654911514}
   m_Layer: 0
   m_Name: Player Office
   m_TagString: Untagged
@@ -29649,6 +29692,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 654911509}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &654911514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 654911509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c15f58cde8afbc4478a57280279ef157, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VoidspireStudio.FNATS.Animatronics.Routes.Waypoint
+  _id: d70550a93602403f91fd8d32a8b4cf36
 --- !u!1 &655264008
 GameObject:
   m_ObjectHideFlags: 0
@@ -54187,6 +54243,7 @@ GameObject:
   - component: {fileID: 1271331190}
   - component: {fileID: 1271331192}
   - component: {fileID: 1271331191}
+  - component: {fileID: 1271331193}
   m_Layer: 0
   m_Name: Rush Step 1
   m_TagString: Untagged
@@ -54265,6 +54322,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1271331189}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1271331193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1271331189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c15f58cde8afbc4478a57280279ef157, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VoidspireStudio.FNATS.Animatronics.Routes.Waypoint
+  _id: d95d9ae28d57497e9c38c04167855d5a
 --- !u!1 &1271783078
 GameObject:
   m_ObjectHideFlags: 0
@@ -54795,6 +54865,7 @@ GameObject:
   - component: {fileID: 1290263604}
   - component: {fileID: 1290263606}
   - component: {fileID: 1290263605}
+  - component: {fileID: 1290263607}
   m_Layer: 0
   m_Name: Rush Step 1 (7)
   m_TagString: Untagged
@@ -54873,6 +54944,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1290263603}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1290263607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1290263603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c15f58cde8afbc4478a57280279ef157, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VoidspireStudio.FNATS.Animatronics.Routes.Waypoint
+  _id: 93b30a3f92c14bdda3d0c15c87539f2d
 --- !u!1 &1290780582
 GameObject:
   m_ObjectHideFlags: 0
@@ -61652,6 +61736,7 @@ GameObject:
   - component: {fileID: 1443702866}
   - component: {fileID: 1443702868}
   - component: {fileID: 1443702867}
+  - component: {fileID: 1443702869}
   m_Layer: 0
   m_Name: Rush Step 1 (4)
   m_TagString: Untagged
@@ -61730,6 +61815,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1443702865}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1443702869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1443702865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c15f58cde8afbc4478a57280279ef157, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VoidspireStudio.FNATS.Animatronics.Routes.Waypoint
+  _id: d6ae61d759ec452ca465b4400f3c1457
 --- !u!1 &1448667808
 GameObject:
   m_ObjectHideFlags: 0
@@ -66268,6 +66366,7 @@ GameObject:
   - component: {fileID: 1552714658}
   - component: {fileID: 1552714661}
   - component: {fileID: 1552714660}
+  - component: {fileID: 1552714662}
   m_Layer: 0
   m_Name: Player Office Back
   m_TagString: Untagged
@@ -66346,6 +66445,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1552714657}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1552714662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1552714657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c15f58cde8afbc4478a57280279ef157, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VoidspireStudio.FNATS.Animatronics.Routes.Waypoint
+  _id: 0d42daefecdd41feb822c5657c4ae743
 --- !u!1 &1554693911
 GameObject:
   m_ObjectHideFlags: 0
@@ -77713,6 +77825,7 @@ GameObject:
   - component: {fileID: 1878291343}
   - component: {fileID: 1878291346}
   - component: {fileID: 1878291345}
+  - component: {fileID: 1878291347}
   m_Layer: 0
   m_Name: Player Office Bottom
   m_TagString: Untagged
@@ -77791,6 +77904,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1878291342}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1878291347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1878291342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c15f58cde8afbc4478a57280279ef157, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VoidspireStudio.FNATS.Animatronics.Routes.Waypoint
+  _id: 418d8086293c4d52bc2d30ac65c7a9f2
 --- !u!1 &1879706330
 GameObject:
   m_ObjectHideFlags: 0
@@ -80426,6 +80552,7 @@ GameObject:
   - component: {fileID: 1955497870}
   - component: {fileID: 1955497872}
   - component: {fileID: 1955497871}
+  - component: {fileID: 1955497873}
   m_Layer: 0
   m_Name: Rush Step 1 (6)
   m_TagString: Untagged
@@ -80504,6 +80631,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1955497869}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1955497873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1955497869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c15f58cde8afbc4478a57280279ef157, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VoidspireStudio.FNATS.Animatronics.Routes.Waypoint
+  _id: 381d350ef8ff42719ba947cd8f109ff6
 --- !u!1 &1957083381
 GameObject:
   m_ObjectHideFlags: 0
@@ -80613,6 +80753,7 @@ GameObject:
   - component: {fileID: 1958090771}
   - component: {fileID: 1958090773}
   - component: {fileID: 1958090772}
+  - component: {fileID: 1958090774}
   m_Layer: 0
   m_Name: Rush Step 1 (1)
   m_TagString: Untagged
@@ -80691,6 +80832,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1958090770}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1958090774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1958090770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c15f58cde8afbc4478a57280279ef157, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VoidspireStudio.FNATS.Animatronics.Routes.Waypoint
+  _id: 0f743a573bbf44b4b6db2fb4dbbc09f8
 --- !u!1 &1961251390
 GameObject:
   m_ObjectHideFlags: 0
