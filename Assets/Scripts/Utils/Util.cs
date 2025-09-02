@@ -11,17 +11,7 @@ namespace VoidspireStudio.FNATS.Utils
             return new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
         }
 
-        public static bool IsPointOutsideCamera(Vector3 point)
-        {
-            Vector3 viewportPos = Camera.main.WorldToViewportPoint(point);
-
-            if (viewportPos.x < 0f || viewportPos.x > 1f || viewportPos.y < 0f || viewportPos.y > 1f)
-                return true;
-
-            return false;
-        }
-
-        public static IEnumerator GetRandomPointOnNavMesh(Vector3 center, float radiusMax, System.Action<Vector3> onComplete, NavMeshAgent agent = null, float radiusMin = 0f, bool searchOutsideCamera = false)
+        public static IEnumerator GetRandomPointOnNavMesh(Vector3 center, float radiusMax, System.Action<Vector3> onComplete, float radiusMin = 0f)
         {
             int maxAttempts = 50;
 
@@ -29,29 +19,15 @@ namespace VoidspireStudio.FNATS.Utils
 
             int areaMask = 1;
 
-            if (agent != null)
-            {
-                NavMeshQueryFilter filter = new NavMeshQueryFilter()
-                {
-                    agentTypeID = agent.agentTypeID,
-                    areaMask = agent.areaMask
-                };
-            }
-            else
-                areaMask = 1 << NavMesh.GetAreaFromName("Walkable");
-
             for (int i = 0; i < maxAttempts; i++)
             {
                 Vector3 randomDirection = Random.insideUnitSphere * Random.Range(radiusMin, radiusMax);
                 randomDirection += center;
 
-                if (NavMesh.SamplePosition(randomDirection, out hit, radiusMax, areaMask))
+                if (NavMesh.SamplePosition(randomDirection, out hit, radiusMax, 1))
                 {
-                    if (!searchOutsideCamera || IsPointOutsideCamera(hit.position))
-                    {
-                        onComplete?.Invoke(hit.position);
-                        yield break;
-                    }
+                    onComplete?.Invoke(hit.position);
+                    yield break;
                 }
                 yield return null;
             }
