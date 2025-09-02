@@ -11,8 +11,10 @@ namespace VoidspireStudio.FNATS.Cameras
 
         [Header("Загрузка")]
         [SerializeField] private Texture2D[] _loadAnimationFrames;
-        [SerializeField, Min(1)] private int _loopCount = 5;
-        
+        [SerializeField, Min(1)] private int _loopCount = 3;
+        [SerializeField, Min(0)] private float _delayBetweenFrames = 0.2f; 
+
+        private bool _isLoaded = false;
 
         public bool IsActive => throw new System.NotImplementedException();
 
@@ -46,7 +48,7 @@ namespace VoidspireStudio.FNATS.Cameras
 
         public void OnInteract()
         {
-            if (PC.Instance.IsActive)
+            if (PC.Instance.IsActive && _isLoaded)
                 SecurityCamerasManager.Instance.OpenCameras();
         }
 
@@ -65,6 +67,7 @@ namespace VoidspireStudio.FNATS.Cameras
         {
             if (PC.Instance.IsActive) return;
 
+            _isLoaded = false;
             _screenMaterial.color = new(0, 0, 0);
 
             MonitorReload();
@@ -72,6 +75,8 @@ namespace VoidspireStudio.FNATS.Cameras
 
         public IEnumerator PlayLoadScreen()
         {
+            _screenMaterial.mainTextureOffset = new Vector2(-0.5f, -0.5f);
+            _screenMaterial.mainTextureScale = new Vector2(2f, 2f);
             if (_loadAnimationFrames != null)
             {
                 for (int i = 0; i < _loopCount; i++)
@@ -79,12 +84,16 @@ namespace VoidspireStudio.FNATS.Cameras
                     foreach (var frame in _loadAnimationFrames)
                     {
                         _screenMaterial.mainTexture = frame;
-                        yield return null;
+                        yield return new WaitForSeconds(_delayBetweenFrames);
                     }
                 }
             }
 
+            _screenMaterial.mainTextureOffset = new Vector2(0f, 0f);
+            _screenMaterial.mainTextureScale = new Vector2(1f, 1f);
+
             MonitorReload();
+            _isLoaded = true;
         }
     }
 }

@@ -24,7 +24,7 @@ namespace VoidspireStudio.FNATS.Cameras
         private void Awake()
         {
             _camera = GetComponent<Camera>();
-            _camera.targetTexture = new RenderTexture(Screen.width, Screen.height, 24);
+            _camera.targetTexture = new RenderTexture(Screen.width, Screen.height, 24, RenderTextureFormat.ARGB32);
             _baseRotation = _camera.transform.localRotation;
         }
 

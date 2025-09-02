@@ -20,6 +20,11 @@ namespace VoidspireStudio.FNATS.Interactables
             Instance = this;
         }
 
+        private void Start()
+        {
+            TurnOff();
+        }
+
         public void OnInteract()
         {
             if (IsActive)
@@ -33,13 +38,13 @@ namespace VoidspireStudio.FNATS.Interactables
         public void TurnOff()
         {
             IsActive = false;
-            _monitor.MonitorReload();
+            _monitor.TurnOff();
         }
 
         public void TurnOn()
         {
             IsActive = true;
-            _monitor.MonitorReload();
+            _monitor.TurnOn();
         }
     }
 }
