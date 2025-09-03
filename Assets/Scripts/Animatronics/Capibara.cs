@@ -17,14 +17,14 @@ namespace VoidspireStudio.FNATS.Animatronics
         }
 
         [Header("Settings")]
-        [SerializeField] private float _speed = 5f;
         [SerializeField] private float _viewDistance = 4f;
         [SerializeField] private float _walkRadius = 30f;
         [SerializeField] private float _runDistance = 7f;
         [SerializeField] private float _waitBetweenTargets = 3f;
 
-        private Vector3 _target;
+        private Vector3 _target = Vector3.zero;
         private State _currentState = State.Wait;
+        private bool _isWaiting = false;
 
         private Coroutine _waitCoroutine;
 
@@ -37,9 +37,9 @@ namespace VoidspireStudio.FNATS.Animatronics
 
         private void FixedUpdate()
         {
-            if (_waitCoroutine != null) return;
-
             PlayerCheck();
+
+            if (_isWaiting) return;
 
             switch (_currentState)
             {
@@ -54,7 +54,7 @@ namespace VoidspireStudio.FNATS.Animatronics
 
                 case State.Run:
                     if (_agent.HasReachedDestination())
-                        _waitCoroutine = StartCoroutine(WaitTimer(_waitBetweenTargets / 2));
+                        _waitCoroutine = StartCoroutine(WaitTimer(_waitBetweenTargets * 0.5f));
                     break;
             }
         }
@@ -68,13 +68,15 @@ namespace VoidspireStudio.FNATS.Animatronics
 
         public IEnumerator WaitTimer(float waitTime)
         {
+            _isWaiting = true;
+
             yield return new WaitForSeconds(waitTime);
 
-            StartCoroutine(SetRoamingPosition());
+            yield return StartCoroutine(SetRoamingPosition());
 
             _currentState = State.Walk;
 
-            yield return null;
+            _isWaiting = false;
         }
 
         public void PlayerCheck()
@@ -82,13 +84,16 @@ namespace VoidspireStudio.FNATS.Animatronics
             Vector3 playerPosition = Player.Instance.transform.position;
             if (Vector3.Distance(transform.position, playerPosition) <= _viewDistance)
             {
-                if (_waitCoroutine != null)
+                if (_isWaiting)
+                {
                     StopCoroutine(_waitCoroutine);
+                    _isWaiting = false;
+                }
 
                 _currentState = State.Run;
 
                 Vector3 _runDirection = (transform.position - playerPosition).normalized;
-                _target = _runDirection * _runDistance;
+                _target = transform.position + _runDirection * _runDistance;
 
                 _agent.SetDestination(_target);
             }
