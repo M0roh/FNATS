@@ -22,6 +22,8 @@ namespace VoidspireStudio.FNATS.PowerSystem
         public bool IsRunning { get; private set; }
         public bool IsPaused { get; private set; }
 
+        public bool IsStopped => !IsRunning && IsPaused;
+
         /// <summary>
         /// Вызывается после изменения электричества
         /// </summary>
@@ -29,7 +31,7 @@ namespace VoidspireStudio.FNATS.PowerSystem
         public delegate void PowerChangedHandler(float currentPower);
 
         /// <summary>
-        /// Вызывается до измения электричества после расчёта сколько потратиться энергии за этот тик
+        /// Вызывается до изменения электричества после расчёта сколько потратиться энергии за этот тик
         /// </summary>
         public event PowerDrainCalculatedHandler OnPowerDrainCalculated;
         public delegate void PowerDrainCalculatedHandler(float currentPower, float drainAmount);
@@ -106,7 +108,7 @@ namespace VoidspireStudio.FNATS.PowerSystem
             if (!IsRunning || IsPaused) return;
 
             float drain = _passiveDrain;
-            drain += _electricDevices.Where(device => device != null).Sum(device => device.GetCurrentConsumption);
+            drain += _electricDevices.Where(device => device != null && device.IsActive).Sum(device => device.GetCurrentConsumption);
             OnPowerDrainCalculated(_power, drain);
 
             _power -= drain;

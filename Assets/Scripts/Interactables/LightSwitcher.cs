@@ -1,25 +1,17 @@
 ﻿using UnityEngine;
-using VoidspireStudio.FNATS.Cameras;
 using VoidspireStudio.FNATS.Nights;
 using VoidspireStudio.FNATS.PowerSystem;
 using VoidspireStudio.FNATS.Utils;
 
 namespace VoidspireStudio.FNATS.Interactables
 {
-    public class PC : MonoBehaviour, IInteractable, IElectricDevice
+    public class LightSwitcher : MonoBehaviour, IInteractable, IElectricDevice
     {
-        public static PC Instance { get; private set; }
-
-        [SerializeField] private Monitor _monitor;
+        [SerializeField] private Light _light;
 
         public bool IsActive { get; private set; } = false;
 
-        public float GetCurrentConsumption => 0.04f * NightManager.Instance.CurrentNight;
-
-        private void Awake()
-        {
-            Instance = this;
-        }
+        public float GetCurrentConsumption => 0.01f * NightManager.Instance.CurrentNight;
 
         private void Start()
         {
@@ -36,10 +28,8 @@ namespace VoidspireStudio.FNATS.Interactables
         {
             if (PowerSystem.PowerSystem.Instance.IsStopped) return;
 
-            if (IsActive)
-                TurnOff();
-            else
-                TurnOn();
+            IsActive = !IsActive;
+            LightUpdate();
         }
 
         public void OnInteractEnd() { }
@@ -47,7 +37,7 @@ namespace VoidspireStudio.FNATS.Interactables
         public void TurnOff()
         {
             IsActive = false;
-            _monitor.TurnOff();
+            LightUpdate();
         }
 
         public void TurnOn()
@@ -55,7 +45,21 @@ namespace VoidspireStudio.FNATS.Interactables
             if (PowerSystem.PowerSystem.Instance.IsStopped) return;
 
             IsActive = true;
-            _monitor.TurnOn();
+            LightUpdate();
+        }
+
+        public void LightUpdate()
+        {
+            if (IsActive || PowerSystem.PowerSystem.Instance.IsStopped)
+            {
+                IsActive = false;
+                _light.enabled = false;
+            }
+            else if (!PowerSystem.PowerSystem.Instance.IsStopped)
+            {
+                IsActive = true;
+                _light.enabled = true;
+            }
         }
     }
 }
