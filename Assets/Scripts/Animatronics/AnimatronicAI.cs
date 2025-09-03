@@ -1,9 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using Sirenix.OdinInspector;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 using VoidspireStudio.FNATS.Animatronics.Routes;
 using VoidspireStudio.FNATS.Core;
+using VoidspireStudio.FNATS.Nights;
 using VoidspireStudio.FNATS.Utils;
 
 namespace VoidspireStudio.FNATS.Animatronics
@@ -22,6 +25,10 @@ namespace VoidspireStudio.FNATS.Animatronics
     [RequireComponent(typeof(NavMeshAgent), typeof(Animator))]
     public abstract class AnimatronicAI : MonoBehaviour
     {
+        [ShowInInspector, ReadOnly]
+        [SerializeField]
+        private string _id = "";
+
         [Header("Движение")]
         [SerializeField] private float _walkSpeed = 2f;
         [SerializeField] private float _runSpeed = 4f;
@@ -52,10 +59,14 @@ namespace VoidspireStudio.FNATS.Animatronics
         private NavMeshAgent _agent;
         private Animator _animator;
 
+        public bool IsEnabled => _currentState != AnimatronicState.Off;
+
+        public string Id => _id;
+
         public AnimatronicState СurrentState
         {
             get => _currentState;
-            set
+            private set
             {
                 _stateBeforeCurrent = _currentState;
                 _currentState = value;
@@ -69,6 +80,10 @@ namespace VoidspireStudio.FNATS.Animatronics
 
         private void Awake()
         {
+            _walkSpeed *= NightManager.Instance.CurrentConfig.AnimatronicSpeedMultiplier;
+            _runSpeed*= NightManager.Instance.CurrentConfig.AnimatronicSpeedMultiplier;
+            
+
             _agent = GetComponent<NavMeshAgent>();
             _animator = GetComponent<Animator>();
 
@@ -95,7 +110,7 @@ namespace VoidspireStudio.FNATS.Animatronics
 
         private void FixedUpdate()
         {
-            if (СurrentState == AnimatronicState.Off)
+            if (!IsEnabled)
                 return;
 
             if ((СurrentState == AnimatronicState.Route ||
@@ -132,6 +147,21 @@ namespace VoidspireStudio.FNATS.Animatronics
                     OfficeAtack();
                     break;
             }
+        }
+
+        private void OnValidate()
+        {
+            if (string.IsNullOrEmpty(_id))
+                RegenerateID();
+        }
+
+        [Button]
+        private void RegenerateID() => _id = System.Guid.NewGuid().ToString("N");
+
+        [Button]
+        private void CopyIdToClipboard()
+        {
+            GUIUtility.systemCopyBuffer = _id.ToString();
         }
 
         protected abstract void OfficeAtack();
@@ -244,6 +274,10 @@ namespace VoidspireStudio.FNATS.Animatronics
                     СurrentState = AnimatronicState.Waiting;
                     break;
 
+                case RotateStep rotateStep:
+                    StartCoroutine(rotateStep.Target);
+                    break;
+
                 case SabotageStep:
                     СurrentState = AnimatronicState.Sabotage;
                     break;
@@ -251,6 +285,17 @@ namespace VoidspireStudio.FNATS.Animatronics
                 case AttackStep:
                     break;
             }
+        }
+
+        public IEnumerator Rotate(Quaternion targetAngle)
+        {
+            while (Quaternion.Angle(transform.localRotation, targetAngle) > 0.01f)
+            {
+                transform.localRotation = Quaternion.RotateTowards(transform.localRotation, targetAngle, _rotationSpeed * Time.deltaTime);
+
+                yield return null;
+            }
+            transform.localRotation = targetAngle;
         }
 
         private void PlayerForward()
@@ -328,5 +373,13 @@ namespace VoidspireStudio.FNATS.Animatronics
 
             return false;
         }
+
+        public void Disable()
+        {
+            _currentState = AnimatronicState.Off;
+            _agent.ResetPath();
+        }
+
+        public void Enable() => ResetState();
     }
 }

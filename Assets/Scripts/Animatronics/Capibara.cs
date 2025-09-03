@@ -21,6 +21,7 @@ namespace VoidspireStudio.FNATS.Animatronics
         [SerializeField] private float _walkRadius = 30f;
         [SerializeField] private float _runDistance = 7f;
         [SerializeField] private float _waitBetweenTargets = 3f;
+        [SerializeField] private float _rotationSpeed = 3f;
 
         private Vector3 _target = Vector3.zero;
         private State _currentState = State.Wait;
@@ -33,6 +34,21 @@ namespace VoidspireStudio.FNATS.Animatronics
         private void Awake()
         {
             _agent = GetComponent<NavMeshAgent>();
+
+            _agent.updateRotation = false;
+        }
+
+
+        private void Update()
+        {
+            Vector3 velocity = _agent.velocity;
+            velocity.y = 0;
+
+            if (velocity.sqrMagnitude > 0.01f)
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(velocity);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * _rotationSpeed);
+            }
         }
 
         private void FixedUpdate()

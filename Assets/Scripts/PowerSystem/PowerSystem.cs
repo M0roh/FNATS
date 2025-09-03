@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using VoidspireStudio.FNATS.Nights;
-using VoidspireStudio.FNATS.Utils;
 
 namespace VoidspireStudio.FNATS.PowerSystem
 {
@@ -109,6 +107,8 @@ namespace VoidspireStudio.FNATS.PowerSystem
 
             float drain = _passiveDrain;
             drain += _electricDevices.Where(device => device != null && device.IsActive).Sum(device => device.GetCurrentConsumption);
+            drain *= NightManager.Instance.CurrentConfig.EnergyDrainMultiplier;
+
             OnPowerDrainCalculated(_power, drain);
 
             _power -= drain;
