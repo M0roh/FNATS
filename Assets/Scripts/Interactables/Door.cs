@@ -9,6 +9,8 @@ namespace VoidspireStudio.FNATS.Interactables
     [RequireComponent(typeof(NavMeshObstacle))]
     public class Door : MonoBehaviour, IInteractable
     {
+        [SerializeField] private bool _isOpenOnStart = false;
+        [SerializeField] private bool _isNeedHold = false;
         [SerializeField] private Quaternion _closeAngle = new();
         [SerializeField] private Quaternion _openAngle = new();
         [SerializeField] private float _rotationSpeed = 5f;
@@ -25,7 +27,31 @@ namespace VoidspireStudio.FNATS.Interactables
             _obstacle = GetComponent<NavMeshObstacle>();
         }
 
+        private void Start()
+        {
+            if (_isOpenOnStart)
+                Open();
+            else
+                Close();
+        }
+
         public void OnInteract()
+        {
+            if (_isNeedHold)
+                Close();
+            else if (IsOpen)
+                Close();
+            else
+                Open();
+        }
+
+        public void OnInteractEnd()
+        {
+            if (_isNeedHold)
+                Open();
+        }
+
+        public void Close()
         {
             if (_rotateCoroutine != null) StopCoroutine(_rotateCoroutine);
             _rotateCoroutine = StartCoroutine(Rotate(_closeAngle));
@@ -34,7 +60,7 @@ namespace VoidspireStudio.FNATS.Interactables
             _obstacle.enabled = true;
         }
 
-        public void OnInteractEnd()
+        public void Open()
         {
             if (_rotateCoroutine != null) StopCoroutine(_rotateCoroutine);
             _rotateCoroutine = StartCoroutine(Rotate(_openAngle));
