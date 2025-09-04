@@ -7,7 +7,10 @@ namespace VoidspireStudio.FNATS.Interactables
 {
     public class LightSwitcher : MonoBehaviour, IInteractable, IElectricDevice
     {
-        [SerializeField] private Light _light;
+        [SerializeField] private GameObject _light;
+        [SerializeField] private GameObject _switchObject;
+        [SerializeField] private Quaternion _onRotation;
+        [SerializeField] private Quaternion _offRotation;
 
         public bool IsActive { get; private set; } = false;
 
@@ -50,15 +53,15 @@ namespace VoidspireStudio.FNATS.Interactables
 
         public void LightUpdate()
         {
-            if (IsActive || PowerSystem.PowerSystem.Instance.IsStopped)
+            if (!IsActive || PowerSystem.PowerSystem.Instance.IsStopped)
             {
-                IsActive = false;
-                _light.enabled = false;
+                _light.SetActive(false);
+                _switchObject.transform.localRotation = _offRotation;
             }
             else if (!PowerSystem.PowerSystem.Instance.IsStopped)
             {
-                IsActive = true;
-                _light.enabled = true;
+                _light.SetActive(true);
+                _switchObject.transform.localRotation = _onRotation;
             }
         }
     }

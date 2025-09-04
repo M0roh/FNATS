@@ -14,7 +14,7 @@ namespace VoidspireStudio.FNATS.Nights
         [OdinSerialize] private Dictionary<int, NightConfig> _nightConfigs = new();
         private NightConfig _currentConfig;
 
-        private readonly Dictionary<AnimatronicAI, (int hour, int minute)> _animatronicActivate = new();
+        private readonly Dictionary<AnimatronicAI, ActivityTime> _animatronicActivate = new();
         private List<AnimatronicAI> _allAnimatronics = new();
 
         public int CurrentNight { get; set; } = 1;
@@ -33,6 +33,9 @@ namespace VoidspireStudio.FNATS.Nights
             DontDestroyOnLoad(gameObject);
 
             _allAnimatronics = FindObjectsByType<AnimatronicAI>(FindObjectsSortMode.None).ToList();
+
+            if (!_nightConfigs.TryGetValue(CurrentNight, out _currentConfig))
+                Debug.LogError("Unknow night!");
         }
 
         private void Start()
@@ -47,6 +50,7 @@ namespace VoidspireStudio.FNATS.Nights
                     continue;
                 }
 
+                animatronic.Disable();
                 _animatronicActivate[animatronic] = animatronicTime.Value;
             }
         }
@@ -58,6 +62,13 @@ namespace VoidspireStudio.FNATS.Nights
             NightTime.OnTick += AnimatronicsActivates;
         }
 
+        private void OnDisable()
+        {
+            NightTime.OnTick -= StartNight;
+            NightTime.OnTick -= NightComplete;
+            NightTime.OnTick -= AnimatronicsActivates;
+        }
+
         private void AnimatronicsActivates(GameTime time)
         {
             foreach (var animatronicTime in _animatronicActivate)
@@ -67,23 +78,11 @@ namespace VoidspireStudio.FNATS.Nights
             }
         }
 
-        private void OnDisable()
-        {
-            NightTime.OnTick -= StartNight;
-            NightTime.OnTick -= NightComplete;
-            NightTime.OnTick -= AnimatronicsActivates;
-        }
-
         public void StartNight(GameTime time)
         {
             if (!time.IsTime(0, 0)) return;
 
-            if (_nightConfigs.TryGetValue(CurrentNight, out _currentConfig)) {
-                PowerSystem.PowerSystem.Instance.StartConsumption();
-            }
-            else {
-                Debug.LogError("Unknow night!");
-            }
+            PowerSystem.PowerSystem.Instance.StartConsumption();
         }
 
         public void NightComplete(GameTime time)

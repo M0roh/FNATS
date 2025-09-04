@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace VoidspireStudio.FNATS.Nights
 {
@@ -20,6 +14,8 @@ namespace VoidspireStudio.FNATS.Nights
         private float _startHourAngle;
         private float _targetHourAngle;
 
+        private const float LerpDuration = 1f;
+
         private void OnEnable()
         {
             NightTime.OnTick += ClockUpdate;
@@ -27,32 +23,39 @@ namespace VoidspireStudio.FNATS.Nights
 
         private void OnDisable()
         {
-            NightTime.OnTick += ClockUpdate;
+            NightTime.OnTick -= ClockUpdate;
+        }
+
+        private static float ToLogicalAngle(float appliedYRotation)
+        {
+            return Mathf.Repeat(-appliedYRotation, 360f);
         }
 
         private void Update()
         {
             if (_minuteLerpProgress < 1f)
             {
-                _minuteLerpProgress += Time.deltaTime / 1f;
-                if (_minuteLerpProgress > 1f) _minuteLerpProgress = 1f;
+                _minuteLerpProgress += Time.deltaTime / LerpDuration;
+                _minuteLerpProgress = Mathf.Min(_minuteLerpProgress, 1f);
 
-                float angle = Mathf.LerpAngle(_startMinuteAngle, _targetMinuteAngle, _minuteLerpProgress);
-                _minuteHand.localRotation = Quaternion.Euler(0, 0, angle);
+                float minuteAngle = Mathf.LerpAngle(_startMinuteAngle, _targetMinuteAngle, _minuteLerpProgress);
+                _minuteHand.localRotation = Quaternion.Euler(0f, -minuteAngle, 0f);
+
+                float hourAngle = Mathf.LerpAngle(_startHourAngle, _targetHourAngle, _minuteLerpProgress);
+                _hourHand.localRotation = Quaternion.Euler(0f, -hourAngle, 0f);
             }
-
-            float hourAngle = Mathf.LerpAngle(_startHourAngle, _targetHourAngle, _minuteLerpProgress);
-            _hourHand.localRotation = Quaternion.Euler(0, 0, hourAngle);
         }
 
         public void ClockUpdate(GameTime time)
         {
-            _startMinuteAngle = _minuteHand.localEulerAngles.z;
-            _targetMinuteAngle = time.Minute / 60f * 360f;
-            _minuteLerpProgress = 0f;
+            _targetMinuteAngle = (time.Minute / 60f) * 360f;
+            _targetHourAngle = ((time.Hour % 12 + time.Minute / 60f) / 12f) * 360f;
 
-            _startHourAngle = _hourHand.localEulerAngles.z;
-            _targetHourAngle = (time.Hour % 12) / 12f * 360f + (time.Minute / 60f) * 30f;
+            _startMinuteAngle = ToLogicalAngle(_minuteHand.localEulerAngles.y);
+            _startHourAngle = ToLogicalAngle(_hourHand.localEulerAngles.y);
+
+            _minuteLerpProgress = 0f;
         }
     }
+
 }

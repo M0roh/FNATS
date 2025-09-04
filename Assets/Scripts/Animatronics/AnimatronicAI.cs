@@ -81,9 +81,8 @@ namespace VoidspireStudio.FNATS.Animatronics
         private void Awake()
         {
             _walkSpeed *= NightManager.Instance.CurrentConfig.AnimatronicSpeedMultiplier;
-            _runSpeed*= NightManager.Instance.CurrentConfig.AnimatronicSpeedMultiplier;
+            _runSpeed *= NightManager.Instance.CurrentConfig.AnimatronicSpeedMultiplier;
             
-
             _agent = GetComponent<NavMeshAgent>();
             _animator = GetComponent<Animator>();
 
@@ -275,7 +274,7 @@ namespace VoidspireStudio.FNATS.Animatronics
                     break;
 
                 case RotateStep rotateStep:
-                    StartCoroutine(rotateStep.Target);
+                    StartCoroutine(Rotate(rotateStep.Target));
                     break;
 
                 case SabotageStep:
@@ -377,6 +376,12 @@ namespace VoidspireStudio.FNATS.Animatronics
         public void Disable()
         {
             _currentState = AnimatronicState.Off;
+            _currentState = AnimatronicState.Off;
+
+            _animator.ResetTrigger(WALKING);
+            _animator.ResetTrigger(RUN);
+            _animator.ResetTrigger(IDLE);
+
             _agent.ResetPath();
         }
 
