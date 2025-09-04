@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using VoidspireStudio.FNATS.Input;
 using VoidspireStudio.FNATS.Interactables;
+using VoidspireStudio.FNATS.PowerSystem;
 using VoidspireStudio.FNATS.Utils;
 
 namespace VoidspireStudio.FNATS.Core
@@ -29,8 +30,8 @@ namespace VoidspireStudio.FNATS.Core
         private bool _isPickedFuse = false;
 
         [Header("Оборудование")]
-        [SerializeField] private Light _flashlightLight;
-        private bool _flashlightEnabled = true;
+        [SerializeField] private Flashlight _flashlight;
+        private bool _isFlashlightInHand;
 
         [Header("Камера")]
         [SerializeField] private Camera _playerCamera;
@@ -56,6 +57,8 @@ namespace VoidspireStudio.FNATS.Core
         private Vector3 _velocity;
 
         private Coroutine _sprintAdjustFov;
+
+        public Flashlight PlayerFlashlight => _flashlight;
 
         public bool IsCrouch => _isCrouched;
         public bool IsRunning => _isRunning;
@@ -146,6 +149,18 @@ namespace VoidspireStudio.FNATS.Core
             }
         }
 
+        public void FlashlightDrop()
+        {
+            _flashlight.gameObject.SetActive(false);
+            _isFlashlightInHand = false;
+        }
+
+        public void FlashlightPickup()
+        {
+            _flashlight.gameObject.SetActive(true);
+            _isFlashlightInHand = true;
+        }
+
         private void HighlightLookObject()
         {
             var (newObject, interactable) = FindInteractObject();
@@ -179,8 +194,12 @@ namespace VoidspireStudio.FNATS.Core
 
         private void FlashlightToggle_performed(InputAction.CallbackContext obj)
         {
-            _flashlightEnabled = !_flashlightEnabled;
-            _flashlightLight.gameObject.SetActive(_flashlightEnabled);
+            if (!_isFlashlightInHand) return;
+
+            if (_flashlight.IsActive)
+                _flashlight.TurnOff();
+            else
+                _flashlight.TurnOn();
         }
 
         private void Sprint_canceled(InputAction.CallbackContext obj)

@@ -5,6 +5,8 @@ namespace VoidspireStudio.FNATS.Core
 {
     public class OfficeManager : MonoBehaviour
     {
+        public static OfficeManager Instance { get; private set; }
+
         [SerializeField] private LightSwitcher _officeLight;
         [SerializeField] private Door _officeDoor;
 
@@ -22,5 +24,10 @@ namespace VoidspireStudio.FNATS.Core
 
         public void PlayerNearOffice() => IsPlayerNearOffice = true;
         public void PlayerNotNearOffice() => IsPlayerNearOffice = false;
+
+        private void Awake()
+        {
+            Instance = this;
+        }
     }
 }

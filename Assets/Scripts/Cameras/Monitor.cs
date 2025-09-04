@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using VoidspireStudio.FNATS.Interactables;
+using VoidspireStudio.FNATS.Nights;
 using VoidspireStudio.FNATS.PowerSystem;
 
 namespace VoidspireStudio.FNATS.Cameras
@@ -18,11 +19,18 @@ namespace VoidspireStudio.FNATS.Cameras
 
         private bool _isLoaded = false;
 
-        public bool IsActive => throw new System.NotImplementedException();
+        public bool IsActive => PC.Instance.IsActive;
 
-        public float GetCurrentConsumption => throw new System.NotImplementedException();
+        public float GetCurrentConsumption => 0.01f * NightManager.Instance.CurrentNight;
 
-        public Material _screenMaterial;
+        [SerializeField] private Material _screenMaterial;
+
+        [Header("Индикация")]
+        [SerializeField] private Material _indicatorMaterial;
+        [SerializeField] private Light _lightIndicator;
+        [SerializeField] private Color _onIndicator;
+        [SerializeField] private Color _loadIndicator;
+        [SerializeField] private Color _offIndicator;
 
         private void Awake()
         {
@@ -68,6 +76,9 @@ namespace VoidspireStudio.FNATS.Cameras
             if (!PC.Instance.IsActive) return;
 
             StartCoroutine(PlayLoadScreen());
+
+            _indicatorMaterial.color = _loadIndicator;
+            _lightIndicator.color = _loadIndicator;
         }
 
         public void TurnOff()
@@ -75,6 +86,9 @@ namespace VoidspireStudio.FNATS.Cameras
             if (PC.Instance.IsActive) return;
 
             _isLoaded = false;
+
+            _indicatorMaterial.color = _offIndicator;
+            _lightIndicator.color = _offIndicator;
 
             MonitorReload();
         }
@@ -97,6 +111,9 @@ namespace VoidspireStudio.FNATS.Cameras
 
             _screenMaterial.mainTextureOffset = new Vector2(0f, 0f);
             _screenMaterial.mainTextureScale = new Vector2(1f, 1f);
+
+            _indicatorMaterial.color = _onIndicator;
+            _lightIndicator.color = _onIndicator;
 
             MonitorReload();
             _isLoaded = true;

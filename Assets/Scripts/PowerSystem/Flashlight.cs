@@ -1,0 +1,79 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using UnityEngine;
+using VoidspireStudio.FNATS.Nights;
+
+namespace VoidspireStudio.FNATS.PowerSystem
+{
+    public class Flashlight : MonoBehaviour, IElectricDevice
+    {
+        public static Flashlight Instance { get; private set; }
+
+        [SerializeField] private Light _flashlightLight;
+        [SerializeField] private float _lowEnergyLightIntensivity;
+        [SerializeField] private float _normalLightIntensivity;
+
+        private float _maxPower = 100f;
+        private float _currentPower;
+
+        public bool IsActive { get; private set; }
+        public float Power => _currentPower;
+
+        public float GetCurrentConsumption => 2 * NightManager.Instance.CurrentNight;
+
+        private void Awake()
+        {
+            Instance = this;
+
+            _currentPower = _maxPower;
+        }
+
+        private void OnEnable()
+        {
+            NightTime.OnTick += PowerDrain;
+            TurnOff();
+        }
+
+        private void PowerDrain(GameTime _)
+        {
+            _currentPower -= GetCurrentConsumption;
+
+            LightIntesivityUpdate();
+
+            if (_currentPower <= 0f)
+                TurnOff();
+        }
+
+        public void LightIntesivityUpdate()
+        {
+            if (_currentPower <= _maxPower * 0.25f)
+                _flashlightLight.intensity = _lowEnergyLightIntensivity;
+            else
+                _flashlightLight.intensity = _normalLightIntensivity;
+        }
+
+        public void TurnOff()
+        {
+            _flashlightLight.enabled = false;
+        }
+
+        public void TurnOn()
+        {
+            if (_currentPower <= 0f) return;
+
+            _flashlightLight.enabled = true;
+            LightIntesivityUpdate();
+        }
+
+        public void Charge(float chargePower)
+        {
+            _currentPower += chargePower;
+
+            if (_currentPower > _maxPower)
+                _currentPower = _maxPower;
+        }
+    }
+}
