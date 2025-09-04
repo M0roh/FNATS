@@ -56,8 +56,8 @@ namespace VoidspireStudio.FNATS.Animatronics
 
         private Vector3 _lastSeenPosition;
 
-        private NavMeshAgent _agent;
-        private Animator _animator;
+        protected NavMeshAgent _agent;
+        protected Animator _animator;
 
         public bool IsEnabled => _currentState != AnimatronicState.Off;
 
@@ -181,6 +181,7 @@ namespace VoidspireStudio.FNATS.Animatronics
 
             _animator.SetTrigger(ATTACK);
 
+            // TODO: Рестарт ночи + таймер
             Debug.Log("Game over");
         }
 

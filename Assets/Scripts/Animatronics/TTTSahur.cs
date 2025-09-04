@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using UnityEngine;
 using VoidspireStudio.FNATS.Animatronics.Routes;
 
 namespace VoidspireStudio.FNATS.Animatronics
@@ -11,8 +8,6 @@ namespace VoidspireStudio.FNATS.Animatronics
         {
         }
 
-        protected override void PerformSabotage(SabotageStep step)
-        {
-        }
+        protected override void PerformSabotage(SabotageStep _) { }
     }
 }
