@@ -12,8 +12,11 @@ namespace VoidspireStudio.FNATS.Interactables
         [SerializeField] private GameObject _flashlightInChargeObject;
         [SerializeField] private float _chargeInTick = 5f;
 
-        [Header("Light")]
+        [Header("Indicator")]
         [SerializeField] private Light _chargeIndicator;
+        [SerializeField] private Material _indicatorMaterial;
+
+        [Header("Colors")]
         [SerializeField] private Color _fullEnergyColor;
         [SerializeField] private Color _halfEnergy;
         [SerializeField] private Color _lowEnergy;
@@ -26,6 +29,7 @@ namespace VoidspireStudio.FNATS.Interactables
         private void Start()
         {
             this.RegisterDevice();
+            TurnOff();
         }
 
         private void OnDestroy()
@@ -57,6 +61,8 @@ namespace VoidspireStudio.FNATS.Interactables
                 _chargeIndicator.color = _lowEnergy;
             else
                 _chargeIndicator.color = _veryLowEnergy;
+
+            _indicatorMaterial.color = _chargeIndicator.color;
         }
 
         public void OnInteract()

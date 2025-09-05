@@ -37,14 +37,24 @@ namespace VoidspireStudio.FNATS.PowerSystem
             TurnOff();
         }
 
+        private void OnDisable()
+        {
+            NightTime.OnTick -= PowerDrain;
+        }
+
         private void PowerDrain(GameTime _)
         {
+            if (!IsActive) return;
+
+            if (_currentPower <= 0f)
+            {
+                TurnOff();
+                return;
+            }
+
             _currentPower -= GetCurrentConsumption;
 
             LightIntesivityUpdate();
-
-            if (_currentPower <= 0f)
-                TurnOff();
         }
 
         public void LightIntesivityUpdate()
@@ -57,6 +67,7 @@ namespace VoidspireStudio.FNATS.PowerSystem
 
         public void TurnOff()
         {
+            IsActive = false;
             _flashlightLight.enabled = false;
         }
 
@@ -64,6 +75,7 @@ namespace VoidspireStudio.FNATS.PowerSystem
         {
             if (_currentPower <= 0f) return;
 
+            IsActive = true;
             _flashlightLight.enabled = true;
             LightIntesivityUpdate();
         }

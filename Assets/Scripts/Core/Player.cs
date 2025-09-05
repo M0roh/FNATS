@@ -31,7 +31,7 @@ namespace VoidspireStudio.FNATS.Core
 
         [Header("Оборудование")]
         [SerializeField] private Flashlight _flashlight;
-        private bool _isFlashlightInHand;
+        private bool _isFlashlightInHand = true;
 
         [Header("Камера")]
         [SerializeField] private Camera _playerCamera;
@@ -151,6 +151,7 @@ namespace VoidspireStudio.FNATS.Core
 
         public void FlashlightDrop()
         {
+            _flashlight.TurnOff();
             _flashlight.gameObject.SetActive(false);
             _isFlashlightInHand = false;
         }

@@ -1,39 +1,9 @@
 fileFormatVersion: 2
-guid: 2438de201ba9a0048bd415aa056adca6
+guid: c1402d55e86a54948aa2ce4585bee82c
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Button Material
-    second: {fileID: 2100000, guid: 835115a2e47ffe5469bd624f932f2b69, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: ButtonTwoMaterial
-    second: {fileID: 2100000, guid: eb5c07e20d82ed344a86817f960d2913, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: ButtonTwoMaterial.001
-    second: {fileID: 2100000, guid: b4d18a753fba07d429f1cb95e4ba94a8, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Case
-    second: {fileID: 2100000, guid: b309e0b966ba5ac4084385e6a41eb4dd, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: RenderMonitor
-    second: {fileID: 2100000, guid: 1cfaced4d77ecc946970bb0dc31c5c4a, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: USB
-    second: {fileID: 2100000, guid: f5c02190c63d5094c97f089bb390f3ed, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
