@@ -5,6 +5,8 @@ namespace VoidspireStudio.FNATS.Interactables
 {
     public class FuseToolBox : MonoBehaviour, IInteractable
     {
+        public bool CanInteract => true;
+
         public void OnInteract()
         {
             if (!Player.Instance.IsPickedFuse)

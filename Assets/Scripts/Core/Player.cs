@@ -298,7 +298,7 @@ namespace VoidspireStudio.FNATS.Core
 
                 while (current != null)
                 {
-                    if (current.TryGetComponent<IInteractable>(out var interactable))
+                    if (current.TryGetComponent<IInteractable>(out var interactable) && interactable.CanInteract)
                         return (current.gameObject, interactable);
 
                     current = current.parent;

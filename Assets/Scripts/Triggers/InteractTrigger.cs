@@ -14,7 +14,9 @@ namespace VoidspireStudio.FNATS.Triggers
         [SerializeField] private UnityEvent _onInteractHold;
         [SerializeField] private float _requiredHoldTime = 0.5f;
 
-        private float _pressTime; 
+        private float _pressTime;
+
+        public bool CanInteract => _onInteract != null;
 
         public void OnInteract()
         {

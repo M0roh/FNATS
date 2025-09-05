@@ -22,6 +22,8 @@ namespace VoidspireStudio.FNATS.Interactables
         
         public bool IsOpen => _isOpen;
 
+        public bool CanInteract => true;
+
         private void Awake()
         {
             _obstacle = GetComponent<NavMeshObstacle>();

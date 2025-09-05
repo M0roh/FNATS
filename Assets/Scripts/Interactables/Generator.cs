@@ -26,8 +26,10 @@ namespace VoidspireStudio.FNATS.Interactables
                     _powerIndicator.color = _onColor;
                 else
                     _powerIndicator.color = _offColor;
-            } 
+            }
         }
+
+        public bool CanInteract => true;
 
         public event Action OnBroken;
         public event Action OnRepair;

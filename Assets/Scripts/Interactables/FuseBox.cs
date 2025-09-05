@@ -15,6 +15,8 @@ namespace Assets.Scripts.Interactables
 
         public bool IsActive { get; private set; }
 
+        public bool CanInteract => !IsActive;
+
         public event Action OnBroken;
         public event Action OnRepair;
 

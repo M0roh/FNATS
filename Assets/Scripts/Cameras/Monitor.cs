@@ -20,6 +20,7 @@ namespace VoidspireStudio.FNATS.Cameras
         private bool _isLoaded = false;
 
         public bool IsActive => PC.Instance.IsActive;
+        public bool CanInteract => IsActive;
 
         public float GetCurrentConsumption => 0.01f * NightManager.Instance.CurrentNight;
 

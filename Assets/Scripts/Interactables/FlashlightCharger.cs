@@ -24,6 +24,8 @@ namespace VoidspireStudio.FNATS.Interactables
 
         public bool IsActive { get; private set; }
 
+        public bool CanInteract => true;
+
         public float GetCurrentConsumption => 0.08f * NightManager.Instance.CurrentNight;
 
         private void Start()
