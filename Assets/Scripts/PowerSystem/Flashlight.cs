@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Rendering;
 using VoidspireStudio.FNATS.Nights;
 
 namespace VoidspireStudio.FNATS.PowerSystem
@@ -29,6 +30,11 @@ namespace VoidspireStudio.FNATS.PowerSystem
             Instance = this;
 
             _currentPower = _maxPower;
+        }
+
+        private void Start()
+        {
+            _flashlightLight.lightUnit = LightUnit.Lumen;
         }
 
         private void OnEnable()

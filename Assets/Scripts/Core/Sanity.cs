@@ -19,7 +19,7 @@ namespace VoidspireStudio.FNATS.Core
         private Vignette _vignette;
         private ColorAdjustments _colorAdjust;
 
-        void Start()
+        private void Start()
         {
             _sanity = _maxSanity;
 
@@ -45,33 +45,48 @@ namespace VoidspireStudio.FNATS.Core
 
         private void SanityDrain(GameTime _)
         {
-            float lightLevel = GetLightIntensity();
+            if (_sanity <= 0f) return;
 
-            if (lightLevel < _darkLightLevel || Player.Instance.PlayerFlashlight.IsActive)
+            float lightLevel = GetLightLevel();
+            Debug.Log("Light Level: " + lightLevel);
+
+            if (lightLevel < _darkLightLevel && !Player.Instance.PlayerFlashlight.IsActive)
                 _sanity -= _sanityDrain;
-            else
+            else if (_sanity < _maxSanity)
                 _sanity += _sanityRegeneration;
 
-            EffectsUpdate(lightLevel);
+            EffectsUpdate();
 
             if (_sanity <= 0f)
                 Debug.Log("Вы умерли от рассудка.");
         }
 
-        private float GetLightIntensity()
+        private float GetLightLevel()
         {
-            LightProbes.GetInterpolatedProbe(Player.Instance.HeadPosition, null, out SphericalHarmonicsL2 probe);
-            if (probe == null)
-                return (probe[0, 0] + probe[1, 0] + probe[2, 0]) / 3f;
-            else
-                return 0f;
+            float totalIntensity = 0f;
+            foreach (Light light in FindObjectsByType<Light>(FindObjectsSortMode.None))
+            {
+                if (!light.enabled) continue;
+
+                Vector3 dir = light.transform.position - Player.Instance.HeadPosition;
+                float distance = dir.magnitude;
+
+                if (Physics.Raycast(Player.Instance.HeadPosition, dir.normalized, distance))
+                    continue;
+
+                totalIntensity += light.intensity / (distance * distance);
+            }
+
+            return totalIntensity;
         }
 
-        private void EffectsUpdate(float lightLevel)
+        private void EffectsUpdate()
         {
-            _colorAdjust.saturation.value = Mathf.Lerp(-100f, 0f, lightLevel);
-            _colorAdjust.postExposure.value = Mathf.Lerp(-2f, 0f, lightLevel);
-            _vignette.intensity.value = 1f - lightLevel;
+            float sanityPercent = Mathf.Clamp01(_sanity / _maxSanity);
+
+            _colorAdjust.saturation.value = Mathf.Lerp(-100f, 0f, sanityPercent);
+            _colorAdjust.postExposure.value = Mathf.Lerp(-2f, 0f, sanityPercent);
+            _vignette.intensity.value = Mathf.Lerp(1f, 0f, sanityPercent);
         }
     }
 }
