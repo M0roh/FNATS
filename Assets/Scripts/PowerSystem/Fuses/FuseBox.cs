@@ -13,7 +13,7 @@ namespace VoidspireStudio.FNATS.PowerSystem.Fuses
         [SerializeField] private List<Fuse> _fuses;
 
         [Header("Свет")]
-        [SerializeField] private Light[] lights;
+        [SerializeField] private List<Light> _lights;
         [SerializeField] private float _fadeTime = 1f;
         [SerializeField] private float _maxIntensity;
         private List<int> _availableIndices = new();
@@ -27,6 +27,9 @@ namespace VoidspireStudio.FNATS.PowerSystem.Fuses
         private void Start()
         {
             this.RegisterNode();
+
+            foreach (var light in _lights)
+                light.intensity = 0f;
 
             IgniteNextLight();
         }
@@ -49,13 +52,13 @@ namespace VoidspireStudio.FNATS.PowerSystem.Fuses
         private void IgniteNextLight()
         {
             if (_availableIndices.Count == 0)
-                for (int i = 0; i < lights.Length; i++)
+                for (int i = 0; i < _lights.Count; i++)
                     _availableIndices.Add(i);
 
             int randomIndex = _availableIndices[UnityEngine.Random.Range(0, _availableIndices.Count)];
             _availableIndices.Remove(randomIndex);
 
-            StartCoroutine(FadeLight(lights[randomIndex]));
+            StartCoroutine(FadeLight(_lights[randomIndex]));
         }
 
         private IEnumerator FadeLight(Light light)
