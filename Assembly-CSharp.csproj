@@ -127,8 +127,10 @@
     <Compile Include="Assets\Scripts\Animatronics\TTTSahur.cs" />
     <Compile Include="Assets\Scripts\Nights\NightManager.cs" />
     <Compile Include="Assets\Scripts\Cameras\Monitor.cs" />
+    <Compile Include="Assets\Scripts\Outline\OutlineComponent.cs" />
     <Compile Include="Assets\Scripts\UI\PowerUI.cs" />
     <Compile Include="Assets\Samples\High Definition Render Pipeline\17.2.0\Fullscreen Samples\Scripts\Colorblindness.cs" />
+    <Compile Include="Assets\Scripts\Outline\OutlinePass.cs" />
     <Compile Include="Assets\Scripts\Nights\Clock.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -136,13 +138,11 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\Visual Design Cafe\Nature Renderer\Plugins\VisualDesignCafe.Rendering.Nature.dll" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile-2-Pass.shader" />
-    <None Include="Assets\Visual Design Cafe\Package Manager\VisualDesignCafe.Editor.Web.dll" />
     <None Include="Assets\Visual Design Cafe\Nature Renderer Demo\Realistic\Shaders\Lit Simple Built-in.txt" />
     <None Include="Assets\Visual Design Cafe\Nature Renderer Demo\Realistic\Third-Party Notices.txt" />
     <None Include="Assets\Samples\Scriptable Render Pipeline Core\Common\TextMesh Pro\Resources\Fonts &amp; Materials\TMP_Node.hlsl" />
     <None Include="Assets\Visual Design Cafe\Nature Renderer\Resources\Nature Renderer Batcher.compute" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
-    <None Include="Assets\Visual Design Cafe\Package Manager\VisualDesignCafe.Packages.dll" />
     <None Include="Assets\Visual Design Cafe\Nature Renderer\Plugins\VisualDesignCafe.Rendering.Nature.Editor.dll" />
     <None Include="Assets\Visual Design Cafe\Nature Renderer Demo\Realistic\Shaders\Lit Simple HD.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
@@ -150,7 +150,6 @@
     <None Include="Assets\SpeedTree7 (Nature Renderer).shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
     <None Include="Assets\Libraries\QuickOutline\Resources\Shaders\OutlineMask.shader" />
-    <None Include="Assets\Visual Design Cafe\Package Manager\VisualDesignCafe.Editor.Community.dll" />
     <None Include="Assets\Visual Design Cafe\Nature Renderer\Resources\Nature Renderer VR.compute" />
     <None Include="Assets\Visual Design Cafe\Nature Renderer\Plugins\VisualDesignCafe.Memory.dll" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
@@ -167,7 +166,6 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\Visual Design Cafe\Nature Renderer Demo\Realistic\Shaders\Lit Alpha Universal.txt" />
     <None Include="Assets\Libraries\QuickOutline\Readme.txt" />
-    <None Include="Assets\Visual Design Cafe\Package Manager\VisualDesignCafe.Editor.PackageManager.dll" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\Visual Design Cafe\Nature Renderer Demo\Realistic\Shaders\Lit Double-Sided Universal.txt" />
@@ -175,7 +173,7 @@
     <None Include="Assets\Visual Design Cafe\Nature Renderer\Plugins\VisualDesignCafe.Rendering.Instancing.dll" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\Visual Design Cafe\Nature Renderer Demo\Realistic\Shaders\Lit Simple Universal.txt" />
-    <None Include="Assets\Visual Design Cafe\Package Manager\VisualDesignCafe.Editor.Events.dll" />
+    <None Include="Assets\Scripts\Outline\OutlinePass.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\Visual Design Cafe\Nature Renderer Demo\Realistic\Shaders\Lit Alpha HD.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
@@ -674,10 +672,6 @@
       <HintPath>Library\PackageCache\com.unity.entities@e581b903be8e\Unity.Entities.CodeGen\Unity.Cecil.Awesome.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="VisualDesignCafe.Editor.Web">
-      <HintPath>Assets\Visual Design Cafe\Package Manager\VisualDesignCafe.Editor.Web.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Sirenix.Reflection.Editor">
       <HintPath>Assets\Plugins\Sirenix\Assemblies\Sirenix.Reflection.Editor.dll</HintPath>
       <Private>False</Private>
@@ -692,10 +686,6 @@
     </Reference>
     <Reference Include="Sirenix.Serialization">
       <HintPath>Assets\Plugins\Sirenix\Assemblies\Sirenix.Serialization.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="VisualDesignCafe.Packages">
-      <HintPath>Assets\Visual Design Cafe\Package Manager\VisualDesignCafe.Packages.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="VisualDesignCafe.Rendering.Nature.Editor">
@@ -714,10 +704,6 @@
       <HintPath>Assets\Plugins\Sirenix\Assemblies\Sirenix.OdinInspector.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="VisualDesignCafe.Editor.Community">
-      <HintPath>Assets\Visual Design Cafe\Package Manager\VisualDesignCafe.Editor.Community.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="VisualDesignCafe.Memory">
       <HintPath>Assets\Visual Design Cafe\Nature Renderer\Plugins\VisualDesignCafe.Memory.dll</HintPath>
       <Private>False</Private>
@@ -732,10 +718,6 @@
     </Reference>
     <Reference Include="Sirenix.Utilities">
       <HintPath>Assets\Plugins\Sirenix\Assemblies\Sirenix.Utilities.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="VisualDesignCafe.Editor.PackageManager">
-      <HintPath>Assets\Visual Design Cafe\Package Manager\VisualDesignCafe.Editor.PackageManager.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
@@ -760,10 +742,6 @@
     </Reference>
     <Reference Include="System.Runtime.CompilerServices.Unsafe">
       <HintPath>Library\PackageCache\com.unity.collections@d49facba0036\Unity.Collections.Tests\System.Runtime.CompilerServices.Unsafe\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="VisualDesignCafe.Editor.Events">
-      <HintPath>Assets\Visual Design Cafe\Package Manager\VisualDesignCafe.Editor.Events.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="netstandard">

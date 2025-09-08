@@ -28,7 +28,7 @@ namespace VoidspireStudio.FNATS.Animatronics.Routes
     {
         [SerializeField] private string _waypoint = string.Empty;
         
-        public Transform Target => WaypointRegistry.Get(_waypoint).transform;
+        public Transform Target => WaypointRegistry.Get(_waypoint)?.transform;
     }
 
     [System.Serializable]

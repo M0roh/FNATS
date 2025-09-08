@@ -8,7 +8,7 @@ namespace VoidspireStudio.FNATS.PowerSystem.Fuses
 {
     public class FuseToolBox : MonoBehaviour, IInteractable
     {
-        [SerializeReference] private readonly List<GameObject> _fusesInBox = new();
+        [SerializeField] private List<GameObject> _fusesInBox = new();
 
         public bool CanInteract => true;
 

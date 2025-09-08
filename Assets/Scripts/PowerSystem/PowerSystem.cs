@@ -20,7 +20,7 @@ namespace VoidspireStudio.FNATS.PowerSystem
         public bool IsRunning { get; private set; }
         public bool IsPaused { get; private set; }
 
-        public bool IsStopped => !IsRunning && IsPaused;
+        public bool IsStopped => !IsRunning || IsPaused;
 
         /// <summary>
         /// Вызывается после изменения электричества
@@ -132,7 +132,6 @@ namespace VoidspireStudio.FNATS.PowerSystem
 
         private void OnBreak()
         {
-            if (IsRunning && !IsPaused)
             Pause();
             UpdateDevicesState(false);
         }

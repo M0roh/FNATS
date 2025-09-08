@@ -13,7 +13,7 @@ namespace VoidspireStudio.Editor
         TerrainLayer targetLayer;
         float sampleSpacing = 1f;
         float volumeSize = 2f;
-        int navArea = 1; // Default Walkable
+        int navArea = 1;
 
         [MenuItem("Tools/Auto Generate Path Volumes")]
         public static void ShowWindow()
@@ -68,9 +68,7 @@ namespace VoidspireStudio.Editor
             float scaleX = (float)data.alphamapWidth / width;
             float scaleZ = (float)data.alphamapHeight / height;
 
-            int created = 0;
-
-            GameObject parent = new GameObject("GeneratedNavMeshVolumes");
+            GameObject parent = new("GeneratedNavMeshVolumes");
 
             for (float x = 0; x < width; x += sampleSpacing)
             {
@@ -88,7 +86,7 @@ namespace VoidspireStudio.Editor
                         Vector3 pos = terrain.transform.position + new Vector3(x, 0, z);
                         pos.y = terrain.SampleHeight(pos) + terrain.transform.position.y;
 
-                        GameObject volumeObj = new GameObject($"Volume_{x}_{z}");
+                        GameObject volumeObj = new($"Volume_{x}_{z}");
                         volumeObj.transform.position = pos;
                         volumeObj.transform.parent = parent.transform;
 

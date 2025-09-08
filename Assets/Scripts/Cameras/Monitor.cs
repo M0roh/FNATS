@@ -78,6 +78,7 @@ namespace VoidspireStudio.FNATS.Cameras
 
             StartCoroutine(PlayLoadScreen());
 
+            _lightIndicator.enabled = true;
             _indicatorMaterial.color = _loadIndicator;
             _lightIndicator.color = _loadIndicator;
         }
@@ -88,6 +89,8 @@ namespace VoidspireStudio.FNATS.Cameras
 
             _isLoaded = false;
 
+            if (PowerSystem.PowerSystem.Instance.IsStopped)
+                _lightIndicator.enabled = false;
             _indicatorMaterial.color = _offIndicator;
             _lightIndicator.color = _offIndicator;
 
