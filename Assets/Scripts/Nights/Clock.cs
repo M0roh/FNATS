@@ -57,5 +57,4 @@ namespace VoidspireStudio.FNATS.Nights
             _minuteLerpProgress = 0f;
         }
     }
-
 }
