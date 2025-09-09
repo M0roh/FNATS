@@ -34,6 +34,10 @@ MonoBehaviour:
     m_Localized: New game
     m_Metadata:
       m_Items: []
+  - m_Id: 20292139368169472
+    m_Localized: Credits
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
