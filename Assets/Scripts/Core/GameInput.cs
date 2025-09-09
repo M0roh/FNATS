@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace VoidspireStudio.FNATS.Input
+namespace VoidspireStudio.FNATS.Core
 {
     public class GameInput : MonoBehaviour
     {

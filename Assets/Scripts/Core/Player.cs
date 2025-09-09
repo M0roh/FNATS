@@ -1,7 +1,6 @@
 using QuickOutline;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using VoidspireStudio.FNATS.Input;
 using VoidspireStudio.FNATS.Interactables;
 using VoidspireStudio.FNATS.PowerSystem;
 using VoidspireStudio.FNATS.Utils;
@@ -345,10 +344,10 @@ namespace VoidspireStudio.FNATS.Core
         {
             _lookInput = GameInput.Instance.GetLookVector();
 
-            float mouseX = _lookInput.x * GameSettings.MouseSensitivity * Time.deltaTime;
+            float mouseX = _lookInput.x * SaveManager.LastSavedData.mouseSensitivity * Time.deltaTime;
             transform.Rotate(Vector3.up * mouseX);
 
-            float mouseY = _lookInput.y * GameSettings.MouseSensitivity * Time.deltaTime;
+            float mouseY = _lookInput.y * SaveManager.LastSavedData.mouseSensitivity * Time.deltaTime;
 
             _verticalRotation -= mouseY;
             _verticalRotation = Mathf.Clamp(_verticalRotation, -_maxVerticalAngle, _maxVerticalAngle);

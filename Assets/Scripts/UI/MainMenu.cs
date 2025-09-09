@@ -5,10 +5,16 @@ namespace VoidspireStudio.FNATS.UI
 {
     public class MainMenu : MonoBehaviour
     {
-        public void Continue() { }
+        public void Continue()
+        {
+
+            LoadScreenScene.SceneToLoad = "GameScene";
+            SceneManager.LoadScene("LoadScreen", LoadSceneMode.Single);
+        }
         public void NewGame()
         {
-            SceneManager.LoadScene(1);
+            LoadScreenScene.SceneToLoad = "GameScene";
+            SceneManager.LoadScene("LoadScreen", LoadSceneMode.Single);
         }
         public void Settings() { }
         public void Quit()
