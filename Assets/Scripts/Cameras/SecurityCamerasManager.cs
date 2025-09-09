@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
-using VoidspireStudio.FNATS.Input;
+using VoidspireStudio.FNATS.Core;
 
 namespace VoidspireStudio.FNATS.Cameras {
     public class SecurityCamerasManager : MonoBehaviour

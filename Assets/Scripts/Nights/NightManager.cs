@@ -17,7 +17,7 @@ namespace VoidspireStudio.FNATS.Nights
         private readonly Dictionary<AnimatronicAI, ActivityTime> _animatronicActivate = new();
         private List<AnimatronicAI> _allAnimatronics = new();
 
-        public int CurrentNight { get; set; } = 1;
+        public int CurrentNight => SaveManager.LastSavedData.lastNight + 1;
 
         public NightConfig CurrentConfig => _currentConfig;
 
