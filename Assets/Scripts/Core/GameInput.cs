@@ -23,6 +23,7 @@ namespace VoidspireStudio.FNATS.Core
 
             _inputActions = new InputSystem_Actions();
             _inputActions.Player.Enable();
+            _inputActions.UI.Enable();
         }
 
         public Vector2 GetMovementVector()

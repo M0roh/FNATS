@@ -31,8 +31,8 @@ namespace VoidspireStudio.FNATS.Cameras
 
         public void Look(Vector3 lookInput)
         {
-            float mouseX = lookInput.x * GameSettings.MouseSensitivity * Time.deltaTime;
-            float mouseY = lookInput.y * GameSettings.MouseSensitivity * Time.deltaTime;
+            float mouseX = lookInput.x * SaveManager.LastSavedData.mouseSensitivity * Time.deltaTime;
+            float mouseY = lookInput.y * SaveManager.LastSavedData.mouseSensitivity * Time.deltaTime;
 
             _verticalRotation -= mouseY;
             _horizontalRotation += mouseX;

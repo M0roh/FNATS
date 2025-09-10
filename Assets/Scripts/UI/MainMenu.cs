@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using VoidspireStudio.FNATS.Core;
 
 namespace VoidspireStudio.FNATS.UI
 {
@@ -7,12 +8,14 @@ namespace VoidspireStudio.FNATS.UI
     {
         public void Continue()
         {
-
             LoadScreenScene.SceneToLoad = "GameScene";
             SceneManager.LoadScene("LoadScreen", LoadSceneMode.Single);
         }
         public void NewGame()
         {
+            SaveManager.LastSavedData.lastNight = 0;
+            SaveManager.SaveGame();
+
             LoadScreenScene.SceneToLoad = "GameScene";
             SceneManager.LoadScene("LoadScreen", LoadSceneMode.Single);
         }

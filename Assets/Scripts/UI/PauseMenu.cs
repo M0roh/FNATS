@@ -1,12 +1,44 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using VoidspireStudio.FNATS.Core;
 
 namespace VoidspireStudio.FNATS.UI {
     public class PauseMenu : MonoBehaviour
     {
+        [SerializeField] private GameObject _gameUI;
+        [SerializeField] private GameObject _pauseUI;
+
+        public static bool IsPaused { get; private set; } = false;
+
+        private void OnEnable()
+        {
+            GameInput.Instance.InputActions.UI.Cancel.performed += Pause;
+        }
+
+        private void OnDisable()
+        {
+            GameInput.Instance.InputActions.UI.Cancel.performed += Pause;
+        }
+
+        private void Pause(InputAction.CallbackContext _)
+        {
+            if (IsPaused) return;
+
+            IsPaused = true;
+            Time.timeScale = 0f;
+            _gameUI.SetActive(false);
+            _pauseUI.SetActive(true);
+            Cursor.lockState = CursorLockMode.None;
+        }
+
         public void Continue()
         {
-            Time.timeScale = 0f;
+            IsPaused = false;
+            Time.timeScale = 1f;
+            _gameUI.SetActive(true);
+            _pauseUI.SetActive(false);
+            Cursor.lockState = CursorLockMode.Locked;
         }
 
         public void Settings()

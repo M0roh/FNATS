@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using VoidspireStudio.FNATS.Animatronics;
+using VoidspireStudio.FNATS.Core;
 
 namespace VoidspireStudio.FNATS.Nights
 {
@@ -17,7 +18,7 @@ namespace VoidspireStudio.FNATS.Nights
         private readonly Dictionary<AnimatronicAI, ActivityTime> _animatronicActivate = new();
         private List<AnimatronicAI> _allAnimatronics = new();
 
-        public int CurrentNight { get; set; } = 1;
+        public int CurrentNight => SaveManager.LastSavedData.lastNight + 1;
 
         public NightConfig CurrentConfig => _currentConfig;
 
@@ -89,7 +90,8 @@ namespace VoidspireStudio.FNATS.Nights
         {
             if (!time.IsTime(6, 0)) return;
 
-            ++CurrentNight;
+            SaveManager.LastSavedData.lastNight++;
+            SaveManager.SaveGame();
             Debug.Log("Ночь окончена!");
         }
     }

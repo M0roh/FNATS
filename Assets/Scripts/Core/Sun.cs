@@ -13,57 +13,50 @@ namespace VoidspireStudio.FNATS.Core
         [SerializeField] private GameObject moon;
 
         [Header("Настройки")]
-        [SerializeField] private float fullDayDuration = 120f;
         [SerializeField] private float transitionSmoothness = 2f;
 
         private Light sunLight;
         private Light moonLight;
-        private float time;
 
         private void Awake()
         {
             sunLight = sun.GetComponent<Light>();
             moonLight = moon.GetComponent<Light>();
-
-            sun.SetActive(true);
-            moon.SetActive(false);
         }
 
-        private void Update()
+        private void OnEnable()
         {
-            time += Time.deltaTime / fullDayDuration;
-            if (time >= 1f) time = 0f;
+            NightTime.OnTick += UpdateSunMoon;
+        }
 
-            float sunAngle = time * 360f;
-            float moonAngle = (time * 360f) + 180f;
+        private void OnDisable()
+        {
+            NightTime.OnTick -= UpdateSunMoon;
+        }
+
+        private void UpdateSunMoon(GameTime time)
+        {
+            float currentHour = time.Hour + time.Minute / 60f;
+
+            float sunAngle = ((currentHour / 24f) * 360f) - 90f;
+            float moonAngle = sunAngle + 180f;
 
             sun.transform.rotation = Quaternion.Euler(sunAngle, 0f, 0f);
             moon.transform.rotation = Quaternion.Euler(moonAngle, 0f, 0f);
 
-            float sunDot = Vector3.Dot(sun.transform.forward, Vector3.down);
+            bool isDay = currentHour >= 6f && currentHour < 18f;
 
-            if (sunDot > 0)
-            {
-                if (!sun.activeSelf)
-                {
-                    sun.SetActive(true);
-                    moon.SetActive(false);
-                }
-            }
-            else
-            {
-                if (!moon.activeSelf)
-                {
-                    moon.SetActive(true);
-                    sun.SetActive(false);
-                }
-            }
+            sun.SetActive(isDay);
+            moon.SetActive(!isDay);
+        }
 
-            if (sunLight != null && moonLight != null)
-            {
+        private void Update()
+        {
+            if (sunLight != null)
                 sunLight.intensity = Mathf.Lerp(sunLight.intensity, sun.activeSelf ? 1f : 0f, Time.deltaTime * transitionSmoothness);
+
+            if (moonLight != null)
                 moonLight.intensity = Mathf.Lerp(moonLight.intensity, moon.activeSelf ? 0.6f : 0f, Time.deltaTime * transitionSmoothness);
-            }
         }
     }
 }
