@@ -22,6 +22,10 @@ MonoBehaviour:
     m_Localized: 'Power:'
     m_Metadata:
       m_Items: []
+  - m_Id: 16670060282494976
+    m_Localized: Loading...
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

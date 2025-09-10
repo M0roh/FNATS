@@ -7,7 +7,7 @@ namespace VoidspireStudio.FNATS.UI
 {
     public class LoadScreenScene : MonoBehaviour
     {
-        public static string SceneToLoad { get; set; } = "MainMenu";
+        public static string SceneToLoad { get; set; } = "Main Menu";
 
         [SerializeField] private Image _progressBar;
 
@@ -27,7 +27,7 @@ namespace VoidspireStudio.FNATS.UI
 
                 _progressBar.fillAmount = progress;
 
-                if (progress >= 0.9f && Input.anyKey)
+                if (progress >= 0.9f)
                     op.allowSceneActivation = true;
 
                 yield return null;

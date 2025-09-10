@@ -6,6 +6,7 @@ namespace VoidspireStudio.FNATS.Core
 {
     public static class SaveManager
     {
+        public static bool HasPreviousSave { get; private set; } = true;
         public static SaveData LastSavedData { get; private set; } = new();
         public static string SaveFilePath => Path.Combine(Application.persistentDataPath, "save.sav");
 
@@ -13,6 +14,7 @@ namespace VoidspireStudio.FNATS.Core
         {
             if (!File.Exists(SaveFilePath))
             {
+                HasPreviousSave = false;
                 LastSavedData = new SaveData();
                 return;
             }

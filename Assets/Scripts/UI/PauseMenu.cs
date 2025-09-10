@@ -13,15 +13,23 @@ namespace VoidspireStudio.FNATS.UI {
 
         private void OnEnable()
         {
-            GameInput.Instance.InputActions.UI.Cancel.performed += Pause;
+            GameInput.Instance.InputActions.UI.Cancel.performed += PauseProcess;
         }
 
         private void OnDisable()
         {
-            GameInput.Instance.InputActions.UI.Cancel.performed += Pause;
+            GameInput.Instance.InputActions.UI.Cancel.performed -= PauseProcess;
         }
 
-        private void Pause(InputAction.CallbackContext _)
+        private void PauseProcess(InputAction.CallbackContext _)
+        {
+            if (IsPaused)
+                Continue();
+            else
+                Pause();
+        }
+
+        private void Pause()
         {
             if (IsPaused) return;
 
@@ -53,7 +61,7 @@ namespace VoidspireStudio.FNATS.UI {
 
         public void Quit()
         {
-            LoadScreenScene.SceneToLoad = "MainMenu";
+            LoadScreenScene.SceneToLoad = "Main Menu";
             SceneManager.LoadScene("LoadScreen", LoadSceneMode.Single);
         }
     }

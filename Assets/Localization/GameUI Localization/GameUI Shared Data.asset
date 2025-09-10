@@ -19,6 +19,10 @@ MonoBehaviour:
     m_Key: Power
     m_Metadata:
       m_Items: []
+  - m_Id: 16670060282494976
+    m_Key: Loading
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
