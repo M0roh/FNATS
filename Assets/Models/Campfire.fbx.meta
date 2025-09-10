@@ -3,7 +3,17 @@ guid: 501d273492d3fed44ab94e3cd80daee7
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Firewood
+    second: {fileID: 2100000, guid: 7f2a2ff573fca0d439cc02e11de9aab2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Flames
+    second: {fileID: 2100000, guid: dc9c70988cc0dbe428fa0c8e03cd6be0, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
