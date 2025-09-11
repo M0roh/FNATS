@@ -24,12 +24,6 @@ namespace VoidspireStudio.FNATS.Cameras {
 
         public void Awake()
         {
-            if (Instance != null)
-            {
-                Destroy(gameObject);
-                return;
-            }
-
             Instance = this;
 
             _cameraInputs = new InputAction[]

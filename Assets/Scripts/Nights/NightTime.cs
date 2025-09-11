@@ -21,7 +21,7 @@ namespace VoidspireStudio.FNATS.Nights
         public static void Reset(int startHour = 23)
         {
             CurrentTime = new(startHour);
-            TimeScale = 1f;
+            TimeScale = 1f / 4f;
         }
 
         public IEnumerator NightTimer()
@@ -32,7 +32,7 @@ namespace VoidspireStudio.FNATS.Nights
 
                 OnTick?.Invoke(CurrentTime);
 
-                yield return new WaitForSeconds(1f);
+                yield return new WaitForSeconds(TimeScale);
             } while (true);
         }
     }

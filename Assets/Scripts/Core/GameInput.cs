@@ -19,7 +19,6 @@ namespace VoidspireStudio.FNATS.Core
             }
 
             Instance = this;
-            DontDestroyOnLoad(gameObject);
 
             _inputActions = new InputSystem_Actions();
             _inputActions.Player.Enable();
