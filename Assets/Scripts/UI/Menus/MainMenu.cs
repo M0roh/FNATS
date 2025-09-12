@@ -10,7 +10,7 @@ namespace VoidspireStudio.FNATS.UI.Menus
         [SerializeField] private GameObject _menu;
         [SerializeField] private Button _continueButton;
 
-        private bool _isOpen = false;
+        private bool _isOpen = true;
 
         private void Awake()
         {

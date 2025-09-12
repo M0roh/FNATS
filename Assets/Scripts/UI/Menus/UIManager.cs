@@ -27,14 +27,14 @@ namespace VoidspireStudio.FNATS.UI.Menus
         public void OpenSettings(GameObject fromMenu)
         {
             fromMenu.SetActive(false);
-            _settings.SetActive(true);
+            Instantiate(_settings, fromMenu.transform.parent);
             _previousMenu = fromMenu;
         }
 
         public void OpenCredits(GameObject fromMenu)
         {
             fromMenu.SetActive(false);
-            _credits.SetActive(true);
+            Instantiate(_credits, fromMenu.transform.parent);
             _previousMenu = fromMenu;
         }
 

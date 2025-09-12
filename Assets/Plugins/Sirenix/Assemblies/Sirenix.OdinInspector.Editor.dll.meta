@@ -5,7 +5,9 @@ PluginImporter:
   serializedVersion: 3
   iconMap: {}
   executionOrder:
+    Sirenix.OdinInspector.Editor.Examples.HideMonoScriptScriptableObject: 10600
     Sirenix.OdinInspector.Editor.GeneralDrawerConfig: 10400
+    Sirenix.OdinInspector.Editor.OdinEditorWindow: 10500
   defineConstraints: []
   isPreloaded: 0
   isOverridable: 0
