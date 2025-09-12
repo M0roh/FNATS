@@ -24,14 +24,7 @@ namespace VoidspireStudio.FNATS.Nights
 
         private void Awake()
         {
-            if (Instance != null)
-            {
-                Destroy(gameObject);
-                return;
-            }
-
             Instance = this;
-            DontDestroyOnLoad(gameObject);
 
             _allAnimatronics = FindObjectsByType<AnimatronicAI>(FindObjectsSortMode.None).ToList();
 
@@ -41,6 +34,7 @@ namespace VoidspireStudio.FNATS.Nights
 
         private void Start()
         {
+            Debug.Log(CurrentNight);
             foreach (var animatronicTime in _currentConfig.AnimatronicActivity)
             {
                 var animatronic = _allAnimatronics.FirstOrDefault(anim => anim.Id == animatronicTime.Key);
