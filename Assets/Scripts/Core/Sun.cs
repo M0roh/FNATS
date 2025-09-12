@@ -1,10 +1,8 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 using VoidspireStudio.FNATS.Nights;
 
 namespace VoidspireStudio.FNATS.Core
 {
-    using UnityEngine;
 
     public class SunMoonController : MonoBehaviour
     {
@@ -38,7 +36,7 @@ namespace VoidspireStudio.FNATS.Core
         {
             float currentHour = time.Hour + time.Minute / 60f;
 
-            float sunAngle = ((currentHour / 24f) * 360f) - 90f;
+            float sunAngle = currentHour / 24f * 360f - 90f;
             float moonAngle = sunAngle + 180f;
 
             sun.transform.rotation = Quaternion.Euler(sunAngle, 0f, 0f);

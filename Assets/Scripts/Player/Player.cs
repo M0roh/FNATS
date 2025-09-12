@@ -1,11 +1,13 @@
 using QuickOutline;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using VoidspireStudio.FNATS.Core;
 using VoidspireStudio.FNATS.Interactables;
 using VoidspireStudio.FNATS.PowerSystem;
+using VoidspireStudio.FNATS.Saves;
 using VoidspireStudio.FNATS.Utils;
 
-namespace VoidspireStudio.FNATS.Core
+namespace VoidspireStudio.FNATS.Player
 {
     [RequireComponent(typeof(CharacterController))]
     public class Player : MonoBehaviour

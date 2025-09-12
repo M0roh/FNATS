@@ -3,7 +3,7 @@ using UnityEngine.Rendering;
 using UnityEngine.Rendering.HighDefinition;
 using VoidspireStudio.FNATS.Nights;
 
-namespace VoidspireStudio.FNATS.Core
+namespace VoidspireStudio.FNATS.Player
 {
     public class Sanity : MonoBehaviour
     {

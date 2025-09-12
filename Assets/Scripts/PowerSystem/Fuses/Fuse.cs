@@ -1,6 +1,6 @@
 ﻿using System;
 using UnityEngine;
-using VoidspireStudio.FNATS.Core;
+using VoidspireStudio.FNATS.Player;
 using VoidspireStudio.FNATS.Interactables;
 
 namespace VoidspireStudio.FNATS.PowerSystem.Fuses
@@ -22,7 +22,7 @@ namespace VoidspireStudio.FNATS.PowerSystem.Fuses
 
         public void Repair()
         {
-            if (!Player.Instance.IsPickedFuse) return;
+            if (!Player.Player.Instance.IsPickedFuse) return;
 
             IsActive = true;
             _fuseMaterial.color = _normalColor;

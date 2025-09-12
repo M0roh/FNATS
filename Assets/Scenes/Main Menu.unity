@@ -1160,9 +1160,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Components.LocalizeStringEvent
   m_StringReference:
     m_TableReference:
-      m_TableCollectionName: 
+      m_TableCollectionName: GUID:93c191160516cb346b6269c1cac86f50
     m_TableEntryReference:
-      m_KeyId: 0
+      m_KeyId: 75639648256
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -1231,7 +1231,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 315318702}
-        m_TargetAssemblyTypeName: VoidspireStudio.FNATS.UI.MainMenu, Assembly-CSharp
+        m_TargetAssemblyTypeName: VoidspireStudio.FNATS.UI.Menus.MainMenu, Assembly-CSharp
         m_MethodName: Quit
         m_Mode: 1
         m_Arguments:
@@ -1308,14 +1308,14 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1651389983}
-  - {fileID: 1063888249}
+  - {fileID: 1674573138}
+  - {fileID: 1470304411}
   m_Father: {fileID: 315318701}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -475.00006, y: -140.00003}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -500, y: -100}
+  m_SizeDelta: {x: -1800, y: -900}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &315318697
 GameObject:
@@ -1413,6 +1413,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1160093354}
+  - {fileID: 1651389983}
   - {fileID: 312856759}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1430,9 +1431,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 315318697}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43cd47554653d6f4d86319675a7d808e, type: 3}
+  m_Script: {fileID: 11500000, guid: e135dbe491a32d34cb55a0c3c3c40fec, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Mainmenu
+  m_EditorClassIdentifier: Assembly-CSharp::VoidspireStudio.FNATS.UI.Menus.MainMenu
+  _menu: {fileID: 312856758}
   _continueButton: {fileID: 707948128}
 --- !u!1 &330585543
 GameObject:
@@ -2250,7 +2252,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 315318702}
-        m_TargetAssemblyTypeName: VoidspireStudio.FNATS.UI.MainMenu, Assembly-CSharp
+        m_TargetAssemblyTypeName: VoidspireStudio.FNATS.UI.Menus.MainMenu, Assembly-CSharp
         m_MethodName: Settings
         m_Mode: 1
         m_Arguments:
@@ -2555,7 +2557,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 315318702}
-        m_TargetAssemblyTypeName: VoidspireStudio.FNATS.UI.MainMenu, Assembly-CSharp
+        m_TargetAssemblyTypeName: VoidspireStudio.FNATS.UI.Menus.MainMenu, Assembly-CSharp
         m_MethodName: Continue
         m_Mode: 1
         m_Arguments:
@@ -2800,6 +2802,65 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 748993101}
   m_CullTransparentMesh: 1
+--- !u!1 &819860934
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 819860936}
+  - component: {fileID: 819860935}
+  - component: {fileID: 819860937}
+  m_Layer: 0
+  m_Name: DontDestroyScripts
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &819860935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 819860934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ac89540bbfdd954fa43fc7bf28600ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VoidspireStudio.FNATS.UI.Menus.UIManager
+  _settings: {fileID: 563762567949859595, guid: dd92531460462dc4599bf29874478d8d, type: 3}
+  _credits: {fileID: 0}
+--- !u!4 &819860936
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 819860934}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &819860937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 819860934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e2ae1076b927a94691ccca0dc2f5628, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VoidspireStudio.FNATS.Core.AudioManager
 --- !u!1 &969532162
 GameObject:
   m_ObjectHideFlags: 0
@@ -3030,43 +3091,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1063888248
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1063888249}
-  m_Layer: 5
-  m_Name: Button
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1063888249
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1063888248}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1674573138}
-  - {fileID: 1470304411}
-  m_Father: {fileID: 312856759}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -200, y: -250}
-  m_SizeDelta: {x: 500, y: 600}
-  m_Pivot: {x: 0, y: 0}
 --- !u!1 &1126742189
 GameObject:
   m_ObjectHideFlags: 0
@@ -3473,7 +3497,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 315318702}
-        m_TargetAssemblyTypeName: VoidspireStudio.FNATS.UI.MainMenu, Assembly-CSharp
+        m_TargetAssemblyTypeName: VoidspireStudio.FNATS.UI.Menus.MainMenu, Assembly-CSharp
         m_MethodName: NewGame
         m_Mode: 1
         m_Arguments:
@@ -3546,7 +3570,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1470304410}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3556,12 +3580,12 @@ RectTransform:
   - {fileID: 538522010}
   - {fileID: 2129777570}
   - {fileID: 272170768}
-  m_Father: {fileID: 1063888249}
+  m_Father: {fileID: 312856759}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -100, y: -100}
+  m_SizeDelta: {x: 300, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1470304412
 MonoBehaviour:
@@ -3791,11 +3815,11 @@ RectTransform:
   - {fileID: 340330087}
   - {fileID: 264230048}
   - {fileID: 1497398316}
-  m_Father: {fileID: 312856759}
+  m_Father: {fileID: 315318701}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 475, y: 580}
+  m_AnchoredPosition: {x: 0, y: -50}
   m_SizeDelta: {x: 1450, y: 170}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &1672638772
@@ -3979,12 +4003,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1063888249}
+  m_Father: {fileID: 312856759}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 250.00003}
+  m_SizeDelta: {x: 400, y: 500}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1674573139
 MonoBehaviour:
@@ -5723,7 +5747,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 315318702}
-        m_TargetAssemblyTypeName: VoidspireStudio.FNATS.UI.MainMenu, Assembly-CSharp
+        m_TargetAssemblyTypeName: VoidspireStudio.FNATS.UI.Menus.MainMenu, Assembly-CSharp
         m_MethodName: Credits
         m_Mode: 1
         m_Arguments:
@@ -5781,3 +5805,4 @@ SceneRoots:
   - {fileID: 143948096}
   - {fileID: 983245617}
   - {fileID: 232749242}
+  - {fileID: 819860936}

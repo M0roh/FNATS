@@ -1,14 +1,17 @@
 using System.IO;
 using System.Text;
 using UnityEngine;
+using UnityEngine.Localization.Settings;
+using VoidspireStudio.FNATS.Core;
 
-namespace VoidspireStudio.FNATS.Core
+namespace VoidspireStudio.FNATS.Saves
 {
     public static class SaveManager
     {
         public static bool HasPreviousSave { get; private set; } = true;
         public static SaveData LastSavedData { get; private set; } = new();
-        public static string SaveFilePath => Path.Combine(Application.persistentDataPath, "save.sav");
+
+        private static string SaveFilePath => Path.Combine(Application.persistentDataPath, "save.sav");
 
         public static void LoadGame()
         {
@@ -21,6 +24,15 @@ namespace VoidspireStudio.FNATS.Core
 
             byte[] encryptedData = File.ReadAllBytes(SaveFilePath);
             LastSavedData = LoadData(DecodeBytes(ProcessData(encryptedData)));
+
+            UpdateSettings();
+        }
+
+        public static void UpdateSettings()
+        {
+            AudioManager.Instance.UpdateMusicVolume(LastSavedData.volumeMusic);
+            AudioManager.Instance.UpdateSFXVolume(LastSavedData.volumeSFX);
+            LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[LastSavedData.languageIndex];
         }
 
         public static void SaveGame()

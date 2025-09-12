@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 using VoidspireStudio.FNATS.Animatronics.Routes;
-using VoidspireStudio.FNATS.Core;
+using VoidspireStudio.FNATS.Player;
 using VoidspireStudio.FNATS.Nights;
 using VoidspireStudio.FNATS.Utils;
 
@@ -169,10 +169,10 @@ namespace VoidspireStudio.FNATS.Animatronics
         {
             _currentState = AnimatronicState.Off;
 
-            transform.rotation = Quaternion.LookRotation(Player.Instance.transform.position);
+            transform.rotation = Quaternion.LookRotation(Player.Player.Instance.transform.position);
 
-            Player.Instance.Freeze();
-            Player.Instance.ForceLookAt(_head.transform.position);
+            Player.Player.Instance.Freeze();
+            Player.Player.Instance.ForceLookAt(_head.transform.position);
             _agent.isStopped = true;
             _agent.ResetPath();
 
@@ -306,14 +306,14 @@ namespace VoidspireStudio.FNATS.Animatronics
             if (TryFindPlayer())
             {
                 _agent.SetAreaCost(0, _agent.GetAreaCost(3));
-                _lastSeenPosition = Player.Instance.transform.position;
+                _lastSeenPosition = Player.Player.Instance.transform.position;
                 _agent.SetDestination(_lastSeenPosition);
                 _forwardTimer = _forwardTimeMax;
             }
             else if (_forwardTimer > 0)
             {
                 _forwardTimer -= Time.fixedDeltaTime;
-                _lastSeenPosition = Player.Instance.transform.position;
+                _lastSeenPosition = Player.Player.Instance.transform.position;
                 _agent.SetDestination(_lastSeenPosition);
             }
             else if (_agent.HasReachedDestination())
@@ -322,9 +322,9 @@ namespace VoidspireStudio.FNATS.Animatronics
             if (_agent.pathStatus == NavMeshPathStatus.PathPartial || _agent.pathStatus == NavMeshPathStatus.PathInvalid)
                 ResetState();
 
-            if ((transform.position - Player.Instance.transform.position).magnitude <= _attackDistance)
+            if ((transform.position - Player.Player.Instance.transform.position).magnitude <= _attackDistance)
             {
-                Vector3 directionToPlayer = Player.Instance.HeadPosition - _head.transform.position;
+                Vector3 directionToPlayer = Player.Player.Instance.HeadPosition - _head.transform.position;
                 if (Physics.Raycast(_head.position, directionToPlayer.normalized, out RaycastHit hit) && hit.collider.CompareTag("Player"))
                 {
                     СurrentState = AnimatronicState.Attack;
@@ -346,15 +346,15 @@ namespace VoidspireStudio.FNATS.Animatronics
 
         public bool TryFindPlayer()
         {
-            Vector3 directionToPlayer = Player.Instance.HeadPosition - _head.transform.position;
+            Vector3 directionToPlayer = Player.Player.Instance.HeadPosition - _head.transform.position;
             float distanceToPlayer = directionToPlayer.magnitude;
 
             float relativeViewDistance = _viewDistance;
 
-            if (Player.Instance.IsCrouch)
+            if (Player.Player.Instance.IsCrouch)
                 relativeViewDistance /= 2f;
 
-            if (Player.Instance.IsRunning)
+            if (Player.Player.Instance.IsRunning)
                 relativeViewDistance *= 1.5f;
 
             if (distanceToPlayer <= relativeViewDistance)
@@ -365,7 +365,7 @@ namespace VoidspireStudio.FNATS.Animatronics
                     if (Physics.Raycast(_head.position, directionToPlayer.normalized, out RaycastHit hit, relativeViewDistance) && hit.collider.CompareTag("Player"))
                     {
                         NavMeshPath path = new();
-                        if (_agent.CalculatePath(Player.Instance.transform.position, path) && path.status == NavMeshPathStatus.PathComplete)
+                        if (_agent.CalculatePath(Player.Player.Instance.transform.position, path) && path.status == NavMeshPathStatus.PathComplete)
                             return true;
                     }
                 }

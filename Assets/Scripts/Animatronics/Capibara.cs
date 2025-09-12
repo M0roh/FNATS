@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
-using VoidspireStudio.FNATS.Core;
+using VoidspireStudio.FNATS.Player;
 using VoidspireStudio.FNATS.Utils;
 
 namespace VoidspireStudio.FNATS.Animatronics
@@ -97,7 +97,7 @@ namespace VoidspireStudio.FNATS.Animatronics
 
         public void PlayerCheck()
         {
-            Vector3 playerPosition = Player.Instance.transform.position;
+            Vector3 playerPosition = Player.Player.Instance.transform.position;
             if (Vector3.Distance(transform.position, playerPosition) <= _viewDistance)
             {
                 if (_isWaiting)

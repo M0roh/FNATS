@@ -3,7 +3,8 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using VoidspireStudio.FNATS.Core;
 
-namespace VoidspireStudio.FNATS.UI {
+namespace VoidspireStudio.FNATS.UI.Menus
+{
     public class PauseMenu : MonoBehaviour
     {
         [SerializeField] private GameObject _gameUI;

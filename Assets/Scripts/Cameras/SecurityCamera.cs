@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Localization;
-using VoidspireStudio.FNATS.Core;
+using VoidspireStudio.FNATS.Saves;
 
 namespace VoidspireStudio.FNATS.Cameras
 {

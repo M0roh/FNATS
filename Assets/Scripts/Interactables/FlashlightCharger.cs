@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using VoidspireStudio.FNATS.Core;
+using VoidspireStudio.FNATS.Player;
 using VoidspireStudio.FNATS.Nights;
 using VoidspireStudio.FNATS.PowerSystem;
 using VoidspireStudio.FNATS.Utils;
@@ -47,14 +47,14 @@ namespace VoidspireStudio.FNATS.Interactables
         private void Charge(GameTime _)
         {
             if (!IsActive) return;
-                
-            Player.Instance.PlayerFlashlight.Charge(_chargeInTick);
+
+            Player.Player.Instance.PlayerFlashlight.Charge(_chargeInTick);
             IndicatorUpdate();
         }
 
         public void IndicatorUpdate()
         {
-            float charge = Player.Instance.PlayerFlashlight.Power;
+            float charge = Player.Player.Instance.PlayerFlashlight.Power;
             if (charge > 99f)
                 _chargeIndicator.color = _fullEnergyColor;
             else if (charge > 50f)
@@ -71,13 +71,13 @@ namespace VoidspireStudio.FNATS.Interactables
         {
             if (IsActive)
             {
-                Player.Instance.FlashlightPickup();
+                Player.Player.Instance.FlashlightPickup();
                 _flashlightInChargeObject.SetActive(false);
                 TurnOff();
             }
             else
             {
-                Player.Instance.FlashlightDrop();
+                Player.Player.Instance.FlashlightDrop();
                 _flashlightInChargeObject.SetActive(true);
                 TurnOn();
             }

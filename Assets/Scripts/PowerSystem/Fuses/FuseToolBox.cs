@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using VoidspireStudio.FNATS.Core;
+using VoidspireStudio.FNATS.Player;
 using VoidspireStudio.FNATS.Interactables;
 
 namespace VoidspireStudio.FNATS.PowerSystem.Fuses
@@ -14,9 +14,9 @@ namespace VoidspireStudio.FNATS.PowerSystem.Fuses
 
         public void OnInteract()
         {
-            if (!Player.Instance.IsPickedFuse && _fusesInBox.Count > 0)
+            if (!Player.Player.Instance.IsPickedFuse && _fusesInBox.Count > 0)
             {
-                Player.Instance.IsPickedFuse = true;
+                Player.Player.Instance.IsPickedFuse = true;
 
                 var fuse = _fusesInBox.Last();
                 Destroy(fuse);

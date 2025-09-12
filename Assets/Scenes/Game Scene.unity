@@ -2377,7 +2377,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 123166058}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
         m_MethodName: Settings
         m_Mode: 1
@@ -7293,9 +7293,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 123166053}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19be0d3c0095c63498a9f7cc7f8438f3, type: 3}
+  m_Script: {fileID: 11500000, guid: 00bb4d04b605ea64a9cd19ccbcdd2631, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PauseMenu
+  m_EditorClassIdentifier: Assembly-CSharp::VoidspireStudio.FNATS.UI.Menus.PauseMenu
   _gameUI: {fileID: 305180385}
   _pauseUI: {fileID: 110909186}
 --- !u!1 &124322579 stripped
@@ -53189,7 +53189,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 123166058}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
         m_MethodName: Credits
         m_Mode: 1
@@ -80972,7 +80972,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 123166058}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
         m_MethodName: Quit
         m_Mode: 1
@@ -83416,7 +83416,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 123166058}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
         m_MethodName: Continue
         m_Mode: 1
