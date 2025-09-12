@@ -52,12 +52,11 @@ namespace VoidspireStudio.FNATS.UI.Menus
 
         public void Settings()
         {
-
+            UIManager.Instance.OpenSettings(_pauseUI);
         }
 
         public void Credits()
         {
-
         }
 
         public void Quit()

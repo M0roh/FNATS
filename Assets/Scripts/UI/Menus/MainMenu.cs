@@ -7,7 +7,6 @@ namespace VoidspireStudio.FNATS.UI.Menus
 {
     public class MainMenu : MonoBehaviour
     {
-        [SerializeField] private GameObject _menu;
         [SerializeField] private Button _continueButton;
 
         private bool _isOpen = true;
@@ -20,6 +19,11 @@ namespace VoidspireStudio.FNATS.UI.Menus
         private void Start()
         {
             _continueButton.interactable = SaveManager.HasPreviousSave;
+        }
+
+        private void OnEnable()
+        {
+            _isOpen = true;
         }
 
         public void Continue()
@@ -46,7 +50,7 @@ namespace VoidspireStudio.FNATS.UI.Menus
             if (!_isOpen) return;
 
             _isOpen = false;
-            UIManager.Instance.OpenSettings(_menu);
+            UIManager.Instance.OpenSettings(gameObject);
         }
 
         public void Credits()

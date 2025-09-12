@@ -31,22 +31,24 @@ namespace VoidspireStudio.FNATS.UI.Menus
             _languageDropdown.ClearOptions();
             _languageDropdown.AddOptions(LocalizationSettings.AvailableLocales.Locales.Select(locale => locale.LocaleName).ToList());
 
-            _musicVolumeDisplay.text = $"{SaveManager.LastSavedData.volumeMusic:F2}";
+            _musicVolumeDisplay.text = $"{SaveManager.LastSavedData.volumeMusic * 100f}%";
             _musicVolumeSlider.value = SaveManager.LastSavedData.volumeMusic;
 
-            _sfxVolumeDisplay.text = $"{SaveManager.LastSavedData.volumeSFX:F2}";
+            _sfxVolumeDisplay.text = $"{SaveManager.LastSavedData.volumeSFX * 100f}%";
             _sfxVolumeSlider.value = SaveManager.LastSavedData.volumeSFX;
 
             _mouseSensitivityDisplay.text = $"{SaveManager.LastSavedData.mouseSensitivity:F2}";
             _mouseSensitivitySlider.value = SaveManager.LastSavedData.mouseSensitivity;
 
             _languageDropdown.value = SaveManager.LastSavedData.languageIndex;
+
+            _languageDropdown.onValueChanged.AddListener((volume) => _musicVolumeDisplay.text = volume.ToString());
         }
 
         public void OnMusicVolumeChange(float volume)
         {
             volume = Mathf.Round(volume * 100) / 100;
-            _musicVolumeDisplay.text = $"{volume}%";
+            _musicVolumeDisplay.text = $"{volume * 100}%";
 
             SaveManager.LastSavedData.volumeMusic = volume;
             AudioManager.Instance.UpdateMusicVolume(volume);
@@ -55,7 +57,7 @@ namespace VoidspireStudio.FNATS.UI.Menus
         public void OnSFXVolumeChange(float volume)
         {
             volume = Mathf.Round(volume * 100) / 100;
-            _sfxVolumeDisplay.text = $"{volume}%";
+            _sfxVolumeDisplay.text = $"{volume * 100}%";
 
             SaveManager.LastSavedData.volumeSFX = volume;
             AudioManager.Instance.UpdateSFXVolume(volume);
@@ -63,7 +65,7 @@ namespace VoidspireStudio.FNATS.UI.Menus
 
         public void OnMouseSensitivityChange(float sensitivity)
         {
-            _sfxVolumeDisplay.text = $"{sensitivity}";
+            _mouseSensitivityDisplay.text = $"{sensitivity}";
             SaveManager.LastSavedData.mouseSensitivity = sensitivity;
         }
 
