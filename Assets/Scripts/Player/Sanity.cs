@@ -49,7 +49,7 @@ namespace VoidspireStudio.FNATS.Player
 
             float lightLevel = GetLightLevel();
 
-            if (lightLevel < _darkLightLevel && !Player.Instance.PlayerFlashlight.IsActive)
+            if (lightLevel < _darkLightLevel)
                 _sanity -= _sanityDrain;
             else if (_sanity < _maxSanity)
                 _sanity += _sanityRegeneration;

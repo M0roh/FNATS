@@ -111,8 +111,6 @@ namespace VoidspireStudio.FNATS.PowerSystem.Fuses
             float loadFactor = Mathf.Clamp01(drainAmount / Mathf.Max(currentPower, 1f));
             float breakChance = baseChance * Mathf.Pow(loadFactor, 0.8f);
 
-            Debug.Log("Break fuse chance: " + breakChance);
-
             if (UnityEngine.Random.value < breakChance)
             {
                 Off();
