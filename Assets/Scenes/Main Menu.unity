@@ -1290,6 +1290,8 @@ GameObject:
   m_Component:
   - component: {fileID: 312856759}
   - component: {fileID: 312856760}
+  - component: {fileID: 312856761}
+  - component: {fileID: 312856762}
   m_Layer: 5
   m_Name: MainMenu
   m_TagString: Untagged
@@ -1331,6 +1333,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VoidspireStudio.FNATS.UI.Menus.MainMenu
   _continueButton: {fileID: 707948128}
+--- !u!95 &312856761
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 312856758}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 571346d704378834a8f06e6ad53c982c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 2
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!225 &312856762
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 312856758}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &315318697
 GameObject:
   m_ObjectHideFlags: 0
@@ -2833,6 +2869,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::VoidspireStudio.FNATS.UI.Menus.UIManager
   _settings: {fileID: 563762567949859595, guid: dd92531460462dc4599bf29874478d8d, type: 3}
   _credits: {fileID: 0}
+  _timeBetweenMenuSwapping: 0.1
 --- !u!4 &819860936
 Transform:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 namespace VoidspireStudio.FNATS.UI.Menus
 {
@@ -9,6 +10,9 @@ namespace VoidspireStudio.FNATS.UI.Menus
         [Header("Меню")]
         [SerializeField] private GameObject _settings;
         [SerializeField] private GameObject _credits;
+
+        [Header("Настройки")]
+        [SerializeField] private float _timeBetweenMenuSwapping = 0.1f;
 
         private GameObject _previousMenu;
 
@@ -26,15 +30,13 @@ namespace VoidspireStudio.FNATS.UI.Menus
 
         public void OpenSettings(GameObject fromMenu)
         {
-            fromMenu.SetActive(false);
-            Instantiate(_settings, fromMenu.transform.parent);
+            StartCoroutine(OpenSubMenu(fromMenu, _settings));
             _previousMenu = fromMenu;
         }
 
         public void OpenCredits(GameObject fromMenu)
         {
-            fromMenu.SetActive(false);
-            Instantiate(_credits, fromMenu.transform.parent);
+            StartCoroutine(OpenSubMenu(fromMenu, _credits));
             _previousMenu = fromMenu;
         }
 
@@ -42,10 +44,44 @@ namespace VoidspireStudio.FNATS.UI.Menus
         {
             if (_previousMenu == null) return;
 
-            fromMenu.SetActive(false);
-            _previousMenu.SetActive(true);
+            StartCoroutine(CloseSubMenu(fromMenu));
+        }
 
-            Destroy(fromMenu);
+        public IEnumerator CloseSubMenu(GameObject fromMenu)
+        {
+            var animator = fromMenu.GetComponent<Animator>();
+            animator.ResetTrigger("SHOW");
+            animator.SetTrigger("HIDE");
+
+            yield return new WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).IsName("Hide"));
+
+            StartCoroutine(DestroyOnEnd(fromMenu, animator));
+
+            yield return new WaitForSeconds(_timeBetweenMenuSwapping);
+
+            var previousAnimator = _previousMenu.GetComponent<Animator>();
+            previousAnimator.ResetTrigger("HIDE");
+            previousAnimator.SetTrigger("SHOW");
+        }
+
+        public IEnumerator DestroyOnEnd(GameObject objectToDestroy, Animator animator)
+        {
+            yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+
+            Destroy(objectToDestroy);
+        }
+
+        public IEnumerator OpenSubMenu(GameObject menuFrom, GameObject subMenu)
+        {
+            var animator = menuFrom.GetComponent<Animator>();
+            animator.ResetTrigger("SHOW");
+            animator.SetTrigger("HIDE");
+
+            yield return new WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).IsName("Hide"));
+
+            yield return new WaitForSeconds(_timeBetweenMenuSwapping);
+
+            Instantiate(subMenu, menuFrom.transform.parent);
         }
     }
 }

@@ -9,6 +9,7 @@ using VoidspireStudio.FNATS.Saves;
 
 namespace VoidspireStudio.FNATS.UI.Menus
 {
+    [RequireComponent(typeof(Animator))]
     public class Settings : MonoBehaviour
     {
         [Header("Music Volume")]

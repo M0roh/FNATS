@@ -8,6 +8,7 @@ namespace VoidspireStudio.FNATS.UI.Menus
     public class PauseMenu : MonoBehaviour
     {
         [SerializeField] private GameObject _gameUI;
+        [SerializeField] private GameObject _pauseMenu;
         [SerializeField] private GameObject _pauseUI;
 
         public static bool IsPaused { get; private set; } = false;
@@ -15,6 +16,7 @@ namespace VoidspireStudio.FNATS.UI.Menus
         private void OnEnable()
         {
             GameInput.Instance.InputActions.UI.Cancel.performed += PauseProcess;
+            Continue();
         }
 
         private void OnDisable()
@@ -37,7 +39,7 @@ namespace VoidspireStudio.FNATS.UI.Menus
             IsPaused = true;
             Time.timeScale = 0f;
             _gameUI.SetActive(false);
-            _pauseUI.SetActive(true);
+            _pauseMenu.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
         }
 
@@ -46,7 +48,7 @@ namespace VoidspireStudio.FNATS.UI.Menus
             IsPaused = false;
             Time.timeScale = 1f;
             _gameUI.SetActive(true);
-            _pauseUI.SetActive(false);
+            _pauseMenu.SetActive(false);
             Cursor.lockState = CursorLockMode.Locked;
         }
 
