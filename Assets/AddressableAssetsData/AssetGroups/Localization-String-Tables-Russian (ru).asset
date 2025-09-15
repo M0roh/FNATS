@@ -21,6 +21,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-ru
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 17a4e4889c331774eabdd080efd2b0c8
+    m_Address: Credits_ru
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ru
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2ffab92228b9a64409c3efaddddbd59b
     m_Address: Cameras_ru
     m_ReadOnly: 1

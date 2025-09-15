@@ -102,6 +102,7 @@
     <Compile Include="Assets\Scripts\Animatronics\AnimatronicAI.cs" />
     <Compile Include="Assets\Scripts\PowerSystem\Flashlight.cs" />
     <Compile Include="Assets\Scripts\PowerSystem\Fuses\FuseBox.cs" />
+    <Compile Include="Assets\Scripts\UI\Menus\Credits.cs" />
     <Compile Include="Assets\Visual Design Cafe\Nature Renderer Demo\Scripts\UseReferenceCamera.cs" />
     <Compile Include="Assets\Visual Design Cafe\Nature Renderer Demo\Scripts\CloneTerrain.cs" />
     <Compile Include="Assets\Scripts\Cameras\SecurityCamerasManager.cs" />

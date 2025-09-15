@@ -2848,6 +2848,7 @@ GameObject:
   - component: {fileID: 819860936}
   - component: {fileID: 819860935}
   - component: {fileID: 819860937}
+  - component: {fileID: 819860938}
   m_Layer: 0
   m_Name: DontDestroyScripts
   m_TagString: Untagged
@@ -2868,7 +2869,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VoidspireStudio.FNATS.UI.Menus.UIManager
   _settings: {fileID: 563762567949859595, guid: dd92531460462dc4599bf29874478d8d, type: 3}
-  _credits: {fileID: 0}
+  _credits: {fileID: 3559032389120202908, guid: 3fa51b536249de94492a5d0ecc669103, type: 3}
   _timeBetweenMenuSwapping: 0.1
 --- !u!4 &819860936
 Transform:
@@ -2897,6 +2898,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e2ae1076b927a94691ccca0dc2f5628, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VoidspireStudio.FNATS.Core.AudioManager
+--- !u!114 &819860938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 819860934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92766da9b19438a4b80e7e3c343f0890, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VoidspireStudio.FNATS.Core.GameInput
 --- !u!1 &969532162
 GameObject:
   m_ObjectHideFlags: 0
