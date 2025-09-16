@@ -14139,6 +14139,165 @@ MonoBehaviour:
   m_Center: {x: 0, y: 0, z: 0}
   m_Area: 3
   m_AffectedAgents: ffffffff
+--- !u!1001 &271123852
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 77e229ce0adf8724984602b4cac69dfa, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 77e229ce0adf8724984602b4cac69dfa, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 77e229ce0adf8724984602b4cac69dfa, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 77e229ce0adf8724984602b4cac69dfa, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 182.05205
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 77e229ce0adf8724984602b4cac69dfa, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 16.69095
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 77e229ce0adf8724984602b4cac69dfa, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 341.55035
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 77e229ce0adf8724984602b4cac69dfa, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 77e229ce0adf8724984602b4cac69dfa, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 77e229ce0adf8724984602b4cac69dfa, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 77e229ce0adf8724984602b4cac69dfa, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 77e229ce0adf8724984602b4cac69dfa, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 77e229ce0adf8724984602b4cac69dfa, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 77e229ce0adf8724984602b4cac69dfa, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 77e229ce0adf8724984602b4cac69dfa, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 77e229ce0adf8724984602b4cac69dfa, type: 3}
+      propertyPath: m_Name
+      value: BrrBrrPatapim
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 77e229ce0adf8724984602b4cac69dfa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 77e229ce0adf8724984602b4cac69dfa, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 271123856}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 77e229ce0adf8724984602b4cac69dfa, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 271123855}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 77e229ce0adf8724984602b4cac69dfa, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 271123857}
+  m_SourcePrefab: {fileID: 100100000, guid: 77e229ce0adf8724984602b4cac69dfa, type: 3}
+--- !u!1 &271123853 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 77e229ce0adf8724984602b4cac69dfa, type: 3}
+  m_PrefabInstance: {fileID: 271123852}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &271123855
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 271123853}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 77e229ce0adf8724984602b4cac69dfa, type: 3}
+  m_Controller: {fileID: 9100000, guid: d075f582fae1fe644a7d365708c57e81, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!195 &271123856
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 271123853}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &271123857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 271123853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f5399d1cc68ec64fab5dcd6d717cd5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VoidspireStudio.FNATS.Animatronics.BrrBrrPatapim
+  _id: a2c825b4e06647f9a61bed1e0586f673
+  _walkSpeed: 2
+  _runSpeed: 4
+  _forwardTimeMax: 3
+  _availableRoutes: []
+  _timeBetweenSteps: 0
+  _attackDistance: 1.5
+  _head: {fileID: 0}
+  _viewDistance: 25
+  _viewDistanceAround: 5
+  _fieldOfView: 90
+  _rotationSpeed: 5
 --- !u!1 &273908670
 GameObject:
   m_ObjectHideFlags: 0
@@ -38839,11 +38998,6 @@ MonoBehaviour:
   m_Center: {x: 0, y: 0, z: 0}
   m_Area: 3
   m_AffectedAgents: ffffffff
---- !u!4 &786207012 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8192036469249206412, guid: a250a603d20048146a3b0ac088b7c9a3, type: 3}
-  m_PrefabInstance: {fileID: 1453051382}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &787543432
 GameObject:
   m_ObjectHideFlags: 0
@@ -58071,7 +58225,7 @@ GameObject:
   - component: {fileID: 1226397436}
   - component: {fileID: 1226397435}
   - component: {fileID: 1226397434}
-  - component: {fileID: 1226397433}
+  - component: {fileID: 1226397437}
   m_Layer: 0
   m_Name: TTG SAHUR
   m_TagString: Untagged
@@ -58079,31 +58233,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!114 &1226397433
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1226397432}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e94be40914bd8547ab1b6e62662238c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::VoidspireStudio.FNATS.Animatronics.TTTSahur
-  _id: 3c4923abf5c240f4a797c9875718cb03
-  _walkSpeed: 2
-  _runSpeed: 4
-  _forwardTimeMax: 3
-  _availableRoutes:
-  - {fileID: 11400000, guid: 31936c8af63fc384b9cec15ce3761c93, type: 2}
-  _timeBetweenSteps: 5
-  _attackDistance: 3.5
-  _head: {fileID: 786207012}
-  _viewDistance: 30
-  _viewDistanceAround: 5
-  _fieldOfView: 90
-  _rotationSpeed: 5
 --- !u!95 &1226397434
 Animator:
   serializedVersion: 7
@@ -58165,6 +58294,30 @@ Transform:
   - {fileID: 2134722008}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1226397437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1226397432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70b7f5788663e784ca8ffa7ee88d6bdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VoidspireStudio.FNATS.Animatronics.TTGSahur
+  _id: 68cae87306504a4eb745372e927dbeeb
+  _walkSpeed: 2
+  _runSpeed: 4
+  _forwardTimeMax: 3
+  _availableRoutes: []
+  _timeBetweenSteps: 0
+  _attackDistance: 1.5
+  _head: {fileID: 0}
+  _viewDistance: 25
+  _viewDistanceAround: 5
+  _fieldOfView: 90
+  _rotationSpeed: 5
 --- !u!1 &1227500701
 GameObject:
   m_ObjectHideFlags: 0
@@ -97148,7 +97301,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2092390621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -99858,6 +100011,7 @@ SceneRoots:
   - {fileID: 8689321}
   - {fileID: 1315898348}
   - {fileID: 1226397436}
+  - {fileID: 271123852}
   - {fileID: 941178962}
   - {fileID: 869100671}
   - {fileID: 2144634880}

@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MerryYellow.CodeAssist.Editor", "MerryYellow.CodeAssist.Editor.csproj", "{E9610E1A-56B4-CA0D-42F2-8A65F88D33A1}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sirenix.OdinInspector.Modules.UnityLocalization.Editor", "Sirenix.OdinInspector.Modules.UnityLocalization.Editor.csproj", "{2E06CF4F-D135-2587-6C5D-F318B45076AE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{D76E4640-3835-D24C-0BE8-4B2AD78F11B4}"
@@ -27,6 +29,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E9610E1A-56B4-CA0D-42F2-8A65F88D33A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9610E1A-56B4-CA0D-42F2-8A65F88D33A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9610E1A-56B4-CA0D-42F2-8A65F88D33A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9610E1A-56B4-CA0D-42F2-8A65F88D33A1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2E06CF4F-D135-2587-6C5D-F318B45076AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2E06CF4F-D135-2587-6C5D-F318B45076AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2E06CF4F-D135-2587-6C5D-F318B45076AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
