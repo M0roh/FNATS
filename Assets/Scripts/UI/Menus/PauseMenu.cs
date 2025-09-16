@@ -59,6 +59,7 @@ namespace VoidspireStudio.FNATS.UI.Menus
 
         public void Credits()
         {
+            UIManager.Instance.OpenCredits(_pauseUI);
         }
 
         public void Quit()

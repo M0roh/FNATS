@@ -42,6 +42,7 @@ namespace VoidspireStudio.FNATS.UI.Menus
 
         public void Credits()
         {
+            UIManager.Instance.OpenCredits(gameObject);
         }
 
         public void Quit()
