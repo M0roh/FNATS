@@ -8,7 +8,7 @@ namespace VoidspireStudio.FNATS.Interactables
 {
     [RequireComponent(typeof(NavMeshObstacle))]
     public class Door : MonoBehaviour, IInteractable
-    {
+    {                                                                                 
         [SerializeField] private bool _isOpenOnStart = false;
         [SerializeField] private bool _isNeedHold = false;
         [SerializeField] private Quaternion _closeAngle = new();
@@ -19,10 +19,12 @@ namespace VoidspireStudio.FNATS.Interactables
         private Coroutine _rotateCoroutine;
 
         private bool _isOpen = true;
+        private bool _isBroken = false;
         
         public bool IsOpen => _isOpen;
+        public bool IsBroken => _isBroken;
 
-        public bool CanInteract => true;
+        public bool CanInteract => !_isBroken;
 
         private void Awake()
         {
@@ -39,6 +41,8 @@ namespace VoidspireStudio.FNATS.Interactables
 
         public void OnInteract()
         {
+            if (_isBroken) return;
+
             if (_isNeedHold)
                 Close();
             else if (IsOpen)
@@ -49,6 +53,8 @@ namespace VoidspireStudio.FNATS.Interactables
 
         public void OnInteractEnd()
         {
+            if (_isBroken) return;
+
             if (_isNeedHold)
                 Open();
         }
@@ -69,6 +75,12 @@ namespace VoidspireStudio.FNATS.Interactables
 
             _isOpen = true;
             _obstacle.enabled = false;
+        }
+
+        public void Break()
+        {
+            Open();
+            _isBroken = true;
         }
 
         public IEnumerator Rotate(Quaternion targetAngle) 

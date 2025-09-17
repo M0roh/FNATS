@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 using VoidspireStudio.FNATS.Animatronics.Routes;
-using VoidspireStudio.FNATS.Player;
+using VoidspireStudio.FNATS.Core;
 using VoidspireStudio.FNATS.Nights;
 using VoidspireStudio.FNATS.Utils;
 
@@ -22,6 +22,14 @@ namespace VoidspireStudio.FNATS.Animatronics
         OfficeAttack
     }
 
+    public enum OfficeAttackState
+    {
+        NotAttack,
+        Wait,
+        Blocked,
+        Attack
+    }
+
     [RequireComponent(typeof(NavMeshAgent), typeof(Animator))]
     public abstract class AnimatronicAI : MonoBehaviour
     {
@@ -34,6 +42,13 @@ namespace VoidspireStudio.FNATS.Animatronics
         [SerializeField] private float _runSpeed = 4f;
         [SerializeField] private float _forwardTimeMax = 3f;
         private float _forwardTimer = 0f;
+
+        [Header("Атака")]
+        [SerializeField] private float _attackWait = 8f;
+        [SerializeField] private float _waitBlocked = 3f;
+        private float _attackTimer = 0f;
+        private OfficeAttackState _attackState = OfficeAttackState.NotAttack;
+        protected bool ignorePlayer = false;
 
         [Header("Маршрут")]
         [SerializeReference] private List<AnimatronicRoute> _availableRoutes;
@@ -76,6 +91,7 @@ namespace VoidspireStudio.FNATS.Animatronics
         protected const string IDLE = "Idle";
         protected const string WALKING = "Walk";
         protected const string ATTACK = "Attack";
+        protected const string CROUCH_ATTACK = "CrouchAttack";
         protected const string RUN = "Run";
 
         private void Awake()
@@ -163,7 +179,87 @@ namespace VoidspireStudio.FNATS.Animatronics
             GUIUtility.systemCopyBuffer = _id.ToString();
         }
 
-        protected abstract void OfficeAtack();
+        protected virtual void OfficeAtack()
+        {
+            ignorePlayer = true;
+
+            switch (_attackState)
+            {
+                case OfficeAttackState.Wait:
+                    if (BlockCheck())
+                    {
+                        _attackTimer = _waitBlocked;
+                        _attackState = OfficeAttackState.Blocked;
+                        return;
+                    }
+                    _animator.SetTrigger(IDLE);
+                    _attackTimer -= Time.fixedDeltaTime;
+
+                    if (_attackTimer <= 0f)
+                    {
+                        _attackTimer = _attackWait;
+                        _attackState = OfficeAttackState.Attack;
+                    }
+                    break;
+
+                case OfficeAttackState.Attack:
+                    ignorePlayer = false;
+                    
+                    OfficeManager.Instance.OfficeDoor.Break();
+                    OfficeManager.Instance.OfficeLight.TurnOff();
+
+                    StartCoroutine(OfficeAttack());
+                    break;
+
+                case OfficeAttackState.Blocked:
+                    if (!BlockCheck())
+                    {
+                        _attackTimer = 0f;
+                        _attackState = OfficeAttackState.Wait;
+                        return;
+                    }
+                    _animator.SetTrigger(IDLE);
+                    _attackTimer -= Time.fixedDeltaTime;
+
+                    if (_attackTimer <= 0f)
+                    {
+                        _attackTimer = _attackWait;
+                        _attackState = OfficeAttackState.NotAttack;
+                        _waitTimer = 1f;
+                        _currentState = AnimatronicState.Waiting;
+                    }
+                    break;
+            }
+        }
+
+        private IEnumerator OfficeAttack()
+        {
+            _agent.SetDestination(OfficeManager.Instance.OfficeCenter.position);
+
+            yield return null;
+
+            yield return new WaitUntil(() => _agent.HasReachedDestination() || _currentState == AnimatronicState.Forwarding || _currentState == AnimatronicState.OfficeAttack);
+
+            if (_currentState == AnimatronicState.Forwarding || _currentState == AnimatronicState.OfficeAttack)
+                yield break;
+
+            if (!OfficeManager.Instance.IsPlayerInOffice)
+            {
+                _attackState = OfficeAttackState.NotAttack;
+                _waitTimer = 1f;
+                _currentState = AnimatronicState.Waiting;
+                yield break;
+            }
+
+            _agent.SetDestination(Player.Player.Instance.transform.position);
+
+            yield return null;
+
+            yield return new WaitUntil(() => _agent.HasReachedDestination());
+            Attack();
+        }
+
+        protected abstract bool BlockCheck();
 
         private void Attack()
         {
@@ -179,7 +275,10 @@ namespace VoidspireStudio.FNATS.Animatronics
             _animator.ResetTrigger(RUN);
             _animator.ResetTrigger(IDLE);
 
-            _animator.SetTrigger(ATTACK);
+            if (Player.Player.Instance.IsCrouch)
+                _animator.SetTrigger(CROUCH_ATTACK);
+            else
+                _animator.SetTrigger(ATTACK);
 
             // TODO: Рестарт ночи + таймер
             Debug.Log("Game over");
@@ -202,7 +301,7 @@ namespace VoidspireStudio.FNATS.Animatronics
                         if (_lastGoToStep.Target != null)
                             _agent.SetDestination(_lastGoToStep.Target.position);
                         else
-                            Debug.LogError("LastGoToStep Target not indefined");
+                            Debug.LogError("LastGoToStep Target not undefined");
                     else
                         _agent.SetDestination(_fallbackReturnPosition);
 
@@ -262,7 +361,7 @@ namespace VoidspireStudio.FNATS.Animatronics
                     if (goToStep.Target != null)
                         _agent.SetDestination(goToStep.Target.position);
                     else
-                        Debug.LogError("GoToStep Target not indefined");
+                        Debug.LogError("GoToStep Target not undefined");
 
                     СurrentState = AnimatronicState.Route;
                     break;
@@ -283,6 +382,8 @@ namespace VoidspireStudio.FNATS.Animatronics
                     break;
 
                 case AttackStep:
+                    _attackTimer = 0f;
+                    СurrentState = AnimatronicState.OfficeAttack;
                     break;
             }
         }
@@ -346,6 +447,8 @@ namespace VoidspireStudio.FNATS.Animatronics
 
         public bool TryFindPlayer()
         {
+            if (ignorePlayer) return false;
+
             Vector3 directionToPlayer = Player.Player.Instance.HeadPosition - _head.transform.position;
             float distanceToPlayer = directionToPlayer.magnitude;
 

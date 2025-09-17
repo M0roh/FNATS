@@ -1,21 +1,12 @@
 ﻿using VoidspireStudio.FNATS.Animatronics.Routes;
-using VoidspireStudio.FNATS.Interactables;
+using VoidspireStudio.FNATS.Core;
 
 namespace VoidspireStudio.FNATS.Animatronics
 {
     public class TTGSahur : AnimatronicAI
     {
-        protected override void OfficeAtack()
-        {
-        }
+        protected override bool BlockCheck() => !OfficeManager.Instance.IsEnabledLight && OfficeManager.Instance.IsPlayerUnderTable;
 
-        protected override void PerformSabotage(SabotageStep step)
-        {
-            if (step.SabotageType == SabotageType.BreakGenerator)
-            {
-                _animator.SetTrigger(ATTACK);
-                Generator.Instance.TurnOff();
-            }
-        }
+        protected override void PerformSabotage(SabotageStep _) { }
     }
 }

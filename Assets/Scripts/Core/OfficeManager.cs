@@ -7,8 +7,13 @@ namespace VoidspireStudio.FNATS.Core
     {
         public static OfficeManager Instance { get; private set; }
 
+        [Header("Объекты")]
         [SerializeField] private LightSwitcher _officeLight;
         [SerializeField] private Door _officeDoor;
+
+        [Header("Точки")]
+        [SerializeField] private Transform _officeCenter;
+        [SerializeField] private Transform _playerUnderTableSearch;
 
         public bool IsPlayerInOffice { get; private set; } = false;
         public bool IsPlayerUnderTable { get; private set; } = false;
@@ -24,6 +29,12 @@ namespace VoidspireStudio.FNATS.Core
 
         public void PlayerNearOffice() => IsPlayerNearOffice = true;
         public void PlayerNotNearOffice() => IsPlayerNearOffice = false;
+
+        public Door OfficeDoor => _officeDoor;
+        public LightSwitcher OfficeLight => _officeLight;
+
+        public Transform OfficeCenter => _officeCenter;
+        public Transform PlayerUnderTableSearch => _playerUnderTableSearch;
 
         private void Awake()
         {
