@@ -1333,6 +1333,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e135dbe491a32d34cb55a0c3c3c40fec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VoidspireStudio.FNATS.UI.Menus.MainMenu
+  _animatronics:
+  - {fileID: 699985499}
+  - {fileID: 1126742194}
+  - {fileID: 2135140321}
   _continueButton: {fileID: 707948128}
 --- !u!95 &312856761
 Animator:
