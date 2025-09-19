@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System.IO;
+using UnityEngine;
+using UnityEngine.InputSystem;
+using VoidspireStudio.FNATS.Saves;
 
 namespace VoidspireStudio.FNATS.Core
 {
@@ -7,8 +10,15 @@ namespace VoidspireStudio.FNATS.Core
         public static GameInput Instance { get; protected set; }
 
         private InputSystem_Actions _inputActions;
+        private PlayerInput _playerInput;
 
-        public InputSystem_Actions InputActions { get => _inputActions; }
+        private static string SaveFilePath => Path.Combine(Application.persistentDataPath, "InputBindingSave.sav");
+
+        public InputSystem_Actions InputActions => _inputActions;
+
+        public string CurrentControlScheme => _playerInput?.currentControlScheme;
+
+        public event System.Action OnControlsChanged;
 
         private void Awake()
         {
@@ -19,8 +29,22 @@ namespace VoidspireStudio.FNATS.Core
             }
 
             Instance = this;
+            DontDestroyOnLoad(gameObject);
 
             _inputActions = new InputSystem_Actions();
+            _playerInput = gameObject.AddComponent<PlayerInput>();
+            _playerInput.actions = _inputActions.asset;
+            _playerInput.defaultControlScheme = _inputActions.controlSchemes[0].name;
+            _playerInput.neverAutoSwitchControlSchemes = false;
+
+            _playerInput.onControlsChanged += ctx =>
+            {
+                Debug.Log($"Control scheme changed: {_playerInput.currentControlScheme}");
+                OnControlsChanged?.Invoke();
+            };
+
+            Load();
+
             _inputActions.Player.Enable();
             _inputActions.UI.Enable();
         }
@@ -33,6 +57,22 @@ namespace VoidspireStudio.FNATS.Core
         public Vector2 GetLookVector()
         {
             return _inputActions.Player.Look.ReadValue<Vector2>();
+        }
+
+        public void Save()
+        {
+            string inputMap = InputActions.SaveBindingOverridesAsJson();
+            byte[] bindingsData = SaveManager.EncodeData(inputMap);
+            File.WriteAllBytes(SaveFilePath, bindingsData);
+        }
+
+        public void Load()
+        {
+            if (!File.Exists(SaveFilePath)) return;
+
+            byte[] bindingsData = File.ReadAllBytes(SaveFilePath);
+            string inputMap = SaveManager.DecodeData(bindingsData);
+            InputActions.LoadBindingOverridesFromJson(inputMap);
         }
     }
 }

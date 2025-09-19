@@ -17,7 +17,7 @@ namespace VoidspireStudio.FNATS.UI.Menus
 
         private void Start()
         {
-            _continueButton.interactable = SaveManager.HasPreviousSave;
+            _continueButton.interactable = SaveManager.HasSavedGame;
         }
 
         public void Continue()

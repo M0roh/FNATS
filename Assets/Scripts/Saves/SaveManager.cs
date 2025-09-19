@@ -8,7 +8,7 @@ namespace VoidspireStudio.FNATS.Saves
 {
     public static class SaveManager
     {
-        public static bool HasPreviousSave { get; private set; } = true;
+        public static bool HasSavedGame => (LastSavedData?.lastNight ?? 0) > 0;
         public static SaveData LastSavedData { get; private set; } = new();
 
         private static string SaveFilePath => Path.Combine(Application.persistentDataPath, "save.sav");
@@ -17,13 +17,12 @@ namespace VoidspireStudio.FNATS.Saves
         {
             if (!File.Exists(SaveFilePath))
             {
-                HasPreviousSave = false;
                 LastSavedData = new SaveData();
                 return;
             }
 
             byte[] encryptedData = File.ReadAllBytes(SaveFilePath);
-            LastSavedData = LoadData(DecodeBytes(ProcessData(encryptedData)));
+            LastSavedData = LoadData(DecodeBytes(ProcessData(encryptedData, 0xBA)));
 
             UpdateSettings();
         }
@@ -37,15 +36,18 @@ namespace VoidspireStudio.FNATS.Saves
 
         public static void SaveGame()
         {
-            byte[] encryptedData = ProcessData(EncodeBytes(SaveData(LastSavedData)));
+            byte[] encryptedData = ProcessData(EncodeBytes(SaveData(LastSavedData)), 0xBA);
             File.WriteAllBytes(SaveFilePath, encryptedData);
         }
 
-        private static byte[] ProcessData(byte[] dataToProcess)
+        public static byte[] EncodeData(string data) => ProcessData(EncodeBytes(data), 0x5C);
+        public static string DecodeData(byte[] data) => DecodeBytes(ProcessData(data, 0x5C));
+
+        private static byte[] ProcessData(byte[] dataToProcess, byte key)
         {
             byte[] result = new byte[dataToProcess.Length];
             for (int i = 0; i < dataToProcess.Length; i++)
-                result[i] = (byte)(dataToProcess[i] ^ 0xBA);
+                result[i] = (byte)(dataToProcess[i] ^ key);
             return result;
         }
 
