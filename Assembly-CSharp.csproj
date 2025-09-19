@@ -81,6 +81,7 @@
     <Compile Include="Assets\Scripts\UI\LoadScreenScene.cs" />
     <Compile Include="Assets\Scripts\Interactables\LightSwitcher.cs" />
     <Compile Include="Assets\Scripts\Core\AudioManager.cs" />
+    <Compile Include="Assets\LPEnviroment\Scripts\LPEnviromentTool.cs" />
     <Compile Include="Assets\Scripts\UI\UILayoutAutoRefresher.cs" />
     <Compile Include="Assets\Scripts\Animatronics\Capibara.cs" />
     <Compile Include="Assets\Scripts\PowerSystem\Fuses\FuseToolBox.cs" />
@@ -127,6 +128,7 @@
     <Compile Include="Assets\Scripts\Core\OfficeManager.cs" />
     <Compile Include="Assets\Scripts\Animatronics\Routes\WaypointRegistry.cs" />
     <Compile Include="Assets\Scripts\Animatronics\Routes\RouteSteps.cs" />
+    <Compile Include="Assets\LPEnviroment\Scripts\TreeWindParams.cs" />
     <Compile Include="Assets\Libraries\QuickOutline\Scripts\Outline.cs" />
     <Compile Include="Assets\Visual Design Cafe\Nature Renderer Demo\Scripts\RenderPipelineLighting.cs" />
     <Compile Include="Assets\Scripts\PowerSystem\Fuses\FuseBoxLevel.cs" />
@@ -150,6 +152,7 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile-2-Pass.shader" />
     <None Include="Assets\Visual Design Cafe\Nature Renderer Demo\Realistic\Shaders\Lit Simple Built-in.txt" />
     <None Include="Assets\Visual Design Cafe\Nature Renderer Demo\Realistic\Third-Party Notices.txt" />
+    <None Include="Assets\LPEnviroment\Shaders\TreeBase.cginc" />
     <None Include="Assets\Samples\Scriptable Render Pipeline Core\Common\TextMesh Pro\Resources\Fonts &amp; Materials\TMP_Node.hlsl" />
     <None Include="Assets\Visual Design Cafe\Nature Renderer\Resources\Nature Renderer Batcher.compute" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
@@ -157,18 +160,21 @@
     <None Include="Assets\Visual Design Cafe\Nature Renderer Demo\Realistic\Shaders\Lit Simple HD.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
     <None Include="Assets\Visual Design Cafe\Nature Renderer\Plugins\VisualDesignCafe.Rendering.Instancing.Editor.dll" />
+    <None Include="Assets\LPEnviroment\Shaders\TreeSRPLegacy.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
     <None Include="Assets\Libraries\QuickOutline\Resources\Shaders\OutlineMask.shader" />
     <None Include="Assets\Visual Design Cafe\Nature Renderer\Resources\Nature Renderer VR.compute" />
     <None Include="Assets\Visual Design Cafe\Nature Renderer\Plugins\VisualDesignCafe.Memory.dll" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\Visual Design Cafe\Nature Renderer Demo\Realistic\Shaders\Lit Alpha Built-in.txt" />
+    <None Include="Assets\LPEnviroment\Shaders\TreeSRP.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\SDFFunctions.hlsl" />
     <None Include="Assets\Visual Design Cafe\Nature Renderer\Resources\Nature Renderer Instancing.compute" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF.shader" />
+    <None Include="Assets\LPEnviroment\Shaders\URPStdOverride.hlsl" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\Visual Design Cafe\Nature Renderer Demo\Realistic\Shaders\Lit Double-Sided Built-in.txt" />
@@ -176,21 +182,26 @@
     <None Include="Assets\Visual Design Cafe\Nature Renderer Demo\Realistic\Shaders\Lit Alpha Universal.txt" />
     <None Include="Assets\Libraries\QuickOutline\Readme.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
+    <None Include="Assets\LPEnviroment\Third-Party Notices.txt" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\Visual Design Cafe\Nature Renderer Demo\Realistic\Shaders\Lit Double-Sided Universal.txt" />
     <None Include="Assets\Visual Design Cafe\Nature Renderer Demo\Realistic\Shaders\Lit Double-Sided HD.txt" />
     <None Include="Assets\Visual Design Cafe\Nature Renderer\Plugins\VisualDesignCafe.Rendering.Instancing.dll" />
+    <None Include="Assets\LPEnviroment\Shaders\SRPStdOverride.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\Visual Design Cafe\Nature Renderer Demo\Realistic\Shaders\Lit Simple Universal.txt" />
     <None Include="Assets\Scripts\Outline\OutlinePass.shader" />
+    <None Include="Assets\LPEnviroment\Shaders\license.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\Visual Design Cafe\Nature Renderer Demo\Realistic\Shaders\Lit Alpha HD.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
+    <None Include="Assets\LPEnviroment\Textures\license.txt" />
     <None Include="Assets\Libraries\QuickOutline\Resources\Shaders\OutlineFill.shader" />
     <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
     <None Include="Assets\Samples\Scriptable Render Pipeline Core\Common\TextMesh Pro\Resources\Fonts &amp; Materials\Inter-LICENSE.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
+    <None Include="Assets\LPEnviroment\README.txt" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
