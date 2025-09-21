@@ -55,7 +55,7 @@
     <UnityVersion>6000.2.0b8</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="D:\Visual Studio\Preview\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
+    <Analyzer Include="D:\Visual Studio\Insiders\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
     <Analyzer Include="D:\Unity 6000.2.0b8\Editor\Data\Tools\Unity.SourceGenerators\Unity.SourceGenerators.dll" />
     <Analyzer Include="D:\Unity 6000.2.0b8\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
     <Analyzer Include="D:\Unity 6000.2.0b8\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
@@ -94,6 +94,7 @@
     <Compile Include="Assets\Scripts\Saves\SaveData.cs" />
     <Compile Include="Assets\Samples\High Definition Render Pipeline\17.2.0\Fullscreen Samples\Scripts\FullscreenSamplesEffectSelection.cs" />
     <Compile Include="Assets\Visual Design Cafe\Nature Renderer\Runtime\NatureRenderer.SRP.cs" />
+    <Compile Include="Assets\Scripts\UI\Menus\SettingsTabs\AudioSettings.cs" />
     <Compile Include="Assets\Scripts\Cameras\SecurityCamera.cs" />
     <Compile Include="Assets\InputSystem_Actions.cs" />
     <Compile Include="Assets\Scripts\Animatronics\TTGSahur.cs" />
@@ -116,6 +117,7 @@
     <Compile Include="Assets\Scripts\Utils\Util.cs" />
     <Compile Include="Assets\Scripts\UI\Menus\Settings.cs" />
     <Compile Include="Assets\Scripts\Player\Sanity.cs" />
+    <Compile Include="Assets\Scripts\UI\Menus\SettingsTabs\GameplaySettings.cs" />
     <Compile Include="Assets\Samples\High Definition Render Pipeline\17.2.0\Fullscreen Samples\Scripts\LinkDirectionalToCustomNightSky.cs" />
     <Compile Include="Assets\Scripts\Utils\Extensions.cs" />
     <Compile Include="Assets\Scripts\PowerSystem\IPowerNode.cs" />
@@ -139,6 +141,7 @@
     <Compile Include="Assets\Scripts\Nights\NightManager.cs" />
     <Compile Include="Assets\Scripts\UI\Menus\PauseMenu.cs" />
     <Compile Include="Assets\Scripts\Cameras\Monitor.cs" />
+    <Compile Include="Assets\Scripts\UI\Menus\SettingsTabs\GraphicsSettings.cs" />
     <Compile Include="Assets\Scripts\Outline\OutlineComponent.cs" />
     <Compile Include="Assets\Scripts\UI\PowerUI.cs" />
     <Compile Include="Assets\Samples\High Definition Render Pipeline\17.2.0\Fullscreen Samples\Scripts\Colorblindness.cs" />

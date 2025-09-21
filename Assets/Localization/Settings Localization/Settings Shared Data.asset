@@ -31,6 +31,54 @@ MonoBehaviour:
     m_Key: Language
     m_Metadata:
       m_Items: []
+  - m_Id: 2860465760092160
+    m_Key: Ambient
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2877226152738816
+    m_Key: Hints
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2886318908882944
+    m_Key: MotionBlur
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2888277032288256
+    m_Key: Brightness
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2890839756226560
+    m_Key: Screen Resolution
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2891438979661824
+    m_Key: Fullscreen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3209651001081856
+    m_Key: 'FPSCap:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3216624731930624
+    m_Key: FPSNoLimit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3309796908711936
+    m_Key: ControlsTab
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3318442233282560
+    m_Key: GraphicsTab
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3331398480281600
+    m_Key: AudioTab
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3332778070753280
+    m_Key: Gameplay
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

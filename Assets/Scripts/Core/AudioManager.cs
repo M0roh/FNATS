@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using VoidspireStudio.FNATS.Saves;
 
 namespace VoidspireStudio.FNATS.Core
 {
@@ -8,7 +9,15 @@ namespace VoidspireStudio.FNATS.Core
 
         private void Awake() => Instance = this;
 
-        public void UpdateMusicVolume(float volume) { }
-        public void UpdateSFXVolume(float volume) { }
+        public void UpdateSettings(Saves.AudioSettings audioSettings)
+        {
+            SetMusicVolume(audioSettings.volumeMusic);
+            SetAmbientVolume(audioSettings.ambientVolume);
+            SetSFXVolume(audioSettings.volumeSFX);
+        }
+
+        public void SetMusicVolume(float volume) { }
+        public void SetAmbientVolume(float volume) { }
+        public void SetSFXVolume(float volume) { }
     }
 }

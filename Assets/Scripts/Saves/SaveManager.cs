@@ -11,13 +11,14 @@ namespace VoidspireStudio.FNATS.Saves
         public static bool HasSavedGame => (LastSavedData?.lastNight ?? 0) > 0;
         public static SaveData LastSavedData { get; private set; } = new();
 
-        private static string SaveFilePath => Path.Combine(Application.persistentDataPath, "save.sav");
+        private static string SaveFilePath => Path.Combine(Application.persistentDataPath, "GameSaves.sav");
 
         public static void LoadGame()
         {
             if (!File.Exists(SaveFilePath))
             {
                 LastSavedData = new SaveData();
+                LastSavedData.graphics.resolutionIndex = Screen.resolutions.Length - 1;
                 return;
             }
 
@@ -29,9 +30,14 @@ namespace VoidspireStudio.FNATS.Saves
 
         public static void UpdateSettings()
         {
-            AudioManager.Instance.UpdateMusicVolume(LastSavedData.volumeMusic);
-            AudioManager.Instance.UpdateSFXVolume(LastSavedData.volumeSFX);
-            LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[LastSavedData.languageIndex];
+            int resolutionIndex = (LastSavedData.graphics.resolutionIndex < 0 || LastSavedData.graphics.resolutionIndex >= Screen.resolutions.Length) ? (Screen.resolutions.Length - 1) : LastSavedData.graphics.resolutionIndex;
+            Resolution resolution = Screen.resolutions[resolutionIndex];
+            Screen.SetResolution(resolution.width, resolution.height, LastSavedData.graphics.isFullscreen);
+            QualitySettings.vSyncCount = LastSavedData.graphics.vSync ? 1 : 0;
+            Application.targetFrameRate = LastSavedData.graphics.vSync ? -1 : LastSavedData.graphics.fpsCap;
+
+            AudioManager.Instance.UpdateSettings(LastSavedData.audio);
+            LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[LastSavedData.gameplay.languageIndex];
         }
 
         public static void SaveGame()

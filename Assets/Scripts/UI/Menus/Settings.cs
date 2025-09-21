@@ -1,10 +1,10 @@
+using JetBrains.Annotations;
+using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Localization;
-using UnityEngine.Localization.Settings;
+using UnityEngine.Events;
 using UnityEngine.UI;
-using VoidspireStudio.FNATS.Core;
 using VoidspireStudio.FNATS.Saves;
 
 namespace VoidspireStudio.FNATS.UI.Menus
@@ -12,79 +12,75 @@ namespace VoidspireStudio.FNATS.UI.Menus
     [RequireComponent(typeof(Animator))]
     public class Settings : MonoBehaviour
     {
-        [Header("Music Volume")]
-        [SerializeField] private Slider _musicVolumeSlider;
-        [SerializeField] private TMP_Text _musicVolumeDisplay;
+        [System.Serializable]
+        public class SettingsTab
+        {
+            [NotNull] public GameObject tabPanel;
+            [NotNull] public Button tabButton;
+            public string tabName;
+            public UnityAction clickAction;
+        }
 
-        [Header("SFX Volume")]
-        [SerializeField] private Slider _sfxVolumeSlider;
-        [SerializeField] private TMP_Text _sfxVolumeDisplay;
+        [Header("Tabs")]
+        [SerializeField] private List<SettingsTab> _tabs = new();
+        private int _currentTab = 0;
 
-        [Header("Mouse Sensitivity")]
-        [SerializeField] private Slider _mouseSensitivitySlider;
-        [SerializeField] private TMP_Text _mouseSensitivityDisplay;
+        [Header("Default Settings")]
+        [SerializeField] private float _clickedButtonScale = 1.1f;
+        private Vector2 _normalButtonSize = Vector2.zero;
+        private Vector2 _clickedButtonSize = Vector2.zero;
 
-        [Header("Language")]
-        [SerializeField] private TMP_Dropdown _languageDropdown;
+        [Header("Current Tab Settings")]
+        [SerializeField] private int _defaultButtonFontSize = 40;
+        [SerializeField] private int _clickedButtonFontSize = 50;
+
+        private void Awake()
+        {
+            _normalButtonSize = (_tabs[0].tabButton.transform as RectTransform).sizeDelta;
+            _clickedButtonSize = _normalButtonSize * _clickedButtonScale;
+        }
 
         public void Start()
         {
-            _languageDropdown.ClearOptions();
-            _languageDropdown.AddOptions(LocalizationSettings.AvailableLocales.Locales.Select(locale => locale.LocaleName).ToList());
-
-            _musicVolumeDisplay.text = $"{SaveManager.LastSavedData.volumeMusic * 100f}%";
-            _musicVolumeSlider.value = SaveManager.LastSavedData.volumeMusic;
-
-            _sfxVolumeDisplay.text = $"{SaveManager.LastSavedData.volumeSFX * 100f}%";
-            _sfxVolumeSlider.value = SaveManager.LastSavedData.volumeSFX;
-
-            _mouseSensitivityDisplay.text = $"{SaveManager.LastSavedData.mouseSensitivity:F2}";
-            _mouseSensitivitySlider.value = SaveManager.LastSavedData.mouseSensitivity;
-
-            _languageDropdown.value = SaveManager.LastSavedData.languageIndex;
-
-            _languageDropdown.onValueChanged.AddListener((volume) => _musicVolumeDisplay.text = volume.ToString());
+            ChangeTab(_currentTab);
         }
 
-        public void OnMusicVolumeChange(float volume)
+        private void OnEnable()
         {
-            volume = Mathf.Round(volume * 100) / 100;
-            _musicVolumeDisplay.text = $"{volume * 100}%";
-
-            SaveManager.LastSavedData.volumeMusic = volume;
-            AudioManager.Instance.UpdateMusicVolume(volume);
+            for (int i = 0; i < _tabs.Count; i++)
+            {
+                int index = i;
+                _tabs[i].tabName = _tabs[i].tabButton.GetComponentInChildren<TMP_Text>().text;
+                _tabs[i].clickAction = () => ChangeTab(index);
+                _tabs[i].tabButton.onClick.AddListener(_tabs[i].clickAction);
+            }
         }
 
-        public void OnSFXVolumeChange(float volume)
+        private void OnDisable()
         {
-            volume = Mathf.Round(volume * 100) / 100;
-            _sfxVolumeDisplay.text = $"{volume * 100}%";
-
-            SaveManager.LastSavedData.volumeSFX = volume;
-            AudioManager.Instance.UpdateSFXVolume(volume);
+            for (int i = 0; i < _tabs.Count; i++)
+                _tabs[i].tabButton.onClick.RemoveListener(_tabs[i].clickAction);
         }
 
-        public void OnMouseSensitivityChange(float sensitivity)
+        public void ChangeTab(int tabIndex)
         {
-            _mouseSensitivityDisplay.text = $"{sensitivity}";
-            SaveManager.LastSavedData.mouseSensitivity = sensitivity;
-        }
+            var newTab = _tabs[tabIndex];
+            newTab.tabPanel.SetActive(true);
+            (newTab.tabButton.transform as RectTransform).sizeDelta = _clickedButtonSize;
+            newTab.tabButton.GetComponentInChildren<TMP_Text>().text = $"<b>{newTab.tabName}</b>";
+            newTab.tabButton.GetComponentInChildren<TMP_Text>().fontSize = _clickedButtonFontSize;
+            newTab.tabButton.interactable = false;
 
-        public void OnLanguageChanged(int localeIndex)
-        {
-            _languageDropdown.interactable = false;
+            foreach (var tab in _tabs.Where(tab => tab != newTab))
+            {
+                tab.tabPanel.SetActive(false);
+                (tab.tabButton.transform as RectTransform).sizeDelta = _normalButtonSize;
+                tab.tabButton.GetComponentInChildren<TMP_Text>().text = tab.tabName;
+                tab.tabButton.GetComponentInChildren<TMP_Text>().fontSize = _defaultButtonFontSize;
+                tab.tabButton.interactable = true;
+            }
 
-            var selectedLocale = LocalizationSettings.AvailableLocales.Locales[localeIndex];
-            LocalizationSettings.SelectedLocaleChanged += OnLocaleChanged;
-
-            LocalizationSettings.SelectedLocale = selectedLocale;
-            SaveManager.LastSavedData.languageIndex = localeIndex;
-        }
-
-        private void OnLocaleChanged(Locale _)
-        {
-            _languageDropdown.interactable = true;
-            LocalizationSettings.SelectedLocaleChanged -= OnLocaleChanged;
+            _currentTab = tabIndex;
         }
 
         public void BackButton()
