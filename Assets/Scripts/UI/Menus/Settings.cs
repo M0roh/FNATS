@@ -17,7 +17,6 @@ namespace VoidspireStudio.FNATS.UI.Menus
         {
             [NotNull] public GameObject tabPanel;
             [NotNull] public Button tabButton;
-            public string tabName;
             public UnityAction clickAction;
         }
 
@@ -50,7 +49,6 @@ namespace VoidspireStudio.FNATS.UI.Menus
             for (int i = 0; i < _tabs.Count; i++)
             {
                 int index = i;
-                _tabs[i].tabName = _tabs[i].tabButton.GetComponentInChildren<TMP_Text>().text;
                 _tabs[i].clickAction = () => ChangeTab(index);
                 _tabs[i].tabButton.onClick.AddListener(_tabs[i].clickAction);
             }
@@ -66,8 +64,6 @@ namespace VoidspireStudio.FNATS.UI.Menus
         {
             var newTab = _tabs[tabIndex];
             newTab.tabPanel.SetActive(true);
-            (newTab.tabButton.transform as RectTransform).sizeDelta = _clickedButtonSize;
-            newTab.tabButton.GetComponentInChildren<TMP_Text>().text = $"<b>{newTab.tabName}</b>";
             newTab.tabButton.GetComponentInChildren<TMP_Text>().fontSize = _clickedButtonFontSize;
             newTab.tabButton.interactable = false;
 
@@ -75,7 +71,6 @@ namespace VoidspireStudio.FNATS.UI.Menus
             {
                 tab.tabPanel.SetActive(false);
                 (tab.tabButton.transform as RectTransform).sizeDelta = _normalButtonSize;
-                tab.tabButton.GetComponentInChildren<TMP_Text>().text = tab.tabName;
                 tab.tabButton.GetComponentInChildren<TMP_Text>().fontSize = _defaultButtonFontSize;
                 tab.tabButton.interactable = true;
             }

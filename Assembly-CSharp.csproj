@@ -143,6 +143,7 @@
     <Compile Include="Assets\Scripts\Cameras\Monitor.cs" />
     <Compile Include="Assets\Scripts\UI\Menus\SettingsTabs\GraphicsSettings.cs" />
     <Compile Include="Assets\Scripts\Outline\OutlineComponent.cs" />
+    <Compile Include="Assets\Scripts\Core\GameManager.cs" />
     <Compile Include="Assets\Scripts\UI\PowerUI.cs" />
     <Compile Include="Assets\Samples\High Definition Render Pipeline\17.2.0\Fullscreen Samples\Scripts\Colorblindness.cs" />
     <Compile Include="Assets\Scripts\Outline\OutlinePass.cs" />

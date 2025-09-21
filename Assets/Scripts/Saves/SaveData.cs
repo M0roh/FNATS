@@ -3,9 +3,9 @@
     [System.Serializable]
     public class SaveData
     {
-        public readonly GraphicsSettings graphics = new();
-        public readonly AudioSettings audio = new();
-        public readonly GameplaySettings gameplay = new();
+        public GraphicsSettings graphics = new();
+        public AudioSettings audio = new();
+        public GameplaySettings gameplay = new();
         public int lastNight = 0;
     }
 

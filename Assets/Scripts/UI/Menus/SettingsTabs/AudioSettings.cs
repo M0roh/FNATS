@@ -28,8 +28,8 @@ namespace VoidspireStudio.FNATS.UI.Menus.SettingsTabs
             _musicVolumeDisplay.text = $"{audioSettings.volumeMusic * 100f}%";
             _musicVolumeSlider.value = audioSettings.volumeMusic;
 
-            _sfxVolumeDisplay.text = $"{audioSettings.ambientVolume * 100f}%";
-            _sfxVolumeSlider.value = audioSettings.ambientVolume;
+            _ambientVolumeDisplay.text = $"{audioSettings.ambientVolume * 100f}%";
+            _ambientVolumeSlider.value = audioSettings.ambientVolume;
 
             _sfxVolumeDisplay.text = $"{audioSettings.volumeSFX * 100f}%";
             _sfxVolumeSlider.value = audioSettings.volumeSFX;

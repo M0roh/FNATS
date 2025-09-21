@@ -14209,7 +14209,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 77e229ce0adf8724984602b4cac69dfa, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14295,6 +14295,8 @@ MonoBehaviour:
   _walkSpeed: 2
   _runSpeed: 4
   _forwardTimeMax: 3
+  _attackWait: 8
+  _waitBlocked: 3
   _availableRoutes: []
   _timeBetweenSteps: 0
   _attackDistance: 1.5
@@ -19177,6 +19179,7 @@ GameObject:
   - component: {fileID: 392278943}
   - component: {fileID: 392278944}
   - component: {fileID: 392278945}
+  - component: {fileID: 392278946}
   m_Layer: 0
   m_Name: Scripts
   m_TagString: Untagged
@@ -19331,6 +19334,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92766da9b19438a4b80e7e3c343f0890, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VoidspireStudio.FNATS.Core.GameInput
+--- !u!114 &392278946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 392278935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2737ec604ae52441b884e31bea6151a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VoidspireStudio.FNATS.Core.GameManager
+  _globalVolume: {fileID: 510920033}
 --- !u!1 &392981702
 GameObject:
   m_ObjectHideFlags: 0
@@ -42271,6 +42287,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::VoidspireStudio.FNATS.Core.OfficeManager
   _officeLight: {fileID: 555905804}
   _officeDoor: {fileID: 1833500436}
+  _officeCenter: {fileID: 0}
+  _playerUnderTableSearch: {fileID: 0}
 --- !u!1 &857746239
 GameObject:
   m_ObjectHideFlags: 0
@@ -53012,7 +53030,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 750, y: -100}
-  m_SizeDelta: {x: 1207.84, y: 200}
+  m_SizeDelta: {x: 0, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1096708686
 MonoBehaviour:
@@ -58315,6 +58333,8 @@ MonoBehaviour:
   _walkSpeed: 2
   _runSpeed: 4
   _forwardTimeMax: 3
+  _attackWait: 8
+  _waitBlocked: 3
   _availableRoutes: []
   _timeBetweenSteps: 0
   _attackDistance: 1.5
@@ -62630,6 +62650,8 @@ MonoBehaviour:
   _walkSpeed: 3
   _runSpeed: 5
   _forwardTimeMax: 3
+  _attackWait: 8
+  _waitBlocked: 3
   _availableRoutes:
   - {fileID: 11400000, guid: 31936c8af63fc384b9cec15ce3761c93, type: 2}
   _timeBetweenSteps: 5

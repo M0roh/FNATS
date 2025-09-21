@@ -1,3 +1,4 @@
+using Newtonsoft.Json;
 using System.IO;
 using System.Text;
 using UnityEngine;
@@ -19,11 +20,13 @@ namespace VoidspireStudio.FNATS.Saves
             {
                 LastSavedData = new SaveData();
                 LastSavedData.graphics.resolutionIndex = Screen.resolutions.Length - 1;
+                Debug.Log("Save not found");
                 return;
             }
 
             byte[] encryptedData = File.ReadAllBytes(SaveFilePath);
-            LastSavedData = LoadData(DecodeBytes(ProcessData(encryptedData, 0xBA)));
+            string loadedData = DecodeBytes(ProcessData(encryptedData, 0xBA));
+            LastSavedData = LoadData(loadedData);
 
             UpdateSettings();
         }
@@ -42,7 +45,8 @@ namespace VoidspireStudio.FNATS.Saves
 
         public static void SaveGame()
         {
-            byte[] encryptedData = ProcessData(EncodeBytes(SaveData(LastSavedData)), 0xBA);
+            string dataToSave = SaveData(LastSavedData);
+            byte[] encryptedData = ProcessData(EncodeBytes(dataToSave), 0xBA);
             File.WriteAllBytes(SaveFilePath, encryptedData);
         }
 
@@ -60,7 +64,7 @@ namespace VoidspireStudio.FNATS.Saves
         private static string DecodeBytes(byte[] data) => Encoding.UTF8.GetString(data, 0, data.Length);
         private static byte[] EncodeBytes(string data) => Encoding.UTF8.GetBytes(data);
 
-        private static SaveData LoadData(string data) => JsonUtility.FromJson<SaveData>(data);
-        private static string SaveData(SaveData data) => JsonUtility.ToJson(data);
+        private static SaveData LoadData(string data) => JsonConvert.DeserializeObject<SaveData>(data);
+        private static string SaveData(SaveData data) => JsonConvert.SerializeObject(data);
     }
 }

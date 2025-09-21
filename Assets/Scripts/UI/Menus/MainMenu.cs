@@ -30,8 +30,8 @@ namespace VoidspireStudio.FNATS.UI.Menus
         private void Start()
         {
             if (_globalVolume.profile.TryGet<Exposure>(out var exp))
-                exp.fixedExposure.value = (SaveManager.LastSavedData.graphics.brightness * 10f) - 5f;
-            
+                exp.fixedExposure.value = (SaveManager.LastSavedData.graphics.brightness * -10f) + 5f;
+
             _continueButton.interactable = SaveManager.HasSavedGame;
         }
 
