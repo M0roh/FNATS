@@ -12,7 +12,7 @@ namespace VoidspireStudio.FNATS.Core
         private void Awake()
         {
             if (_globalVolume.profile.TryGet<Exposure>(out var exp))
-                exp.fixedExposure.value = (SaveManager.LastSavedData.graphics.brightness * -10f) + 5f;
+                exp.fixedExposure.value = (SaveManager.LastSavedData.graphics.brightness * -8f) + 4f;
             if (_globalVolume.profile.TryGet<MotionBlur>(out var blur))
                 blur.active = SaveManager.LastSavedData.graphics.motionBlur;
         }

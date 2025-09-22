@@ -93,7 +93,7 @@ namespace VoidspireStudio.FNATS.UI.Menus.SettingsTabs
 
         public void OnBrightnessChange(float brightness)
         {
-            _exposure.fixedExposure.value = (SaveManager.LastSavedData.graphics.brightness * -10f) + 5f;
+            _exposure.fixedExposure.value = (SaveManager.LastSavedData.graphics.brightness * -8f) + 4f;
             _brightnessText.text = $"{Mathf.RoundToInt(brightness * 100)}%";
             SaveManager.LastSavedData.graphics.brightness = brightness;
         }
