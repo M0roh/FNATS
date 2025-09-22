@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.Localization;
 using UnityEngine.Rendering;
 using VoidspireStudio.FNATS.Nights;
 
@@ -13,6 +9,7 @@ namespace VoidspireStudio.FNATS.PowerSystem
     {
         public static Flashlight Instance { get; private set; }
 
+        [SerializeField] private LocalizedString _interactTip;
         [SerializeField] private Light _flashlightLight;
         [SerializeField] private float _lowEnergyLightIntensivity;
         [SerializeField] private float _normalLightIntensivity;
@@ -22,6 +19,8 @@ namespace VoidspireStudio.FNATS.PowerSystem
 
         public bool IsActive { get; private set; }
         public float Power => _currentPower;
+
+        public LocalizedString InteractTip => _interactTip;
 
         public float GetCurrentConsumption => 2 * NightManager.Instance.CurrentNight;
 

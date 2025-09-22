@@ -1,19 +1,22 @@
 ﻿using System;
 using UnityEngine;
-using VoidspireStudio.FNATS.Player;
+using UnityEngine.Localization;
 using VoidspireStudio.FNATS.Interactables;
 
 namespace VoidspireStudio.FNATS.PowerSystem.Fuses
 {
     public class Fuse : MonoBehaviour, IInteractable
     {
+        [SerializeField] private LocalizedString _interactTip;
         [SerializeField] private Material _fuseMaterial;
         [SerializeField] private Color _normalColor;
         [SerializeField] private Color _breakColor;
 
-        public bool CanInteract => !IsActive;
+        public bool CanInteract => !IsActive && Player.Player.Instance.IsPickedFuse;
 
         public bool IsActive { get; private set; }
+
+        public LocalizedString InteractTip => _interactTip;
 
         public event Action OnBroken;
         public event Action OnRepair;

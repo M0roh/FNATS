@@ -2,6 +2,7 @@ using Sirenix.OdinInspector;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Localization;
 
 
 namespace VoidspireStudio.FNATS.Interactables
@@ -14,6 +15,7 @@ namespace VoidspireStudio.FNATS.Interactables
         [SerializeField] private Quaternion _closeAngle = new();
         [SerializeField] private Quaternion _openAngle = new();
         [SerializeField] private float _rotationSpeed = 5f;
+        [SerializeField] private LocalizedString _interactTip;
 
         private NavMeshObstacle _obstacle;
         private Coroutine _rotateCoroutine;
@@ -25,6 +27,8 @@ namespace VoidspireStudio.FNATS.Interactables
         public bool IsBroken => _isBroken;
 
         public bool CanInteract => !_isBroken;
+
+        public LocalizedString InteractTip => _interactTip;
 
         private void Awake()
         {

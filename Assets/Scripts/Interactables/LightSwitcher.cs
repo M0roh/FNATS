@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Localization;
 using VoidspireStudio.FNATS.Nights;
 using VoidspireStudio.FNATS.PowerSystem;
 using VoidspireStudio.FNATS.Utils;
@@ -7,12 +8,15 @@ namespace VoidspireStudio.FNATS.Interactables
 {
     public class LightSwitcher : MonoBehaviour, IInteractable, IElectricDevice
     {
+        [SerializeField] private LocalizedString _interactTip;
         [SerializeField] private GameObject _light;
         [SerializeField] private GameObject _switchObject;
         [SerializeField] private Quaternion _onRotation;
         [SerializeField] private Quaternion _offRotation;
 
         public bool IsActive { get; private set; } = false;
+
+        public LocalizedString InteractTip => _interactTip;
 
         public bool CanInteract => true;
 

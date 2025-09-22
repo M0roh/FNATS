@@ -2328,9 +2328,9 @@ RectTransform:
   - {fileID: 189642818}
   m_Father: {fileID: 214456591}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 200, y: -195}
   m_SizeDelta: {x: 350, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &11359855
@@ -7234,7 +7234,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &123166054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7362,6 +7362,18 @@ MonoBehaviour:
   _closeAngle: {x: -0.5609855, y: -0.43045932, z: -0.43045932, w: 0.5609855}
   _openAngle: {x: 0.49999997, y: -0.49999997, z: -0.49999997, w: -0.49999997}
   _rotationSpeed: 150
+  _interactTip:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!208 &124322586
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -11893,6 +11905,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94561ae8a86b0664bb2c128cc2f53bb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VoidspireStudio.FNATS.PowerSystem.Fuses.FuseToolBox
+  _interactTip:
+    m_TableReference:
+      m_TableCollectionName: GUID:951c740d53f14f44ea897dabceaaa5ed
+    m_TableEntryReference:
+      m_KeyId: 1629175668736
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   _fusesInBox:
   - {fileID: 710697958}
   - {fileID: 250067200}
@@ -11904,6 +11925,9 @@ MonoBehaviour:
   - {fileID: 891330886}
   - {fileID: 1708725186}
   - {fileID: 570717124}
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &221904767 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -8462709953001013040, guid: e953737fc06501c42ba67045ca7cf2ef, type: 3}
@@ -15383,6 +15407,7 @@ RectTransform:
   - {fileID: 890719963}
   - {fileID: 1186643277}
   - {fileID: 2093282196}
+  - {fileID: 838902190}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -19346,6 +19371,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2737ec604ae52441b884e31bea6151a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VoidspireStudio.FNATS.Core.GameManager
+  _tipLocalization: {fileID: 838902193}
+  _tipText: {fileID: 838902191}
   _globalVolume: {fileID: 510920033}
 --- !u!1 &392981702
 GameObject:
@@ -21661,9 +21688,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4142f1235769da549b94fe9a5fc5fd41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VoidspireStudio.FNATS.PowerSystem.Fuses.Fuse
+  _interactTip:
+    m_TableReference:
+      m_TableCollectionName: GUID:951c740d53f14f44ea897dabceaaa5ed
+    m_TableEntryReference:
+      m_KeyId: 1148684591104
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   _fuseMaterial: {fileID: -3915170090604371331, guid: 27ea348c4b636194f91911d43bdcb53a, type: 3}
   _normalColor: {r: 1, g: 1, b: 1, a: 1}
   _breakColor: {r: 0.44705883, g: 0.38431373, b: 0.3337487, a: 1}
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &440617252
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21694,9 +21733,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4142f1235769da549b94fe9a5fc5fd41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VoidspireStudio.FNATS.PowerSystem.Fuses.Fuse
+  _interactTip:
+    m_TableReference:
+      m_TableCollectionName: GUID:951c740d53f14f44ea897dabceaaa5ed
+    m_TableEntryReference:
+      m_KeyId: 1148684591104
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   _fuseMaterial: {fileID: -3915170090604371331, guid: 27ea348c4b636194f91911d43bdcb53a, type: 3}
   _normalColor: {r: 1, g: 1, b: 1, a: 1}
   _breakColor: {r: 0.4433962, g: 0.38139588, b: 0.33254716, a: 1}
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &440617254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21709,10 +21760,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60002e9562cabf64caa0ccf534b16dc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VoidspireStudio.FNATS.PowerSystem.Fuses.FuseBoxLevel
+  _interactTip:
+    m_TableReference:
+      m_TableCollectionName: GUID:951c740d53f14f44ea897dabceaaa5ed
+    m_TableEntryReference:
+      m_KeyId: 473477144576
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   _fuseBox: {fileID: 440617256}
   _levelOnRotation: {x: 0.70710677, y: 0, z: 0, w: -0.70710677}
   _levelOffRotation: {x: -0.6123724, y: -0.35355335, z: 0.35355335, w: 0.6123724}
   _levelRotationSpeed: 25
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &440617255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21743,6 +21806,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca235a8258e6f0440820fc9fe29fe110, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VoidspireStudio.FNATS.PowerSystem.Fuses.FuseBox
+  _interactTip:
+    m_TableReference:
+      m_TableCollectionName: GUID:951c740d53f14f44ea897dabceaaa5ed
+    m_TableEntryReference:
+      m_KeyId: 19838001152
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   _fuses:
   - {fileID: 440617251}
   - {fileID: 440617253}
@@ -21762,6 +21834,9 @@ MonoBehaviour:
   - {fileID: 1897092440}
   _fadeTime: 1
   _maxIntensity: 50
+  references:
+    version: 2
+    RefIds: []
 --- !u!1001 &441670585
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26946,10 +27021,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d04614d3789f72641bd4787a20896846, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VoidspireStudio.FNATS.Interactables.LightSwitcher
+  _interactTip:
+    m_TableReference:
+      m_TableCollectionName: GUID:951c740d53f14f44ea897dabceaaa5ed
+    m_TableEntryReference:
+      m_KeyId: 473477144576
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   _light: {fileID: 1760361221}
   _switchObject: {fileID: 60038059}
   _onRotation: {x: 0.70710677, y: 0, z: 0, w: -0.70710677}
   _offRotation: {x: 0.70538425, y: 0.049325347, z: -0.049325347, w: -0.70538425}
+  references:
+    version: 2
+    RefIds: []
 --- !u!4 &555905805 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c334beda4f3445d4abb7a41c99a3de30, type: 3}
@@ -41021,6 +41108,183 @@ MonoBehaviour:
   m_Center: {x: 0, y: 0, z: 0}
   m_Area: 3
   m_AffectedAgents: ffffffff
+--- !u!1 &838902189
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 838902190}
+  - component: {fileID: 838902192}
+  - component: {fileID: 838902191}
+  - component: {fileID: 838902193}
+  m_Layer: 5
+  m_Name: Tip
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &838902190
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838902189}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 305180389}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -5}
+  m_SizeDelta: {x: -300, y: 50}
+  m_Pivot: {x: 0.5, y: 1}
+--- !u!114 &838902191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838902189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: Press 'E' to enable
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 25
+  m_fontSizeBase: 25
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &838902192
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838902189}
+  m_CullTransparentMesh: 1
+--- !u!114 &838902193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838902189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Components.LocalizeStringEvent
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 838902191}
+        m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
+        m_MethodName: set_text
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &839986930
 GameObject:
   m_ObjectHideFlags: 0
@@ -53425,9 +53689,9 @@ RectTransform:
   - {fileID: 1479868482}
   m_Father: {fileID: 214456591}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 200, y: -305}
   m_SizeDelta: {x: 350, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1111170396
@@ -54259,9 +54523,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9529d08ccb04fcd4bb648323f374a41f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VoidspireStudio.FNATS.Interactables.Generator
+  _interactTip:
+    m_TableReference:
+      m_TableCollectionName: GUID:951c740d53f14f44ea897dabceaaa5ed
+    m_TableEntryReference:
+      m_KeyId: 473477144576
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   _powerIndicator: {fileID: 1874435394}
   _offColor: {r: 0.9716981, g: 0.16958882, b: 0.20036395, a: 1}
   _onColor: {r: 0.19900322, g: 0.9811321, b: 0.2799464, a: 1}
+  references:
+    version: 2
+    RefIds: []
 --- !u!65 &1120534522
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -57560,12 +57836,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::VoidspireStudio.FNATS.Interactables.FlashlightCharger
   _flashlightInChargeObject: {fileID: 1206047839}
   _chargeInTick: 5
+  _interactTip:
+    m_TableReference:
+      m_TableCollectionName: GUID:951c740d53f14f44ea897dabceaaa5ed
+    m_TableEntryReference:
+      m_KeyId: 2823709253632
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   _chargeIndicator: {fileID: 540095220}
   _indicatorMaterial: {fileID: 2100000, guid: 1d04512357b0aff41a5e1f83fcfa95fb, type: 2}
   _fullEnergyColor: {r: 0.105731584, g: 0.8301887, b: 0.24193105, a: 1}
   _halfEnergy: {r: 0.763702, g: 0.7924528, b: 0.063545756, a: 1}
   _lowEnergy: {r: 0.9339623, g: 0.52391356, b: 0.110137045, a: 1}
   _veryLowEnergy: {r: 0.8584906, g: 0.23282918, b: 0.10933607, a: 1}
+  references:
+    version: 2
+    RefIds: []
 --- !u!65 &1206047842
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -57855,6 +58143,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VoidspireStudio.FNATS.Interactables.PC
   _monitor: {fileID: 1759500286}
+  _interactTip:
+    m_TableReference:
+      m_TableCollectionName: GUID:951c740d53f14f44ea897dabceaaa5ed
+    m_TableEntryReference:
+      m_KeyId: 473477144576
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!65 &1215532029
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -75894,7 +76194,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!154 &1595386807
 TerrainCollider:
   m_ObjectHideFlags: 0
@@ -75938,7 +76238,7 @@ Terrain:
   m_ShadowCastingMode: 2
   m_DrawHeightmap: 1
   m_DrawInstanced: 0
-  m_DrawTreesAndFoliage: 0
+  m_DrawTreesAndFoliage: 1
   m_StaticShadowCaster: 0
   m_IgnoreQualitySettings: 0
   m_ReflectionProbeUsage: 1
@@ -81235,9 +81535,9 @@ RectTransform:
   - {fileID: 640545375}
   m_Father: {fileID: 214456591}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 200, y: -415}
   m_SizeDelta: {x: 350, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1728941251
@@ -82420,6 +82720,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b781f753f9100144ab3f2e4396ac67a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VoidspireStudio.FNATS.Cameras.Monitor
+  _interactTip:
+    m_TableReference:
+      m_TableCollectionName: GUID:951c740d53f14f44ea897dabceaaa5ed
+    m_TableEntryReference:
+      m_KeyId: 1813859262464
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   _loadAnimationFrames:
   - {fileID: 2800000, guid: b294eec1e006be84a861e3860cfb21d8, type: 3}
   - {fileID: 2800000, guid: 9f5679cfde2a88642baaac5e323dcfc4, type: 3}
@@ -82437,6 +82746,9 @@ MonoBehaviour:
   _onIndicator: {r: 0.32391623, g: 0.6886792, b: 0.10070309, a: 1}
   _loadIndicator: {r: 0.9019608, g: 0.84313726, b: 0.15686275, a: 1}
   _offIndicator: {r: 0.8301887, g: 0.13705944, b: 0.1574185, a: 1}
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &1759500287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83639,9 +83951,9 @@ RectTransform:
   - {fileID: 1894414642}
   m_Father: {fileID: 214456591}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 200, y: -85}
   m_SizeDelta: {x: 350, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1780579261
@@ -85857,6 +86169,18 @@ MonoBehaviour:
   _closeAngle: {x: 0, y: 0, z: 0, w: 1}
   _openAngle: {x: 0, y: 0, z: -0.9659258, w: -0.25881904}
   _rotationSpeed: 100
+  _interactTip:
+    m_TableReference:
+      m_TableCollectionName: GUID:951c740d53f14f44ea897dabceaaa5ed
+    m_TableEntryReference:
+      m_KeyId: 19838001152
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!208 &1833500437
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -98393,9 +98717,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3720e0c0efc6d21418f02453eaf128a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VoidspireStudio.FNATS.PowerSystem.Flashlight
+  _interactTip:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   _flashlightLight: {fileID: 1650073514}
   _lowEnergyLightIntensivity: 40
   _normalLightIntensivity: 700
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &2109910357
 GameObject:
   m_ObjectHideFlags: 0

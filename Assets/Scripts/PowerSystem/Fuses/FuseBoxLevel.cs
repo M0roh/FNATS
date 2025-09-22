@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections; 
 using UnityEngine;
+using UnityEngine.Localization;
 using VoidspireStudio.FNATS.Interactables;
 
 namespace VoidspireStudio.FNATS.PowerSystem.Fuses
 {
     public class FuseBoxLevel : MonoBehaviour, IInteractable
     {
+        [SerializeField] private LocalizedString _interactTip;
+
         [Header("Коробка")]
         [SerializeField] private FuseBox _fuseBox;
 
@@ -20,6 +23,8 @@ namespace VoidspireStudio.FNATS.PowerSystem.Fuses
         public bool IsOn { get; private set; }
 
         public bool CanInteract => !_fuseBox.IsRepaired;
+
+        public LocalizedString InteractTip => _interactTip;
 
         private void OnEnable()
         {

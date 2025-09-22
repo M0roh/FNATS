@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Localization;
 using VoidspireStudio.FNATS.PowerSystem;
 using VoidspireStudio.FNATS.Utils;
 
@@ -9,6 +10,7 @@ namespace VoidspireStudio.FNATS.Interactables
     {
         public static Generator Instance { get; private set; }
 
+        [SerializeField] private LocalizedString _interactTip;
         [Header("Light")]
         [SerializeField] private Light _powerIndicator;
         [SerializeField] private Color _offColor;
@@ -30,6 +32,8 @@ namespace VoidspireStudio.FNATS.Interactables
         }
 
         public bool CanInteract => true;
+
+        public LocalizedString InteractTip => _interactTip;
 
         public event Action OnBroken;
         public event Action OnRepair;

@@ -1,16 +1,19 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using VoidspireStudio.FNATS.Player;
+using UnityEngine.Localization;
 using VoidspireStudio.FNATS.Interactables;
 
 namespace VoidspireStudio.FNATS.PowerSystem.Fuses
 {
     public class FuseToolBox : MonoBehaviour, IInteractable
     {
+        [SerializeField] private LocalizedString _interactTip;
         [SerializeField] private List<GameObject> _fusesInBox = new();
 
         public bool CanInteract => true;
+
+        public LocalizedString InteractTip => _interactTip;
 
         public void OnInteract()
         {

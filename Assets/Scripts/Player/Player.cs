@@ -144,6 +144,7 @@ namespace VoidspireStudio.FNATS.Player
             {
                 if (_lastHighlightedObject.interact != _currentInteractTarget)
                 {
+                    GameManager.Instance.HideTip();
                     _currentInteractTarget.OnInteractEnd();
                     _currentInteractTarget = null;
                 }
@@ -170,12 +171,20 @@ namespace VoidspireStudio.FNATS.Player
             if (newObject != _lastHighlightedObject.obj)
             {
                 if (_lastHighlightedObject.obj != null)
+                {
                     if (_lastHighlightedObject.obj.TryGetComponent<Outline>(out var lastOutline))
                         lastOutline.enabled = false;
+                    GameManager.Instance.HideTip();
+                }
 
                 if (newObject != null)
+                {
+                    if (!interactable.CanInteract) return;
+
                     if (newObject.TryGetComponent<Outline>(out var newOutline))
                         newOutline.enabled = true;
+                    GameManager.Instance.ShowTip(interactable.InteractTip);
+                }
 
                 _lastHighlightedObject = (newObject, interactable);
             }

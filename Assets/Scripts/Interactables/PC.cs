@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Localization;
 using VoidspireStudio.FNATS.Cameras;
 using VoidspireStudio.FNATS.Nights;
 using VoidspireStudio.FNATS.PowerSystem;
@@ -11,8 +12,11 @@ namespace VoidspireStudio.FNATS.Interactables
         public static PC Instance { get; private set; }
 
         [SerializeField] private Monitor _monitor;
+        [SerializeField] private LocalizedString _interactTip;
 
         public bool IsActive { get; private set; } = false;
+
+        public LocalizedString InteractTip => _interactTip;
 
         public float GetCurrentConsumption => 0.04f * NightManager.Instance.CurrentNight;
 

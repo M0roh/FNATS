@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Localization;
 using VoidspireStudio.FNATS.Interactables;
 
 namespace VoidspireStudio.FNATS.Triggers
@@ -9,6 +10,7 @@ namespace VoidspireStudio.FNATS.Triggers
     {
         [Header("Взаимодействие")]
         [SerializeField] private UnityEvent _onInteract;
+        [SerializeField] private LocalizedString _interactTip;
 
         [Header("Взаимодействие с зажатием")]
         [SerializeField] private UnityEvent _onShortInteract;
@@ -18,6 +20,8 @@ namespace VoidspireStudio.FNATS.Triggers
         private float _pressTime;
 
         public bool CanInteract => _onInteract != null;
+
+        public LocalizedString InteractTip => _interactTip;
 
         public void OnInteract()
         {

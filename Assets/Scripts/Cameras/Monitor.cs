@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Localization;
 using VoidspireStudio.FNATS.Interactables;
 using VoidspireStudio.FNATS.Nights;
 using VoidspireStudio.FNATS.PowerSystem;
@@ -10,6 +11,7 @@ namespace VoidspireStudio.FNATS.Cameras
     {
         public static Monitor Instance { get; private set; }
 
+        [SerializeField] private LocalizedString _interactTip;
         [Header("Загрузка")]
         [SerializeField] private Texture2D[] _loadAnimationFrames;
         [SerializeField, Min(1)] private int _loopCount = 3;
@@ -21,6 +23,8 @@ namespace VoidspireStudio.FNATS.Cameras
 
         public bool IsActive => PC.Instance.IsActive;
         public bool CanInteract => IsActive;
+
+        public LocalizedString InteractTip => _interactTip;
 
         public float GetCurrentConsumption => 0.01f * NightManager.Instance.CurrentNight;
 

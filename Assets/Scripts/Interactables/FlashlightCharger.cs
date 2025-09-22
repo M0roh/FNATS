@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
-using VoidspireStudio.FNATS.Player;
+using UnityEngine.Localization;
 using VoidspireStudio.FNATS.Nights;
+using VoidspireStudio.FNATS.Player;
 using VoidspireStudio.FNATS.PowerSystem;
 using VoidspireStudio.FNATS.Utils;
 
@@ -11,6 +12,7 @@ namespace VoidspireStudio.FNATS.Interactables
         [Header("Settings")]
         [SerializeField] private GameObject _flashlightInChargeObject;
         [SerializeField] private float _chargeInTick = 5f;
+        [SerializeField] private LocalizedString _interactTip;
 
         [Header("Indicator")]
         [SerializeField] private Light _chargeIndicator;
@@ -23,6 +25,8 @@ namespace VoidspireStudio.FNATS.Interactables
         [SerializeField] private Color _veryLowEnergy;
 
         public bool IsActive { get; private set; }
+
+        public LocalizedString InteractTip => _interactTip;
 
         public bool CanInteract => true;
 
