@@ -82,6 +82,10 @@ MonoBehaviour:
     m_Localized: Gameplay
     m_Metadata:
       m_Items: []
+  - m_Id: 4272409981337600
+    m_Localized: Next camera
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

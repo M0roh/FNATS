@@ -15,6 +15,7 @@ namespace VoidspireStudio.FNATS.UI.Menus
         [SerializeField] private float _timeBetweenMenuSwapping = 0.1f;
 
         private GameObject _previousMenu;
+        private GameObject _openedSubMenu;
 
         private void Awake()
         {
@@ -73,6 +74,9 @@ namespace VoidspireStudio.FNATS.UI.Menus
 
         public IEnumerator OpenSubMenu(GameObject menuFrom, GameObject subMenu)
         {
+            if (_openedSubMenu != null) yield break;
+            _openedSubMenu = new GameObject();
+
             var animator = menuFrom.GetComponent<Animator>();
             animator.ResetTrigger("SHOW");
             animator.SetTrigger("HIDE");
@@ -81,7 +85,8 @@ namespace VoidspireStudio.FNATS.UI.Menus
 
             yield return new WaitForSeconds(_timeBetweenMenuSwapping);
 
-            Instantiate(subMenu, menuFrom.transform.parent);
+            Destroy(_openedSubMenu);
+            _openedSubMenu = Instantiate(subMenu, menuFrom.transform.parent);
         }
     }
 }

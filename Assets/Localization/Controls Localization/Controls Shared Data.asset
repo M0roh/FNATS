@@ -39,6 +39,34 @@ MonoBehaviour:
     m_Key: Sprint
     m_Metadata:
       m_Items: []
+  - m_Id: 68592117071872
+    m_Key: up
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68634999635968
+    m_Key: left
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68652980617216
+    m_Key: right
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68669296459776
+    m_Key: down
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86290586779648
+    m_Key: Pause
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86824785920000
+    m_Key: CloseCameras
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86986459561984
+    m_Key: CameraPrev
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

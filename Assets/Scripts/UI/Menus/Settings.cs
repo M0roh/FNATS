@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using VoidspireStudio.FNATS.Core;
 using VoidspireStudio.FNATS.Saves;
 
 namespace VoidspireStudio.FNATS.UI.Menus
@@ -81,6 +82,7 @@ namespace VoidspireStudio.FNATS.UI.Menus
         public void BackButton()
         {
             SaveManager.SaveGame();
+            GameInput.Instance.SaveBindings();
             UIManager.Instance.BackToMenu(gameObject);
         }
     }

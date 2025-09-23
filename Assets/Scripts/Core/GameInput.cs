@@ -43,7 +43,7 @@ namespace VoidspireStudio.FNATS.Core
                 OnControlsChanged?.Invoke();
             };
 
-            Load();
+            LoadBindings();
 
             _inputActions.Player.Enable();
             _inputActions.UI.Enable();
@@ -59,20 +59,23 @@ namespace VoidspireStudio.FNATS.Core
             return _inputActions.Player.Look.ReadValue<Vector2>();
         }
 
-        public void Save()
+        public void SaveBindings()
         {
             string inputMap = InputActions.SaveBindingOverridesAsJson();
             byte[] bindingsData = SaveManager.EncodeData(inputMap);
             File.WriteAllBytes(SaveFilePath, bindingsData);
         }
 
-        public void Load()
+        public void LoadBindings()
         {
             if (!File.Exists(SaveFilePath)) return;
 
             byte[] bindingsData = File.ReadAllBytes(SaveFilePath);
             string inputMap = SaveManager.DecodeData(bindingsData);
+
+            InputActions.Disable();
             InputActions.LoadBindingOverridesFromJson(inputMap);
+            InputActions.Enable();
         }
     }
 }

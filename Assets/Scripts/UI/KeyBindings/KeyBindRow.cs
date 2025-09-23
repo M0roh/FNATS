@@ -1,6 +1,9 @@
 ﻿using TMPro;
+using UnityEditor.Localization;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Localization.Settings;
+using VoidspireStudio.FNATS.Core;
 
 namespace VoidspireStudio.FNATS.UI.KeyBindings
 {
@@ -19,16 +22,27 @@ namespace VoidspireStudio.FNATS.UI.KeyBindings
 
             var binding = action.bindings[bindingIndex];
 
-            _inputName.text = !string.IsNullOrEmpty(displayNameOverride)
-                ? displayNameOverride
-                : binding.isPartOfComposite ? binding.name : action.name;
+            _inputName.text = (!string.IsNullOrEmpty(displayNameOverride) ? displayNameOverride : binding.isPartOfComposite ? binding.name : action.name) + ":";
 
             _keyName.text = action.GetBindingDisplayString(bindingIndex);
         }
 
-        public void Setup(KeyRebinding.Key key, int bindingIndex)
+        public async void Setup(KeyRebinding.Key key, int bindingIndex)
         {
-            Setup(key.keyCode.action, bindingIndex, key.keyName.GetLocalizedString());
+            var action = GameInput.Instance.InputActions.FindAction(key.keyCode.action.name, true);
+
+            string displayName = key.keyName.GetLocalizedString();
+            var binding = action.bindings[bindingIndex];
+
+            if (binding.isPartOfComposite) {
+                var entryResult = await LocalizationSettings.StringDatabase.GetTableEntryAsync(key.keyName.TableReference, binding.name).Task;
+                if (entryResult.Entry == null)
+                    displayName += $" ({binding.name})";
+                else
+                    displayName += $" ({entryResult.Entry.GetLocalizedString()})";
+            }
+
+            Setup(action, bindingIndex, displayName);
         }
 
         public void OnRebindClick()
@@ -39,6 +53,9 @@ namespace VoidspireStudio.FNATS.UI.KeyBindings
                 .OnComplete(operation =>
                 {
                     _keyName.text = _action.GetBindingDisplayString(_bindingIndex);
+                    GameInput.Instance.InputActions.FindAction(_action.name)
+                        .ApplyBindingOverride(_bindingIndex, _action.bindings[_bindingIndex].overridePath);
+
                     _action.Enable();
                     operation.Dispose();
                 })
