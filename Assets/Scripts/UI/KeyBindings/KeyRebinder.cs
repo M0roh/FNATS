@@ -1,9 +1,8 @@
-﻿using Sirenix.Serialization;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Localization.Components;
+using UnityEngine.Localization;
 using VoidspireStudio.FNATS.Core;
 
 namespace VoidspireStudio.FNATS.UI.KeyBindings
@@ -13,7 +12,7 @@ namespace VoidspireStudio.FNATS.UI.KeyBindings
         [Serializable]
         public class Key
         {
-            public LocalizeStringEvent keyName;
+            public LocalizedString keyName;
             public InputActionReference keyCode;
         }
 
@@ -24,6 +23,7 @@ namespace VoidspireStudio.FNATS.UI.KeyBindings
         private void OnEnable()
         {
             GameInput.Instance.OnControlsChanged += RebuildUI;
+            RebuildUI();
         }
 
         private void OnDisable()

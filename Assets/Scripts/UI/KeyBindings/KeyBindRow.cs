@@ -28,7 +28,7 @@ namespace VoidspireStudio.FNATS.UI.KeyBindings
 
         public void Setup(KeyRebinding.Key key, int bindingIndex)
         {
-            Setup(key.keyCode.action, bindingIndex, key.keyName.StringReference.GetLocalizedString());
+            Setup(key.keyCode.action, bindingIndex, key.keyName.GetLocalizedString());
         }
 
         public void OnRebindClick()

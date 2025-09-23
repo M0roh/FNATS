@@ -749,16 +749,12 @@ MonoBehaviour:
   _tabs:
   - tabPanel: {fileID: 9176254495704944031}
     tabButton: {fileID: 5863420503412117373}
-    tabName: 
   - tabPanel: {fileID: 4729673080624677441}
     tabButton: {fileID: 5834627935372582567}
-    tabName: 
   - tabPanel: {fileID: 7862945486152696637}
     tabButton: {fileID: 6256227423604072650}
-    tabName: 
   - tabPanel: {fileID: 2957559414086892492}
     tabButton: {fileID: 4044394371636007703}
-    tabName: 
   _clickedButtonScale: 1.1
   _defaultButtonFontSize: 55
   _clickedButtonFontSize: 60
@@ -8174,9 +8170,72 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59c6d67315010d441867f0591bb0eae4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VoidspireStudio.FNATS.UI.KeyBindings.KeyRebinding
-  _keyBindings: []
+  _keyBindings:
+  - keyName:
+      m_TableReference:
+        m_TableCollectionName: GUID:d0fe7562e2319f141ad8cd0dbd2679d7
+      m_TableEntryReference:
+        m_KeyId: 14193094656
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    keyCode: {fileID: -1680190386980627800, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  - keyName:
+      m_TableReference:
+        m_TableCollectionName: GUID:d0fe7562e2319f141ad8cd0dbd2679d7
+      m_TableEntryReference:
+        m_KeyId: 106845270016
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    keyCode: {fileID: 5169028412132296137, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  - keyName:
+      m_TableReference:
+        m_TableCollectionName: GUID:d0fe7562e2319f141ad8cd0dbd2679d7
+      m_TableEntryReference:
+        m_KeyId: 453278003200
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    keyCode: {fileID: 7040659881675835329, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  - keyName:
+      m_TableReference:
+        m_TableCollectionName: GUID:d0fe7562e2319f141ad8cd0dbd2679d7
+      m_TableEntryReference:
+        m_KeyId: 782266626048
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    keyCode: {fileID: 9044238741306718099, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  - keyName:
+      m_TableReference:
+        m_TableCollectionName: GUID:d0fe7562e2319f141ad8cd0dbd2679d7
+      m_TableEntryReference:
+        m_KeyId: 892895588352
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    keyCode: {fileID: -7471211009204490832, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  - keyName:
+      m_TableReference:
+        m_TableCollectionName: GUID:d0fe7562e2319f141ad8cd0dbd2679d7
+      m_TableEntryReference:
+        m_KeyId: 1040648335360
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    keyCode: {fileID: 1781555164194001046, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   _keyRowPrefab: {fileID: 7314274645015880302, guid: c74df6e97933ecf43ad9947411b7491b, type: 3}
   _keyParent: {fileID: 7078637506653945286}
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &5701791613233800054
 GameObject:
   m_ObjectHideFlags: 0

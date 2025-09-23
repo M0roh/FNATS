@@ -674,8 +674,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::VoidspireStudio.FNATS.UI.Menus.MainMenu
   _animatronics:
   - {fileID: 699985499}
-  - {fileID: 0}
-  - {fileID: 0}
   _continueButton: {fileID: 707948128}
   _globalVolume: {fileID: 232749241}
 --- !u!95 &312856761
