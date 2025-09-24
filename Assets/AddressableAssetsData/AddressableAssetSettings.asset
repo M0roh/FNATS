@@ -15,7 +15,7 @@ MonoBehaviour:
   m_DefaultGroup: fec70cd600510d7408187b6eed117c6c
   m_currentHash:
     serializedVersion: 2
-    Hash: 00000000000000000000000000000000
+    Hash: 34ca403f72658521af85338358963415
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 0
   m_CatalogRequestsTimeout: 0
@@ -59,8 +59,13 @@ MonoBehaviour:
   m_BuildAddressablesWithPlayerBuild: 0
   m_overridePlayerVersion: '[UnityEditor.PlayerSettings.bundleVersion]'
   m_GroupAssets:
+  - {fileID: 11400000, guid: 29755062960f47c428e622506805074c, type: 2}
   - {fileID: 11400000, guid: 5a7c8046c0bf03d4fa6912fd5827b029, type: 2}
+  - {fileID: 11400000, guid: d9acd8e05659d2141b01aa02515ce9b6, type: 2}
+  - {fileID: 11400000, guid: 95630f5b350237d48994af8b6a600cc0, type: 2}
+  - {fileID: 11400000, guid: effd7c152b56abb4a97035e7b8f6b084, type: 2}
   - {fileID: 11400000, guid: 1de842685d332a148bf540864dd85bd3, type: 2}
+  - {fileID: 11400000, guid: 78fb59128f6e30647922d6caefc42e1d, type: 2}
   - {fileID: 11400000, guid: 974ab08dc0428e7449b359e44a7167e3, type: 2}
   - {fileID: 11400000, guid: 5ac7b8c2c9d46ee40b219e352adc7da6, type: 2}
   - {fileID: 11400000, guid: 27cda287ff9e27848b7045e7fdb7de3d, type: 2}
@@ -106,6 +111,11 @@ MonoBehaviour:
     - Locale
     - Locale-en
     - Locale-ru
+    - Locale-de
+    - Locale-pt
+    - Locale-es
+    - Locale-pl
+    - Locale-tr
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: d3df5585e96d1de428ec08a573f37838, type: 2}

@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: InteractTips_pt
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: pt
+  m_SharedData: {fileID: 11400000, guid: 951c740d53f14f44ea897dabceaaa5ed, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 19838001152
+    m_Localized: Pressione {0} para Abrir / Fechar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 473477144576
+    m_Localized: Pressione {0} para Ligar / Desligar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1148684591104
+    m_Localized: Pressione {0} para Inserir
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1629175668736
+    m_Localized: Pressione {0} para Pegar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1813859262464
+    m_Localized: "Pressione {0} para Visualizar c\xE2meras"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2823709253632
+    m_Localized: Pressione {0} para Recarregar lanterna
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

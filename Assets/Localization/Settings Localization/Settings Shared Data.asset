@@ -79,10 +79,6 @@ MonoBehaviour:
     m_Key: Gameplay
     m_Metadata:
       m_Items: []
-  - m_Id: 4272409981337600
-    m_Key: CameraNext
-    m_Metadata:
-      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

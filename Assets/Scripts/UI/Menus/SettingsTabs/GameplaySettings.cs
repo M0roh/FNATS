@@ -34,6 +34,7 @@ namespace VoidspireStudio.FNATS.UI.Menus.SettingsTabs
             _hintsToggle.isOn = gameplaySettings.hints;
 
             _languageDropdown.value = gameplaySettings.languageIndex;
+            _languageDropdown.interactable = true;
         }
 
         private void OnEnable()

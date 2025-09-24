@@ -15,8 +15,38 @@ MonoBehaviour:
   m_GroupName: Localization-Locales
   m_GUID: 3e63d2a372b2af24b872a3245b1712f9
   m_SerializeEntries:
+  - m_GUID: 107ae79e4225b9d4fac64b8c82c5af86
+    m_Address: Spanish (es)
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1c8c1ef3e525ca14b89d2dc2ae5a89cc
+    m_Address: German (de)
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 334fe8e7274ac694a87716db76c93fbc
+    m_Address: Polish (pl)
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9c017ab6a3f3b7e47a447a2e91c9c8a5
     m_Address: English (en)
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a57c36e5c8a21134995ec694a9c360c9
+    m_Address: Portuguese (pt)
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a73141dc02ceee64cb281c242728a277
+    m_Address: Turkish (tr)
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale

@@ -70,6 +70,10 @@ MonoBehaviour:
     m_Localized: Previous camera
     m_Metadata:
       m_Items: []
+  - m_Id: 428741587484672
+    m_Localized: Next camera
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

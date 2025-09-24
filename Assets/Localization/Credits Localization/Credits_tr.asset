@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Credits_tr
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: tr
+  m_SharedData: {fileID: 11400000, guid: b1f715e654e45ab4ea3d706871443f01, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 11408883712
+    m_Localized: Yazarlar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 135975518208
+    m_Localized: "Geli\u015Ftirici - Moron\n3D Sanat\xE7\u0131 - Frandy"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 155210596352
+    m_Localized: "Kullan\u0131lan varl\u0131klar <size=30>(Sketchfab, CC BY 4.0)</size>"
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

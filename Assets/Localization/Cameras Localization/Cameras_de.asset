@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Cameras_de
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: de
+  m_SharedData: {fileID: 11400000, guid: dec5543131d81c74da1a3d71bcead0ad, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 77661302784
+    m_Localized: "B\xFCro (Du)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 113661014016
+    m_Localized: Eingang
+    m_Metadata:
+      m_Items: []
+  - m_Id: 118182473728
+    m_Localized: KAM 3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 120237682688
+    m_Localized: KAM 4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 122397749248
+    m_Localized: KAM 5
+    m_Metadata:
+      m_Items: []
+  - m_Id: 191549239296
+    m_Localized: KAM 6
+    m_Metadata:
+      m_Items: []
+  - m_Id: 193638002688
+    m_Localized: KAM 7
+    m_Metadata:
+      m_Items: []
+  - m_Id: 194632052736
+    m_Localized: KAM 8
+    m_Metadata:
+      m_Items: []
+  - m_Id: 195714183168
+    m_Localized: KAM 9
+    m_Metadata:
+      m_Items: []
+  - m_Id: 243566997504
+    m_Localized: KAM 10
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []
