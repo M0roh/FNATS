@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Localization-String-Tables-Azerbaijani (az)
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: Localization-String-Tables-Azerbaijani (az)
+  m_GUID: 06d5e662f1821704eb6f3850229d7521
+  m_SerializeEntries:
+  - m_GUID: 25c2bb08ce91e5045a2298efbcb39939
+    m_Address: Controls_az
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-az
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 630a1ff68c4beff4a87d1aba7a1357e9
+    m_Address: Buttons_az
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-az
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 840718df00d6b47419d26ec21aa3ab00
+    m_Address: Credits_az
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-az
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 899e574611c49b543af4fedbe779b964
+    m_Address: Cameras_az
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-az
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9b209932b997c304d9ee90dd7a701cad
+    m_Address: System Messages_az
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-az
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cce1ddaef70e8d64e8fbf7c654d43a86
+    m_Address: Settings_az
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-az
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dfbcccc0125dae349b64a5927cee2eea
+    m_Address: InteractTips_az
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-az
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e3202dfda9fa98045b47f02de92b3ee2
+    m_Address: GameUI_az
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-az
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 1
+  m_Settings: {fileID: 11400000, guid: d81d0de1ea9eca847b0d68adcecd86df, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 7b48155b0f21e094a92560cb3e7688c1, type: 2}
+    - {fileID: 11400000, guid: db2306fbcc9ede448bf4ef8a30834d36, type: 2}

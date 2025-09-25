@@ -82,7 +82,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 07eb06c276619a74482ca069689767c1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5829272654597163024}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 07eb06c276619a74482ca069689767c1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -7229322427053595062}
   m_SourcePrefab: {fileID: 100100000, guid: 07eb06c276619a74482ca069689767c1, type: 3}
+--- !u!23 &49418893901833141 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 07eb06c276619a74482ca069689767c1, type: 3}
+  m_PrefabInstance: {fileID: 1688295264870514481}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1994934419065504352 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 07eb06c276619a74482ca069689767c1, type: 3}
@@ -127,11 +135,30 @@ LODGroup:
   m_LODs:
   - screenRelativeHeight: 0.42185524
     fadeTransitionWidth: 0
-    renderers: []
+    renderers:
+    - renderer: {fileID: 49418893901833141}
   - screenRelativeHeight: 0.18772614
     fadeTransitionWidth: 0
-    renderers: []
+    renderers:
+    - renderer: {fileID: 49418893901833141}
   - screenRelativeHeight: 0.082878284
     fadeTransitionWidth: 0
-    renderers: []
+    renderers:
+    - renderer: {fileID: 49418893901833141}
   m_Enabled: 1
+--- !u!208 &-7229322427053595062
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1994934419065504352}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 3.397, y: 3.8680003, z: 3.4380002}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.089, y: 3.486, z: -0.21700001}
+  m_TimeToStationary: 0.5

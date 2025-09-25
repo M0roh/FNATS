@@ -8,18 +8,17 @@ namespace VoidspireStudio.FNATS.UI.Menus
     public class PauseMenu : MonoBehaviour
     {
         [SerializeField] private GameObject _gameUI;
-        [SerializeField] private GameObject _pauseMenu;
-        [SerializeField] private GameObject _pauseUI;
+        [SerializeField] private GameObject _pauseButtons;
 
         public static bool IsPaused { get; private set; } = false;
 
-        private void OnEnable()
+        private void Start()
         {
-            GameInput.Instance.InputActions.UI.Cancel.performed += PauseProcess;
             Continue();
+            GameInput.Instance.InputActions.UI.Cancel.performed += PauseProcess;
         }
 
-        private void OnDisable()
+        private void OnDestroy()
         {
             GameInput.Instance.InputActions.UI.Cancel.performed -= PauseProcess;
         }
@@ -39,27 +38,31 @@ namespace VoidspireStudio.FNATS.UI.Menus
             IsPaused = true;
             Time.timeScale = 0f;
             _gameUI.SetActive(false);
-            _pauseMenu.SetActive(true);
+            gameObject.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
 
         public void Continue()
         {
+            if (UIManager.Instance.IsOpenedSubMenu) return;
+
             IsPaused = false;
             Time.timeScale = 1f;
             _gameUI.SetActive(true);
-            _pauseMenu.SetActive(false);
+            gameObject.SetActive(false);
             Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
 
         public void Settings()
         {
-            UIManager.Instance.OpenSettings(_pauseUI);
+            UIManager.Instance.OpenSettings(_pauseButtons);
         }
 
         public void Credits()
         {
-            UIManager.Instance.OpenCredits(_pauseUI);
+            UIManager.Instance.OpenCredits(_pauseButtons);
         }
 
         public void Quit()

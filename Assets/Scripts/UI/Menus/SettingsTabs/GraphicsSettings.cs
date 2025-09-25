@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Localization;
 using UnityEngine.Rendering.HighDefinition;
 using UnityEngine.UI;
+using VoidspireStudio.FNATS.Core;
 using VoidspireStudio.FNATS.Saves;
 
 namespace VoidspireStudio.FNATS.UI.Menus.SettingsTabs
@@ -33,7 +34,12 @@ namespace VoidspireStudio.FNATS.UI.Menus.SettingsTabs
 
         private void Awake()
         {
-            if (MainMenu.Instance.GlobalVolume.profile.TryGet<Exposure>(out var exp))
+            if (GameManager.Instance != null)
+            {
+                if (GameManager.Instance.GlobalVolume.profile.TryGet<Exposure>(out var exp))
+                    _exposure = exp;
+            }
+            else if (MainMenu.Instance.GlobalVolume.profile.TryGet<Exposure>(out var exp))
                 _exposure = exp;
         }
 
@@ -60,6 +66,9 @@ namespace VoidspireStudio.FNATS.UI.Menus.SettingsTabs
 
         private void OnEnable()
         {
+            var fpsCap = SaveManager.LastSavedData.graphics.fpsCap;
+            _fpcCapText.text = fpsCap == -1 ? _fpsNoLimitText.GetLocalizedString() : fpsCap.ToString();
+
             _resolutionDropDown.onValueChanged.AddListener(OnResolutionChange);
             _fullscreen.onValueChanged.AddListener(OnFullscreenChange);
             _brightness.onValueChanged.AddListener(OnBrightnessChange);
@@ -111,6 +120,9 @@ namespace VoidspireStudio.FNATS.UI.Menus.SettingsTabs
 
         public void OnMotionBlurToggle(bool motionBlur)
         {
+            if (GameManager.Instance != null)
+                if (GameManager.Instance.GlobalVolume.profile.TryGet<MotionBlur>(out var blur))
+                    blur.active = motionBlur;
             SaveManager.LastSavedData.graphics.motionBlur = motionBlur;
         }
 

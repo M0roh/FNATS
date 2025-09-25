@@ -22,6 +22,8 @@ namespace VoidspireStudio.FNATS.Core
         [Header("Graphics")]
         [SerializeField] private Volume _globalVolume;
 
+        public Volume GlobalVolume => _globalVolume;
+
         private int _playerInteractBindingIndex = 0;
 
         public Coroutine _tipFadeCoroutine;

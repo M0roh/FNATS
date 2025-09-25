@@ -17,6 +17,8 @@ namespace VoidspireStudio.FNATS.UI.Menus
         private GameObject _previousMenu;
         private GameObject _openedSubMenu;
 
+        public bool IsOpenedSubMenu => _openedSubMenu != null;
+
         private void Awake()
         {
             if (Instance != null)
@@ -58,7 +60,7 @@ namespace VoidspireStudio.FNATS.UI.Menus
 
             StartCoroutine(DestroyOnEnd(fromMenu, animator));
 
-            yield return new WaitForSeconds(_timeBetweenMenuSwapping);
+            yield return new WaitForSecondsRealtime(_timeBetweenMenuSwapping);
 
             var previousAnimator = _previousMenu.GetComponent<Animator>();
             previousAnimator.ResetTrigger("HIDE");
@@ -67,7 +69,7 @@ namespace VoidspireStudio.FNATS.UI.Menus
 
         public IEnumerator DestroyOnEnd(GameObject objectToDestroy, Animator animator)
         {
-            yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+            yield return new WaitForSecondsRealtime(animator.GetCurrentAnimatorStateInfo(0).length);
 
             Destroy(objectToDestroy);
         }
@@ -83,7 +85,7 @@ namespace VoidspireStudio.FNATS.UI.Menus
 
             yield return new WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).IsName("Hide"));
 
-            yield return new WaitForSeconds(_timeBetweenMenuSwapping);
+            yield return new WaitForSecondsRealtime(_timeBetweenMenuSwapping);
 
             Destroy(_openedSubMenu);
             _openedSubMenu = Instantiate(subMenu, menuFrom.transform.parent);

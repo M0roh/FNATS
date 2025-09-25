@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 9065979051373009360}
   - component: {fileID: 1196575329509939137}
   - component: {fileID: 3713693352675575948}
+  - component: {fileID: 2288194564426909426}
   m_Layer: 0
   m_Name: Fir_Tree_3
   m_TagString: Untagged
@@ -131,11 +132,30 @@ LODGroup:
   m_LODs:
   - screenRelativeHeight: 0.4008036
     fadeTransitionWidth: 0
-    renderers: []
+    renderers:
+    - renderer: {fileID: 9065979051373009360}
   - screenRelativeHeight: 0.1692126
     fadeTransitionWidth: 0
-    renderers: []
+    renderers:
+    - renderer: {fileID: 9065979051373009360}
   - screenRelativeHeight: 0.05946762
     fadeTransitionWidth: 0
-    renderers: []
+    renderers:
+    - renderer: {fileID: 9065979051373009360}
   m_Enabled: 1
+--- !u!208 &2288194564426909426
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7408473724767647749}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 2.016, y: 2.22, z: 1.9970001}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.008, y: 1.937, z: 0.009000001}
+  m_TimeToStationary: 0.5

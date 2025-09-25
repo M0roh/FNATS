@@ -65,6 +65,7 @@ namespace VoidspireStudio.FNATS.UI.Menus
         {
             var newTab = _tabs[tabIndex];
             newTab.tabPanel.SetActive(true);
+            (newTab.tabButton.transform as RectTransform).sizeDelta = _clickedButtonSize;
             newTab.tabButton.GetComponentInChildren<TMP_Text>().fontSize = _clickedButtonFontSize;
             newTab.tabButton.interactable = false;
 
