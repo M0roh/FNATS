@@ -280,7 +280,7 @@ namespace VoidspireStudio.FNATS.Player
                 radius: radius,
                 direction: Vector3.up,
                 maxDistance: heightDifference,
-                layerMask: ~0, // все слои
+                layerMask: ~0,
                 queryTriggerInteraction: QueryTriggerInteraction.Ignore
             );
         }

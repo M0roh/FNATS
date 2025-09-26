@@ -10,8 +10,6 @@ namespace VoidspireStudio.FNATS.PowerSystem.Fuses
 {
     public class FuseBox : MonoBehaviour, IPowerNode
     {
-        [SerializeField] private LocalizedString _interactTip;
-
         [Header("Предохранители")]
         [SerializeField] private List<Fuse> _fuses;
 
@@ -23,8 +21,6 @@ namespace VoidspireStudio.FNATS.PowerSystem.Fuses
 
         public bool IsActive { get; private set; }
         public bool IsRepaired => _fuses.All(fuse => fuse.IsActive);
-
-        public LocalizedString InteractTip => _interactTip;
 
         public event Action OnBroken;
         public event Action OnRepair;

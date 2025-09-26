@@ -6,6 +6,7 @@ using VoidspireStudio.FNATS.Utils;
 
 namespace VoidspireStudio.FNATS.Animatronics
 {
+    [DisallowMultipleComponent]
     [RequireComponent(typeof(NavMeshAgent))]
     public class Capibara : MonoBehaviour
     {

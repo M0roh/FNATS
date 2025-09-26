@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Localization;
+using VoidspireStudio.FNATS.Core;
 
 namespace VoidspireStudio.FNATS.Triggers
 {
@@ -20,7 +21,7 @@ namespace VoidspireStudio.FNATS.Triggers
         {
             if (message.IsEmpty) return;
 
-            Debug.Log(message.GetLocalizedString());
+            GameManager.Instance.SendMessage(message);
         }
     }
 }

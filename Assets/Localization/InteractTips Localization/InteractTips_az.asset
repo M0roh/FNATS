@@ -19,27 +19,27 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 19838001152
-    m_Localized: "A\xE7maq/Ba\u011Flamaq \xFC\xE7\xFCn {0} d\xFCym\u0259sini bas\u0131n"
+    m_Localized: "{0} d\xFCym\u0259sin\u0259 basaraq A\xE7/Ba\u011Fla"
     m_Metadata:
       m_Items: []
   - m_Id: 473477144576
-    m_Localized: "{0} tu\u015Funa basaraq A\xE7 / Kapat"
+    m_Localized: "{0} d\xFCym\u0259sin\u0259 basaraq Yand\u0131r/S\xF6nd\xFCr"
     m_Metadata:
       m_Items: []
   - m_Id: 1148684591104
-    m_Localized: "{0} tu\u015Funa basaraq Tak"
+    m_Localized: "{0} d\xFCym\u0259sin\u0259 basaraq Daxil Et"
     m_Metadata:
       m_Items: []
   - m_Id: 1629175668736
-    m_Localized: "{0} tu\u015Funa basaraq Al"
+    m_Localized: "{0} d\xFCym\u0259sin\u0259 basaraq G\xF6t\xFCr"
     m_Metadata:
       m_Items: []
   - m_Id: 1813859262464
-    m_Localized: "{0} tu\u015Funa basaraq Kameralar\u0131 G\xF6r\xFCnt\xFCle"
+    m_Localized: "{0} d\xFCym\u0259sin\u0259 basaraq Kameralara Bax\u0131n"
     m_Metadata:
       m_Items: []
   - m_Id: 2823709253632
-    m_Localized: "{0} tu\u015Funa basaraq El Fenerini \u015Earj Et"
+    m_Localized: "{0} d\xFCym\u0259sin\u0259 basaraq F\u0259n\u0259ri Doldur"
     m_Metadata:
       m_Items: []
   references:

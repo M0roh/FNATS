@@ -30,6 +30,7 @@ namespace VoidspireStudio.FNATS.Animatronics
         Attack
     }
 
+    [DisallowMultipleComponent]
     [RequireComponent(typeof(NavMeshAgent), typeof(Animator))]
     public abstract class AnimatronicAI : MonoBehaviour
     {
@@ -190,13 +191,16 @@ namespace VoidspireStudio.FNATS.Animatronics
                     {
                         _attackTimer = _waitBlocked;
                         _attackState = OfficeAttackState.Blocked;
+                        Debug.Log("WAIT -> BLOCK!");
                         return;
                     }
                     _animator.SetTrigger(IDLE);
                     _attackTimer -= Time.fixedDeltaTime;
+                    Debug.Log("Waiting");
 
                     if (_attackTimer <= 0f)
                     {
+                        Debug.Log("WAIT -> ATTACK!");
                         _attackTimer = _attackWait;
                         _attackState = OfficeAttackState.Attack;
                     }
@@ -207,6 +211,7 @@ namespace VoidspireStudio.FNATS.Animatronics
                     
                     OfficeManager.Instance.OfficeDoor.Break();
                     OfficeManager.Instance.OfficeLight.TurnOff();
+                    Debug.Log("ATTACK!");
 
                     StartCoroutine(OfficeAttack());
                     break;
@@ -216,13 +221,16 @@ namespace VoidspireStudio.FNATS.Animatronics
                     {
                         _attackTimer = 0f;
                         _attackState = OfficeAttackState.Wait;
+                        Debug.Log("BLOCK -> WAIT");
                         return;
                     }
                     _animator.SetTrigger(IDLE);
                     _attackTimer -= Time.fixedDeltaTime;
+                    Debug.Log("Blocked");
 
                     if (_attackTimer <= 0f)
                     {
+                        Debug.Log("BLOCK -> NOT ATTACK");
                         _attackTimer = _attackWait;
                         _attackState = OfficeAttackState.NotAttack;
                         _waitTimer = 1f;
@@ -234,6 +242,7 @@ namespace VoidspireStudio.FNATS.Animatronics
 
         private IEnumerator OfficeAttack()
         {
+            Debug.Log("Go to office center");
             _agent.SetDestination(OfficeManager.Instance.OfficeCenter.position);
 
             yield return null;
@@ -243,8 +252,10 @@ namespace VoidspireStudio.FNATS.Animatronics
             if (_currentState == AnimatronicState.Forwarding || _currentState == AnimatronicState.OfficeAttack)
                 yield break;
 
+            Debug.Log("First check ended!");
             if (!OfficeManager.Instance.IsPlayerInOffice)
             {
+                Debug.Log("PLAYER NOT IN OFFICE!");
                 _attackState = OfficeAttackState.NotAttack;
                 _waitTimer = 1f;
                 _currentState = AnimatronicState.Waiting;
@@ -256,6 +267,7 @@ namespace VoidspireStudio.FNATS.Animatronics
             yield return null;
 
             yield return new WaitUntil(() => _agent.HasReachedDestination());
+            Debug.Log("Reached player!");
             Attack();
         }
 
@@ -383,6 +395,7 @@ namespace VoidspireStudio.FNATS.Animatronics
 
                 case AttackStep:
                     _attackTimer = 0f;
+                    _attackState = OfficeAttackState.Wait;
                     СurrentState = AnimatronicState.OfficeAttack;
                     break;
             }

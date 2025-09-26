@@ -7,13 +7,18 @@ using UnityEngine.Localization.Components;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.HighDefinition;
 using VoidspireStudio.FNATS.Saves;
-using VoidspireStudio.FNATS.UI.KeyBindings;
 
 namespace VoidspireStudio.FNATS.Core
 {
     public class GameManager : MonoBehaviour
     {
         public static GameManager Instance { get; private set; }
+
+        [Header("Messages")]
+        [SerializeField] private TMP_Text _messagesText;
+        [SerializeField] private LocalizeStringEvent _messagesLocalization;
+        [SerializeField] private float _fadeDelay = 1f;
+        [SerializeField] private float _fadeDuration = 4f;
 
         [Header("Tips")]
         [SerializeField] private LocalizeStringEvent _tipLocalization;
@@ -26,7 +31,7 @@ namespace VoidspireStudio.FNATS.Core
 
         private int _playerInteractBindingIndex = 0;
 
-        public Coroutine _tipFadeCoroutine;
+        public Coroutine _messageFade;
 
         private void Awake()
         {
@@ -65,5 +70,36 @@ namespace VoidspireStudio.FNATS.Core
         }
 
         public void HideTip() => _tipText.gameObject.SetActive(false);
+
+        public void SendMessage(LocalizedString message)
+        {
+            _messagesText.gameObject.SetActive(true);
+            _messagesLocalization.StringReference = message;
+            _messagesLocalization.RefreshString();
+
+            if (_messageFade != null)
+                StopCoroutine(_messageFade);
+            _messageFade = StartCoroutine(MessageFade());
+        }
+
+        public IEnumerator MessageFade()
+        {
+            Color baseColor = _messagesText.color;
+            baseColor.a = 1f;
+            _messagesText.color = baseColor;
+
+            yield return new WaitForSeconds(_fadeDelay);
+
+            float timer = _fadeDuration;
+            while (baseColor.a > 0f)
+            {
+                timer -= Time.deltaTime;
+                baseColor.a = Mathf.Lerp(baseColor.a, 0f, Time.deltaTime / timer);
+                _messagesText.color = baseColor;
+                yield return null;
+            }
+
+            _messagesText.gameObject.SetActive(false);
+        }
     }
 }

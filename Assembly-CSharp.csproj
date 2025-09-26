@@ -9,8 +9,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <ProjectGuid>{D76E4640-3835-D24C-0BE8-4B2AD78F11B4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -56,29 +55,24 @@
     <UnityVersion>6000.2.0b8</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="D:\Visual Studio\Insiders\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
+    <Analyzer Include="D:\VisualStudio\Insiders\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
     <Analyzer Include="D:\Unity 6000.2.0b8\Editor\Data\Tools\Unity.SourceGenerators\Unity.SourceGenerators.dll" />
     <Analyzer Include="D:\Unity 6000.2.0b8\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
     <Analyzer Include="D:\Unity 6000.2.0b8\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
-    <Analyzer Include="D:\Unity Projects\FNATS\Library\PackageCache\com.unity.entities@e581b903be8e\Unity.Entities\SourceGenerators\AspectGenerator.dll" />
-    <Analyzer Include="D:\Unity Projects\FNATS\Library\PackageCache\com.unity.entities@e581b903be8e\Unity.Entities\SourceGenerators\JobEntityGenerator.dll" />
-    <Analyzer Include="D:\Unity Projects\FNATS\Library\PackageCache\com.unity.entities@e581b903be8e\Unity.Entities\SourceGenerators\SystemGenerator.dll" />
-    <Analyzer Include="D:\Unity Projects\FNATS\Library\PackageCache\com.unity.entities@e581b903be8e\Unity.Entities\SourceGenerators\Unity.Entities.Analyzer.dll" />
-    <Analyzer Include="D:\Unity Projects\FNATS\Library\PackageCache\com.unity.entities@e581b903be8e\Unity.Entities\SourceGenerators\SystemGenerator.LambdaJobs.dll" />
-    <Analyzer Include="D:\Unity Projects\FNATS\Library\PackageCache\com.unity.entities@e581b903be8e\Unity.Entities\SourceGenerators\SystemGenerator.SystemAPI.QueryBuilder.dll" />
-    <Analyzer Include="D:\Unity Projects\FNATS\Library\PackageCache\com.unity.entities@e581b903be8e\Unity.Entities\SourceGenerators\SystemGenerator.SystemAPI.dll" />
-    <Analyzer Include="D:\Unity Projects\FNATS\Library\PackageCache\com.unity.entities@e581b903be8e\Unity.Entities\SourceGenerators\SystemGenerator.SystemAPI.Query.dll" />
-    <Analyzer Include="D:\Unity Projects\FNATS\Library\PackageCache\com.unity.entities@e581b903be8e\Unity.Entities\SourceGenerators\SystemGenerator.Common.dll" />
-    <Analyzer Include="D:\Unity Projects\FNATS\Library\PackageCache\com.unity.entities@e581b903be8e\Unity.Entities\SourceGenerators\Common.dll" />
-    <Analyzer Include="D:\Unity Projects\FNATS\Library\PackageCache\com.unity.entities@e581b903be8e\Unity.Entities\SourceGenerators\SystemGenerator.EntityQueryBulkOperations.dll" />
-    <Analyzer Include="D:\Unity Projects\FNATS\Library\PackageCache\com.unity.entities@e581b903be8e\Unity.Entities\SourceGenerators\Unity.Entities.Analyzer.CodeFixes.dll" />
+    <Analyzer Include="E:\UnityProjects\FNATS\Library\PackageCache\com.unity.entities@e581b903be8e\Unity.Entities\SourceGenerators\AspectGenerator.dll" />
+    <Analyzer Include="E:\UnityProjects\FNATS\Library\PackageCache\com.unity.entities@e581b903be8e\Unity.Entities\SourceGenerators\JobEntityGenerator.dll" />
+    <Analyzer Include="E:\UnityProjects\FNATS\Library\PackageCache\com.unity.entities@e581b903be8e\Unity.Entities\SourceGenerators\SystemGenerator.dll" />
+    <Analyzer Include="E:\UnityProjects\FNATS\Library\PackageCache\com.unity.entities@e581b903be8e\Unity.Entities\SourceGenerators\Unity.Entities.Analyzer.dll" />
+    <Analyzer Include="E:\UnityProjects\FNATS\Library\PackageCache\com.unity.entities@e581b903be8e\Unity.Entities\SourceGenerators\SystemGenerator.LambdaJobs.dll" />
+    <Analyzer Include="E:\UnityProjects\FNATS\Library\PackageCache\com.unity.entities@e581b903be8e\Unity.Entities\SourceGenerators\SystemGenerator.SystemAPI.QueryBuilder.dll" />
+    <Analyzer Include="E:\UnityProjects\FNATS\Library\PackageCache\com.unity.entities@e581b903be8e\Unity.Entities\SourceGenerators\SystemGenerator.SystemAPI.dll" />
+    <Analyzer Include="E:\UnityProjects\FNATS\Library\PackageCache\com.unity.entities@e581b903be8e\Unity.Entities\SourceGenerators\SystemGenerator.SystemAPI.Query.dll" />
+    <Analyzer Include="E:\UnityProjects\FNATS\Library\PackageCache\com.unity.entities@e581b903be8e\Unity.Entities\SourceGenerators\SystemGenerator.Common.dll" />
+    <Analyzer Include="E:\UnityProjects\FNATS\Library\PackageCache\com.unity.entities@e581b903be8e\Unity.Entities\SourceGenerators\Common.dll" />
+    <Analyzer Include="E:\UnityProjects\FNATS\Library\PackageCache\com.unity.entities@e581b903be8e\Unity.Entities\SourceGenerators\SystemGenerator.EntityQueryBulkOperations.dll" />
+    <Analyzer Include="E:\UnityProjects\FNATS\Library\PackageCache\com.unity.entities@e581b903be8e\Unity.Entities\SourceGenerators\Unity.Entities.Analyzer.CodeFixes.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Optimization\Optimizators\ColliderOptimizer.cs" />
-    <Compile Include="Assets\Scripts\Optimization\Optimizators\CullingOptimizer.cs" />
-    <Compile Include="Assets\Scripts\Optimization\Optimizators\LightOptimizer.cs" />
-    <Compile Include="Assets\Scripts\Optimization\OptimizerTarget.cs" />
-    <Compile Include="Assets\Scripts\Optimization\SceneOptimization.cs" />
     <Compile Include="Assets\Scripts\PowerSystem\Generator.cs" />
     <Compile Include="Assets\Scripts\Core\SunMoonController.cs" />
     <Compile Include="Assets\Scripts\PowerSystem\PowerSystem.cs" />
@@ -93,6 +87,7 @@
     <Compile Include="Assets\Scripts\PowerSystem\Fuses\FuseToolBox.cs" />
     <Compile Include="Assets\Scripts\Nights\NightConfig.cs" />
     <Compile Include="Assets\Scripts\PowerSystem\Fuses\Fuse.cs" />
+    <Compile Include="Assets\Scripts\Optimization\OptimizerTarget.cs" />
     <Compile Include="Assets\Scripts\UI\KeyBindings\KeyRebinder.cs" />
     <Compile Include="Assets\Visual Design Cafe\Nature Renderer Demo\Scripts\CompileShaders.cs" />
     <Compile Include="Assets\Scripts\Interactables\PC.cs" />
@@ -126,11 +121,14 @@
     <Compile Include="Assets\Scripts\Player\Sanity.cs" />
     <Compile Include="Assets\Scripts\UI\Menus\SettingsTabs\GameplaySettings.cs" />
     <Compile Include="Assets\Samples\High Definition Render Pipeline\17.2.0\Fullscreen Samples\Scripts\LinkDirectionalToCustomNightSky.cs" />
+    <Compile Include="Assets\Scripts\Optimization\Optimizators\LightOptimizer.cs" />
+    <Compile Include="Assets\Scripts\Optimization\SceneOptimization.cs" />
     <Compile Include="Assets\Scripts\Utils\Extensions.cs" />
     <Compile Include="Assets\Scripts\PowerSystem\IPowerNode.cs" />
     <Compile Include="Assets\Scripts\UI\NightTimeUI.cs" />
     <Compile Include="Assets\Samples\High Definition Render Pipeline\17.2.0\Fullscreen Samples\Scripts\CustomizeHighlightColor.cs" />
     <Compile Include="Assets\Scripts\Triggers\MessageTrigger.cs" />
+    <Compile Include="Assets\Scripts\Optimization\Optimizators\ColliderOptimizer.cs" />
     <Compile Include="Assets\Scripts\Interactables\FlashlightCharger.cs" />
     <Compile Include="Assets\Scripts\Triggers\ColliderTrigger.cs" />
     <Compile Include="Assets\Scripts\Core\GameInput.cs" />
@@ -148,6 +146,7 @@
     <Compile Include="Assets\Scripts\Nights\NightManager.cs" />
     <Compile Include="Assets\Scripts\UI\Menus\PauseMenu.cs" />
     <Compile Include="Assets\Scripts\Cameras\Monitor.cs" />
+    <Compile Include="Assets\Scripts\Optimization\Optimizators\CullingOptimizer.cs" />
     <Compile Include="Assets\Scripts\UI\Menus\SettingsTabs\GraphicsSettings.cs" />
     <Compile Include="Assets\Scripts\Outline\OutlineComponent.cs" />
     <Compile Include="Assets\Scripts\Core\GameManager.cs" />
