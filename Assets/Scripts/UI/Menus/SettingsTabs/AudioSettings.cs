@@ -39,14 +39,14 @@ namespace VoidspireStudio.FNATS.UI.Menus.SettingsTabs
         {
             _musicVolumeSlider.onValueChanged.AddListener(OnMusicVolumeChange);
             _ambientVolumeSlider.onValueChanged.AddListener(OnAmbientVolumeChange);
-            _sfxVolumeSlider.onValueChanged.AddListener(OnSFXVolumeChange);            
+            _sfxVolumeSlider.onValueChanged.AddListener(OnSFXVolumeChange);         
         }
 
         private void OnDisable()
         {
             _musicVolumeSlider.onValueChanged.RemoveListener(OnMusicVolumeChange);
             _ambientVolumeSlider.onValueChanged.RemoveListener(OnAmbientVolumeChange);
-            _sfxVolumeSlider.onValueChanged.RemoveListener(OnSFXVolumeChange);            
+            _sfxVolumeSlider.onValueChanged.RemoveListener(OnSFXVolumeChange);          
         }
 
         private void OnMusicVolumeChange(float volume)
@@ -55,7 +55,7 @@ namespace VoidspireStudio.FNATS.UI.Menus.SettingsTabs
             _musicVolumeDisplay.text = $"{volume * 100}%";
 
             SaveManager.LastSavedData.audio.volumeMusic = volume;
-            AudioManager.Instance.SetMusicVolume(volume);
+            AudioManager.Instance.SetVolume(volume, AudioManager.AudioType.Music);
         }
 
         private void OnAmbientVolumeChange(float volume)
@@ -64,7 +64,7 @@ namespace VoidspireStudio.FNATS.UI.Menus.SettingsTabs
             _ambientVolumeDisplay.text = $"{volume * 100}%";
 
             SaveManager.LastSavedData.audio.ambientVolume = volume;
-            AudioManager.Instance.SetAmbientVolume(volume);
+            AudioManager.Instance.SetVolume(volume, AudioManager.AudioType.Ambient);
         }
 
         private void OnSFXVolumeChange(float volume)
@@ -73,7 +73,7 @@ namespace VoidspireStudio.FNATS.UI.Menus.SettingsTabs
             _sfxVolumeDisplay.text = $"{volume * 100}%";
 
             SaveManager.LastSavedData.audio.volumeSFX = volume;
-            AudioManager.Instance.SetSFXVolume(volume);
+            AudioManager.Instance.SetVolume(volume, AudioManager.AudioType.SFX);
         }   
     }
 }
