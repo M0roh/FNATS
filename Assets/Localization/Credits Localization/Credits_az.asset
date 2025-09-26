@@ -19,11 +19,11 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 11408883712
-    m_Localized: Yazarlar
+    m_Localized: "M\xFC\u0259llifl\u0259r"
     m_Metadata:
       m_Items: []
   - m_Id: 135975518208
-    m_Localized: "T\u0259hl\xFCk\u0259siz - Moron\n3D R\u0259ssam - Frandy"
+    m_Localized: "T\u0259rtibat\xE7\u0131 - Moron\n3D R\u0259ssam - Frandy"
     m_Metadata:
       m_Items: []
   - m_Id: 155210596352

@@ -20,6 +20,8 @@ namespace VoidspireStudio.FNATS.Cameras {
         private Action<InputAction.CallbackContext>[] cameraDelegates;
         private InputAction[] _cameraInputs;
 
+        public bool IsPlayerOnCameras { get; private set; }
+
         public SecurityCamera CurrentCamera => _securityCameras[_currentCameraIndex];
 
         public void Awake()
@@ -82,6 +84,7 @@ namespace VoidspireStudio.FNATS.Cameras {
 
         public void OpenCameras()
         {
+            IsPlayerOnCameras = true;
             _cameraView.gameObject.SetActive(true);
             GameInput.Instance.InputActions.Player.Disable();
             GameInput.Instance.InputActions.Camera.Enable();
@@ -90,6 +93,7 @@ namespace VoidspireStudio.FNATS.Cameras {
 
         public void CloseCameras(InputAction.CallbackContext ctx)
         {
+            IsPlayerOnCameras = false;
             _cameraView.gameObject.SetActive(false);
             GameInput.Instance.InputActions.Player.Enable();
             GameInput.Instance.InputActions.Camera.Disable();

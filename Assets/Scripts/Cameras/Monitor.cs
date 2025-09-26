@@ -12,6 +12,7 @@ namespace VoidspireStudio.FNATS.Cameras
         public static Monitor Instance { get; private set; }
 
         [SerializeField] private LocalizedString _interactTip;
+
         [Header("Загрузка")]
         [SerializeField] private Texture2D[] _loadAnimationFrames;
         [SerializeField, Min(1)] private int _loopCount = 3;

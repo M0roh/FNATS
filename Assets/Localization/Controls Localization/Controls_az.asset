@@ -27,7 +27,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 86824785920000
-    m_Localized: "Kameralar\u0131 Kapat"
+    m_Localized: "Kameralar\u0131 ba\u011Fla"
     m_Metadata:
       m_Items: []
   - m_Id: 68669296459776
@@ -35,7 +35,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 86290586779648
-    m_Localized: Duraklat
+    m_Localized: "Fasil\u0259"
     m_Metadata:
       m_Items: []
   - m_Id: 68652980617216
@@ -67,7 +67,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 106845270016
-    m_Localized: El Feneri
+    m_Localized: "F\u0259n\u0259r"
     m_Metadata:
       m_Items: []
   - m_Id: 453278003200
