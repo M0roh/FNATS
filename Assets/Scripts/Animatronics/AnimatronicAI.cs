@@ -50,6 +50,7 @@ namespace VoidspireStudio.FNATS.Animatronics
         private float _attackTimer = 0f;
         private OfficeAttackState _attackState = OfficeAttackState.NotAttack;
         protected bool ignorePlayer = false;
+        protected bool isAttackOffice = false;
 
         [Header("Маршрут")]
         [SerializeReference] private List<AnimatronicRoute> _availableRoutes;
@@ -207,6 +208,9 @@ namespace VoidspireStudio.FNATS.Animatronics
                     break;
 
                 case OfficeAttackState.Attack:
+                    if (isAttackOffice) return;
+
+                    isAttackOffice = true;
                     ignorePlayer = false;
                     
                     OfficeManager.Instance.OfficeDoor.Break();
@@ -250,12 +254,16 @@ namespace VoidspireStudio.FNATS.Animatronics
             yield return new WaitUntil(() => _agent.HasReachedDestination() || _currentState == AnimatronicState.Forwarding || _currentState == AnimatronicState.OfficeAttack);
 
             if (_currentState == AnimatronicState.Forwarding || _currentState == AnimatronicState.OfficeAttack)
+            {
+                isAttackOffice = false;
                 yield break;
+            }
 
             Debug.Log("First check ended!");
             if (!OfficeManager.Instance.IsPlayerInOffice)
             {
                 Debug.Log("PLAYER NOT IN OFFICE!");
+                isAttackOffice = false;
                 _attackState = OfficeAttackState.NotAttack;
                 _waitTimer = 1f;
                 _currentState = AnimatronicState.Waiting;
@@ -269,6 +277,7 @@ namespace VoidspireStudio.FNATS.Animatronics
             yield return new WaitUntil(() => _agent.HasReachedDestination());
             Debug.Log("Reached player!");
             Attack();
+            isAttackOffice = false;
         }
 
         protected abstract bool BlockCheck();
