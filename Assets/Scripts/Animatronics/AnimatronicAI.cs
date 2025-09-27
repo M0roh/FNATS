@@ -277,7 +277,6 @@ namespace VoidspireStudio.FNATS.Animatronics
             yield return new WaitUntil(() => _agent.HasReachedDestination());
             Debug.Log("Reached player!");
             Attack();
-            isAttackOffice = false;
         }
 
         protected abstract bool BlockCheck();

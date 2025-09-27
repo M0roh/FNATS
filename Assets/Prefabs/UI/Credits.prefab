@@ -127,7 +127,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 960, y: -500}
-  m_SizeDelta: {x: 1080, y: 1050}
+  m_SizeDelta: {x: 1080, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &4511622082206837324
 CanvasRenderer:
@@ -194,7 +194,10 @@ MonoBehaviour:
     Cozy Campfire - Shape
     Key Animation - by Fantom Matter
 
-    Outhouse - by Strifey7'
+    Outhouse - by Strifey7
+
+    UI/Menu Soundpack
+    - by Nathan Gibson (Cyrex Studios)'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3c0cd4647afaba14f8c8cb1be8c85277, type: 2}
   m_sharedMaterial: {fileID: -8278211915336946654, guid: 3c0cd4647afaba14f8c8cb1be8c85277, type: 2}
@@ -505,7 +508,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 960, y: -150}
-  m_SizeDelta: {x: 1080, y: 200}
+  m_SizeDelta: {x: 1080, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &1260139995735154077
 CanvasRenderer:
@@ -719,7 +722,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 960, y: -350}
-  m_SizeDelta: {x: 1080, y: 150}
+  m_SizeDelta: {x: 1080, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &1176163430535217705
 CanvasRenderer:
@@ -1040,7 +1043,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 960, y: -0}
-  m_SizeDelta: {x: 1080, y: 150}
+  m_SizeDelta: {x: 1080, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &7441473190217759257
 CanvasRenderer:

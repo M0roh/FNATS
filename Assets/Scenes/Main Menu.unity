@@ -630,8 +630,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8cab9819676eac45b8e7a2e6b0fa509, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.UISounds
-  _hoverSound: {fileID: 0}
-  _clickSound: {fileID: 0}
+  _hoverSound: {fileID: 8300000, guid: c533ee7fb7dc4c64ca6c13b39515b5d1, type: 3}
+  _clickSound: {fileID: 8300000, guid: 02f9a24a02af12d409f43f4985e08045, type: 3}
 --- !u!1 &312856758
 GameObject:
   m_ObjectHideFlags: 0
@@ -1679,8 +1679,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8cab9819676eac45b8e7a2e6b0fa509, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.UISounds
-  _hoverSound: {fileID: 0}
-  _clickSound: {fileID: 0}
+  _hoverSound: {fileID: 8300000, guid: c533ee7fb7dc4c64ca6c13b39515b5d1, type: 3}
+  _clickSound: {fileID: 8300000, guid: 02f9a24a02af12d409f43f4985e08045, type: 3}
 --- !u!1 &594708587
 GameObject:
   m_ObjectHideFlags: 0
@@ -2028,8 +2028,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8cab9819676eac45b8e7a2e6b0fa509, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.UISounds
-  _hoverSound: {fileID: 0}
-  _clickSound: {fileID: 0}
+  _hoverSound: {fileID: 8300000, guid: c533ee7fb7dc4c64ca6c13b39515b5d1, type: 3}
+  _clickSound: {fileID: 8300000, guid: 02f9a24a02af12d409f43f4985e08045, type: 3}
 --- !u!1 &748993101
 GameObject:
   m_ObjectHideFlags: 0
@@ -2649,8 +2649,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8cab9819676eac45b8e7a2e6b0fa509, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.UISounds
-  _hoverSound: {fileID: 0}
-  _clickSound: {fileID: 0}
+  _hoverSound: {fileID: 8300000, guid: c533ee7fb7dc4c64ca6c13b39515b5d1, type: 3}
+  _clickSound: {fileID: 8300000, guid: 02f9a24a02af12d409f43f4985e08045, type: 3}
 --- !u!1 &1470304410
 GameObject:
   m_ObjectHideFlags: 0
@@ -5047,8 +5047,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8cab9819676eac45b8e7a2e6b0fa509, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.UISounds
-  _hoverSound: {fileID: 0}
-  _clickSound: {fileID: 0}
+  _hoverSound: {fileID: 8300000, guid: c533ee7fb7dc4c64ca6c13b39515b5d1, type: 3}
+  _clickSound: {fileID: 8300000, guid: 02f9a24a02af12d409f43f4985e08045, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6730933685718723021}
   - component: {fileID: 5440727222102156029}
   - component: {fileID: 354246676287848424}
+  - component: {fileID: 190801367592366039}
   m_Layer: 5
   m_Name: KeyName
   m_TagString: Untagged
@@ -176,6 +177,20 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &190801367592366039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2089137047178025907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8cab9819676eac45b8e7a2e6b0fa509, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.UISounds
+  _hoverSound: {fileID: 8300000, guid: c533ee7fb7dc4c64ca6c13b39515b5d1, type: 3}
+  _clickSound: {fileID: 8300000, guid: 02f9a24a02af12d409f43f4985e08045, type: 3}
 --- !u!1 &5497661451966480009
 GameObject:
   m_ObjectHideFlags: 0

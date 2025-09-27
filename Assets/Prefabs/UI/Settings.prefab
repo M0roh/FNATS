@@ -175,6 +175,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3051204861625811385}
   - component: {fileID: 7534355507351994625}
+  - component: {fileID: 1384677996124288027}
   m_Layer: 5
   m_Name: Brightness Slider
   m_TagString: Untagged
@@ -267,6 +268,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1384677996124288027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 312676635774024027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8cab9819676eac45b8e7a2e6b0fa509, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.UISounds
+  _hoverSound: {fileID: 8300000, guid: c533ee7fb7dc4c64ca6c13b39515b5d1, type: 3}
+  _clickSound: {fileID: 8300000, guid: 02f9a24a02af12d409f43f4985e08045, type: 3}
 --- !u!1 &317452617306784715
 GameObject:
   m_ObjectHideFlags: 0
@@ -450,6 +465,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3591655040712824200}
   - component: {fileID: 6839736057494355686}
+  - component: {fileID: 438022167999960774}
   m_Layer: 5
   m_Name: FPSCap Slider
   m_TagString: Untagged
@@ -542,6 +558,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &438022167999960774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 380095637205964369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8cab9819676eac45b8e7a2e6b0fa509, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.UISounds
+  _hoverSound: {fileID: 8300000, guid: c533ee7fb7dc4c64ca6c13b39515b5d1, type: 3}
+  _clickSound: {fileID: 8300000, guid: 02f9a24a02af12d409f43f4985e08045, type: 3}
 --- !u!1 &403633685749359144
 GameObject:
   m_ObjectHideFlags: 0
@@ -1046,6 +1076,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4752056468580653707}
   - component: {fileID: 2399116345826069743}
+  - component: {fileID: 2147673188478786553}
   m_Layer: 5
   m_Name: Mouse Sentivity Slider
   m_TagString: Untagged
@@ -1138,6 +1169,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &2147673188478786553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963143217674609045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8cab9819676eac45b8e7a2e6b0fa509, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.UISounds
+  _hoverSound: {fileID: 8300000, guid: c533ee7fb7dc4c64ca6c13b39515b5d1, type: 3}
+  _clickSound: {fileID: 8300000, guid: 02f9a24a02af12d409f43f4985e08045, type: 3}
 --- !u!1 &1135606552602875499
 GameObject:
   m_ObjectHideFlags: 0
@@ -1277,6 +1322,7 @@ GameObject:
   - component: {fileID: 6720476947553593139}
   - component: {fileID: 4044394371636007703}
   - component: {fileID: 9116605208796990334}
+  - component: {fileID: 5036691138872117659}
   m_Layer: 5
   m_Name: Gameplay
   m_TagString: Untagged
@@ -1426,6 +1472,20 @@ MonoBehaviour:
   references:
     version: 2
     RefIds: []
+--- !u!114 &5036691138872117659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1154500712799812715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8cab9819676eac45b8e7a2e6b0fa509, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.UISounds
+  _hoverSound: {fileID: 8300000, guid: c533ee7fb7dc4c64ca6c13b39515b5d1, type: 3}
+  _clickSound: {fileID: 8300000, guid: 02f9a24a02af12d409f43f4985e08045, type: 3}
 --- !u!1 &1164118845197237493
 GameObject:
   m_ObjectHideFlags: 0
@@ -1436,6 +1496,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3902517111195427012}
   - component: {fileID: 8077562564183517368}
+  - component: {fileID: 4620650763116063527}
   m_Layer: 5
   m_Name: Music Volume Slider
   m_TagString: Untagged
@@ -1529,6 +1590,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &4620650763116063527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1164118845197237493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8cab9819676eac45b8e7a2e6b0fa509, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.UISounds
+  _hoverSound: {fileID: 8300000, guid: c533ee7fb7dc4c64ca6c13b39515b5d1, type: 3}
+  _clickSound: {fileID: 8300000, guid: 02f9a24a02af12d409f43f4985e08045, type: 3}
 --- !u!1 &1275109656414309857
 GameObject:
   m_ObjectHideFlags: 0
@@ -1790,6 +1865,7 @@ GameObject:
   - component: {fileID: 6520061293801101102}
   - component: {fileID: 395006575989721802}
   - component: {fileID: 5834627935372582567}
+  - component: {fileID: 9052219863749409265}
   m_Layer: 5
   m_Name: Controls
   m_TagString: Untagged
@@ -1899,6 +1975,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &9052219863749409265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1532993951003809709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8cab9819676eac45b8e7a2e6b0fa509, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.UISounds
+  _hoverSound: {fileID: 8300000, guid: c533ee7fb7dc4c64ca6c13b39515b5d1, type: 3}
+  _clickSound: {fileID: 8300000, guid: 02f9a24a02af12d409f43f4985e08045, type: 3}
 --- !u!1 &1546524133534277810
 GameObject:
   m_ObjectHideFlags: 0
@@ -2199,6 +2289,7 @@ GameObject:
   - component: {fileID: 3389269944840010604}
   - component: {fileID: 8466076115577450825}
   - component: {fileID: 5863420503412117373}
+  - component: {fileID: 2247120295727323102}
   m_Layer: 5
   m_Name: Graphics
   m_TagString: Untagged
@@ -2308,6 +2399,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2247120295727323102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1712142971091205454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8cab9819676eac45b8e7a2e6b0fa509, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.UISounds
+  _hoverSound: {fileID: 8300000, guid: c533ee7fb7dc4c64ca6c13b39515b5d1, type: 3}
+  _clickSound: {fileID: 8300000, guid: 02f9a24a02af12d409f43f4985e08045, type: 3}
 --- !u!1 &1810553864763371931
 GameObject:
   m_ObjectHideFlags: 0
@@ -3168,6 +3273,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5628980791318469521}
   - component: {fileID: 6260310780884875364}
+  - component: {fileID: 1999854656016697582}
   m_Layer: 5
   m_Name: VSync Toggle
   m_TagString: Untagged
@@ -3243,6 +3349,20 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 1
+--- !u!114 &1999854656016697582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2085449777011778720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8cab9819676eac45b8e7a2e6b0fa509, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.UISounds
+  _hoverSound: {fileID: 8300000, guid: c533ee7fb7dc4c64ca6c13b39515b5d1, type: 3}
+  _clickSound: {fileID: 8300000, guid: 02f9a24a02af12d409f43f4985e08045, type: 3}
 --- !u!1 &2137075567456260421
 GameObject:
   m_ObjectHideFlags: 0
@@ -3253,6 +3373,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1631706770288232649}
   - component: {fileID: 5368563334023718980}
+  - component: {fileID: 7392297402199523063}
   m_Layer: 5
   m_Name: Motion Blur Toggle
   m_TagString: Untagged
@@ -3328,6 +3449,20 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 1
+--- !u!114 &7392297402199523063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2137075567456260421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8cab9819676eac45b8e7a2e6b0fa509, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.UISounds
+  _hoverSound: {fileID: 8300000, guid: c533ee7fb7dc4c64ca6c13b39515b5d1, type: 3}
+  _clickSound: {fileID: 8300000, guid: 02f9a24a02af12d409f43f4985e08045, type: 3}
 --- !u!1 &2154910793751932150
 GameObject:
   m_ObjectHideFlags: 0
@@ -3972,6 +4107,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7503130051899965520}
   - component: {fileID: 361020555370503665}
+  - component: {fileID: 945396454845307142}
   m_Layer: 5
   m_Name: SFX Volume Slider
   m_TagString: Untagged
@@ -4064,6 +4200,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &945396454845307142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2551342796640917047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8cab9819676eac45b8e7a2e6b0fa509, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.UISounds
+  _hoverSound: {fileID: 8300000, guid: c533ee7fb7dc4c64ca6c13b39515b5d1, type: 3}
+  _clickSound: {fileID: 8300000, guid: 02f9a24a02af12d409f43f4985e08045, type: 3}
 --- !u!1 &2629229029660346847
 GameObject:
   m_ObjectHideFlags: 0
@@ -4588,6 +4738,7 @@ GameObject:
   - component: {fileID: 9143456441367430194}
   - component: {fileID: 6256227423604072650}
   - component: {fileID: 4605392759581077643}
+  - component: {fileID: 4273913165649549041}
   m_Layer: 5
   m_Name: Audio
   m_TagString: Untagged
@@ -4737,6 +4888,20 @@ MonoBehaviour:
   references:
     version: 2
     RefIds: []
+--- !u!114 &4273913165649549041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3027188539247070047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8cab9819676eac45b8e7a2e6b0fa509, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.UISounds
+  _hoverSound: {fileID: 8300000, guid: c533ee7fb7dc4c64ca6c13b39515b5d1, type: 3}
+  _clickSound: {fileID: 8300000, guid: 02f9a24a02af12d409f43f4985e08045, type: 3}
 --- !u!1 &3073292640200367111
 GameObject:
   m_ObjectHideFlags: 0
@@ -5499,6 +5664,7 @@ GameObject:
   - component: {fileID: 3708278685836334882}
   - component: {fileID: 7085362453049756278}
   - component: {fileID: 8539906271123888692}
+  - component: {fileID: 6463699543492102449}
   m_Layer: 5
   m_Name: Screen Resolution Selection
   m_TagString: Untagged
@@ -5659,6 +5825,20 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &6463699543492102449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3878117146982109828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8cab9819676eac45b8e7a2e6b0fa509, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.UISounds
+  _hoverSound: {fileID: 8300000, guid: c533ee7fb7dc4c64ca6c13b39515b5d1, type: 3}
+  _clickSound: {fileID: 8300000, guid: 02f9a24a02af12d409f43f4985e08045, type: 3}
 --- !u!1 &3993493049524102280
 GameObject:
   m_ObjectHideFlags: 0
@@ -7104,6 +7284,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1197148103527251519}
   - component: {fileID: 3599690160308949143}
+  - component: {fileID: 3440871962249050845}
   m_Layer: 5
   m_Name: Ambient Volume Slider
   m_TagString: Untagged
@@ -7196,6 +7377,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &3440871962249050845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5242444709963304356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8cab9819676eac45b8e7a2e6b0fa509, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.UISounds
+  _hoverSound: {fileID: 8300000, guid: c533ee7fb7dc4c64ca6c13b39515b5d1, type: 3}
+  _clickSound: {fileID: 8300000, guid: 02f9a24a02af12d409f43f4985e08045, type: 3}
 --- !u!1 &5245427156372964443
 GameObject:
   m_ObjectHideFlags: 0
@@ -7797,6 +7992,7 @@ GameObject:
   m_Component:
   - component: {fileID: 954660180090454563}
   - component: {fileID: 133317505644567834}
+  - component: {fileID: 5371519975693730704}
   m_Layer: 5
   m_Name: Fullscreen Toggle
   m_TagString: Untagged
@@ -7872,6 +8068,20 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 1
+--- !u!114 &5371519975693730704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5462642663243008312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8cab9819676eac45b8e7a2e6b0fa509, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.UISounds
+  _hoverSound: {fileID: 8300000, guid: c533ee7fb7dc4c64ca6c13b39515b5d1, type: 3}
+  _clickSound: {fileID: 8300000, guid: 02f9a24a02af12d409f43f4985e08045, type: 3}
 --- !u!1 &5536084299399930189
 GameObject:
   m_ObjectHideFlags: 0
@@ -9390,6 +9600,7 @@ GameObject:
   - component: {fileID: 6695126653669110727}
   - component: {fileID: 7072786895813582645}
   - component: {fileID: 8325912384525462734}
+  - component: {fileID: 1199277131175294230}
   m_Layer: 5
   m_Name: Item
   m_TagString: Untagged
@@ -9544,6 +9755,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1199277131175294230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6784842354532237776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8cab9819676eac45b8e7a2e6b0fa509, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.UISounds
+  _hoverSound: {fileID: 8300000, guid: c533ee7fb7dc4c64ca6c13b39515b5d1, type: 3}
+  _clickSound: {fileID: 8300000, guid: 02f9a24a02af12d409f43f4985e08045, type: 3}
 --- !u!1 &6849968432494685039
 GameObject:
   m_ObjectHideFlags: 0
@@ -9903,6 +10128,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1494241085914124115}
   - component: {fileID: 2852065918729586258}
+  - component: {fileID: 1406057812583176105}
   m_Layer: 5
   m_Name: Hidden Toggle
   m_TagString: Untagged
@@ -9978,6 +10204,20 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 1
+--- !u!114 &1406057812583176105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7269290421646205629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8cab9819676eac45b8e7a2e6b0fa509, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.UISounds
+  _hoverSound: {fileID: 8300000, guid: c533ee7fb7dc4c64ca6c13b39515b5d1, type: 3}
+  _clickSound: {fileID: 8300000, guid: 02f9a24a02af12d409f43f4985e08045, type: 3}
 --- !u!1 &7274450942873310996
 GameObject:
   m_ObjectHideFlags: 0
@@ -11227,6 +11467,7 @@ GameObject:
   - component: {fileID: 3843705105255273048}
   - component: {fileID: 8573300898403791056}
   - component: {fileID: 6922099130692200564}
+  - component: {fileID: 6883142371674913598}
   m_Layer: 5
   m_Name: Item
   m_TagString: Untagged
@@ -11381,6 +11622,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6883142371674913598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7672841721832547747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8cab9819676eac45b8e7a2e6b0fa509, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.UISounds
+  _hoverSound: {fileID: 8300000, guid: c533ee7fb7dc4c64ca6c13b39515b5d1, type: 3}
+  _clickSound: {fileID: 8300000, guid: 02f9a24a02af12d409f43f4985e08045, type: 3}
 --- !u!1 &7706890650772441405
 GameObject:
   m_ObjectHideFlags: 0
@@ -12021,6 +12276,7 @@ GameObject:
   - component: {fileID: 4585305342047126083}
   - component: {fileID: 1709983718847516785}
   - component: {fileID: 5234043951830656499}
+  - component: {fileID: 5643344286516774229}
   m_Layer: 5
   m_Name: Screen Resolution Selection
   m_TagString: Untagged
@@ -12169,6 +12425,20 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &5643344286516774229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8323498861067957309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8cab9819676eac45b8e7a2e6b0fa509, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.UISounds
+  _hoverSound: {fileID: 8300000, guid: c533ee7fb7dc4c64ca6c13b39515b5d1, type: 3}
+  _clickSound: {fileID: 8300000, guid: 02f9a24a02af12d409f43f4985e08045, type: 3}
 --- !u!1 &8342269837542797153
 GameObject:
   m_ObjectHideFlags: 0
