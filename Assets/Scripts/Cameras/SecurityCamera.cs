@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Localization;
+using VoidspireStudio.FNATS.Core;
 using VoidspireStudio.FNATS.Saves;
 
 namespace VoidspireStudio.FNATS.Cameras
@@ -31,8 +32,8 @@ namespace VoidspireStudio.FNATS.Cameras
 
         public void Look(Vector3 lookInput)
         {
-            float mouseX = lookInput.x * SaveManager.LastSavedData.gameplay.mouseSensitivity * Time.deltaTime;
-            float mouseY = lookInput.y * SaveManager.LastSavedData.gameplay.mouseSensitivity * Time.deltaTime;
+            float mouseX = lookInput.x * GameManager.Instance.GetSentivity() * Time.deltaTime;
+            float mouseY = lookInput.y * GameManager.Instance.GetSentivity() * Time.deltaTime;
 
             _verticalRotation -= mouseY;
             _horizontalRotation += mouseX;

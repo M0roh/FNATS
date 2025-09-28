@@ -6,7 +6,7 @@ using VoidspireStudio.FNATS.Cameras;
 
 namespace VoidspireStudio.FNATS.Optimization
 {
-    [AddComponentMenu("Optimization/Optimization.SceneOptimization")]
+    [AddComponentMenu("Optimization/SceneOptimization")]
     public class SceneOptimization : MonoBehaviour
     {
         private static readonly List<OptimizerTarget> _optimizationTargets = new();
@@ -23,7 +23,7 @@ namespace VoidspireStudio.FNATS.Optimization
         {
             while (true)
             {
-                var pos = SecurityCamerasManager.Instance.IsPlayerOnCameras ? SecurityCamerasManager.Instance.CurrentCamera.transform.position : Camera.main.transform.position;
+                var pos = (SecurityCamerasManager.Instance != null && SecurityCamerasManager.Instance.IsPlayerOnCameras) ? SecurityCamerasManager.Instance.CurrentCamera.transform.position : Camera.main.transform.position;
                 foreach (var target in _optimizationTargets.ToList())
                 {
                     var distance = Vector3.Distance(pos, target.transform.position);

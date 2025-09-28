@@ -14,6 +14,15 @@ namespace VoidspireStudio.FNATS.Utils
                    agent.remainingDistance <= agent.stoppingDistance &&
                    (!agent.hasPath || agent.velocity.sqrMagnitude == 0f);
         }
+
+        public static bool IsValidPath(this NavMeshAgent agent)
+        {
+            if (agent == null) return false;
+
+            return agent.hasPath &&
+                !agent.pathPending &&
+                agent.pathStatus == NavMeshPathStatus.PathComplete;
+        }
         
         public static float Fraction(this float value)
         {

@@ -53,8 +53,6 @@ namespace VoidspireStudio.FNATS.Cameras {
 
         public void OnEnable()
         {
-            GameInput.Instance.InputActions.Camera.Look.performed += MoveCamera;
-
             GameInput.Instance.InputActions.Camera.CloseCamera.performed += CloseCameras;
 
             GameInput.Instance.InputActions.Camera.CameraPrev.performed += PrevCamera;
@@ -69,8 +67,6 @@ namespace VoidspireStudio.FNATS.Cameras {
 
         public void OnDisable()
         {
-            GameInput.Instance.InputActions.Camera.Look.performed -= MoveCamera;
-
             GameInput.Instance.InputActions.Camera.CloseCamera.performed -= CloseCameras;
 
             GameInput.Instance.InputActions.Camera.CameraPrev.performed -= PrevCamera;
@@ -80,7 +76,12 @@ namespace VoidspireStudio.FNATS.Cameras {
                 _cameraInputs[i].performed -= cameraDelegates[i];
         }
 
-        public void MoveCamera(InputAction.CallbackContext ctx) => _securityCameras[_currentCameraIndex].Look(ctx.ReadValue<Vector2>());
+        public void Update()
+        {
+            if (!IsPlayerOnCameras) return;
+
+            _securityCameras[_currentCameraIndex].Look(GameInput.Instance.GetCameraLookVector());
+        }
 
         public void OpenCameras()
         {
@@ -91,7 +92,7 @@ namespace VoidspireStudio.FNATS.Cameras {
             ReloadCamera();
         }
 
-        public void CloseCameras(InputAction.CallbackContext ctx)
+        public void CloseCameras(InputAction.CallbackContext _)
         {
             IsPlayerOnCameras = false;
             _cameraView.gameObject.SetActive(false);
@@ -99,7 +100,7 @@ namespace VoidspireStudio.FNATS.Cameras {
             GameInput.Instance.InputActions.Camera.Disable();
         }
 
-        public void NextCamera(InputAction.CallbackContext ctx)
+        public void NextCamera(InputAction.CallbackContext _)
         {
             int nextIndex = _currentCameraIndex + 1;
             if (nextIndex >= _securityCameras.Count)
@@ -108,7 +109,7 @@ namespace VoidspireStudio.FNATS.Cameras {
             ChangeCamera(nextIndex);
         }
 
-        public void PrevCamera(InputAction.CallbackContext ctx)
+        public void PrevCamera(InputAction.CallbackContext _)
         {
             int prevIndex = _currentCameraIndex - 1;
             if (prevIndex < 0)

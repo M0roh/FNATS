@@ -355,10 +355,10 @@ namespace VoidspireStudio.FNATS.Player
         {
             _lookInput = GameInput.Instance.GetLookVector();
 
-            float mouseX = _lookInput.x * SaveManager.LastSavedData.gameplay.mouseSensitivity * Time.deltaTime;
+            float mouseX = _lookInput.x * GameManager.Instance.GetSentivity() * Time.deltaTime;
             transform.Rotate(Vector3.up * mouseX);
 
-            float mouseY = _lookInput.y * SaveManager.LastSavedData.gameplay.mouseSensitivity * Time.deltaTime;
+            float mouseY = _lookInput.y * GameManager.Instance.GetSentivity() * Time.deltaTime;
 
             _verticalRotation -= mouseY;
             _verticalRotation = Mathf.Clamp(_verticalRotation, -_maxVerticalAngle, _maxVerticalAngle);

@@ -4,6 +4,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using VoidspireStudio.FNATS.Core;
 using VoidspireStudio.FNATS.Saves;
@@ -23,6 +24,7 @@ namespace VoidspireStudio.FNATS.UI.Menus
 
         [Header("Tabs")]
         [SerializeField] private List<SettingsTab> _tabs = new();
+        private Transform _tabParent;
         private int _currentTab = 0;
 
         [Header("Default Settings")]
@@ -38,6 +40,7 @@ namespace VoidspireStudio.FNATS.UI.Menus
         {
             _normalButtonSize = (_tabs[0].tabButton.transform as RectTransform).sizeDelta;
             _clickedButtonSize = _normalButtonSize * _clickedButtonScale;
+            _tabParent = _tabs[0].tabButton.transform.parent;
         }
 
         public void Start()
@@ -53,12 +56,35 @@ namespace VoidspireStudio.FNATS.UI.Menus
                 _tabs[i].clickAction = () => ChangeTab(index);
                 _tabs[i].tabButton.onClick.AddListener(_tabs[i].clickAction);
             }
+
+            GameInput.Instance.OnControlsChanged += OnControlsChanged;
+            OnControlsChanged(GameInput.Instance.CurrentControlScheme);
         }
 
         private void OnDisable()
         {
+            GameInput.Instance.OnControlsChanged -= OnControlsChanged;
+
             for (int i = 0; i < _tabs.Count; i++)
                 _tabs[i].tabButton.onClick.RemoveListener(_tabs[i].clickAction);
+        }
+
+        private void OnControlsChanged(string controlScheme)
+        {
+            if (controlScheme.Equals("Gamepad", System.StringComparison.OrdinalIgnoreCase)
+                || controlScheme.Equals("Joystick", System.StringComparison.OrdinalIgnoreCase))
+            {
+                Debug.Log(_tabs[0].tabButton.gameObject);
+                EventSystem.current.SetSelectedGameObject(_tabParent.GetComponentsInChildren<Button>()[0].gameObject);
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+            }
+            else
+            {
+                EventSystem.current.SetSelectedGameObject(null);
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            }
         }
 
         public void ChangeTab(int tabIndex)
@@ -78,6 +104,7 @@ namespace VoidspireStudio.FNATS.UI.Menus
             }
 
             _currentTab = tabIndex;
+            EventSystem.current.SetSelectedGameObject(_tabParent.GetComponentsInChildren<Button>()[0].gameObject);
         }
 
         public void BackButton()

@@ -6,7 +6,7 @@ using VoidspireStudio.FNATS.Core;
 
 namespace Assets.Scripts
 {
-    public class UISounds : MonoBehaviour, IPointerEnterHandler
+    public class UISounds : MonoBehaviour, ISelectHandler, IPointerEnterHandler
     {
         [SerializeField] private AudioClip _hoverSound;
         [SerializeField] private AudioClip _clickSound;
@@ -29,6 +29,11 @@ namespace Assets.Scripts
         public void PlayClickSound()
         {
             AudioManager.Instance.PlaySound2D(_clickSound, AudioManager.AudioType.SFX);
+        }
+
+        public void OnSelect(BaseEventData _)
+        {
+            AudioManager.Instance.PlaySound2D(_hoverSound, AudioManager.AudioType.SFX);
         }
 
         public void OnPointerEnter(PointerEventData _)

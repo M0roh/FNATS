@@ -6,12 +6,12 @@ namespace VoidspireStudio.FNATS.Optimization
     {
         public abstract void ApplyOptimization(float distance);
 
-        private void OnEnable()
+        private void Start()
         {
             SceneOptimization.AddTarget(this);
         }
 
-        private void OnDisable()
+        private void OnDestroy()
         {
             SceneOptimization.RemoveTarget(this);
         }

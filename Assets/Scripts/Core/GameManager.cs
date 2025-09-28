@@ -61,6 +61,17 @@ namespace VoidspireStudio.FNATS.Core
             }
         }
 
+        public float GetSentivity()
+        {
+            float sentivity = SaveManager.LastSavedData.gameplay.mouseSensitivity;
+
+            if (GameInput.Instance.CurrentControlScheme.Equals("Gamepad", System.StringComparison.OrdinalIgnoreCase)
+                || GameInput.Instance.CurrentControlScheme.Equals("Joystick", System.StringComparison.OrdinalIgnoreCase))
+                sentivity *= 10;
+
+            return sentivity;
+        }
+
         public void ShowTip(LocalizedString tipString) 
         {
             _tipText.gameObject.SetActive(true);

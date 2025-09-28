@@ -1,9 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.HighDefinition;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using VoidspireStudio.FNATS.Core;
 using VoidspireStudio.FNATS.Saves;
 
 namespace VoidspireStudio.FNATS.UI.Menus
@@ -15,6 +17,7 @@ namespace VoidspireStudio.FNATS.UI.Menus
 
         [SerializeField] private List<Animator> _animatronics = new();
         [SerializeField] private Button _continueButton;
+        [SerializeField] private Button _firstSelectedBtn;
         [SerializeField] private Volume _globalVolume;
 
         public Volume GlobalVolume => _globalVolume;
@@ -33,6 +36,34 @@ namespace VoidspireStudio.FNATS.UI.Menus
                 exp.fixedExposure.value = (SaveManager.LastSavedData.graphics.brightness * -8f) + 4f;
 
             _continueButton.interactable = SaveManager.HasSavedGame;
+        }
+
+        private void OnEnable()
+        {
+            GameInput.Instance.OnControlsChanged += OnControlsChanged;
+            OnControlsChanged(GameInput.Instance.CurrentControlScheme);
+        }
+
+        private void OnDisable()
+        {
+            GameInput.Instance.OnControlsChanged -= OnControlsChanged;
+        }
+
+        private void OnControlsChanged(string controlScheme)
+        {
+            if (controlScheme.Equals("Gamepad", System.StringComparison.OrdinalIgnoreCase)
+                || controlScheme.Equals("Joystick", System.StringComparison.OrdinalIgnoreCase))
+            {
+                EventSystem.current.SetSelectedGameObject(_firstSelectedBtn.gameObject);
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+            }
+            else
+            {
+                EventSystem.current.SetSelectedGameObject(null);
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            }
         }
 
         public void Continue()

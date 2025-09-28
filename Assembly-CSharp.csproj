@@ -127,6 +127,7 @@
     <Compile Include="Assets\Scripts\PowerSystem\IPowerNode.cs" />
     <Compile Include="Assets\Scripts\UI\NightTimeUI.cs" />
     <Compile Include="Assets\Samples\High Definition Render Pipeline\17.2.0\Fullscreen Samples\Scripts\CustomizeHighlightColor.cs" />
+    <Compile Include="Assets\Scripts\Core\PauseManager.cs" />
     <Compile Include="Assets\Scripts\Triggers\MessageTrigger.cs" />
     <Compile Include="Assets\Scripts\Optimization\Optimizators\ColliderOptimizer.cs" />
     <Compile Include="Assets\Scripts\Interactables\FlashlightCharger.cs" />

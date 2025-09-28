@@ -1,68 +1,56 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using VoidspireStudio.FNATS.Core;
 
 namespace VoidspireStudio.FNATS.UI.Menus
 {
     public class PauseMenu : MonoBehaviour
     {
-        [SerializeField] private GameObject _gameUI;
-        [SerializeField] private GameObject _pauseButtons;
+        [SerializeField] private Button _firstSelectedBtn;
 
-        public static bool IsPaused { get; private set; } = false;
-
-        private void Start()
+        private void OnEnable()
         {
-            Continue();
-            GameInput.Instance.InputActions.UI.Cancel.performed += PauseProcess;
+            GameInput.Instance.OnControlsChanged += OnControlsChanged;
+            OnControlsChanged(GameInput.Instance.CurrentControlScheme);
         }
 
-        private void OnDestroy()
+        private void OnDisable()
         {
-            GameInput.Instance.InputActions.UI.Cancel.performed -= PauseProcess;
+            GameInput.Instance.OnControlsChanged -= OnControlsChanged;
         }
 
-        private void PauseProcess(InputAction.CallbackContext _)
+        private void OnControlsChanged(string controlScheme)
         {
-            if (IsPaused)
-                Continue();
+            if (controlScheme.Equals("Gamepad", System.StringComparison.OrdinalIgnoreCase)
+                || controlScheme.Equals("Joystick", System.StringComparison.OrdinalIgnoreCase))
+            {
+                EventSystem.current.SetSelectedGameObject(_firstSelectedBtn.gameObject);
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+            }
             else
-                Pause();
-        }
-
-        private void Pause()
-        {
-            if (IsPaused) return;
-
-            IsPaused = true;
-            Time.timeScale = 0f;
-            _gameUI.SetActive(false);
-            gameObject.SetActive(true);
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
+            {
+                EventSystem.current.SetSelectedGameObject(null);
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            }
         }
 
         public void Continue()
         {
-            if (UIManager.Instance.IsOpenedSubMenu) return;
-
-            IsPaused = false;
-            Time.timeScale = 1f;
-            _gameUI.SetActive(true);
-            gameObject.SetActive(false);
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
+            PauseManager.Instance.Continue();
         }
 
         public void Settings()
         {
-            UIManager.Instance.OpenSettings(_pauseButtons);
+            UIManager.Instance.OpenSettings(gameObject);
         }
 
         public void Credits()
         {
-            UIManager.Instance.OpenCredits(_pauseButtons);
+            UIManager.Instance.OpenCredits(gameObject);
         }
 
         public void Quit()

@@ -31,17 +31,17 @@ namespace VoidspireStudio.FNATS.UI.KeyBindings
             GameInput.Instance.OnControlsChanged -= RebuildUI;
         }
 
-        private void RebuildUI()
+        private void RebuildUI(string controlScheme = null)
         {
             foreach (Transform child in _keyParent)
                 Destroy(child.gameObject);
 
-            BuildUI();
+            BuildUI(controlScheme);
         }
 
-        private void BuildUI()
+        private void BuildUI(string controlScheme)
         {
-            string currentScheme = GameInput.Instance.CurrentControlScheme;
+            string currentScheme = string.IsNullOrEmpty(controlScheme) ? GameInput.Instance.CurrentControlScheme : controlScheme;
 
             foreach (var keyBinding in _keyBindings)
             {

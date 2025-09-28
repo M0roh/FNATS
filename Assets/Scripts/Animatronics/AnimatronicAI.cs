@@ -5,6 +5,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 using VoidspireStudio.FNATS.Animatronics.Routes;
+using VoidspireStudio.FNATS.Cameras;
 using VoidspireStudio.FNATS.Core;
 using VoidspireStudio.FNATS.Nights;
 using VoidspireStudio.FNATS.Utils;
@@ -246,20 +247,19 @@ namespace VoidspireStudio.FNATS.Animatronics
 
         private IEnumerator OfficeAttack()
         {
-            Debug.Log("Go to office center");
             _agent.SetDestination(OfficeManager.Instance.OfficeCenter.position);
 
             yield return null;
 
             yield return new WaitUntil(() => _agent.HasReachedDestination() || _currentState == AnimatronicState.Forwarding || _currentState == AnimatronicState.OfficeAttack);
 
-            if (_currentState == AnimatronicState.Forwarding || _currentState == AnimatronicState.OfficeAttack)
+            if (_currentState == AnimatronicState.Forwarding || _currentState == AnimatronicState.Attack)
             {
+                _attackState = OfficeAttackState.NotAttack;
                 isAttackOffice = false;
                 yield break;
             }
 
-            Debug.Log("First check ended!");
             if (!OfficeManager.Instance.IsPlayerInOffice)
             {
                 Debug.Log("PLAYER NOT IN OFFICE!");
@@ -269,20 +269,35 @@ namespace VoidspireStudio.FNATS.Animatronics
                 _currentState = AnimatronicState.Waiting;
                 yield break;
             }
+            else if (OfficeManager.Instance.IsPlayerUnderTable)
+            {
+                _agent.SetDestination(OfficeManager.Instance.PlayerUnderTableSearch.position);
+                
+                yield return new WaitUntil(() => _agent.HasReachedDestination());
 
-            _agent.SetDestination(Player.Player.Instance.transform.position);
+                Debug.Log("Reached table search!");
+                Attack();
+                yield break;
+            }
+            else
+            {
+                _agent.SetDestination(Player.Player.Instance.transform.position);
 
-            yield return null;
+                yield return null;
 
-            yield return new WaitUntil(() => _agent.HasReachedDestination());
-            Debug.Log("Reached player!");
-            Attack();
+                yield return new WaitUntil(() => _agent.HasReachedDestination());
+                Debug.Log("Reached player!");
+                Attack();
+            }
         }
 
         protected abstract bool BlockCheck();
 
         private void Attack()
         {
+            if (SecurityCamerasManager.Instance.IsPlayerOnCameras)
+                SecurityCamerasManager.Instance.CloseCameras(new());
+
             _currentState = AnimatronicState.Off;
 
             transform.rotation = Quaternion.LookRotation(Player.Player.Instance.transform.position);
@@ -296,9 +311,9 @@ namespace VoidspireStudio.FNATS.Animatronics
             _animator.ResetTrigger(IDLE);
 
             if (Player.Player.Instance.IsCrouch)
-                _animator.SetTrigger(CROUCH_ATTACK);
+                _animator.CrossFade(CROUCH_ATTACK, 1f);
             else
-                _animator.SetTrigger(ATTACK);
+                _animator.CrossFade(ATTACK, 0.2f);
 
             // TODO: Рестарт ночи + таймер
             Debug.Log("Game over");

@@ -1,5 +1,8 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace VoidspireStudio.FNATS.UI.Menus
 {
@@ -62,6 +65,7 @@ namespace VoidspireStudio.FNATS.UI.Menus
 
             yield return new WaitForSecondsRealtime(_timeBetweenMenuSwapping);
 
+            _previousMenu.SetActive(true); 
             var previousAnimator = _previousMenu.GetComponent<Animator>();
             previousAnimator.ResetTrigger("HIDE");
             previousAnimator.SetTrigger("SHOW");
@@ -84,6 +88,7 @@ namespace VoidspireStudio.FNATS.UI.Menus
             animator.SetTrigger("HIDE");
 
             yield return new WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).IsName("Hide"));
+            menuFrom.SetActive(false);
 
             yield return new WaitForSecondsRealtime(_timeBetweenMenuSwapping);
 
