@@ -14,7 +14,7 @@ namespace VoidspireStudio.FNATS.PowerSystem.Fuses
 
         public bool CanInteract => !IsActive && Player.Player.Instance.IsPickedFuse;
 
-        public bool IsActive { get; private set; }
+        public bool IsActive { get; private set; } = true;
 
         public LocalizedString InteractTip => _interactTip;
 

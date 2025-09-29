@@ -19,8 +19,10 @@ namespace VoidspireStudio.FNATS.PowerSystem.Fuses
         [SerializeField] private float _maxIntensity;
         private List<int> _availableIndices = new();
 
-        public bool IsActive { get; private set; }
+        public bool IsActive { get; private set; } = true;
         public bool IsRepaired => _fuses.All(fuse => fuse.IsActive);
+
+        private Coroutine _fadeLightCoroutine;
 
         public event Action OnBroken;
         public event Action OnRepair;
@@ -59,7 +61,7 @@ namespace VoidspireStudio.FNATS.PowerSystem.Fuses
             int randomIndex = _availableIndices[UnityEngine.Random.Range(0, _availableIndices.Count)];
             _availableIndices.Remove(randomIndex);
 
-            StartCoroutine(FadeLight(_lights[randomIndex]));
+            _fadeLightCoroutine = StartCoroutine(FadeLight(_lights[randomIndex]));
         }
 
         private IEnumerator FadeLight(Light light)
@@ -75,7 +77,8 @@ namespace VoidspireStudio.FNATS.PowerSystem.Fuses
 
             light.intensity = _maxIntensity;
 
-            IgniteNextLight();
+            if (IsActive)
+                IgniteNextLight();
 
             timer = 0f;
 
@@ -95,12 +98,20 @@ namespace VoidspireStudio.FNATS.PowerSystem.Fuses
             {
                 IsActive = true;
                 OnRepair?.Invoke();
+
+                IgniteNextLight();
             }
         }
 
         public void Off()
         {
             OnBroken?.Invoke();
+
+            if (_fadeLightCoroutine != null)
+                StopCoroutine(_fadeLightCoroutine);
+
+            foreach (var light in _lights)
+                light.intensity = 0f;
         }
 
         private void BreakChance(float currentPower, float drainAmount)

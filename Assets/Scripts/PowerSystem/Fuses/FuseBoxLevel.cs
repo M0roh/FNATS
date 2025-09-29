@@ -20,7 +20,7 @@ namespace VoidspireStudio.FNATS.PowerSystem.Fuses
 
         private Coroutine _rotateCoroutine;
 
-        public bool IsOn { get; private set; }
+        public bool IsOn { get; private set; } = true;
 
         public bool CanInteract => !_fuseBox.IsRepaired;
 
@@ -29,6 +29,7 @@ namespace VoidspireStudio.FNATS.PowerSystem.Fuses
         private void OnEnable()
         {
             _fuseBox.OnBroken += ToOff;
+            ToOn();
         }
 
         private void ToOff()
