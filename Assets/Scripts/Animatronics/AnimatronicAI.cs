@@ -301,9 +301,9 @@ namespace VoidspireStudio.FNATS.Animatronics
             _animator.ResetTrigger(IDLE);
 
             if (Player.Player.Instance.IsCrouch)
-                _animator.CrossFade(CROUCH_ATTACK, 1f);
+                _animator.CrossFade(CROUCH_ATTACK, 0.4f, 0, 0f);
             else
-                _animator.CrossFade(ATTACK, 0.2f);
+                _animator.CrossFade(ATTACK, 0.2f, 0, 0);
 
             // TODO: Рестарт ночи + таймер
             Debug.Log("Game over");

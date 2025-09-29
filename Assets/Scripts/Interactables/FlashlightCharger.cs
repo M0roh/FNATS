@@ -73,6 +73,15 @@ namespace VoidspireStudio.FNATS.Interactables
 
         public void OnInteract()
         {
+            if (PowerSystem.PowerSystem.Instance.IsStopped)
+            {
+                if (!IsActive)
+                {
+                    Player.Player.Instance.FlashlightPickup();
+                    _flashlightInChargeObject.SetActive(false);
+                }
+            }
+
             if (IsActive)
             {
                 Player.Player.Instance.FlashlightPickup();

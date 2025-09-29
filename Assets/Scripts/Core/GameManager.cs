@@ -61,6 +61,12 @@ namespace VoidspireStudio.FNATS.Core
             }
         }
 
+        private void Start()
+        {
+            GameInput.Instance.InputActions.Player.Enable();
+
+        }
+
         public float GetSentivity()
         {
             float sentivity = SaveManager.LastSavedData.gameplay.mouseSensitivity;

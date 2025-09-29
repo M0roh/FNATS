@@ -106,6 +106,7 @@ namespace VoidspireStudio.FNATS.PowerSystem.Fuses
         public void Off()
         {
             OnBroken?.Invoke();
+            IsActive = false;
 
             if (_fadeLightCoroutine != null)
                 StopCoroutine(_fadeLightCoroutine);
@@ -116,18 +117,21 @@ namespace VoidspireStudio.FNATS.PowerSystem.Fuses
 
         private void BreakChance(float currentPower, float drainAmount)
         {
-            if (drainAmount <= 0f) return;
+            if (drainAmount <= 0f || !IsActive) return;
 
-            float baseChance = 0.05f;
+            float baseChance = 0.1f;
 
-            float loadFactor = Mathf.Clamp01(drainAmount / Mathf.Max(currentPower, 1f));
+            float loadFactor = Mathf.Clamp01((drainAmount / Mathf.Max(currentPower, 1f)) * 16f);
             float breakChance = baseChance * Mathf.Pow(loadFactor, 0.8f);
 
             if (UnityEngine.Random.value < breakChance)
             {
+                Debug.Log("OFF");
                 Off();
                 _fuses[UnityEngine.Random.Range(0, _fuses.Count)].Break();
             }
+            else
+                Debug.Log(breakChance);
         }
     }
 }
