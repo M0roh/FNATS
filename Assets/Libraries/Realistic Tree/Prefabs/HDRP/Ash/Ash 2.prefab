@@ -4969,8 +4969,55 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: -7985513008604186020, guid: 50e2cd5e22790be4f9314fe8f90a6fa6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4199777489317835297}
+    - targetCorrespondingSourceObject: {fileID: -7985513008604186020, guid: 50e2cd5e22790be4f9314fe8f90a6fa6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8867327805865710767}
   m_SourcePrefab: {fileID: 100100000, guid: 50e2cd5e22790be4f9314fe8f90a6fa6, type: 3}
+--- !u!1 &684870150459941608 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -7985513008604186020, guid: 50e2cd5e22790be4f9314fe8f90a6fa6, type: 3}
+  m_PrefabInstance: {fileID: 1778051038520809652}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &4199777489317835297
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 684870150459941608}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 2083028411033529732, guid: 50e2cd5e22790be4f9314fe8f90a6fa6, type: 3}
+--- !u!114 &8867327805865710767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 684870150459941608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdcb56d62f2e2024392d459aeca44f78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VoidspireStudio.FNATS.Optimization.ColliderOptimizer
+  _enableDistance: 15
+  _collider: {fileID: 4199777489317835297}
 --- !u!4 &2244585379970776927 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 50e2cd5e22790be4f9314fe8f90a6fa6, type: 3}

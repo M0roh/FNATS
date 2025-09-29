@@ -4969,10 +4969,57 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: -8311552207646481607, guid: a95f30929d2c0c74085b979f22f609ef, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5329817802367219784}
+    - targetCorrespondingSourceObject: {fileID: -8311552207646481607, guid: a95f30929d2c0c74085b979f22f609ef, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 81419400344315152}
   m_SourcePrefab: {fileID: 100100000, guid: a95f30929d2c0c74085b979f22f609ef, type: 3}
 --- !u!4 &1231184626785956096 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a95f30929d2c0c74085b979f22f609ef, type: 3}
   m_PrefabInstance: {fileID: 1629373532762986219}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1890348379164964306 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -8311552207646481607, guid: a95f30929d2c0c74085b979f22f609ef, type: 3}
+  m_PrefabInstance: {fileID: 1629373532762986219}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &5329817802367219784
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1890348379164964306}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 5352729115449035171, guid: a95f30929d2c0c74085b979f22f609ef, type: 3}
+--- !u!114 &81419400344315152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1890348379164964306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdcb56d62f2e2024392d459aeca44f78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VoidspireStudio.FNATS.Optimization.ColliderOptimizer
+  _enableDistance: 15
+  _collider: {fileID: 5329817802367219784}

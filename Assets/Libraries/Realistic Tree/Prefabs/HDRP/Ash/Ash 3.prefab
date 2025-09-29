@@ -4948,7 +4948,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4742473837712756890, guid: defd852720802834b9378d7c05cb94f2, type: 3}
       propertyPath: m_LODs.Array.data[3].screenRelativeHeight
-      value: 0.10405417
+      value: 0.08758509
       objectReference: {fileID: 0}
     - target: {fileID: 4922728081349979746, guid: defd852720802834b9378d7c05cb94f2, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -4969,8 +4969,55 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: -1485868254113683336, guid: defd852720802834b9378d7c05cb94f2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7179586885585591252}
+    - targetCorrespondingSourceObject: {fileID: -1485868254113683336, guid: defd852720802834b9378d7c05cb94f2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 487554585139246943}
   m_SourcePrefab: {fileID: 100100000, guid: defd852720802834b9378d7c05cb94f2, type: 3}
+--- !u!1 &937453637644627062 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -1485868254113683336, guid: defd852720802834b9378d7c05cb94f2, type: 3}
+  m_PrefabInstance: {fileID: 7377920590263518222}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &7179586885585591252
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 937453637644627062}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -1217028139425552482, guid: defd852720802834b9378d7c05cb94f2, type: 3}
+--- !u!114 &487554585139246943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 937453637644627062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdcb56d62f2e2024392d459aeca44f78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VoidspireStudio.FNATS.Optimization.ColliderOptimizer
+  _enableDistance: 15
+  _collider: {fileID: 7179586885585591252}
 --- !u!4 &7055199783267328997 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: defd852720802834b9378d7c05cb94f2, type: 3}
