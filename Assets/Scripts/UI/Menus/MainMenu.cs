@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -16,8 +17,12 @@ namespace VoidspireStudio.FNATS.UI.Menus
         public static MainMenu Instance { get; private set; }
 
         [SerializeField] private List<Animator> _animatronics = new();
+        
+        [Header("UI")]
         [SerializeField] private Button _continueButton;
         [SerializeField] private Button _firstSelectedBtn;
+
+        [Header("Other")]
         [SerializeField] private Volume _globalVolume;
 
         public Volume GlobalVolume => _globalVolume;

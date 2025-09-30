@@ -3,7 +3,7 @@ using System.IO;
 using System.Text;
 using UnityEngine;
 using UnityEngine.Localization.Settings;
-using VoidspireStudio.FNATS.Core;
+using VoidspireStudio.FNATS.Sounds;
 
 namespace VoidspireStudio.FNATS.Saves
 {

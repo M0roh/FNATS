@@ -3,20 +3,28 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Localization;
+using VoidspireStudio.FNATS.Sounds;
 
 
 namespace VoidspireStudio.FNATS.Interactables
 {
-    [RequireComponent(typeof(NavMeshObstacle))]
+    [RequireComponent(typeof(NavMeshObstacle), typeof(AudioSource))]
     public class Door : MonoBehaviour, IInteractable
-    {                                                                                 
+    {
+        [Header("Settings")]
+        [SerializeField] private LocalizedString _interactTip;
         [SerializeField] private bool _isOpenOnStart = false;
         [SerializeField] private bool _isNeedHold = false;
+        [SerializeField] private float _rotationSpeed = 5f;
+
+        [Header("Angles")]
         [SerializeField] private Quaternion _closeAngle = new();
         [SerializeField] private Quaternion _openAngle = new();
-        [SerializeField] private float _rotationSpeed = 5f;
-        [SerializeField] private LocalizedString _interactTip;
 
+        [Header("Audio")]
+        [SerializeField] private AudioClip _openCloseSound;
+
+        private AudioSource _audioSource;
         private NavMeshObstacle _obstacle;
         private Coroutine _rotateCoroutine;
 
@@ -33,6 +41,7 @@ namespace VoidspireStudio.FNATS.Interactables
         private void Awake()
         {
             _obstacle = GetComponent<NavMeshObstacle>();
+            _audioSource = GetComponent<AudioSource>();
         }
 
         private void Start()
@@ -70,6 +79,8 @@ namespace VoidspireStudio.FNATS.Interactables
 
             _isOpen = false;
             _obstacle.enabled = true;
+
+            AudioManager.Instance.PlaySound(_audioSource, _openCloseSound, AudioManager.AudioType.SFX);
         }
 
         public void Open()
@@ -79,6 +90,8 @@ namespace VoidspireStudio.FNATS.Interactables
 
             _isOpen = true;
             _obstacle.enabled = false;
+
+            AudioManager.Instance.PlaySound(_audioSource, _openCloseSound, AudioManager.AudioType.SFX);
         }
 
         public void Break()

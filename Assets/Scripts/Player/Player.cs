@@ -1,4 +1,5 @@
 using QuickOutline;
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using VoidspireStudio.FNATS.Core;
@@ -27,6 +28,7 @@ namespace VoidspireStudio.FNATS.Player
         private bool _isCrouched = false;
         private bool _isRunning = false;
         private bool _isFrozen = false;
+        private bool _wasGrounded = false;
 
         private bool _isPickedFuse = false;
 
@@ -76,6 +78,12 @@ namespace VoidspireStudio.FNATS.Player
 
         public Vector3 HeadPosition => _playerCamera.transform.position;
 
+
+        public event Action OnWalk;
+        public event Action<bool> OnRunStateChange;
+        public event Action OnJump;
+        public event Action OnGrouding;
+        
         private void Awake()
         {
             if (Instance != null)
@@ -132,6 +140,7 @@ namespace VoidspireStudio.FNATS.Player
             Move();
             RollingCheck();
             HighlightLookObject();
+            GroundCheck();
 
             Vector3 targetPos = _isCrouched ? _crouchingCamPos : _standingCamPos;
             _playerCamera.transform.localPosition = Vector3.Lerp(
@@ -149,6 +158,16 @@ namespace VoidspireStudio.FNATS.Player
                     _currentInteractTarget = null;
                 }
             }
+        }
+
+        public void GroundCheck()
+        {
+            bool grounded = _cc.isGrounded;
+
+            if (!_wasGrounded && grounded)
+                OnGrouding?.Invoke();
+
+            _wasGrounded = grounded;
         }
 
         public void FlashlightDrop()
@@ -225,13 +244,15 @@ namespace VoidspireStudio.FNATS.Player
                 StopCoroutine(_sprintAdjustFov);
 
             _sprintAdjustFov = StartCoroutine(Util.AdjustFOV(_fov, 0.4f, _playerCamera));
+
+            OnRunStateChange?.Invoke(false);
         }
 
         private void Sprint_started(InputAction.CallbackContext obj)
         {
             if (_isCrouched)
                 return;
-
+            
             _speed = _runSpeed;
             _isRunning = true;
 
@@ -239,6 +260,8 @@ namespace VoidspireStudio.FNATS.Player
                 StopCoroutine(_sprintAdjustFov);
 
             _sprintAdjustFov = StartCoroutine(Util.AdjustFOV(_sprintFov, 0.4f, _playerCamera));
+            
+            OnRunStateChange?.Invoke(true);
         }
 
         private void Crouch_performed(InputAction.CallbackContext obj)
@@ -322,7 +345,10 @@ namespace VoidspireStudio.FNATS.Player
         private void Jump_performed(InputAction.CallbackContext ctx)
         {
             if (!_isCrouched && _cc.isGrounded && IsSlopeValid())
+            {
                 _velocity.y = Mathf.Sqrt(jumpHeight * -2f * _gravity);
+                OnJump?.Invoke();
+            }
         }
 
         private bool IsSlopeValid()
@@ -342,6 +368,10 @@ namespace VoidspireStudio.FNATS.Player
             Vector3 move = transform.right * _moveInput.x + transform.forward * _moveInput.y;
 
             _cc.Move(_speed * Time.deltaTime * move);
+
+            if (move.magnitude <= 0.001f)
+                OnWalk?.Invoke();
+
 
             if (_cc.isGrounded && _velocity.y < 0)
                 _velocity.y = -2f;

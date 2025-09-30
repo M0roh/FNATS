@@ -2,6 +2,7 @@
 using UnityEngine.Localization;
 using UnityEngine.Rendering;
 using VoidspireStudio.FNATS.Nights;
+using VoidspireStudio.FNATS.Sounds;
 
 namespace VoidspireStudio.FNATS.PowerSystem
 {
@@ -9,7 +10,11 @@ namespace VoidspireStudio.FNATS.PowerSystem
     {
         public static Flashlight Instance { get; private set; }
 
+        [Header("Взаимодействие")]
         [SerializeField] private LocalizedString _interactTip;
+        [SerializeField] private AudioClip _interactSound;
+
+        [Header("Свет")]
         [SerializeField] private Light _flashlightLight;
         [SerializeField] private float _lowEnergyLightIntensivity;
         [SerializeField] private float _normalLightIntensivity;
@@ -72,12 +77,16 @@ namespace VoidspireStudio.FNATS.PowerSystem
 
         public void TurnOff()
         {
+            AudioManager.Instance.PlaySound2D(_interactSound, AudioManager.AudioType.SFX);
+
             IsActive = false;
             _flashlightLight.enabled = false;
         }
 
         public void TurnOn()
         {
+            AudioManager.Instance.PlaySound2D(_interactSound, AudioManager.AudioType.SFX);
+
             if (_currentPower <= 0f) return;
 
             IsActive = true;

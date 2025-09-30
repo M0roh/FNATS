@@ -2,8 +2,8 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using VoidspireStudio.FNATS.Core;
 using VoidspireStudio.FNATS.Saves;
+using VoidspireStudio.FNATS.Sounds;
 
 namespace VoidspireStudio.FNATS.UI.Menus.SettingsTabs
 {

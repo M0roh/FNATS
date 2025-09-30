@@ -24,6 +24,9 @@ namespace VoidspireStudio.FNATS.Cameras {
 
         public SecurityCamera CurrentCamera => _securityCameras[_currentCameraIndex];
 
+        public event Action OnCameraChange;
+        public event Action OnCameraMovement;
+
         public void Awake()
         {
             Instance = this;
@@ -80,7 +83,11 @@ namespace VoidspireStudio.FNATS.Cameras {
         {
             if (!IsPlayerOnCameras) return;
 
-            _securityCameras[_currentCameraIndex].Look(GameInput.Instance.GetCameraLookVector());
+            var lookVector = GameInput.Instance.GetCameraLookVector();
+            if (lookVector.sqrMagnitude < 0.0001f) return;
+
+            _securityCameras[_currentCameraIndex].Look(lookVector);
+            OnCameraMovement?.Invoke();
         }
 
         public void OpenCameras()
@@ -125,6 +132,8 @@ namespace VoidspireStudio.FNATS.Cameras {
             CurrentCamera.Deactivate();
             _currentCameraIndex = camIndex;
             ReloadCamera();
+
+            OnCameraChange?.Invoke();
         }
 
         public void ReloadCamera()

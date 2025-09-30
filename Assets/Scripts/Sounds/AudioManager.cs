@@ -2,7 +2,7 @@
 using System.Linq;
 using UnityEngine;
 
-namespace VoidspireStudio.FNATS.Core
+namespace VoidspireStudio.FNATS.Sounds
 { 
     [RequireComponent(typeof(AudioSource))]
     public class AudioManager : MonoBehaviour
@@ -16,10 +16,17 @@ namespace VoidspireStudio.FNATS.Core
 
         public static AudioManager Instance { get; private set; }
 
+        [Header("Sounds Sources")]
         [SerializeField] private AudioSource _2dSource;
+        [SerializeField] private AudioSource _musicSource;
         [SerializeField] private GameObject _emptyVolumeObject;
 
-        private readonly Dictionary<AudioType, float> _audioVolumes = new();
+        private readonly Dictionary<AudioType, float> _audioVolumes = new()
+        {
+            { AudioType.Ambient, 0 },
+            { AudioType.SFX, 0 },
+            { AudioType.Music, 0 }
+        };
         private readonly Dictionary<AudioSource, (AudioType type, bool needDestroy)> _audioSources = new();
 
         private void Awake()
@@ -58,9 +65,8 @@ namespace VoidspireStudio.FNATS.Core
         public void UpdateVolume()
         {
             foreach (var source in new Dictionary<AudioSource, (AudioType type, bool needDestroy)>(_audioSources))
-            {
                 source.Key.volume = _audioVolumes[source.Value.type];
-            }
+            _musicSource.volume = _audioVolumes[AudioType.Music] / 2;
         }
 
         public void SetVolume(float volume, AudioType type)
@@ -75,6 +81,19 @@ namespace VoidspireStudio.FNATS.Core
             _2dSource.volume = _audioVolumes[type];
             _audioSources[_2dSource] = (type, false);
         }
+
+        public void PlayLoopMusic(AudioClip clip)
+        {
+            _musicSource.Stop();
+            _musicSource.clip = clip;
+            _musicSource.loop = true;
+            _musicSource.volume = _audioVolumes[AudioType.Music] / 2;
+            _musicSource.Play();
+        }
+
+        public void StopLoopMusic() => _musicSource.Stop();
+        public void PauseLoopMusic() => _musicSource.Pause();
+        public void ResumeLoopMusic() => _musicSource.Play();
 
         public void PlaySound(AudioSource source, AudioClip clip, AudioType type)
         {
