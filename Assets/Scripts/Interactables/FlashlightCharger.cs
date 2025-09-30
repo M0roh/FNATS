@@ -80,6 +80,7 @@ namespace VoidspireStudio.FNATS.Interactables
                     Player.Player.Instance.FlashlightPickup();
                     _flashlightInChargeObject.SetActive(false);
                 }
+				return;
             }
 
             if (IsActive)
