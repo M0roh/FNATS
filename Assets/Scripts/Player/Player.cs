@@ -369,7 +369,7 @@ namespace VoidspireStudio.FNATS.Player
 
             _cc.Move(_speed * Time.deltaTime * move);
 
-            if (move.magnitude <= 0.001f)
+            if (move.sqrMagnitude <= 0.001f * 0.001f)
                 OnWalk?.Invoke();
 
 

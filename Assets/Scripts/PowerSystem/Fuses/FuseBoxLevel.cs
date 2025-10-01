@@ -22,7 +22,7 @@ namespace VoidspireStudio.FNATS.PowerSystem.Fuses
 
         public bool IsOn { get; private set; } = true;
 
-        public bool CanInteract => !_fuseBox.IsRepaired;
+        public bool CanInteract => _fuseBox.IsRepaired && !_fuseBox.IsActive;
 
         public LocalizedString InteractTip => _interactTip;
 
@@ -34,11 +34,17 @@ namespace VoidspireStudio.FNATS.PowerSystem.Fuses
 
         private void ToOff()
         {
+            if (_rotateCoroutine != null)
+                StopCoroutine(_rotateCoroutine);
+                
             _rotateCoroutine = StartCoroutine(Rotate(_levelOffRotation, () => _fuseBox.Off()));
         }
 
         private void ToOn()
         {
+            if (_rotateCoroutine != null)
+                StopCoroutine(_rotateCoroutine);
+
             if (_fuseBox.IsRepaired)
                 _rotateCoroutine = StartCoroutine(Rotate(_levelOnRotation, () => _fuseBox.RepairCheck()));
             else
@@ -47,7 +53,8 @@ namespace VoidspireStudio.FNATS.PowerSystem.Fuses
 
         public void OnInteract()
         {
-            StopCoroutine(_rotateCoroutine);
+            if (_rotateCoroutine != null)
+                StopCoroutine(_rotateCoroutine);
 
             IsOn = !IsOn;
 

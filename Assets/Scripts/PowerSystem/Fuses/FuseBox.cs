@@ -105,7 +105,6 @@ namespace VoidspireStudio.FNATS.PowerSystem.Fuses
 
         public void Off()
         {
-            OnBroken?.Invoke();
             IsActive = false;
 
             if (_fadeLightCoroutine != null)
@@ -126,12 +125,10 @@ namespace VoidspireStudio.FNATS.PowerSystem.Fuses
 
             if (UnityEngine.Random.value < breakChance)
             {
-                Debug.Log("OFF");
                 Off();
+                OnBroken?.Invoke();
                 _fuses[UnityEngine.Random.Range(0, _fuses.Count)].Break();
             }
-            else
-                Debug.Log(breakChance);
         }
     }
 }
