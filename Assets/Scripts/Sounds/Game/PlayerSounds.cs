@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 using VoidspireStudio.FNATS.Player;
 using VoidspireStudio.FNATS.Sounds;
@@ -27,9 +26,18 @@ namespace Sounds.Game
         {
             Player.Instance.OnWalk += OnPlayerWalk;
             Player.Instance.OnRunStateChange += OnPlayerRunStateChange;
+            Player.Instance.OnCrouchStateChange += OnPlayerCrouchStateChange; ;
             Player.Instance.OnJump += OnPlayerJump;
             Player.Instance.OnGrouding += OnPlayerGrounding;
             StartCoroutine(PlayMoveSoundCooldown());
+        }
+
+        private void OnPlayerCrouchStateChange(bool isCrouched)
+        {
+            if (isCrouched)
+                _audioSource.pitch /= 2f;
+            else
+                _audioSource.pitch *= 2f;
         }
 
         private void OnDisable()

@@ -81,6 +81,7 @@ namespace VoidspireStudio.FNATS.Player
 
         public event Action OnWalk;
         public event Action<bool> OnRunStateChange;
+        public event Action<bool> OnCrouchStateChange;
         public event Action OnJump;
         public event Action OnGrouding;
         
@@ -274,6 +275,7 @@ namespace VoidspireStudio.FNATS.Player
                     _cc.center = new Vector3(0, 1f, 0);
                     _isCrouched = false;
                     _speed = _walkSpeed;
+                    OnCrouchStateChange?.Invoke(true);
                 }
             }
             else if (_cc.isGrounded)
@@ -285,6 +287,8 @@ namespace VoidspireStudio.FNATS.Player
 
                 if (_isRunning)
                     Sprint_canceled(new InputAction.CallbackContext());
+                    
+                OnCrouchStateChange?.Invoke(false);
             }
         }
 

@@ -87,7 +87,7 @@ namespace VoidspireStudio.FNATS.Sounds
             _musicSource.Stop();
             _musicSource.clip = clip;
             _musicSource.loop = true;
-            _musicSource.volume = _audioVolumes[AudioType.Music] / 2;
+            _musicSource.volume = _audioVolumes[AudioType.Music] * 0.4f;
             _musicSource.Play();
         }
 

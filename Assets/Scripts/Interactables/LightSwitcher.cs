@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Localization;
 using VoidspireStudio.FNATS.Nights;
+using VoidspireStudio.FNATS.Sounds;
 using VoidspireStudio.FNATS.PowerSystem;
 using VoidspireStudio.FNATS.Utils;
 
@@ -11,8 +12,14 @@ namespace VoidspireStudio.FNATS.Interactables
         [SerializeField] private LocalizedString _interactTip;
         [SerializeField] private GameObject _light;
         [SerializeField] private GameObject _switchObject;
+        
+        [Header("Angles")]
         [SerializeField] private Quaternion _onRotation;
         [SerializeField] private Quaternion _offRotation;
+        
+        [Header("Audio")]
+        [SerializeField] private AudioClip _switchSound;
+        private AudioSource _audioSource;
 
         public bool IsActive { get; private set; } = false;
 
@@ -21,6 +28,11 @@ namespace VoidspireStudio.FNATS.Interactables
         public bool CanInteract => true;
 
         public float GetCurrentConsumption => 0.01f * NightManager.Instance.CurrentNight;
+
+        private void Awake() 
+        {
+            _audioSource = GetComponent<AudioSource>();
+        }
 
         private void Start()
         {
@@ -36,6 +48,8 @@ namespace VoidspireStudio.FNATS.Interactables
         public void OnInteract()
         {
             if (PowerSystem.PowerSystem.Instance.IsStopped) return;
+
+            AudioManager.Instance.PlaySound(_audioSource, _switchSound, AudioManager.AudioType.SFX);
 
             IsActive = !IsActive;
             LightUpdate();

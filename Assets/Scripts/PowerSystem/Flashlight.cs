@@ -8,12 +8,15 @@ using VoidspireStudio.FNATS.Sounds;
 
 namespace VoidspireStudio.FNATS.PowerSystem
 {
+    [RequireComponent(typeof(AudioSource))]
     public class Flashlight : MonoBehaviour, IElectricDevice
     {
         public static Flashlight Instance { get; private set; }
 
         [Header("Audio")]
-        [SerializeField] private AudioClip _interactSound;
+        [SerializeField] private AudioClip _onSound;
+        [SerializeField] private AudioClip _offSound;
+        private AudioSource _audioSource;
 
         [Header("Light")]
         [SerializeField] private Light _flashlightLight;
@@ -41,6 +44,7 @@ namespace VoidspireStudio.FNATS.PowerSystem
             Instance = this;
 
             _currentPower = _maxPower;
+            _audioSource = GetComponent<AudioSource>();
         }
 
         private void Start()
@@ -85,7 +89,7 @@ namespace VoidspireStudio.FNATS.PowerSystem
 
         public void TurnOff()
         {
-            AudioManager.Instance.PlaySound2D(_interactSound, AudioManager.AudioType.SFX);
+            AudioManager.Instance.PlaySound(_audioSource, _offSound, AudioManager.AudioType.SFX);
 
             IsActive = false;
             _flashlightLight.enabled = false;
@@ -95,7 +99,7 @@ namespace VoidspireStudio.FNATS.PowerSystem
 
         public void TurnOn()
         {
-            AudioManager.Instance.PlaySound2D(_interactSound, AudioManager.AudioType.SFX);
+            AudioManager.Instance.PlaySound(_audioSource, _onSound, AudioManager.AudioType.SFX);
 
             if (_currentPower <= 0f) return;
 
