@@ -2,6 +2,7 @@
 using UnityEngine;
 using VoidspireStudio.FNATS.Player;
 using VoidspireStudio.FNATS.Sounds;
+using VoidspireStudio.FNATS.Utils;
 
 namespace Sounds.Game
 {
@@ -10,13 +11,11 @@ namespace Sounds.Game
     public class PlayerSounds : MonoBehaviour
     {
         [Header("Audio")]
-        [SerializeField] private AudioClip _stepSound;
+        [SerializeField] FootstepSounds _stepsSounds;
         [SerializeField] private AudioClip _jumpSound;
         [SerializeField] private AudioClip _onGrounding;
 
         [Header("Settings")]
-        [SerializeField] private float _basePitch = 1f;
-        [SerializeField] private float _baseStepDelay = 1f;
         [SerializeField] private float _stepFactor = 0.3f;
 
         private bool _isNeedPlay = false;
@@ -64,7 +63,10 @@ namespace Sounds.Game
                         continue;
                     }
 
-                    AudioManager.Instance.PlaySound(_audioSource, _stepSound, AudioManager.AudioType.SFX);
+                    string materialName = Util.GetFloorMaterialName(Player.Instance.transform.position);
+                    var clip = _stepsSounds.GetByFloorMaterial(materialName);
+
+                    AudioManager.Instance.PlaySound(_audioSource, clip, AudioManager.AudioType.SFX);
 
                     float delay = _stepFactor / speed;
 

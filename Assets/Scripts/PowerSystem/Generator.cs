@@ -6,7 +6,7 @@ using VoidspireStudio.FNATS.Utils;
 
 namespace VoidspireStudio.FNATS.Interactables
 {
-    public class Generator : MonoBehaviour, IInteractable, IPowerNode
+    public class Generator : MonoBehaviour, IInteractable, IPowerNode, IMachineEvents
     {
         public static Generator Instance { get; private set; }
 
@@ -35,6 +35,7 @@ namespace VoidspireStudio.FNATS.Interactables
 
         public LocalizedString InteractTip => _interactTip;
 
+        public event Action<bool> OnActiveChange;
         public event Action OnBroken;
         public event Action OnRepair;
 
@@ -70,12 +71,14 @@ namespace VoidspireStudio.FNATS.Interactables
         {
             IsActive = false;
             OnBroken?.Invoke();
+            OnActiveChange?.Invoke(false);
         }
 
         public void TurnOn()
         {
             IsActive = true;
             OnRepair?.Invoke();
+            OnActiveChange?.Invoke(true);
         }
     }
 }

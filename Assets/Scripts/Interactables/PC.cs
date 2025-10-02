@@ -8,7 +8,7 @@ using VoidspireStudio.FNATS.Utils;
 
 namespace VoidspireStudio.FNATS.Interactables
 {
-    public class PC : MonoBehaviour, IInteractable, IElectricDevice
+    public class PC : MonoBehaviour, IInteractable, IElectricDevice, IMachineEvents
     {
         public static PC Instance { get; private set; }
 
@@ -24,6 +24,7 @@ namespace VoidspireStudio.FNATS.Interactables
         public bool CanInteract => true;
 
         public event Action<bool> OnActiveChange;
+        public event Action OnBroken;
 
         private void Awake()
         {

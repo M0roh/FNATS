@@ -52,5 +52,44 @@ namespace VoidspireStudio.FNATS.Utils
 
             camera.fieldOfView = targetFov;
         }
+
+        public static string GetFloorMaterialName(Vector3 position)
+        {
+            if (Physics.Raycast(position, Vector3.down, out RaycastHit hit))
+            {
+                var mat = hit.collider.sharedMaterial;
+
+                if (mat != null)
+                    return mat.name;
+
+
+                Terrain terrain = hit.collider.GetComponent<Terrain>();
+                if (terrain != null)
+                {
+                    Vector3 terrainPos = position - terrain.transform.position;
+                    TerrainData tData = terrain.terrainData;
+
+                    int mapX = Mathf.FloorToInt(terrainPos.x / tData.size.x * tData.alphamapWidth);
+                    int mapZ = Mathf.FloorToInt(terrainPos.z / tData.size.z * tData.alphamapHeight);
+
+                    float[,,] splatmapData = tData.GetAlphamaps(mapX, mapZ, 1, 1);
+
+                    int maxIndex = 0;
+                    float maxMix = 0;
+                    for (int i = 0; i < splatmapData.GetLength(2); i++)
+                    {
+                        if (splatmapData[0, 0, i] > maxMix)
+                        {
+                            maxIndex = i;
+                            maxMix = splatmapData[0, 0, i];
+                        }
+                    }
+
+                    return tData.terrainLayers[maxIndex].name;
+                }
+            }                
+
+            return string.Empty;
+        }
     }
 }

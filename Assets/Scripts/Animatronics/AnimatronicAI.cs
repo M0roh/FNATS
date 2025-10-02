@@ -1,4 +1,5 @@
 ﻿using Sirenix.OdinInspector;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -91,11 +92,16 @@ namespace VoidspireStudio.FNATS.Animatronics
             }
         }
 
+        public float Speed => _agent.speed;
+
         protected const string IDLE = "Idle";
         protected const string WALKING = "Walk";
         protected const string ATTACK = "Attack";
         protected const string CROUCH_ATTACK = "CrouchAttack";
         protected const string RUN = "Run";
+
+        public event Action OnWalk;
+        public event Action OnAttack;
 
         private void Awake()
         {
@@ -181,6 +187,8 @@ namespace VoidspireStudio.FNATS.Animatronics
         {
             GUIUtility.systemCopyBuffer = _id.ToString();
         }
+
+        public void OnAnimatorStepPerformed() => OnWalk?.Invoke();
 
         protected virtual void OfficeAtack()
         {
@@ -304,6 +312,7 @@ namespace VoidspireStudio.FNATS.Animatronics
                 _animator.CrossFade(CROUCH_ATTACK, 0.4f, 0, 0f);
             else
                 _animator.CrossFade(ATTACK, 0.2f, 0, 0);
+            OnAttack?.Invoke();
 
             // TODO: Рестарт ночи + таймер
             Debug.Log("Game over");
@@ -341,7 +350,7 @@ namespace VoidspireStudio.FNATS.Animatronics
                     if (routes.Count > 1)
                         routes = routes.Where(route => route.RouteID != _currentRoute.RouteID).ToList(); 
 
-                    var newRoute = routes[Random.Range(0, _availableRoutes.Count)];
+                    var newRoute = routes[UnityEngine.Random.Range(0, _availableRoutes.Count)];
 
                     if (_currentStep is not AttackStep && _lastGoToStep != null && _currentRoute != newRoute)
                         _currentStep = newRoute.GetNearestStep(_lastGoToStep.Target.position);
@@ -352,7 +361,7 @@ namespace VoidspireStudio.FNATS.Animatronics
                 }
                 else
                 {
-                    string randomStepID = _currentStep.NextStepsIds[Random.Range(0, _currentStep.NextStepsIds.Count)];
+                    string randomStepID = _currentStep.NextStepsIds[UnityEngine.Random.Range(0, _currentStep.NextStepsIds.Count)];
                     _currentStep = _currentRoute.GetStepById(randomStepID);
                 }
 
