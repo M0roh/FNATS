@@ -841,8 +841,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5778c9039223d5b4c910d9d410c48c5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VoidspireStudio.FNATS.Sounds.UI.MainMenuSounds
-  _backgroundLoopMusic: {fileID: 8300000, guid: 85e53a5f8dc5e8d498aabcf4a4f8d001, type: 3}
+  _backgroundLoopMusic: {fileID: 8300000, guid: c02f5763fcc4bbd4caef0517f9da1b68, type: 3}
   _TTTSahurSound: {fileID: 8300000, guid: b78d48a93bb29a64ca2292d59f0e6773, type: 3}
+  _minDelay: 8
+  _maxDelay: 25
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -1859,7 +1861,7 @@ Transform:
   m_GameObject: {fileID: 699985494}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.7660445, z: 0, w: 0.64278764}
-  m_LocalPosition: {x: 18.8, y: -0.2, z: 53.6}
+  m_LocalPosition: {x: 20, y: -0.2, z: 53.4}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 1
   m_Children:

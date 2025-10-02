@@ -7,31 +7,33 @@ namespace VoidspireStudio.FNATS.Sounds.Game
     public class ClockSounds : MonoBehaviour
     {
         [SerializeField] private AudioClip _onFullHourSound;
-        [SerializeField] private AudioClip _onTickSound;
+        [SerializeField] private AudioClip _tickSound;
 
         private AudioSource _audioSource;
 
         private void Awake()
         {
             _audioSource = GetComponent<AudioSource>();
+            _audioSource.clip = _tickSound;
+            _audioSource.loop = true;
         }
 
         public void OnEnable()
         {
             NightTime.OnTick += NightTime_OnTick;
+            AudioManager.Instance.PlaySource(_audioSource, AudioManager.AudioType.Ambient);
         }
 
         private void OnDisable()
         {
+            _audioSource.Stop();
             NightTime.OnTick -= NightTime_OnTick;
         }
 
         private void NightTime_OnTick(GameTime time)
         {
             if (time.Minute == 0)
-                AudioManager.Instance.PlaySound(_audioSource, _onFullHourSound, AudioManager.AudioType.SFX);
-            else
-                AudioManager.Instance.PlaySound(_audioSource, _onTickSound, AudioManager.AudioType.SFX);
+                AudioManager.Instance.PlaySound(_audioSource, _onFullHourSound, AudioManager.AudioType.Ambient);
         }
     }
 }

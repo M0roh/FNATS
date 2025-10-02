@@ -9,9 +9,15 @@ namespace Sounds.Game
     [RequireComponent(typeof(AudioSource))]
     public class PlayerSounds : MonoBehaviour
     {
+        [Header("Audio")]
         [SerializeField] private AudioClip _stepSound;
         [SerializeField] private AudioClip _jumpSound;
         [SerializeField] private AudioClip _onGrounding;
+
+        [Header("Settings")]
+        [SerializeField] private float _basePitch = 1f;
+        [SerializeField] private float _baseStepDelay = 1f;
+        [SerializeField] private float _stepFactor = 0.3f;
 
         private bool _isNeedPlay = false;
 
@@ -25,25 +31,14 @@ namespace Sounds.Game
         private void OnEnable()
         {
             Player.Instance.OnWalk += OnPlayerWalk;
-            Player.Instance.OnRunStateChange += OnPlayerRunStateChange;
-            Player.Instance.OnCrouchStateChange += OnPlayerCrouchStateChange; ;
             Player.Instance.OnJump += OnPlayerJump;
             Player.Instance.OnGrouding += OnPlayerGrounding;
             StartCoroutine(PlayMoveSoundCooldown());
         }
 
-        private void OnPlayerCrouchStateChange(bool isCrouched)
-        {
-            if (isCrouched)
-                _audioSource.pitch /= 2f;
-            else
-                _audioSource.pitch *= 2f;
-        }
-
         private void OnDisable()
         {
             Player.Instance.OnWalk -= OnPlayerWalk;
-            Player.Instance.OnRunStateChange -= OnPlayerRunStateChange;
             Player.Instance.OnJump -= OnPlayerJump;
             Player.Instance.OnGrouding -= OnPlayerGrounding;
         }
@@ -59,23 +54,27 @@ namespace Sounds.Game
             {
                 if (_isNeedPlay)
                 {
-                    AudioManager.Instance.PlaySound(_audioSource, _stepSound, AudioManager.AudioType.SFX);
                     _isNeedPlay = false;
-                    yield return new WaitForSeconds(_stepSound.length * _audioSource.pitch);
+
+                    float speed = Player.Instance.Speed;
+
+                    if (speed <= 0.1f || !Player.Instance.IsGrounded)
+                    {
+                        yield return null;
+                        continue;
+                    }
+
+                    AudioManager.Instance.PlaySound(_audioSource, _stepSound, AudioManager.AudioType.SFX);
+
+                    float delay = _stepFactor / speed;
+
+                    yield return new WaitForSeconds(delay);
                 }
                 else
                 {
                     yield return null;
                 }
             }
-        }
-
-        private void OnPlayerRunStateChange(bool isRunning)
-        {
-            if (isRunning)
-                _audioSource.pitch *= 2f;
-            else
-                _audioSource.pitch /= 2f;
         }
 
         private void OnPlayerJump() => AudioManager.Instance.PlaySound(_audioSource, _jumpSound, AudioManager.AudioType.SFX);

@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using VoidspireStudio.FNATS.Sounds;
 
 namespace VoidspireStudio.FNATS.UI
 {
@@ -13,6 +14,7 @@ namespace VoidspireStudio.FNATS.UI
 
         private void Start()
         {
+            AudioManager.Instance.StopLoopMusic();
             StartCoroutine(LoadScene());
         }
 

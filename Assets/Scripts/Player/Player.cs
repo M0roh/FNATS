@@ -2,10 +2,10 @@ using QuickOutline;
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 using VoidspireStudio.FNATS.Core;
 using VoidspireStudio.FNATS.Interactables;
 using VoidspireStudio.FNATS.PowerSystem;
-using VoidspireStudio.FNATS.Saves;
 using VoidspireStudio.FNATS.Utils;
 
 namespace VoidspireStudio.FNATS.Player
@@ -75,6 +75,9 @@ namespace VoidspireStudio.FNATS.Player
                 _fuseInHandObject.SetActive(value);
             }
         }
+        public bool IsGrounded => _cc.isGrounded;
+
+        public float Speed => _speed;
 
         public Vector3 HeadPosition => _playerCamera.transform.position;
 
@@ -373,9 +376,8 @@ namespace VoidspireStudio.FNATS.Player
 
             _cc.Move(_speed * Time.deltaTime * move);
 
-            if (move.sqrMagnitude <= 0.001f * 0.001f)
+            if (move.sqrMagnitude > 0.001f * 0.001f)
                 OnWalk?.Invoke();
-
 
             if (_cc.isGrounded && _velocity.y < 0)
                 _velocity.y = -2f;

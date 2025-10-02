@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.Localization;
 using VoidspireStudio.FNATS.Cameras;
 using VoidspireStudio.FNATS.Nights;
@@ -21,6 +22,8 @@ namespace VoidspireStudio.FNATS.Interactables
         public float GetCurrentConsumption => 0.04f * NightManager.Instance.CurrentNight;
 
         public bool CanInteract => true;
+
+        public event Action<bool> OnActiveChange;
 
         private void Awake()
         {
@@ -54,6 +57,8 @@ namespace VoidspireStudio.FNATS.Interactables
         {
             IsActive = false;
             _monitor.TurnOff();
+            SecurityCamerasManager.Instance.CloseCameras(new());
+            OnActiveChange?.Invoke(false);
         }
 
         public void TurnOn()
@@ -62,6 +67,7 @@ namespace VoidspireStudio.FNATS.Interactables
 
             IsActive = true;
             _monitor.TurnOn();
+            OnActiveChange?.Invoke(true);
         }
     }
 }

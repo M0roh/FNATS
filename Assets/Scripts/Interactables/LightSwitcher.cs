@@ -7,6 +7,7 @@ using VoidspireStudio.FNATS.Utils;
 
 namespace VoidspireStudio.FNATS.Interactables
 {
+    [RequireComponent(typeof(AudioSource))]
     public class LightSwitcher : MonoBehaviour, IInteractable, IElectricDevice
     {
         [SerializeField] private LocalizedString _interactTip;

@@ -93,16 +93,22 @@ namespace VoidspireStudio.FNATS.Cameras {
         public void OpenCameras()
         {
             IsPlayerOnCameras = true;
+
             _cameraView.gameObject.SetActive(true);
+            GameManager.Instance.HideTip();
+
             GameInput.Instance.InputActions.Player.Disable();
             GameInput.Instance.InputActions.Camera.Enable();
+
             ReloadCamera();
         }
 
         public void CloseCameras(InputAction.CallbackContext _)
         {
             IsPlayerOnCameras = false;
+
             _cameraView.gameObject.SetActive(false);
+
             GameInput.Instance.InputActions.Player.Enable();
             GameInput.Instance.InputActions.Camera.Disable();
         }

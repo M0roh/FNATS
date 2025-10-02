@@ -82,12 +82,19 @@ namespace VoidspireStudio.FNATS.Sounds
             _audioSources[_2dSource] = (type, false);
         }
 
+        public void PlaySource(AudioSource source, AudioType type)
+        {
+            _audioSources[source] = (type, false);
+            source.volume = _audioVolumes[type];
+            source.Play();
+        }
+
         public void PlayLoopMusic(AudioClip clip)
         {
             _musicSource.Stop();
             _musicSource.clip = clip;
             _musicSource.loop = true;
-            _musicSource.volume = _audioVolumes[AudioType.Music] * 0.4f;
+            _musicSource.volume = _audioVolumes[AudioType.Music];
             _musicSource.Play();
         }
 

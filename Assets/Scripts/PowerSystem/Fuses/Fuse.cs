@@ -2,13 +2,22 @@
 using UnityEngine;
 using UnityEngine.Localization;
 using VoidspireStudio.FNATS.Interactables;
+using VoidspireStudio.FNATS.Sounds;
 
 namespace VoidspireStudio.FNATS.PowerSystem.Fuses
 {
+    [RequireComponent(typeof(AudioSource))]
     public class Fuse : MonoBehaviour, IInteractable
     {
+        [Header("Interact")]
         [SerializeField] private LocalizedString _interactTip;
+        [SerializeField] private AudioClip _insertSound;
+        private AudioSource _audioSource;
+        
+        [Header("Setup")]
         [SerializeField] private Material _fuseMaterial;
+
+        [Header("Colors")]
         [SerializeField] private Color _normalColor;
         [SerializeField] private Color _breakColor;
 
@@ -21,7 +30,16 @@ namespace VoidspireStudio.FNATS.PowerSystem.Fuses
         public event Action OnBroken;
         public event Action OnRepair;
 
-        public void OnInteract() => Repair();
+        private void Awake()
+        {
+            _audioSource = GetComponent<AudioSource>();
+        }
+
+        public void OnInteract()
+        {
+            Repair();
+            AudioManager.Instance.PlaySound(_audioSource, _insertSound, AudioManager.AudioType.SFX);
+        }
 
         public void Repair()
         {
