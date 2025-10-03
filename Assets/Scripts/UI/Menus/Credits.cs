@@ -11,8 +11,10 @@ public class Credits : MonoBehaviour
 
     private RectTransform contentRect;
 
-    private void Start()
+    private void OnEnable()
     {
+        GameInput.Instance.InputActions.UI.Cancel.performed += Back;
+
         if (scrollRect == null)
         {
             Debug.LogError("ScrollRect не назначен!");
@@ -20,11 +22,7 @@ public class Credits : MonoBehaviour
             return;
         }
         contentRect = scrollRect.content;
-    }
-
-    private void OnEnable()
-    {
-        GameInput.Instance.InputActions.UI.Cancel.performed += Back;
+        contentRect.anchoredPosition = new Vector2(contentRect.anchoredPosition.x, 0);
     }
 
     private void OnDisable()

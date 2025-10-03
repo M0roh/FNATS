@@ -108,7 +108,7 @@ namespace VoidspireStudio.FNATS.PowerSystem
             _power -= drain;
             OnPowerChanged?.Invoke(_power);
 
-            if (_power < 0)
+            if (_power <= 0)
             {
                 Debug.Log("Lose. Power off.");
                 StopConsumption(true);
