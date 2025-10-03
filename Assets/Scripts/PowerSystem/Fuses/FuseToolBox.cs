@@ -30,7 +30,7 @@ namespace VoidspireStudio.FNATS.PowerSystem.Fuses
             if (!Player.Player.Instance.IsPickedFuse && _fusesInBox.Count > 0)
             {
                 Player.Player.Instance.IsPickedFuse = true;
-                AudioManager.Instance.PlaySound(_audioSource, _pickupSound, AudioManager.AudioType.SFX);
+                AudioManager.Instance.PlaySound(_audioSource, _pickupSound);
 
                 var fuse = _fusesInBox.Last();
                 Destroy(fuse);

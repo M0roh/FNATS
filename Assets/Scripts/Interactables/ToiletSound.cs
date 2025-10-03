@@ -22,7 +22,7 @@ namespace Interactables
             _audioSource = GetComponent<AudioSource>();
         }
 
-        public void OnInteract() => AudioManager.Instance.PlaySource(_audioSource, AudioManager.AudioType.SFX);
+        public void OnInteract() => AudioManager.Instance.PlaySource(_audioSource);
 
         public void OnInteractEnd() { }
     }

@@ -32,7 +32,7 @@ namespace VoidspireStudio.FNATS.Sounds.Game
         private void OnBroken()
         {
             if (_onBrokenSound != null)
-                AudioManager.Instance.PlaySound(_audioSource, _onBrokenSound, AudioManager.AudioType.SFX);
+                AudioManager.Instance.PlaySound(_audioSource, _onBrokenSound);
         }
 
         private void OnDisable()
@@ -52,19 +52,19 @@ namespace VoidspireStudio.FNATS.Sounds.Game
                     StopCoroutine(_soundsStarting);
                 _audioSource.Stop();
 
-                AudioManager.Instance.PlaySound(_audioSource, _onTurnOffSound, AudioManager.AudioType.SFX);
+                AudioManager.Instance.PlaySound(_audioSource, _onTurnOffSound);
             }
         }
 
         private IEnumerator StartingSound()
         {
-            AudioManager.Instance.PlaySound(_audioSource, _onTurnOnSound, AudioManager.AudioType.SFX);
+            AudioManager.Instance.PlaySound(_audioSource, _onTurnOnSound);
 
             yield return new WaitForSeconds(_audioSource.pitch * _onTurnOnSound.length);
 
             _audioSource.clip = _onRunningSound;
             _audioSource.loop = true;
-            AudioManager.Instance.PlaySource(_audioSource, AudioManager.AudioType.SFX);
+            AudioManager.Instance.PlaySource(_audioSource);
         }
     }
 }

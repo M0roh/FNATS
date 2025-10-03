@@ -38,7 +38,7 @@ namespace VoidspireStudio.FNATS.PowerSystem.Fuses
         public void OnInteract()
         {
             Repair();
-            AudioManager.Instance.PlaySound(_audioSource, _insertSound, AudioManager.AudioType.SFX);
+            AudioManager.Instance.PlaySound(_audioSource, _insertSound);
         }
 
         public void Repair()

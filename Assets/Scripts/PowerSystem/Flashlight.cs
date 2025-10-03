@@ -89,7 +89,7 @@ namespace VoidspireStudio.FNATS.PowerSystem
 
         public void TurnOff()
         {
-            AudioManager.Instance.PlaySound(_audioSource, _offSound, AudioManager.AudioType.SFX);
+            AudioManager.Instance.PlaySound(_audioSource, _offSound);
 
             IsActive = false;
             _flashlightLight.enabled = false;
@@ -99,7 +99,7 @@ namespace VoidspireStudio.FNATS.PowerSystem
 
         public void TurnOn()
         {
-            AudioManager.Instance.PlaySound(_audioSource, _onSound, AudioManager.AudioType.SFX);
+            AudioManager.Instance.PlaySound(_audioSource, _onSound);
 
             if (_currentPower <= 0f) return;
 

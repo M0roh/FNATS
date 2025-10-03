@@ -66,7 +66,7 @@ namespace Sounds.Game
                     string materialName = Util.GetFloorMaterialName(Player.Instance.transform.position);
                     var clip = _stepsSounds.GetByFloorMaterial(materialName);
 
-                    AudioManager.Instance.PlaySound(_audioSource, clip, AudioManager.AudioType.SFX);
+                    AudioManager.Instance.PlaySound(_audioSource, clip);
 
                     float delay = _stepFactor / speed;
 
@@ -79,8 +79,8 @@ namespace Sounds.Game
             }
         }
 
-        private void OnPlayerJump() => AudioManager.Instance.PlaySound(_audioSource, _jumpSound, AudioManager.AudioType.SFX);
+        private void OnPlayerJump() => AudioManager.Instance.PlaySound(_audioSource, _jumpSound);
 
-        private void OnPlayerGrounding() => AudioManager.Instance.PlaySound(_audioSource, _onGrounding, AudioManager.AudioType.SFX);
+        private void OnPlayerGrounding() => AudioManager.Instance.PlaySound(_audioSource, _onGrounding);
     }
 }

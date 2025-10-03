@@ -21,7 +21,7 @@ namespace VoidspireStudio.FNATS.Sounds.Game
         public void OnEnable()
         {
             NightTime.OnTick += NightTime_OnTick;
-            AudioManager.Instance.PlaySource(_audioSource, AudioManager.AudioType.Ambient);
+            AudioManager.Instance.PlaySource(_audioSource);
         }
 
         private void OnDisable()
@@ -33,7 +33,7 @@ namespace VoidspireStudio.FNATS.Sounds.Game
         private void NightTime_OnTick(GameTime time)
         {
             if (time.Minute == 0)
-                AudioManager.Instance.PlaySound(_audioSource, _onFullHourSound, AudioManager.AudioType.Ambient);
+                AudioManager.Instance.PlaySound(_audioSource, _onFullHourSound);
         }
     }
 }

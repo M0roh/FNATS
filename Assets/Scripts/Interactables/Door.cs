@@ -80,7 +80,7 @@ namespace VoidspireStudio.FNATS.Interactables
             _isOpen = false;
             _obstacle.enabled = true;
 
-            AudioManager.Instance.PlaySound(_audioSource, _openCloseSound, AudioManager.AudioType.SFX);
+            AudioManager.Instance.PlaySound(_audioSource, _openCloseSound);
         }
 
         public void Open()
@@ -91,7 +91,7 @@ namespace VoidspireStudio.FNATS.Interactables
             _isOpen = true;
             _obstacle.enabled = false;
 
-            AudioManager.Instance.PlaySound(_audioSource, _openCloseSound, AudioManager.AudioType.SFX);
+            AudioManager.Instance.PlaySound(_audioSource, _openCloseSound);
         }
 
         public void Break()

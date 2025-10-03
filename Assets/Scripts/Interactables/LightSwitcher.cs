@@ -50,7 +50,7 @@ namespace VoidspireStudio.FNATS.Interactables
         {
             if (PowerSystem.PowerSystem.Instance.IsStopped) return;
 
-            AudioManager.Instance.PlaySound(_audioSource, _switchSound, AudioManager.AudioType.SFX);
+            AudioManager.Instance.PlaySound(_audioSource, _switchSound);
 
             IsActive = !IsActive;
             LightUpdate();

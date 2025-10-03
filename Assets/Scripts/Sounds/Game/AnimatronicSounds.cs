@@ -62,7 +62,7 @@ namespace VoidspireStudio.FNATS.Sounds.Game
             while (true)
             {
                 yield return new WaitForSeconds(Random.Range(_minDelay, _maxDelay));
-                AudioManager.Instance.PlaySound2D(_phraseSound, AudioManager.AudioType.Ambient);
+                AudioManager.Instance.PlaySound(_audioSource, _phraseSound, AudioManager.AudioType.Ambient);
                 yield return new WaitForSeconds(_phraseSound.length);
             }
         }

@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using Sirenix.Utilities;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Audio;
 
 namespace VoidspireStudio.FNATS.Sounds
 { 
@@ -9,6 +11,7 @@ namespace VoidspireStudio.FNATS.Sounds
     {
         public enum AudioType
         {
+            Default,
             Music,
             SFX,
             Ambient
@@ -16,18 +19,18 @@ namespace VoidspireStudio.FNATS.Sounds
 
         public static AudioManager Instance { get; private set; }
 
+        [Header("Audio Mixer")]
+        [SerializeField] private AudioMixer _mixer;
+        [SerializeField] private AudioMixerGroup _musicGroup;
+        [SerializeField] private AudioMixerGroup _ambientGroup;
+        [SerializeField] private AudioMixerGroup _sfxGroup;
+
         [Header("Sounds Sources")]
         [SerializeField] private AudioSource _2dSource;
         [SerializeField] private AudioSource _musicSource;
         [SerializeField] private GameObject _emptyVolumeObject;
 
-        private readonly Dictionary<AudioType, float> _audioVolumes = new()
-        {
-            { AudioType.Ambient, 0 },
-            { AudioType.SFX, 0 },
-            { AudioType.Music, 0 }
-        };
-        private readonly Dictionary<AudioSource, (AudioType type, bool needDestroy)> _audioSources = new();
+        private readonly Dictionary<AudioSource, bool> _audioSources = new();
 
         private void Awake()
         {
@@ -48,11 +51,34 @@ namespace VoidspireStudio.FNATS.Sounds
         {
             foreach (var source in _audioSources.Keys.ToList())
             {
+                if (_audioSources[source])
+                {
+                    Destroy(source.gameObject);
+                    continue;
+                }
+
                 if (source == null || !source.isPlaying)
                 {
                     _audioSources.Remove(source);
+                    continue;
                 }
+
+                if (Time.timeScale == 0f)
+                    source.Pause();
+                else
+                    source.UnPause();
             }
+
+            if (Time.timeScale == 0f)
+                _audioSources
+                    .Select(audio => audio.Key)
+                    .Where(source => source.outputAudioMixerGroup == _musicGroup && source.isPlaying)
+                    .ForEach(source => source.Pause());
+            else
+                _audioSources
+                    .Select(audio => audio.Key)
+                    .Where(source => source.outputAudioMixerGroup == _musicGroup && !source.isPlaying)
+                    .ForEach(source => source.UnPause());
         }
 
         public void UpdateSettings(Saves.AudioSettings audioSettings)
@@ -62,30 +88,33 @@ namespace VoidspireStudio.FNATS.Sounds
             SetVolume(audioSettings.volumeSFX, AudioType.SFX);
         }
 
-        public void UpdateVolume()
+        public void SetVolume(float volume01, AudioType type)
         {
-            foreach (var source in new Dictionary<AudioSource, (AudioType type, bool needDestroy)>(_audioSources))
-                source.Key.volume = _audioVolumes[source.Value.type];
-            _musicSource.volume = _audioVolumes[AudioType.Music] / 2;
+            if (type == AudioType.Default) return;
+
+            float volumeDB = Mathf.Log10(Mathf.Max(volume01, 0.0001f)) * 20f;
+
+            _mixer.SetFloat(type.ToString() + "Volume", volumeDB);
         }
 
-        public void SetVolume(float volume, AudioType type)
-        {
-            _audioVolumes[type] = volume;
-            UpdateVolume();
-        }
-
-        public void PlaySound2D(AudioClip clip, AudioType type)
+        public void PlaySound2D(AudioClip clip, AudioType type = AudioType.Default)
         {
             _2dSource.PlayOneShot(clip);
-            _2dSource.volume = _audioVolumes[type];
-            _audioSources[_2dSource] = (type, false);
+
+            if (type != AudioType.Default)
+                _2dSource.outputAudioMixerGroup = GetGroup(type);
+
+            _audioSources[_2dSource] = false;
         }
 
-        public void PlaySource(AudioSource source, AudioType type)
+        public void PlaySource(AudioSource source, AudioType type = AudioType.Default)
         {
-            _audioSources[source] = (type, false);
-            source.volume = _audioVolumes[type];
+            _audioSources[source] = false;
+
+            if (type != AudioType.Default)
+                _2dSource.outputAudioMixerGroup = GetGroup(type);
+
+            source.pitch = Random.Range(0.95f, 1.05f);
             source.Play();
         }
 
@@ -94,7 +123,6 @@ namespace VoidspireStudio.FNATS.Sounds
             _musicSource.Stop();
             _musicSource.clip = clip;
             _musicSource.loop = true;
-            _musicSource.volume = _audioVolumes[AudioType.Music];
             _musicSource.Play();
         }
 
@@ -102,11 +130,14 @@ namespace VoidspireStudio.FNATS.Sounds
         public void PauseLoopMusic() => _musicSource.Pause();
         public void ResumeLoopMusic() => _musicSource.Play();
 
-        public void PlaySound(AudioSource source, AudioClip clip, AudioType type)
+        public void PlaySound(AudioSource source, AudioClip clip, AudioType type = AudioType.Default)
         {
             source.PlayOneShot(clip);
-            source.volume = _audioVolumes[type];
-            _audioSources[source] = (type, false);
+
+            if (type != AudioType.Default)
+                _2dSource.outputAudioMixerGroup = GetGroup(type);
+
+            _audioSources[source] = false;
         }
 
         public void PlaySound(Vector3 position, AudioClip clip, AudioType type)
@@ -114,9 +145,21 @@ namespace VoidspireStudio.FNATS.Sounds
             var obj = Instantiate(_emptyVolumeObject, position, Quaternion.identity);
             var source = obj.GetComponent<AudioSource>();
 
-            source.volume = _audioVolumes[type];
+            source.outputAudioMixerGroup = GetGroup(type);
+
             source.PlayOneShot(clip);
-            _audioSources[source] = (type, false);
+            _audioSources[source] = true;
+        }
+
+        private AudioMixerGroup GetGroup(AudioType type)
+        {
+            return type switch
+            {
+                AudioType.Music => _musicGroup,
+                AudioType.Ambient => _ambientGroup,
+                AudioType.SFX => _sfxGroup,
+                _ => _sfxGroup
+            };
         }
     }
 }
