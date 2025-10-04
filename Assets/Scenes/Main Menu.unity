@@ -2249,6 +2249,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e2ae1076b927a94691ccca0dc2f5628, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VoidspireStudio.FNATS.Core.AudioManager
+  _mixer: {fileID: 24100000, guid: cbf3a54a90d69174fa3bcd8fdc3d78f9, type: 2}
+  _musicGroup: {fileID: -5537898402836889281, guid: cbf3a54a90d69174fa3bcd8fdc3d78f9, type: 2}
+  _ambientGroup: {fileID: 3644647558214904408, guid: cbf3a54a90d69174fa3bcd8fdc3d78f9, type: 2}
+  _sfxGroup: {fileID: 7635897313480750473, guid: cbf3a54a90d69174fa3bcd8fdc3d78f9, type: 2}
   _2dSource: {fileID: 819860939}
   _musicSource: {fileID: 819860942}
   _emptyVolumeObject: {fileID: 5335518551440815070, guid: f7c9a4b400106a745868191eb8050e5c, type: 3}

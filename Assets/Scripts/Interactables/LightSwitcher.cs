@@ -48,8 +48,6 @@ namespace VoidspireStudio.FNATS.Interactables
 
         public void OnInteract()
         {
-            if (PowerSystem.PowerSystem.Instance.IsStopped) return;
-
             AudioManager.Instance.PlaySound(_audioSource, _switchSound);
 
             IsActive = !IsActive;
@@ -74,14 +72,16 @@ namespace VoidspireStudio.FNATS.Interactables
 
         public void LightUpdate()
         {
-            if (!IsActive || PowerSystem.PowerSystem.Instance.IsStopped)
+            if (!IsActive)
             {
-                _light.SetActive(false);
+                if (!PowerSystem.PowerSystem.Instance.IsStopped)
+                    _light.SetActive(false);
                 _switchObject.transform.localRotation = _offRotation;
             }
-            else if (!PowerSystem.PowerSystem.Instance.IsStopped)
+            else
             {
-                _light.SetActive(true);
+                if (!PowerSystem.PowerSystem.Instance.IsStopped)
+                    _light.SetActive(true);
                 _switchObject.transform.localRotation = _onRotation;
             }
         }

@@ -3,12 +3,7 @@ guid: 482d8632d17c4af4390a344ec209fc00
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Outhouse_Mat
-    second: {fileID: 2100000, guid: 738023c1c5947de49882771d5720f2c6, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
