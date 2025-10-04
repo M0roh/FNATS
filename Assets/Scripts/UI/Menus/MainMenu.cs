@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using VoidspireStudio.FNATS.Core;
 using VoidspireStudio.FNATS.Saves;
+using VoidspireStudio.FNATS.Sounds;
 
 namespace VoidspireStudio.FNATS.UI.Menus
 {
@@ -41,6 +42,7 @@ namespace VoidspireStudio.FNATS.UI.Menus
                 exp.fixedExposure.value = (SaveManager.LastSavedData.graphics.brightness * -8f) + 4f;
 
             _continueButton.interactable = SaveManager.HasSavedGame;
+            AudioManager.Instance.UpdateSettings(SaveManager.LastSavedData.audio);
         }
 
         private void OnEnable()

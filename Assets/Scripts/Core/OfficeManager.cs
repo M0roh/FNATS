@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using VoidspireStudio.FNATS.Interactables;
 
@@ -39,6 +40,13 @@ namespace VoidspireStudio.FNATS.Core
         private void Awake()
         {
             Instance = this;
+        }
+
+        public void BreakAll()
+        {
+            _officeDoor.Break();
+            _officeLight.TurnOff();
+            PowerSystem.PowerSystem.Instance.StopConsumption();
         }
     }
 }

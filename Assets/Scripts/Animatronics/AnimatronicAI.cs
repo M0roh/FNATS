@@ -218,9 +218,8 @@ namespace VoidspireStudio.FNATS.Animatronics
 
                     isAttackOffice = true;
                     ignorePlayer = false;
-                    
-                    OfficeManager.Instance.OfficeDoor.Break();
-                    OfficeManager.Instance.OfficeLight.TurnOff();
+
+                    OfficeManager.Instance.BreakAll();
 
                     StartCoroutine(OfficeAttack());
                     break;

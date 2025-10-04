@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using VoidspireStudio.FNATS.Nights;
@@ -33,6 +34,9 @@ namespace VoidspireStudio.FNATS.PowerSystem
         /// </summary>
         public event PowerDrainCalculatedHandler OnPowerDrainCalculated;
         public delegate void PowerDrainCalculatedHandler(float currentPower, float drainAmount);
+
+        public event Action OnPowerLeft;
+        public event Action OnPowerBreak;
 
         private void Awake()
         {
@@ -110,7 +114,7 @@ namespace VoidspireStudio.FNATS.PowerSystem
 
             if (_power <= 0)
             {
-                Debug.Log("Lose. Power off.");
+                OnPowerLeft?.Invoke();
                 StopConsumption(true);
             }
         }
@@ -128,6 +132,7 @@ namespace VoidspireStudio.FNATS.PowerSystem
         {
             Pause();
             UpdateDevicesState(false);
+            OnPowerBreak?.Invoke();
         }
 
         private void UpdateDevicesState(bool active)

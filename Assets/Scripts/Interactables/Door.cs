@@ -23,6 +23,7 @@ namespace VoidspireStudio.FNATS.Interactables
 
         [Header("Audio")]
         [SerializeField] private AudioClip _openCloseSound;
+        [SerializeField] private AudioClip _breakSound;
 
         private AudioSource _audioSource;
         private NavMeshObstacle _obstacle;
@@ -98,6 +99,8 @@ namespace VoidspireStudio.FNATS.Interactables
         {
             Open();
             _isBroken = true;
+
+            AudioManager.Instance.PlaySound(_audioSource, _breakSound);
         }
 
         public IEnumerator Rotate(Quaternion targetAngle) 
