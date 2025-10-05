@@ -47,6 +47,7 @@ namespace VoidspireStudio.FNATS.PowerSystem.Fuses
 
             IsActive = true;
             _fuseMaterial.color = _normalColor;
+            Player.Player.Instance.IsPickedFuse = false;
             OnRepair?.Invoke();
         }
 
