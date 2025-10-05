@@ -42,6 +42,10 @@ MonoBehaviour:
     m_Localized: Presiona {0} para Recargar linterna
     m_Metadata:
       m_Items: []
+  - m_Id: 4746162912980992
+    m_Localized: Presiona {0} para usar
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

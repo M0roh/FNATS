@@ -42,6 +42,10 @@ MonoBehaviour:
     m_Localized: "Naci\u015Bnij {0}, aby Na\u0142adowa\u0107 latark\u0119"
     m_Metadata:
       m_Items: []
+  - m_Id: 4746162912980992
+    m_Localized: "Naci\u015Bnij {0}, aby u\u017Cy\u0107"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

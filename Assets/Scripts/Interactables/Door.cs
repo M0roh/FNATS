@@ -58,8 +58,12 @@ namespace VoidspireStudio.FNATS.Interactables
             if (_isBroken) return;
 
             if (_isNeedHold)
+            {
                 Close();
-            else if (IsOpen)
+                return;
+            }
+
+            if (IsOpen)
                 Close();
             else
                 Open();

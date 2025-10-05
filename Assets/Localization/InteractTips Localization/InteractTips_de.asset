@@ -42,6 +42,10 @@ MonoBehaviour:
     m_Localized: "Dr\xFCcke {0} um Taschenlampe aufzuladen"
     m_Metadata:
       m_Items: []
+  - m_Id: 4746162912980992
+    m_Localized: "Dr\xFCcken Sie {0}, um zu benutzen"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

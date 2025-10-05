@@ -42,6 +42,10 @@ MonoBehaviour:
     m_Localized: "{0} d\xFCym\u0259sin\u0259 basaraq F\u0259n\u0259ri Doldur"
     m_Metadata:
       m_Items: []
+  - m_Id: 4746162912980992
+    m_Localized: "{0} d\xFCym\u0259sini istifad\u0259 etm\u0259k \xFC\xE7\xFCn bas\u0131n"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

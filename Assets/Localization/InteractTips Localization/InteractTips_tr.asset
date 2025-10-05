@@ -42,6 +42,10 @@ MonoBehaviour:
     m_Localized: "{0} tu\u015Funa basarak El Fenerini \u015Earj Et"
     m_Metadata:
       m_Items: []
+  - m_Id: 4746162912980992
+    m_Localized: "Kullanmak i\xE7in {0} tu\u015Funa bas\u0131n"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

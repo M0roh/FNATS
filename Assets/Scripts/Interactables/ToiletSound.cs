@@ -9,7 +9,7 @@ namespace Interactables
     [RequireComponent(typeof(AudioSource))]
     public class ToiletSound : MonoBehaviour, IInteractable
     {
-        private LocalizedString _interactTip;
+        [SerializeField] private LocalizedString _interactTip;
 
         private AudioSource _audioSource;
 

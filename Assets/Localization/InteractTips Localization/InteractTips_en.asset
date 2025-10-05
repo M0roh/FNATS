@@ -42,6 +42,10 @@ MonoBehaviour:
     m_Localized: Press {0} to charge flashlight
     m_Metadata:
       m_Items: []
+  - m_Id: 4746162912980992
+    m_Localized: Press {0} to use
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

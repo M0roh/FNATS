@@ -1,8 +1,10 @@
 using System.Collections;
+using System.Security.Cryptography;
 using UnityEngine;
 
 namespace VoidspireStudio.FNATS.Sounds.UI
 {
+    [DisallowMultipleComponent]
     public class MainMenuSounds : MonoBehaviour
     {
         [Header("Sounds")]

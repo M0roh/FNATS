@@ -39,6 +39,10 @@ MonoBehaviour:
     m_Key: ChargeFlashlight
     m_Metadata:
       m_Items: []
+  - m_Id: 4746162912980992
+    m_Key: Use
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

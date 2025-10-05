@@ -189,6 +189,7 @@ namespace VoidspireStudio.FNATS.Animatronics
         }
 
         public void OnAnimatorStepPerformed() => OnWalk?.Invoke();
+        public void OnAnimatorAttackPerformed() => OnAttack?.Invoke();
 
         protected virtual void OfficeAtack()
         {
@@ -311,7 +312,6 @@ namespace VoidspireStudio.FNATS.Animatronics
                 _animator.CrossFade(CROUCH_ATTACK, 0.4f, 0, 0f);
             else
                 _animator.CrossFade(ATTACK, 0.2f, 0, 0);
-            OnAttack?.Invoke();
 
             // TODO: Рестарт ночи + таймер
             Debug.Log("Game over");
