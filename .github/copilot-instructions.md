@@ -1,8 +1,8 @@
 <!-- UNITY CODE ASSIST INSTRUCTIONS START -->
 - Project name: FNATS
-- Unity version: Unity 6000.2.0b8
+- Unity version: Unity 6000.2.6f2
 - Active game object:
-  - Name: Sitting_shelf
+  - Name: street_lamp
   - Tag: Untagged
   - Layer: Default
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->

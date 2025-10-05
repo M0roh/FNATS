@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using VoidspireStudio.FNATS.Utils;
 
 namespace VoidspireStudio.FNATS.PowerSystem
 {
@@ -9,6 +10,16 @@ namespace VoidspireStudio.FNATS.PowerSystem
         public bool IsActive { get; private set; }
 
         public float GetCurrentConsumption => 0.002f;
+
+        private void OnEnable()
+        {
+            this.RegisterDevice();
+        }
+
+        private void OnDisable()
+        {
+            this.UnregisterDevice();
+        }
 
         public void TurnOff()
         {
