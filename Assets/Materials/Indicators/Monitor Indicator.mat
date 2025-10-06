@@ -311,7 +311,7 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 0.9019608, g: 0.84313726, b: 0.15686275, a: 1}
-    - _Color: {r: 0.8301887, g: 0.13705939, b: 0.15741846, a: 1}
+    - _Color: {r: 0.9019608, g: 0.8431372, b: 0.1568627, a: 1}
     - _DiffusionProfileAsset: {r: 0, g: 0, b: 0, a: 0}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}

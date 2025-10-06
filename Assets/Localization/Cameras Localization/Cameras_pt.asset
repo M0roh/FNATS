@@ -31,7 +31,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 122397749248
-    m_Localized: CAM 5
+    m_Localized: "Casa em constru\xE7\xE3o"
     m_Metadata:
       m_Items: []
   - m_Id: 120237682688
@@ -47,11 +47,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 194632052736
-    m_Localized: CAM 8
+    m_Localized: Gerador
     m_Metadata:
       m_Items: []
   - m_Id: 195714183168
-    m_Localized: CAM 9
+    m_Localized: "Armaz\xE9m"
     m_Metadata:
       m_Items: []
   - m_Id: 243566997504

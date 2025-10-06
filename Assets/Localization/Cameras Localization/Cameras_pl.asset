@@ -35,7 +35,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 122397749248
-    m_Localized: KAM 5
+    m_Localized: Budowany dom
     m_Metadata:
       m_Items: []
   - m_Id: 191549239296
@@ -47,11 +47,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 194632052736
-    m_Localized: KAM 8
+    m_Localized: Generator
     m_Metadata:
       m_Items: []
   - m_Id: 195714183168
-    m_Localized: KAM 9
+    m_Localized: Magazyn
     m_Metadata:
       m_Items: []
   - m_Id: 243566997504
