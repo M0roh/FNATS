@@ -10,27 +10,27 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 551f5567db7c6c34ea65dc6a1177fabe, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 551f5567db7c6c34ea65dc6a1177fabe, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 551f5567db7c6c34ea65dc6a1177fabe, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 551f5567db7c6c34ea65dc6a1177fabe, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 154.51875
+      value: -14.976318
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 551f5567db7c6c34ea65dc6a1177fabe, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 14.239897
+      value: 0.23699999
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 551f5567db7c6c34ea65dc6a1177fabe, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 357.84027
+      value: -9.7178955
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 551f5567db7c6c34ea65dc6a1177fabe, type: 3}
       propertyPath: m_LocalRotation.w
@@ -111,7 +111,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7821307059528558630}
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: 4300000, guid: 89dd6e878bfadff428ae2e6e0870f61c, type: 2}
 --- !u!23 &396167622086305870
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -188,7 +188,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7821307059528558630}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 7e8769ba1142e564890c9dfd6f7dd425, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

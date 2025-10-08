@@ -26,7 +26,7 @@ namespace VoidspireStudio.FNATS.Cameras
         {
             _camera = GetComponent<Camera>();
             _camera.targetTexture = new RenderTexture(Screen.width, Screen.height, 24, RenderTextureFormat.ARGB32);
-            _baseRotation = _camera.transform.localRotation;
+            _baseRotation = _camera.transform.parent.localRotation;
         }
 
 
@@ -44,7 +44,7 @@ namespace VoidspireStudio.FNATS.Cameras
             Quaternion verticalQuat = Quaternion.Euler(_verticalRotation, 0f, 0f);
             Quaternion horizontalQuat = Quaternion.Euler(0f, _horizontalRotation, 0f);
 
-            _camera.transform.localRotation = _baseRotation * horizontalQuat * verticalQuat;
+            _camera.transform.parent.localRotation = _baseRotation * horizontalQuat * verticalQuat;
         }
 
         public void Activate() => _camera.enabled = true;

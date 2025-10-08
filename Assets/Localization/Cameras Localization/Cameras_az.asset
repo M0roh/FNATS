@@ -19,15 +19,15 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 77661302784
-    m_Localized: Ofis (Siz)
+    m_Localized: "KAM 1 \u2014 Ofis (Siz)"
     m_Metadata:
       m_Items: []
   - m_Id: 113661014016
-    m_Localized: "Giri\u015F"
+    m_Localized: "KAM 2 \u2014 Giri\u015F"
     m_Metadata:
       m_Items: []
   - m_Id: 122397749248
-    m_Localized: "Tikilm\u0259kd\u0259 olan ev"
+    m_Localized: "KAM 6 \u2014 Tikilm\u0259kd\u0259 olan ev"
     m_Metadata:
       m_Items: []
   - m_Id: 120237682688
@@ -35,27 +35,31 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 118182473728
-    m_Localized: KAM 3
+    m_Localized: "KAM 3 \u2014 Tualet Zonas\u0131"
     m_Metadata:
       m_Items: []
   - m_Id: 191549239296
-    m_Localized: KAM 6
-    m_Metadata:
-      m_Items: []
-  - m_Id: 193638002688
     m_Localized: KAM 7
     m_Metadata:
       m_Items: []
+  - m_Id: 193638002688
+    m_Localized: "KAM 8 \u2014 S\u0259hn\u0259"
+    m_Metadata:
+      m_Items: []
   - m_Id: 194632052736
-    m_Localized: Generator
+    m_Localized: "KAM 9 \u2014 Generator"
     m_Metadata:
       m_Items: []
   - m_Id: 195714183168
-    m_Localized: Anbar
+    m_Localized: "KAM 10 \u2014 Anbar"
     m_Metadata:
       m_Items: []
   - m_Id: 243566997504
-    m_Localized: KAM 10
+    m_Localized: KAM 11
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14772128028651520
+    m_Localized: KAM 5
     m_Metadata:
       m_Items: []
   references:

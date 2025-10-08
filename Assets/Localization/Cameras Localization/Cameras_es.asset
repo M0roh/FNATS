@@ -19,15 +19,15 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 77661302784
-    m_Localized: "Oficina (T\xFA)"
+    m_Localized: "CAM 1 \u2014 Oficina (T\xFA)"
     m_Metadata:
       m_Items: []
   - m_Id: 113661014016
-    m_Localized: Entrada
+    m_Localized: "CAM 2 \u2014 Entrada"
     m_Metadata:
       m_Items: []
   - m_Id: 118182473728
-    m_Localized: CAM 3
+    m_Localized: "CAM 3 \u2014 Zona de Ba\xF1os"
     m_Metadata:
       m_Items: []
   - m_Id: 120237682688
@@ -35,7 +35,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 122397749248
-    m_Localized: "Casa en construcci\xF3n"
+    m_Localized: "CAM 6 \u2014 Casa en construcci\xF3n"
     m_Metadata:
       m_Items: []
   - m_Id: 191549239296
@@ -43,19 +43,23 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 193638002688
-    m_Localized: CAM 7
+    m_Localized: "CAM 8 \u2014 Escenario"
     m_Metadata:
       m_Items: []
   - m_Id: 194632052736
-    m_Localized: Generador
+    m_Localized: "CAM 9 \u2014 Generador"
     m_Metadata:
       m_Items: []
   - m_Id: 195714183168
-    m_Localized: "Almac\xE9n"
+    m_Localized: "CAM 10 \u2014 Almac\xE9n"
     m_Metadata:
       m_Items: []
   - m_Id: 243566997504
-    m_Localized: CAM 10
+    m_Localized: CAM 11
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14772128028651520
+    m_Localized: CAM 5
     m_Metadata:
       m_Items: []
   references:

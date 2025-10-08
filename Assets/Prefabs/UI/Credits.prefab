@@ -127,7 +127,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 960, y: -500}
-  m_SizeDelta: {x: 1080, y: 1171.05}
+  m_SizeDelta: {x: 1080, y: 1701.66}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &4511622082206837324
 CanvasRenderer:
@@ -157,49 +157,18 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'tjoc monitor- not really - by mhaipisica2
-
-    Clock tjoc sm - by fap_nighits_frennis_fnia_fnaf
-
-    Old
-    Wooden Table - by GameDev Nick
-
-    CHAIR - by vUv
-
-    Tung Tung Tung Sahur
-    Phase 2 -  by photon (that one larry)
-
-    Tool Box - by kyuukonneko
-
-    Watch
-    Tower Scary Baboon - by ScaryBaboonRipper
-
-    PC Case - by bluecato
-
-    Burbaloni
-    Luliloli | Italian Brainrot - by BR Fog BR
-
-    Brr Brr Patapim | Italian Brainrot
-    - by BR Fog BR
-
-    Door (wood) - by DiggenDigga
-
-    Celling lamp - by DDZ production
-
-    Light
-    Switch - by Avot
-
-    Flashlight - by Brandon Baldwin
-
-    Cozy Campfire - Shape
-    Key Animation - by Fantom Matter
-
-    Outhouse - by Strifey7
-
-    UI/Menu Soundpack
-    - by Nathan Gibson (Cyrex Studios)
-
-    Street Lamp - by bez_glaza'
+  m_text: "tjoc monitor- not really - by mhaipisica2\nClock tjoc sm - by fap_nighits_frennis_fnia_fnaf\nOld
+    Wooden Table - by GameDev Nick\nCHAIR - by vUv\nTung Tung Tung Sahur Phase 2
+    -  by photon (that one larry)\nTool Box - by kyuukonneko\nWatch Tower Scary Baboon
+    - by ScaryBaboonRipper\nPC Case - by bluecato\nBurbaloni Luliloli | Italian Brainrot
+    - by BR Fog BR\nBrr Brr Patapim | Italian Brainrot - by BR Fog BR\nDoor (wood)
+    - by DiggenDigga\nCelling lamp - by DDZ production\nLight Switch - by Avot\nFlashlight
+    - by Brandon Baldwin\nCozy Campfire - Shape Key Animation - by Fantom Matter\nOuthouse
+    - by Strifey7\nUI/Menu Soundpack - by Nathan Gibson (Cyrex Studios)\nStreet Lamp
+    - by bez_glaza\nElectricity transformer vault - by CRSHZY\nCrates And Barrels
+    - by Mateusz Woli\u0144ski\nCrate box - by KloWorks\nCrate Pile - by Blender3D\nDestroyed
+    House 2 - by Blacker\nTraffic Barrier - by Aidan Callaghan\nTraffic Barricades
+    - by Caboose3d\nSecurity Set CCTV Low Poly - by MesXwi"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3c0cd4647afaba14f8c8cb1be8c85277, type: 2}
   m_sharedMaterial: {fileID: -8278211915336946654, guid: 3c0cd4647afaba14f8c8cb1be8c85277, type: 2}
