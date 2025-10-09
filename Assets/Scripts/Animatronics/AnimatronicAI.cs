@@ -1,4 +1,5 @@
-﻿using Sirenix.OdinInspector;
+﻿using Cysharp.Threading.Tasks;
+using Sirenix.OdinInspector;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -222,7 +223,7 @@ namespace VoidspireStudio.FNATS.Animatronics
 
                     OfficeManager.Instance.BreakAll();
 
-                    StartCoroutine(OfficeAttack());
+                    OfficeAttack().SuppressCancellationThrow().Forget();
                     break;
 
                 case OfficeAttackState.Blocked:
@@ -246,19 +247,19 @@ namespace VoidspireStudio.FNATS.Animatronics
             }
         }
 
-        private IEnumerator OfficeAttack()
+        private async UniTask OfficeAttack()
         {
             _agent.SetDestination(OfficeManager.Instance.OfficeCenter.position);
 
-            yield return null;
+            await UniTask.Yield(cancellationToken: this.GetCancellationTokenOnDestroy()).SuppressCancellationThrow();
 
-            yield return new WaitUntil(() => _agent.HasReachedDestination() || _currentState == AnimatronicState.Forwarding || _currentState == AnimatronicState.OfficeAttack);
+            await UniTask.WaitUntil(() => _agent.HasReachedDestination() || _currentState == AnimatronicState.Forwarding || _currentState == AnimatronicState.OfficeAttack, cancellationToken: this.GetCancellationTokenOnDestroy()).SuppressCancellationThrow();
 
             if (_currentState == AnimatronicState.Forwarding || _currentState == AnimatronicState.Attack)
             {
                 _attackState = OfficeAttackState.NotAttack;
                 isAttackOffice = false;
-                yield break;
+                return;
             }
 
             if (!OfficeManager.Instance.IsPlayerInOffice)
@@ -267,24 +268,24 @@ namespace VoidspireStudio.FNATS.Animatronics
                 _attackState = OfficeAttackState.NotAttack;
                 _waitTimer = 1f;
                 _currentState = AnimatronicState.Waiting;
-                yield break;
+                return;
             }
             else if (OfficeManager.Instance.IsPlayerUnderTable)
             {
                 _agent.SetDestination(OfficeManager.Instance.PlayerUnderTableSearch.position);
                 
-                yield return new WaitUntil(() => _agent.HasReachedDestination());
+                await UniTask.WaitUntil(() => _agent.HasReachedDestination(), cancellationToken: this.GetCancellationTokenOnDestroy()).SuppressCancellationThrow();
 
                 Attack();
-                yield break;
+                return;
             }
             else
             {
                 _agent.SetDestination(Player.Player.Instance.transform.position);
 
-                yield return null;
+                await UniTask.Yield(cancellationToken: this.GetCancellationTokenOnDestroy()).SuppressCancellationThrow();
 
-                yield return new WaitUntil(() => _agent.HasReachedDestination());
+                await UniTask.WaitUntil(() => _agent.HasReachedDestination(), cancellationToken: this.GetCancellationTokenOnDestroy()).SuppressCancellationThrow();
                 Attack();
             }
         }
@@ -407,7 +408,7 @@ namespace VoidspireStudio.FNATS.Animatronics
                     break;
 
                 case RotateStep rotateStep:
-                    StartCoroutine(Rotate(rotateStep.Target));
+                    transform.Rotate(rotateStep.Target, _rotationSpeed).Forget();
                     break;
 
                 case SabotageStep:
@@ -420,17 +421,6 @@ namespace VoidspireStudio.FNATS.Animatronics
                     СurrentState = AnimatronicState.OfficeAttack;
                     break;
             }
-        }
-
-        public IEnumerator Rotate(Quaternion targetAngle)
-        {
-            while (Quaternion.Angle(transform.localRotation, targetAngle) > 0.01f)
-            {
-                transform.localRotation = Quaternion.RotateTowards(transform.localRotation, targetAngle, _rotationSpeed * Time.deltaTime);
-
-                yield return null;
-            }
-            transform.localRotation = targetAngle;
         }
 
         private void PlayerForward()

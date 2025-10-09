@@ -1,5 +1,7 @@
+using Cysharp.Threading.Tasks;
 using QuickOutline;
 using System;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
@@ -63,7 +65,7 @@ namespace VoidspireStudio.FNATS.Player
         private Vector2 _lookInput;
         private Vector3 _velocity;
 
-        private Coroutine _sprintAdjustFov;
+        private CancellationTokenSource _sprintAdjustFovToken;
 
         public Flashlight PlayerFlashlight => _flashlight;
 
@@ -267,12 +269,26 @@ namespace VoidspireStudio.FNATS.Player
             _speed = _walkSpeed;
             _isRunning = false;
 
-            if (_sprintAdjustFov != null)
-                StopCoroutine(_sprintAdjustFov);
+            if (_sprintAdjustFovToken?.Token.CanBeCanceled ?? false)
+                _sprintAdjustFovToken.Cancel();
 
-            _sprintAdjustFov = StartCoroutine(Util.AdjustFOV(_fov, 0.4f, _playerCamera));
+            FovAsyncWrapper(_fov).Forget();
 
             OnRunStateChange?.Invoke(false);
+        }
+
+        private async UniTask FovAsyncWrapper(float fov)
+        {
+            _sprintAdjustFovToken = CancellationTokenSource.CreateLinkedTokenSource(new(), this.GetCancellationTokenOnDestroy());
+            try
+            {
+                await Util.AdjustFOV(fov, 0.4f, _playerCamera, _sprintAdjustFovToken.Token);
+            }
+            finally
+            {
+                _sprintAdjustFovToken.Dispose();
+                _sprintAdjustFovToken = null;
+            }
         }
 
         private void Sprint_started(InputAction.CallbackContext obj)
@@ -283,11 +299,11 @@ namespace VoidspireStudio.FNATS.Player
             _speed = _runSpeed;
             _isRunning = true;
 
-            if (_sprintAdjustFov != null)
-                StopCoroutine(_sprintAdjustFov);
+            if (_sprintAdjustFovToken?.Token.CanBeCanceled ?? false)
+                _sprintAdjustFovToken.Cancel();
 
-            _sprintAdjustFov = StartCoroutine(Util.AdjustFOV(_sprintFov, 0.4f, _playerCamera));
-            
+            FovAsyncWrapper(_sprintFov).Forget();
+
             OnRunStateChange?.Invoke(true);
         }
 

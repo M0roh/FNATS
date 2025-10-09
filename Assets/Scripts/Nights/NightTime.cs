@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -12,10 +13,10 @@ namespace VoidspireStudio.FNATS.Nights
         public static event OnTickHandler OnTick;
         public delegate void OnTickHandler(GameTime time);
 
-        private void OnEnable()
+        private void Start()
         {
             Reset();
-            StartCoroutine(NightTimer());
+            NightTimer().SuppressCancellationThrow().Forget();
         }
 
         public static void Reset(int startHour = 23)
@@ -24,7 +25,7 @@ namespace VoidspireStudio.FNATS.Nights
             TimeScale = 1f;
         }
 
-        public IEnumerator NightTimer()
+        public async UniTask NightTimer()
         {
             do
             {
@@ -32,11 +33,10 @@ namespace VoidspireStudio.FNATS.Nights
 
                 OnTick?.Invoke(CurrentTime);
 
-                yield return new WaitForSeconds(TimeScale);
-            } while (true);
+                await UniTask.Delay(Mathf.RoundToInt(TimeScale * 1000f), cancellationToken: this.GetCancellationTokenOnDestroy()).SuppressCancellationThrow();
+            } while (!this.GetCancellationTokenOnDestroy().IsCancellationRequested);
         }
     }
-
 
     public class GameTime
     {

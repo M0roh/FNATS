@@ -1,9 +1,12 @@
+using Cysharp.Threading.Tasks;
 using Sirenix.OdinInspector;
 using System.Collections;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Localization;
 using VoidspireStudio.FNATS.Sounds;
+using VoidspireStudio.FNATS.Utils;
 
 
 namespace VoidspireStudio.FNATS.Interactables
@@ -27,7 +30,8 @@ namespace VoidspireStudio.FNATS.Interactables
 
         private AudioSource _audioSource;
         private NavMeshObstacle _obstacle;
-        private Coroutine _rotateCoroutine;
+
+        private CancellationTokenSource _rotateCoroutineCancelToken;
 
         private bool _isOpen = true;
         private bool _isBroken = false;
@@ -48,9 +52,9 @@ namespace VoidspireStudio.FNATS.Interactables
         private void Start()
         {
             if (_isOpenOnStart)
-                Open();
+                Open().Forget();
             else
-                Close();
+                Close().Forget();
         }
 
         public void OnInteract()
@@ -59,14 +63,14 @@ namespace VoidspireStudio.FNATS.Interactables
 
             if (_isNeedHold)
             {
-                Close();
+                Close().Forget();
                 return;
             }
 
             if (IsOpen)
-                Close();
+                Close().Forget();
             else
-                Open();
+                Open().Forget();
         }
 
         public void OnInteractEnd()
@@ -74,13 +78,26 @@ namespace VoidspireStudio.FNATS.Interactables
             if (_isBroken) return;
 
             if (_isNeedHold)
-                Open();
+                Open().Forget();
         }
 
-        public void Close()
+        public async UniTask Close()
         {
-            if (_rotateCoroutine != null) StopCoroutine(_rotateCoroutine);
-            _rotateCoroutine = StartCoroutine(Rotate(_closeAngle));
+            if (_rotateCoroutineCancelToken?.Token.CanBeCanceled ?? false)
+            {
+                _rotateCoroutineCancelToken.Cancel();
+            }
+            _rotateCoroutineCancelToken = CancellationTokenSource.CreateLinkedTokenSource(new(), this.GetCancellationTokenOnDestroy());
+
+            try
+            {
+                await transform.Rotate(_closeAngle, _rotationSpeed).SuppressCancellationThrow();
+            }
+            finally
+            {
+                _rotateCoroutineCancelToken?.Dispose();
+                _rotateCoroutineCancelToken = null;
+            }
 
             _isOpen = false;
             _obstacle.enabled = true;
@@ -88,10 +105,23 @@ namespace VoidspireStudio.FNATS.Interactables
             AudioManager.Instance.PlaySound(_audioSource, _openCloseSound);
         }
 
-        public void Open()
+        public async UniTask Open()
         {
-            if (_rotateCoroutine != null) StopCoroutine(_rotateCoroutine);
-            _rotateCoroutine = StartCoroutine(Rotate(_openAngle));
+            if (_rotateCoroutineCancelToken?.Token.CanBeCanceled ?? false)
+            {
+                _rotateCoroutineCancelToken.Cancel();
+            }
+            _rotateCoroutineCancelToken = CancellationTokenSource.CreateLinkedTokenSource(new(), this.GetCancellationTokenOnDestroy());
+
+            try
+            {
+                await transform.Rotate(_openAngle, _rotationSpeed).SuppressCancellationThrow();
+            }
+            finally
+            {
+                _rotateCoroutineCancelToken?.Dispose();
+                _rotateCoroutineCancelToken = null;
+            }
 
             _isOpen = true;
             _obstacle.enabled = false;
@@ -105,17 +135,6 @@ namespace VoidspireStudio.FNATS.Interactables
             _isBroken = true;
 
             AudioManager.Instance.PlaySound(_audioSource, _breakSound);
-        }
-
-        public IEnumerator Rotate(Quaternion targetAngle) 
-        {
-            while (Quaternion.Angle(transform.localRotation, targetAngle) > 0.01f)
-            {
-                transform.localRotation = Quaternion.RotateTowards(transform.localRotation, targetAngle, _rotationSpeed * Time.deltaTime);
-
-                yield return null;
-            }
-            transform.localRotation = targetAngle;
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using Cysharp.Threading.Tasks;
+using System.Threading;
+using UnityEngine;
 using UnityEngine.AI;
 using VoidspireStudio.FNATS.PowerSystem;
 
@@ -6,6 +8,17 @@ namespace VoidspireStudio.FNATS.Utils
 {
     public static class Extensions
     {
+        public static async UniTask Rotate(this Transform transform, Quaternion targetAngle, float speed, CancellationToken cancellationToken = default)
+        {
+            while (Quaternion.Angle(transform.localRotation, targetAngle) > 0.01f && !cancellationToken.IsCancellationRequested)
+            {
+                transform.localRotation = Quaternion.RotateTowards(transform.localRotation, targetAngle, speed * Time.deltaTime);
+
+                await UniTask.Yield(cancellationToken: cancellationToken).SuppressCancellationThrow();
+            }
+            transform.localRotation = targetAngle;
+        }
+
         public static bool HasReachedDestination(this NavMeshAgent agent)
         {
             if (agent == null) return false;

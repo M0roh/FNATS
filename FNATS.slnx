@@ -1,0 +1,20 @@
+﻿<Solution>
+  <Project Path="MerryYellow.CodeAssist.Editor.csproj" />
+  <Project Path="UniTask.csproj" />
+  <Project Path="UniTask.Linq.csproj" />
+  <Project Path="Sirenix.OdinInspector.Modules.UnityLocalization.Editor.csproj" />
+  <Project Path="Assembly-CSharp.csproj" />
+  <Project Path="GoogleMobileAds.Editor.csproj" />
+  <Project Path="Unity.RenderPipelines.Core.Samples.Runtime.csproj" />
+  <Project Path="Sirenix.OdinInspector.Modules.Unity.Addressables.csproj" />
+  <Project Path="Unity.RenderPipelines.HighDefinition.Samples.Common.Runtime.csproj" />
+  <Project Path="Unity.RenderPipelines.Core.Samples.Editor.csproj" />
+  <Project Path="Assembly-CSharp-Editor.csproj" />
+  <Project Path="UniTask.Editor.csproj" />
+  <Project Path="Sirenix.OdinInspector.Modules.UnityMathematics.csproj" />
+  <Project Path="Sirenix.OdinInspector.Modules.UnityLocalization.csproj" />
+  <Project Path="UniTask.TextMeshPro.csproj" />
+  <Project Path="Unity.RenderPipelines.HighDefinition.Samples.Common.Editor.csproj" />
+  <Project Path="UniTask.Addressables.csproj" />
+  <Project Path="UniTask.DOTween.csproj" />
+</Solution>

@@ -1,8 +1,12 @@
-﻿using System;
-using System.Collections; 
+﻿using Cysharp.Threading.Tasks;
+using System;
+using System.Collections;
+using System.Threading;
+using UnityEditor.TerrainTools;
 using UnityEngine;
 using UnityEngine.Localization;
 using VoidspireStudio.FNATS.Interactables;
+using VoidspireStudio.FNATS.Utils;
 
 namespace VoidspireStudio.FNATS.PowerSystem.Fuses
 {
@@ -18,7 +22,7 @@ namespace VoidspireStudio.FNATS.PowerSystem.Fuses
         [SerializeField] private Quaternion _levelOffRotation;
         [SerializeField] private float _levelRotationSpeed;
 
-        private Coroutine _rotateCoroutine;
+        private CancellationTokenSource _rotateCoroutineToken;
 
         public bool IsOn { get; private set; } = true;
 
@@ -28,55 +32,71 @@ namespace VoidspireStudio.FNATS.PowerSystem.Fuses
 
         private void OnEnable()
         {
-            _fuseBox.OnBroken += ToOff;
-            ToOn();
+            _fuseBox.OnBroken += ToOffWrapper;
+            ToOn().Forget();
         }
 
-        private void ToOff()
+        private void OnDisable()
         {
-            if (_rotateCoroutine != null)
-                StopCoroutine(_rotateCoroutine);
-                
-            _rotateCoroutine = StartCoroutine(Rotate(_levelOffRotation, () => _fuseBox.Off()));
+            _fuseBox.OnBroken -= ToOffWrapper;
         }
 
-        private void ToOn()
-        {
-            if (_rotateCoroutine != null)
-                StopCoroutine(_rotateCoroutine);
+        private void ToOffWrapper() => ToOff().Forget();
 
-            if (_fuseBox.IsRepaired)
-                _rotateCoroutine = StartCoroutine(Rotate(_levelOnRotation, () => _fuseBox.RepairCheck()));
-            else
-                _rotateCoroutine = StartCoroutine(Rotate(_levelOnRotation, ToOff));
+        private async UniTask ToOff()
+        {
+            if (_rotateCoroutineToken?.Token.CanBeCanceled ?? false)
+                _rotateCoroutineToken.Cancel();
+
+            _rotateCoroutineToken = CancellationTokenSource.CreateLinkedTokenSource(new(), this.GetCancellationTokenOnDestroy());
+            try
+            {
+                await transform.Rotate(_levelOffRotation, _levelRotationSpeed, _rotateCoroutineToken.Token);
+            }
+            finally
+            {
+                _rotateCoroutineToken.Dispose();
+                _rotateCoroutineToken = null;
+
+                _fuseBox.Off();
+            }
+        }
+
+        private async UniTask ToOn()
+        {
+            if (_rotateCoroutineToken?.Token.CanBeCanceled ?? false)
+                _rotateCoroutineToken.Cancel();
+
+            _rotateCoroutineToken = CancellationTokenSource.CreateLinkedTokenSource(new(), this.GetCancellationTokenOnDestroy());
+            try
+            {
+                await transform.Rotate(_levelOnRotation, _levelRotationSpeed, _rotateCoroutineToken.Token);
+            }
+            finally
+            {
+                _rotateCoroutineToken?.Dispose();
+                _rotateCoroutineToken = null;
+
+                if (_fuseBox.IsRepaired)
+                    _fuseBox.RepairCheck();
+                else
+                    await ToOff();
+            }
         }
 
         public void OnInteract()
         {
-            if (_rotateCoroutine != null)
-                StopCoroutine(_rotateCoroutine);
+            if (_rotateCoroutineToken?.Token.CanBeCanceled ?? false)
+                _rotateCoroutineToken.Cancel();
 
             IsOn = !IsOn;
 
             if (IsOn)
-                ToOn();
+                ToOn().Forget();
             else
-                ToOff();
+                ToOff().Forget();
         }
 
         public void OnInteractEnd() { }
-
-        public IEnumerator Rotate(Quaternion targetAngle, Action onComplete = null)
-        {
-            while (Quaternion.Angle(transform.localRotation, targetAngle) > 0.01f)
-            {
-                transform.localRotation = Quaternion.RotateTowards(transform.localRotation, targetAngle, _levelRotationSpeed * Time.deltaTime);
-
-                yield return null;
-            }
-            transform.localRotation = targetAngle;
-
-            onComplete?.Invoke();
-        }
     }
 }

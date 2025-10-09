@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using Cysharp.Threading.Tasks;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using UnityEngine;
 using VoidspireStudio.FNATS.Cameras;
 
@@ -14,25 +16,25 @@ namespace VoidspireStudio.FNATS.Optimization
         public static void AddTarget(OptimizerTarget target) => _optimizationTargets.Add(target);
         public static void RemoveTarget(OptimizerTarget target) => _optimizationTargets.Remove(target);
 
-        private void OnEnable()
+        private void Start()
         {
-            StartCoroutine(OptimizeCoroutine());
+            Optimizer().SuppressCancellationThrow().Forget();
         }
 
-        private IEnumerator OptimizeCoroutine()
+        private async UniTask Optimizer()
         {
-            while (true)
+            while (!this.GetCancellationTokenOnDestroy().IsCancellationRequested)
             {
                 var pos = (SecurityCamerasManager.Instance != null && SecurityCamerasManager.Instance.IsPlayerOnCameras) ? SecurityCamerasManager.Instance.CurrentCamera.transform.position : Camera.main.transform.position;
                 foreach (var target in _optimizationTargets.ToList())
                 {
                     var distance = Vector3.Distance(pos, target.transform.position);
                     target.ApplyOptimization(distance);
+
+                    await UniTask.Yield(cancellationToken: this.GetCancellationTokenOnDestroy()).SuppressCancellationThrow();
                 }
 
-                yield return null;
-                yield return null;
-                yield return null;
+                await UniTask.DelayFrame(3, cancellationToken: this.GetCancellationTokenOnDestroy()).SuppressCancellationThrow();
             }
         }
     }

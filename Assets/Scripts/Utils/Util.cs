@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using Cysharp.Threading.Tasks;
+using System.Collections;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -11,7 +13,7 @@ namespace VoidspireStudio.FNATS.Utils
             return new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
         }
 
-        public static IEnumerator GetRandomPointOnNavMesh(Vector3 center, float radiusMax, System.Action<Vector3> onComplete, float radiusMin = 0f)
+        public static async UniTask<Vector3> GetRandomPointOnNavMesh(Vector3 center, float radiusMax, float radiusMin = 0f, CancellationToken cancellationToken = default)
         {
             int maxAttempts = 50;
 
@@ -21,24 +23,25 @@ namespace VoidspireStudio.FNATS.Utils
 
             for (int i = 0; i < maxAttempts; i++)
             {
+                cancellationToken.ThrowIfCancellationRequested();
+
                 Vector3 randomDirection = Random.insideUnitSphere * Random.Range(radiusMin, radiusMax);
                 randomDirection += center;
 
                 if (NavMesh.SamplePosition(randomDirection, out hit, radiusMax, 1))
                 {
-                    onComplete?.Invoke(hit.position);
-                    yield break;
+                    return hit.position;
                 }
-                yield return null;
+                await UniTask.Yield(cancellationToken: cancellationToken).SuppressCancellationThrow();
             }
 
             if (NavMesh.SamplePosition(center, out hit, radiusMax, areaMask))
-                onComplete?.Invoke(hit.position);
+                return hit.position;
 
             throw new System.Exception("Failed to find a valid NavMesh point.");
         }
 
-        public static IEnumerator AdjustFOV(float targetFov, float duration, Camera camera)
+        public static async UniTask AdjustFOV(float targetFov, float duration, Camera camera, CancellationToken cancellationToken = default)
         {
             float startFov = camera.fieldOfView;
             float elapsedTime = 0f;
@@ -47,7 +50,7 @@ namespace VoidspireStudio.FNATS.Utils
             {
                 elapsedTime += Time.deltaTime;
                 camera.fieldOfView = Mathf.Lerp(startFov, targetFov, elapsedTime / duration);
-                yield return null;
+                await UniTask.Yield(cancellationToken: cancellationToken).SuppressCancellationThrow();
             }
 
             camera.fieldOfView = targetFov;

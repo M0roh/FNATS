@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Localization;
@@ -81,7 +82,7 @@ namespace VoidspireStudio.FNATS.Cameras
         {
             if (!PC.Instance.IsActive) return;
 
-            StartCoroutine(PlayLoadScreen());
+            PlayLoadScreen().SuppressCancellationThrow().Forget();
 
             _lightIndicator.enabled = true;
             _indicatorMaterial.color = _loadIndicator;
@@ -102,10 +103,11 @@ namespace VoidspireStudio.FNATS.Cameras
             MonitorReload();
         }
 
-        public IEnumerator PlayLoadScreen()
+        public async UniTask PlayLoadScreen()
         {
             _screenMaterial.mainTextureOffset = new Vector2(-0.5f, -0.5f);
             _screenMaterial.mainTextureScale = new Vector2(2f, 2f);
+
             if (_loadAnimationFrames != null)
             {
                 for (int i = 0; i < _loopCount; i++)
@@ -113,7 +115,7 @@ namespace VoidspireStudio.FNATS.Cameras
                     foreach (var frame in _loadAnimationFrames)
                     {
                         _screenMaterial.mainTexture = frame;
-                        yield return new WaitForSeconds(_delayBetweenFrames);
+                        await UniTask.Delay(Mathf.RoundToInt(_delayBetweenFrames * 1000f), cancellationToken: this.GetCancellationTokenOnDestroy()).SuppressCancellationThrow();
                     }
                 }
             }

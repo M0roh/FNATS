@@ -1,4 +1,6 @@
+using Cysharp.Threading.Tasks;
 using System.Collections;
+using System.Threading;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -31,7 +33,7 @@ namespace VoidspireStudio.FNATS.Core
 
         private int _playerInteractBindingIndex = 0;
 
-        public Coroutine _messageFade;
+        public CancellationTokenSource _messageFadeToken;
 
         private void Awake()
         {
@@ -88,24 +90,33 @@ namespace VoidspireStudio.FNATS.Core
 
         public void HideTip() => _tipText.gameObject.SetActive(false);
 
-        public void SendMessage(LocalizedString message)
+        public async UniTask SendMessage(LocalizedString message)
         {
             _messagesText.gameObject.SetActive(true);
             _messagesLocalization.StringReference = message;
             _messagesLocalization.RefreshString();
 
-            if (_messageFade != null)
-                StopCoroutine(_messageFade);
-            _messageFade = StartCoroutine(MessageFade());
+            if (_messageFadeToken?.Token.CanBeCanceled ?? false)
+                _messageFadeToken.Cancel();
+
+            _messageFadeToken = CancellationTokenSource.CreateLinkedTokenSource(new(), this.GetCancellationTokenOnDestroy());
+            try {
+                await MessageFade();
+            }
+            finally
+            {
+                _messageFadeToken?.Dispose();
+                _messageFadeToken = null;
+            }
         }
 
-        public IEnumerator MessageFade()
+        public async UniTask MessageFade()
         {
             Color baseColor = _messagesText.color;
             baseColor.a = 1f;
             _messagesText.color = baseColor;
 
-            yield return new WaitForSeconds(_fadeDelay);
+            await UniTask.Delay(Mathf.RoundToInt(_fadeDelay * 1000f), cancellationToken: _messageFadeToken.Token);
 
             float timer = _fadeDuration;
             while (baseColor.a > 0f)
@@ -113,7 +124,7 @@ namespace VoidspireStudio.FNATS.Core
                 timer -= Time.deltaTime;
                 baseColor.a = Mathf.Lerp(baseColor.a, 0f, Time.deltaTime / timer);
                 _messagesText.color = baseColor;
-                yield return null;
+                await UniTask.Yield(cancellationToken: _messageFadeToken.Token);
             }
 
             _messagesText.gameObject.SetActive(false);

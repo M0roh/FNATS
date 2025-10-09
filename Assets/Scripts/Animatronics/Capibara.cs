@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
-using VoidspireStudio.FNATS.Player;
 using VoidspireStudio.FNATS.Utils;
+using Cysharp.Threading.Tasks;
+using System.Threading;
 
 namespace VoidspireStudio.FNATS.Animatronics
 {
@@ -28,7 +29,7 @@ namespace VoidspireStudio.FNATS.Animatronics
         private State _currentState = State.Wait;
         private bool _isWaiting = false;
 
-        private Coroutine _waitCoroutine;
+        private CancellationTokenSource _waitCancelToken;
 
         private NavMeshAgent _agent;
 
@@ -66,34 +67,48 @@ namespace VoidspireStudio.FNATS.Animatronics
                     break;
 
                 case State.Wait:
-                    _waitCoroutine = StartCoroutine(WaitTimer(_waitBetweenTargets));
+                    WaitTimerWrapper(_waitBetweenTargets).Forget();
                     break;
 
                 case State.Run:
                     if (_agent.HasReachedDestination())
-                        _waitCoroutine = StartCoroutine(WaitTimer(_waitBetweenTargets * 0.5f));
+                        WaitTimerWrapper(_waitBetweenTargets / 2).Forget();
                     break;
             }
         }
 
-        public IEnumerator SetRoamingPosition()
+        public async UniTask SetRoamingPosition(CancellationToken token = default)
         {
-            yield return StartCoroutine(Util.GetRandomPointOnNavMesh(transform.position, _walkRadius, (result) => _target = result, 5));
+            _target = (await Util.GetRandomPointOnNavMesh(transform.position, _walkRadius, 5, cancellationToken: token).SuppressCancellationThrow()).Result;
 
             _agent.SetDestination(_target);
         }
 
-        public IEnumerator WaitTimer(float waitTime)
+        public async UniTask WaitTimer(float waitTime)
         {
             _isWaiting = true;
 
-            yield return new WaitForSeconds(waitTime);
+            await UniTask.Delay(Mathf.RoundToInt(waitTime * 1000), cancellationToken: _waitCancelToken.Token).SuppressCancellationThrow();
 
-            yield return StartCoroutine(SetRoamingPosition());
+            await SetRoamingPosition(_waitCancelToken.Token);
 
             _currentState = State.Walk;
 
             _isWaiting = false;
+        }
+
+        public async UniTask WaitTimerWrapper(float waitTime)
+        {
+            _waitCancelToken = CancellationTokenSource.CreateLinkedTokenSource(new(), this.GetCancellationTokenOnDestroy());
+            try
+            {
+                await WaitTimer(waitTime).SuppressCancellationThrow();
+            }
+            finally
+            {
+                _waitCancelToken.Dispose();
+                _waitCancelToken = null;
+            }
         }
 
         public void PlayerCheck()
@@ -103,7 +118,12 @@ namespace VoidspireStudio.FNATS.Animatronics
             {
                 if (_isWaiting)
                 {
-                    StopCoroutine(_waitCoroutine);
+                    if (_waitCancelToken != null)
+                    {
+                        _waitCancelToken.Cancel();
+                        _waitCancelToken.Dispose();
+                        _waitCancelToken = null;
+                    }
                     _isWaiting = false;
                 }
 
