@@ -17,7 +17,7 @@ namespace VoidspireStudio.FNATS.Player
 
         private CharacterController _cc;
 
-        [Header("Движение")]
+        [Header("Movement")]
         [SerializeField] private float _walkSpeed = 3f;
         [SerializeField] private float _runSpeed = 5f;
         [SerializeField] private float _crouchSpeed = 1.5f;
@@ -30,25 +30,29 @@ namespace VoidspireStudio.FNATS.Player
         private bool _isFrozen = false;
         private bool _wasGrounded = false;
 
-        private bool _isPickedFuse = false;
-
-        [Header("Оборудование")]
+        [Header("Equipment")]
         [SerializeField] private Flashlight _flashlight;
         private bool _isFlashlightInHand = true;
 
-        [Header("Камера")]
+        [Header("Camera")]
         [SerializeField] private Camera _playerCamera;
         [SerializeField] private Vector3 _standingCamPos = new(0, 1.7f, 0);
         [SerializeField] private Vector3 _crouchingCamPos = new(0, 0.9f, 0);
         [SerializeField] private float _cameraMoveSpeed = 5f;
 
-        [Header("Управление камерой")]
+        [Header("Effects")]
+        [SerializeField] private Volume _playerVolume;
+        [SerializeField] private VolumeProfile _waterProfile;
+        private bool _isUnderWater = false;
+
+        [Header("Camera Controls")]
         [SerializeField] private float _verticalRotation = 0f;
         [SerializeField] private float _maxVerticalAngle = 70f;
         [SerializeField] private float _fov = 50;
         [SerializeField] private float _sprintFov = 60;
+        private bool _isPickedFuse = false;
 
-        [Header("Взаимодействия")]
+        [Header("Interactions")]
         [SerializeField] private float _interactionDistance = 3f;
         [SerializeField] private GameObject _fuseInHandObject;
 
@@ -75,6 +79,25 @@ namespace VoidspireStudio.FNATS.Player
                 _fuseInHandObject.SetActive(value);
             }
         }
+
+        public bool IsUnderWater
+        {
+            get => _isUnderWater;
+            set
+            {
+                _isUnderWater = value;
+
+                if (value)
+                {
+                    _playerVolume.profile = _waterProfile;
+                }
+                else
+                {
+                    _playerVolume.profile = null;
+                }
+            }
+        }
+
         public bool IsGrounded => _cc.isGrounded;
 
         public float Speed => _speed;

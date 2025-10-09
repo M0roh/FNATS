@@ -1,13 +1,15 @@
-﻿using System.Collections;
+﻿using Sirenix.OdinInspector;
+using Sirenix.Serialization;
+using System.Collections;
 using UnityEngine;
 using VoidspireStudio.FNATS.Interactables;
 
 namespace VoidspireStudio.FNATS.Sounds.Game
 {
     [RequireComponent(typeof(AudioSource))]
-    public class MachineSounds : MonoBehaviour
+    public class MachineSounds : SerializedMonoBehaviour
     {
-        [SerializeField] private IMachineEvents _machine;
+        [OdinSerialize] private IMachineEvents _machine;
 
         [Header("Audio")]
         [SerializeField] private AudioClip _onTurnOnSound;

@@ -127,7 +127,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 960, y: -500}
-  m_SizeDelta: {x: 1080, y: 1701.66}
+  m_SizeDelta: {x: 1080, y: 1767.98}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &4511622082206837324
 CanvasRenderer:
@@ -168,7 +168,8 @@ MonoBehaviour:
     - by bez_glaza\nElectricity transformer vault - by CRSHZY\nCrates And Barrels
     - by Mateusz Woli\u0144ski\nCrate box - by KloWorks\nCrate Pile - by Blender3D\nDestroyed
     House 2 - by Blacker\nTraffic Barrier - by Aidan Callaghan\nTraffic Barricades
-    - by Caboose3d\nSecurity Set CCTV Low Poly - by MesXwi"
+    - by Caboose3d\nSecurity Set CCTV Low Poly - by MesXwi\nCurved Wooden Bridge
+    - by SrgntBlitz"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3c0cd4647afaba14f8c8cb1be8c85277, type: 2}
   m_sharedMaterial: {fileID: -8278211915336946654, guid: 3c0cd4647afaba14f8c8cb1be8c85277, type: 2}

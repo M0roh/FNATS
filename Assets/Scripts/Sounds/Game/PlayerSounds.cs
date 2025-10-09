@@ -64,7 +64,6 @@ namespace Sounds.Game
                     }
 
                     string materialName = Util.GetFloorMaterialName(Player.Instance.transform.position);
-                    Debug.Log(materialName);
                     var clip = _stepsSounds.GetByFloorMaterial(materialName);
 
                     AudioManager.Instance.PlaySound(_audioSource, clip);
