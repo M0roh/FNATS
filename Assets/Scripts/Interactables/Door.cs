@@ -131,7 +131,7 @@ namespace VoidspireStudio.FNATS.Interactables
 
         public void Break()
         {
-            Open();
+            Open().Forget();
             _isBroken = true;
 
             AudioManager.Instance.PlaySound(_audioSource, _breakSound);

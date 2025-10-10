@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Cysharp.Threading.Tasks;
+using UnityEngine;
 using UnityEngine.Localization;
 using VoidspireStudio.FNATS.Core;
 
@@ -21,7 +22,7 @@ namespace VoidspireStudio.FNATS.Triggers
         {
             if (message.IsEmpty) return;
 
-            GameManager.Instance.SendMessage(message);
+            GameManager.Instance.SendMessage(message).Forget();
         }
     }
 }

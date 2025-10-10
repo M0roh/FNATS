@@ -286,7 +286,7 @@ namespace VoidspireStudio.FNATS.Player
             }
             finally
             {
-                _sprintAdjustFovToken.Dispose();
+                _sprintAdjustFovToken?.Dispose();
                 _sprintAdjustFovToken = null;
             }
         }

@@ -4936,11 +4936,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4742473837712756890, guid: 78b4adbe06b07174291600873fa98c87, type: 3}
       propertyPath: m_LODs.Array.data[2].screenRelativeHeight
-      value: 0.18253545
+      value: 0.21072577
       objectReference: {fileID: 0}
     - target: {fileID: 4742473837712756890, guid: 78b4adbe06b07174291600873fa98c87, type: 3}
       propertyPath: m_LODs.Array.data[3].screenRelativeHeight
-      value: 0.07971489
+      value: 0.10362794
       objectReference: {fileID: 0}
     - target: {fileID: 8226826079519263571, guid: 78b4adbe06b07174291600873fa98c87, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
