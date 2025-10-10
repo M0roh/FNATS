@@ -27,14 +27,17 @@ namespace VoidspireStudio.FNATS.Nights
 
         public async UniTask NightTimer()
         {
-            do
+            var token = destroyCancellationToken;
+
+            while (!token.IsCancellationRequested)
             {
                 CurrentTime.AddMinute();
 
                 OnTick?.Invoke(CurrentTime);
 
-                await UniTask.Delay(Mathf.RoundToInt(TimeScale * 1000f), cancellationToken: this.GetCancellationTokenOnDestroy()).SuppressCancellationThrow();
-            } while (!this.GetCancellationTokenOnDestroy().IsCancellationRequested);
+                await UniTask.Delay(Mathf.RoundToInt(TimeScale * 1000f), cancellationToken: token)
+                    .SuppressCancellationThrow();
+            }
         }
     }
 

@@ -10,13 +10,15 @@ namespace VoidspireStudio.FNATS.Utils
     {
         public static async UniTask Rotate(this Transform transform, Quaternion targetAngle, float speed, CancellationToken cancellationToken = default)
         {
-            while (Quaternion.Angle(transform.localRotation, targetAngle) > 0.01f && !cancellationToken.IsCancellationRequested)
+            while (!cancellationToken.IsCancellationRequested && transform != null && Quaternion.Angle(transform.localRotation, targetAngle) > 0.01f)
             {
                 transform.localRotation = Quaternion.RotateTowards(transform.localRotation, targetAngle, speed * Time.deltaTime);
 
                 await UniTask.Yield(cancellationToken: cancellationToken).SuppressCancellationThrow();
             }
-            transform.localRotation = targetAngle;
+
+            if (transform != null)
+                transform.localRotation = targetAngle;
         }
 
         public static bool HasReachedDestination(this NavMeshAgent agent)

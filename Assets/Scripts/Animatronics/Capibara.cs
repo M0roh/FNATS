@@ -79,7 +79,11 @@ namespace VoidspireStudio.FNATS.Animatronics
 
         public async UniTask SetRoamingPosition(CancellationToken token = default)
         {
-            _target = (await Util.GetRandomPointOnNavMesh(transform.position, _walkRadius, 5, cancellationToken: token).SuppressCancellationThrow()).Result;
+            token.ThrowIfCancellationRequested();
+
+            var tempTarger = (await Util.GetRandomPointOnNavMesh(transform.position, _walkRadius, 5, cancellationToken: token).SuppressCancellationThrow()).Result;
+            token.ThrowIfCancellationRequested();
+            _target = tempTarger;
 
             _agent.SetDestination(_target);
         }
@@ -99,7 +103,7 @@ namespace VoidspireStudio.FNATS.Animatronics
 
         public async UniTask WaitTimerWrapper(float waitTime)
         {
-            _waitCancelToken = CancellationTokenSource.CreateLinkedTokenSource(new(), this.GetCancellationTokenOnDestroy());
+            _waitCancelToken = CancellationTokenSource.CreateLinkedTokenSource(new(), destroyCancellationToken);
             try
             {
                 await WaitTimer(waitTime).SuppressCancellationThrow();

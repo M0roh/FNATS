@@ -23,18 +23,25 @@ namespace VoidspireStudio.FNATS.Optimization
 
         private async UniTask Optimizer()
         {
-            while (!this.GetCancellationTokenOnDestroy().IsCancellationRequested)
+            var token = destroyCancellationToken;
+
+            while (!token.IsCancellationRequested)
             {
                 var pos = (SecurityCamerasManager.Instance != null && SecurityCamerasManager.Instance.IsPlayerOnCameras) ? SecurityCamerasManager.Instance.CurrentCamera.transform.position : Camera.main.transform.position;
                 foreach (var target in _optimizationTargets.ToList())
                 {
+                    token.ThrowIfCancellationRequested();
+
+                    if (target == null || target.transform == null)
+                        continue;
+
                     var distance = Vector3.Distance(pos, target.transform.position);
                     target.ApplyOptimization(distance);
 
-                    await UniTask.Yield(cancellationToken: this.GetCancellationTokenOnDestroy()).SuppressCancellationThrow();
+                    await UniTask.Yield(cancellationToken: token).SuppressCancellationThrow();
                 }
 
-                await UniTask.DelayFrame(3, cancellationToken: this.GetCancellationTokenOnDestroy()).SuppressCancellationThrow();
+                await UniTask.DelayFrame(3, cancellationToken: token).SuppressCancellationThrow();
             }
         }
     }

@@ -1,5 +1,6 @@
 using Cysharp.Threading.Tasks;
 using Sirenix.OdinInspector;
+using Sirenix.Utilities.Editor.Expressions;
 using System.Collections;
 using System.Threading;
 using UnityEngine;
@@ -83,11 +84,13 @@ namespace VoidspireStudio.FNATS.Interactables
 
         public async UniTask Close()
         {
+            var token = destroyCancellationToken;
+
             if (_rotateCoroutineCancelToken?.Token.CanBeCanceled ?? false)
             {
                 _rotateCoroutineCancelToken.Cancel();
             }
-            _rotateCoroutineCancelToken = CancellationTokenSource.CreateLinkedTokenSource(new(), this.GetCancellationTokenOnDestroy());
+            _rotateCoroutineCancelToken = CancellationTokenSource.CreateLinkedTokenSource(new(), token);
 
             try
             {
@@ -98,6 +101,9 @@ namespace VoidspireStudio.FNATS.Interactables
                 _rotateCoroutineCancelToken?.Dispose();
                 _rotateCoroutineCancelToken = null;
             }
+
+            if (token.IsCancellationRequested)
+                return;
 
             _isOpen = false;
             _obstacle.enabled = true;
